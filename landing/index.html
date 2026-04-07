@@ -4,21 +4,113 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Oliveira Assessoria - Seus direitos. Simples assim.</title>
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <style>
+:root {
+    --primary-color: #0A1628;
+    --accent-color: #C9A84C;
+    --bg-light: #F5F5F5;
+    --white: #FFFFFF;
+    --text-dark: #333333;
+    --transition: all 0.3s ease;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Source Sans 3', sans-serif; line-height: 1.6; color: var(--text-dark); background-color: var(--white); overflow-x: hidden; }
+h1, h2, h3, .logo { font-family: 'Playfair Display', serif; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+header { background-color: var(--white); box-shadow: 0 2px 10px rgba(0,0,0,0.1); padding: 15px 0; position: sticky; top: 0; z-index: 1000; }
+header .container { display: flex; justify-content: space-between; align-items: center; }
+.logo { font-size: 24px; font-weight: 700; color: var(--accent-color); text-decoration: none; }
+nav ul { display: flex; list-style: none; }
+nav ul li { margin-left: 25px; }
+nav ul li a { text-decoration: none; color: var(--primary-color); font-weight: 600; transition: var(--transition); }
+nav ul li a:hover { color: var(--accent-color); }
+.btn { display: inline-block; padding: 12px 24px; border-radius: 5px; text-decoration: none; font-weight: 700; cursor: pointer; transition: var(--transition); border: none; }
+.btn-header { background-color: var(--accent-color); color: var(--white); font-size: 14px; }
+.btn-header:hover { background-color: #b09342; }
+.menu-toggle { display: none; font-size: 24px; cursor: pointer; background: none; border: none; }
+.hero { background: linear-gradient(135deg, #0A1628 0%, #1a2a44 100%); color: var(--white); padding: 100px 0; text-align: center; position: relative; overflow: hidden; }
+.hero::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.05) 1px, transparent 0); background-size: 40px 40px; }
+.hero-content { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; }
+.hero h1 { font-size: 48px; margin-bottom: 20px; }
+.hero p { font-size: 20px; margin-bottom: 40px; opacity: 0.9; }
+.hero-ctas .btn { margin: 10px; }
+.btn-primary { background-color: var(--accent-color); color: var(--white); padding: 15px 35px; font-size: 18px; }
+.btn-secondary { background-color: transparent; border: 2px solid var(--white); color: var(--white); padding: 13px 33px; font-size: 18px; }
+.btn-secondary:hover { background-color: var(--white); color: var(--primary-color); }
+@keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+.pulse { animation: pulse 2s infinite ease-in-out; }
+.servicos { padding: 80px 0; background-color: var(--bg-light); }
+.section-title { text-align: center; font-size: 36px; margin-bottom: 50px; color: var(--primary-color); }
+.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+.service-card { background-color: var(--white); padding: 40px 30px; border-radius: 10px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: var(--transition); }
+.service-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
+.service-icon { font-size: 40px; margin-bottom: 20px; }
+.service-card h3 { font-size: 22px; margin-bottom: 15px; color: var(--primary-color); }
+.service-card p { margin-bottom: 20px; color: #666; }
+.price { display: block; font-weight: 700; color: var(--accent-color); font-size: 18px; }
+.como-funciona { padding: 80px 0; }
+.steps-container { display: flex; justify-content: space-between; gap: 30px; flex-wrap: wrap; }
+.step { flex: 1; min-width: 250px; text-align: center; padding: 20px; }
+.step-number { width: 60px; height: 60px; background-color: var(--primary-color); color: var(--white); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 700; margin: 0 auto 25px; }
+.diferenciais { padding: 60px 0; background-color: var(--primary-color); color: var(--white); }
+.diferenciais .section-title { color: var(--white); }
+.diferenciais-list { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+.diferenciais-list li { font-size: 18px; display: flex; align-items: center; }
+.diferenciais-list li i { color: var(--accent-color); margin-right: 15px; font-size: 24px; }
+.depoimentos { padding: 80px 0; background-color: var(--bg-light); }
+.testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+.testimonial-card { background-color: var(--white); padding: 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); font-style: italic; }
+.testimonial-card cite { display: block; margin-top: 20px; font-weight: 700; font-style: normal; color: var(--primary-color); }
+.faq { padding: 80px 0; }
+.faq-container { max-width: 800px; margin: 0 auto; }
+.faq-item { border-bottom: 1px solid #ddd; padding: 20px 0; }
+.faq-question { font-weight: 700; font-size: 18px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; color: var(--primary-color); background: none; border: none; width: 100%; text-align: left; }
+.faq-answer { padding-top: 15px; display: none; color: #666; }
+.faq-item.active .faq-answer { display: block; }
+.faq-item.active .faq-question i { transform: rotate(180deg); }
+.cta-final { padding: 80px 0; background-color: var(--bg-light); text-align: center; }
+.cta-final h2 { font-size: 36px; margin-bottom: 30px; }
+.btn-whatsapp { background-color: #25D366; color: var(--white); padding: 15px 40px; font-size: 20px; margin-bottom: 50px; display: inline-block; }
+.btn-whatsapp:hover { background-color: #128C7E; }
+.form-container { max-width: 600px; margin: 0 auto; background-color: var(--white); padding: 40px; border-radius: 10px; text-align: left; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+.form-group { margin-bottom: 20px; }
+.form-group label { display: block; margin-bottom: 8px; font-weight: 600; }
+.form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-family: inherit; font-size: 16px; }
+.form-group textarea { height: 100px; resize: vertical; }
+.btn-submit { background-color: var(--primary-color); color: var(--white); width: 100%; padding: 15px; font-size: 18px; border-radius: 5px; border: none; cursor: pointer; font-weight: 700; transition: var(--transition); }
+.btn-submit:hover { background-color: #1a2a44; }
+.form-status { margin-top: 20px; padding: 10px; border-radius: 5px; display: none; }
+footer { background-color: var(--primary-color); color: var(--white); padding: 50px 0; text-align: center; }
+.disclaimer { font-size: 14px; opacity: 0.7; margin: 10px 0 20px; }
+.footer-links a { color: var(--white); text-decoration: none; margin: 0 15px; font-size: 14px; opacity: 0.8; }
+.footer-links a:hover { opacity: 1; }
+.whatsapp-fixed { position: fixed; bottom: 20px; right: 20px; background-color: #25D366; color: var(--white); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 999; transition: var(--transition); text-decoration: none; }
+.whatsapp-fixed:hover { transform: scale(1.1); }
+.fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+@media (max-width: 768px) {
+    .menu-toggle { display: block; }
+    nav { display: none; position: absolute; top: 70px; left: 0; width: 100%; background-color: var(--white); box-shadow: 0 5px 10px rgba(0,0,0,0.1); }
+    nav.active { display: block; }
+    nav ul { flex-direction: column; padding: 20px; }
+    nav ul li { margin: 10px 0; }
+    .btn-header { display: none; }
+    .hero h1 { font-size: 32px; }
+    .hero p { font-size: 18px; }
+    .steps-container { flex-direction: column; }
+}
+    </style>
 </head>
 <body>
-    <!-- Fixed WhatsApp Button (Mobile) -->
-    <a href="https://wa.me/55XXXXXXXXXXX?text=Olá!%20Quero%20uma%20consulta%20gratuita" class="whatsapp-fixed" target="_blank" aria-label="Fale conosco no WhatsApp">
+    <a href="https://wa.me/55XXXXXXXXXXX?text=Ol%C3%A1!%20Quero%20uma%20consulta%20gratuita" class="whatsapp-fixed" target="_blank" rel="noopener noreferrer" aria-label="Fale conosco no WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <!-- Header -->
     <header>
         <div class="container">
             <div class="logo">Oliveira Assessoria</div>
@@ -30,29 +122,27 @@
                     <li><a href="#contato">Contato</a></li>
                 </ul>
             </nav>
-            <a href="https://wa.me/55XXXXXXXXXXX?text=Olá!%20Quero%20uma%20consulta%20gratuita" class="btn btn-header" target="_blank">Consulta Grátis</a>
-            <div class="menu-toggle" id="mobile-menu">
+            <a href="https://wa.me/55XXXXXXXXXXX?text=Ol%C3%A1!%20Quero%20uma%20consulta%20gratuita" class="btn btn-header" target="_blank" rel="noopener noreferrer">Consulta Grátis</a>
+            <button class="menu-toggle" id="mobile-menu" aria-label="Menu">
                 <i class="fas fa-bars"></i>
-            </div>
+            </button>
         </div>
     </header>
 
     <main>
-        <!-- Hero Section -->
         <section class="hero">
             <div class="container">
                 <div class="hero-content">
                     <h1 class="fade-in">Resolva seus problemas jurídicos sem complicação</h1>
                     <p class="fade-in">Consulta gratuita. Avaliação em minutos. Solução real.</p>
                     <div class="hero-ctas fade-in">
-                        <a href="https://wa.me/55XXXXXXXXXXX?text=Olá!%20Quero%20uma%20consulta%20gratuita" class="btn btn-primary pulse" target="_blank">Falar com especialista agora</a>
+                        <a href="https://wa.me/55XXXXXXXXXXX?text=Ol%C3%A1!%20Quero%20uma%20consulta%20gratuita" class="btn btn-primary pulse" target="_blank" rel="noopener noreferrer">Falar com especialista agora</a>
                         <a href="#servicos" class="btn btn-secondary">Ver nossos serviços</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Serviços Section -->
         <section id="servicos" class="servicos">
             <div class="container">
                 <h2 class="section-title fade-in">Nossos Serviços</h2>
@@ -97,7 +187,6 @@
             </div>
         </section>
 
-        <!-- Como Funciona Section -->
         <section id="como-funciona" class="como-funciona">
             <div class="container">
                 <h2 class="section-title fade-in">Como Funciona</h2>
@@ -121,7 +210,6 @@
             </div>
         </section>
 
-        <!-- Diferenciais Section -->
         <section class="diferenciais">
             <div class="container">
                 <h2 class="section-title fade-in">Por que nos escolher?</h2>
@@ -134,68 +222,64 @@
             </div>
         </section>
 
-        <!-- Depoimentos Section -->
         <section class="depoimentos">
             <div class="container">
                 <h2 class="section-title fade-in">O que dizem nossos clientes</h2>
                 <div class="testimonials-grid">
                     <div class="testimonial-card fade-in">
-                        <p>“Negociei R$15.000 de dívida por R$3.000. Inacreditável!”</p>
+                        <p>"Negociei R$15.000 de dívida por R$3.000. Inacreditável!"</p>
                         <cite>— Maria S.</cite>
                     </div>
                     <div class="testimonial-card fade-in">
-                        <p>“Consegui minha aposentadoria depois de 2 anos tentando sozinho.”</p>
+                        <p>"Consegui minha aposentadoria depois de 2 anos tentando sozinho."</p>
                         <cite>— João P.</cite>
                     </div>
                     <div class="testimonial-card fade-in">
-                        <p>“Contrato profissional por um preço justo. Recomendo!”</p>
+                        <p>"Contrato profissional por um preço justo. Recomendo!"</p>
                         <cite>— Ana C.</cite>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- FAQ Section -->
         <section id="faq" class="faq">
             <div class="container">
                 <h2 class="section-title fade-in">Dúvidas Frequentes</h2>
                 <div class="faq-container">
                     <div class="faq-item fade-in">
-                        <div class="faq-question">Preciso de advogado para negociar dívidas? <i class="fas fa-chevron-down"></i></div>
+                        <button class="faq-question">Preciso de advogado para negociar dívidas? <i class="fas fa-chevron-down"></i></button>
                         <div class="faq-answer">Não. Assessoria jurídica resolve.</div>
                     </div>
                     <div class="faq-item fade-in">
-                        <div class="faq-question">Em quanto tempo recebo meu plano de ação? <i class="fas fa-chevron-down"></i></div>
+                        <button class="faq-question">Em quanto tempo recebo meu plano de ação? <i class="fas fa-chevron-down"></i></button>
                         <div class="faq-answer">Em minutos, pelo WhatsApp.</div>
                     </div>
                     <div class="faq-item fade-in">
-                        <div class="faq-question">A consulta é realmente gratuita? <i class="fas fa-chevron-down"></i></div>
+                        <button class="faq-question">A consulta é realmente gratuita? <i class="fas fa-chevron-down"></i></button>
                         <div class="faq-answer">Sim, para avaliação inicial.</div>
                     </div>
                     <div class="faq-item fade-in">
-                        <div class="faq-question">Vocês atuam em todo o Brasil? <i class="fas fa-chevron-down"></i></div>
+                        <button class="faq-question">Vocês atuam em todo o Brasil? <i class="fas fa-chevron-down"></i></button>
                         <div class="faq-answer">Sim, 100% digital.</div>
                     </div>
                     <div class="faq-item fade-in">
-                        <div class="faq-question">Como funciona o pagamento? <i class="fas fa-chevron-down"></i></div>
+                        <button class="faq-question">Como funciona o pagamento? <i class="fas fa-chevron-down"></i></button>
                         <div class="faq-answer">Apenas após aprovação do plano.</div>
                     </div>
                     <div class="faq-item fade-in">
-                        <div class="faq-question">Quais documentos preciso ter? <i class="fas fa-chevron-down"></i></div>
+                        <button class="faq-question">Quais documentos preciso ter? <i class="fas fa-chevron-down"></i></button>
                         <div class="faq-answer">Nosso agente te informa na consulta.</div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- CTA Final & Form Section -->
         <section id="contato" class="cta-final">
             <div class="container">
                 <h2 class="fade-in">Pronto para resolver?</h2>
-                <a href="https://wa.me/55XXXXXXXXXXX?text=Olá!%20Quero%20uma%20consulta%20gratuita" class="btn btn-whatsapp fade-in" target="_blank">
+                <a href="https://wa.me/55XXXXXXXXXXX?text=Ol%C3%A1!%20Quero%20uma%20consulta%20gratuita" class="btn btn-whatsapp fade-in" target="_blank" rel="noopener noreferrer">
                     <i class="fab fa-whatsapp"></i> Falar no WhatsApp
                 </a>
-                
                 <div class="form-container fade-in">
                     <form id="leads-form">
                         <div class="form-group">
@@ -222,7 +306,7 @@
                             <label for="mensagem">Mensagem breve</label>
                             <textarea id="mensagem" name="mensagem" placeholder="Como podemos te ajudar?"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-submit">Enviar Mensagem</button>
+                        <button type="submit" class="btn-submit">Enviar Mensagem</button>
                     </form>
                     <div id="form-status" class="form-status"></div>
                 </div>
@@ -230,7 +314,6 @@
         </section>
     </main>
 
-    <!-- Footer -->
     <footer>
         <div class="container">
             <p>Oliveira Assessoria &copy; 2025</p>
@@ -242,6 +325,64 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+document.addEventListener('DOMContentLoaded', () => {
+    const mobileMenu = document.getElementById('mobile-menu');
+    const navMenu = document.getElementById('nav-menu');
+    const nav = navMenu ? navMenu.closest('nav') : null;
+    if (mobileMenu && nav) {
+        mobileMenu.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            const icon = mobileMenu.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+    }
+    document.querySelectorAll('.faq-item').forEach(item => {
+        item.querySelector('.faq-question').addEventListener('click', () => {
+            const isActive = item.classList.contains('active');
+            document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+            if (!isActive) item.classList.add('active');
+        });
+    });
+    const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) { entry.target.classList.add('visible'); obs.unobserve(entry.target); }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    const form = document.getElementById('leads-form');
+    const status = document.getElementById('form-status');
+    if (form) {
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const data = { nome: form.nome.value, whatsapp: form.whatsapp.value, area: form.area.value, mensagem: form.mensagem.value };
+            status.textContent = 'Enviando...';
+            status.style.cssText = 'display:block;background:#e3f2fd;color:#0d47a1;padding:10px;border-radius:5px;margin-top:20px;';
+            try {
+                const res = await fetch('https://chaoticcow-n8n.cloudfy.live/webhook/oliveira-leads', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(data) });
+                if (res.ok) {
+                    status.textContent = 'Mensagem enviada! Entraremos em contato em breve.';
+                    status.style.cssText = 'display:block;background:#e8f5e9;color:#1b5e20;padding:10px;border-radius:5px;margin-top:20px;';
+                    form.reset();
+                } else throw new Error();
+            } catch {
+                status.textContent = 'Erro ao enviar. Por favor, use o WhatsApp.';
+                status.style.cssText = 'display:block;background:#ffebee;color:#b71c1c;padding:10px;border-radius:5px;margin-top:20px;';
+            }
+        });
+    }
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', e => {
+            e.preventDefault();
+            const target = document.querySelector(a.getAttribute('href'));
+            if (target) {
+                if (nav) nav.classList.remove('active');
+                window.scrollTo({ top: target.offsetTop - 70, behavior: 'smooth' });
+            }
+        });
+    });
+});
+    </script>
 </body>
 </html>
