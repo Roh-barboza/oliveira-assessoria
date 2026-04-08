@@ -8,103 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-:root {
-    --primary-color: #0A1628;
-    --accent-color: #C9A84C;
-    --bg-light: #F5F5F5;
-    --white: #FFFFFF;
-    --text-dark: #333333;
-    --transition: all 0.3s ease;
-}
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body { font-family: 'Source Sans 3', sans-serif; line-height: 1.6; color: var(--text-dark); background-color: var(--white); overflow-x: hidden; }
-h1, h2, h3, .logo { font-family: 'Playfair Display', serif; }
-.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-header { background-color: var(--white); box-shadow: 0 2px 10px rgba(0,0,0,0.1); padding: 15px 0; position: sticky; top: 0; z-index: 1000; }
-header .container { display: flex; justify-content: space-between; align-items: center; }
-.logo { font-size: 24px; font-weight: 700; color: var(--accent-color); text-decoration: none; }
-nav ul { display: flex; list-style: none; }
-nav ul li { margin-left: 25px; }
-nav ul li a { text-decoration: none; color: var(--primary-color); font-weight: 600; transition: var(--transition); }
-nav ul li a:hover { color: var(--accent-color); }
-.btn { display: inline-block; padding: 12px 24px; border-radius: 5px; text-decoration: none; font-weight: 700; cursor: pointer; transition: var(--transition); border: none; }
-.btn-header { background-color: var(--accent-color); color: var(--white); font-size: 14px; }
-.btn-header:hover { background-color: #b09342; }
-.menu-toggle { display: none; font-size: 24px; cursor: pointer; background: none; border: none; }
-.hero { background: linear-gradient(135deg, #0A1628 0%, #1a2a44 100%); color: var(--white); padding: 100px 0; text-align: center; position: relative; overflow: hidden; }
-.hero::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.05) 1px, transparent 0); background-size: 40px 40px; }
-.hero-content { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; }
-.hero h1 { font-size: 48px; margin-bottom: 20px; }
-.hero p { font-size: 20px; margin-bottom: 40px; opacity: 0.9; }
-.hero-ctas .btn { margin: 10px; }
-.btn-primary { background-color: var(--accent-color); color: var(--white); padding: 15px 35px; font-size: 18px; }
-.btn-secondary { background-color: transparent; border: 2px solid var(--white); color: var(--white); padding: 13px 33px; font-size: 18px; }
-.btn-secondary:hover { background-color: var(--white); color: var(--primary-color); }
-@keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
-.pulse { animation: pulse 2s infinite ease-in-out; }
-.servicos { padding: 80px 0; background-color: var(--bg-light); }
-.section-title { text-align: center; font-size: 36px; margin-bottom: 50px; color: var(--primary-color); }
-.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-.service-card { background-color: var(--white); padding: 40px 30px; border-radius: 10px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: var(--transition); }
-.service-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
-.service-icon { font-size: 40px; margin-bottom: 20px; }
-.service-card h3 { font-size: 22px; margin-bottom: 15px; color: var(--primary-color); }
-.service-card p { margin-bottom: 20px; color: #666; }
-.price { display: block; font-weight: 700; color: var(--accent-color); font-size: 18px; }
-.como-funciona { padding: 80px 0; }
-.steps-container { display: flex; justify-content: space-between; gap: 30px; flex-wrap: wrap; }
-.step { flex: 1; min-width: 250px; text-align: center; padding: 20px; }
-.step-number { width: 60px; height: 60px; background-color: var(--primary-color); color: var(--white); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 700; margin: 0 auto 25px; }
-.diferenciais { padding: 60px 0; background-color: var(--primary-color); color: var(--white); }
-.diferenciais .section-title { color: var(--white); }
-.diferenciais-list { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-.diferenciais-list li { font-size: 18px; display: flex; align-items: center; }
-.diferenciais-list li i { color: var(--accent-color); margin-right: 15px; font-size: 24px; }
-.depoimentos { padding: 80px 0; background-color: var(--bg-light); }
-.testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-.testimonial-card { background-color: var(--white); padding: 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); font-style: italic; }
-.testimonial-card cite { display: block; margin-top: 20px; font-weight: 700; font-style: normal; color: var(--primary-color); }
-.faq { padding: 80px 0; }
-.faq-container { max-width: 800px; margin: 0 auto; }
-.faq-item { border-bottom: 1px solid #ddd; padding: 20px 0; }
-.faq-question { font-weight: 700; font-size: 18px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; color: var(--primary-color); background: none; border: none; width: 100%; text-align: left; }
-.faq-answer { padding-top: 15px; display: none; color: #666; }
-.faq-item.active .faq-answer { display: block; }
-.faq-item.active .faq-question i { transform: rotate(180deg); }
-.cta-final { padding: 80px 0; background-color: var(--bg-light); text-align: center; }
-.cta-final h2 { font-size: 36px; margin-bottom: 30px; }
-.btn-whatsapp { background-color: #25D366; color: var(--white); padding: 15px 40px; font-size: 20px; margin-bottom: 50px; display: inline-block; }
-.btn-whatsapp:hover { background-color: #128C7E; }
-.form-container { max-width: 600px; margin: 0 auto; background-color: var(--white); padding: 40px; border-radius: 10px; text-align: left; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-.form-group { margin-bottom: 20px; }
-.form-group label { display: block; margin-bottom: 8px; font-weight: 600; }
-.form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-family: inherit; font-size: 16px; }
-.form-group textarea { height: 100px; resize: vertical; }
-.btn-submit { background-color: var(--primary-color); color: var(--white); width: 100%; padding: 15px; font-size: 18px; border-radius: 5px; border: none; cursor: pointer; font-weight: 700; transition: var(--transition); }
-.btn-submit:hover { background-color: #1a2a44; }
-.form-status { margin-top: 20px; padding: 10px; border-radius: 5px; display: none; }
-footer { background-color: var(--primary-color); color: var(--white); padding: 50px 0; text-align: center; }
-.disclaimer { font-size: 14px; opacity: 0.7; margin: 10px 0 20px; }
-.footer-links a { color: var(--white); text-decoration: none; margin: 0 15px; font-size: 14px; opacity: 0.8; }
-.footer-links a:hover { opacity: 1; }
-.whatsapp-fixed { position: fixed; bottom: 20px; right: 20px; background-color: #25D366; color: var(--white); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 999; transition: var(--transition); text-decoration: none; }
-.whatsapp-fixed:hover { transform: scale(1.1); }
-.fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
-.fade-in.visible { opacity: 1; transform: translateY(0); }
-@media (max-width: 768px) {
-    .menu-toggle { display: block; }
-    nav { display: none; position: absolute; top: 70px; left: 0; width: 100%; background-color: var(--white); box-shadow: 0 5px 10px rgba(0,0,0,0.1); }
-    nav.active { display: block; }
-    nav ul { flex-direction: column; padding: 20px; }
-    nav ul li { margin: 10px 0; }
-    .btn-header { display: none; }
-    .hero h1 { font-size: 32px; }
-    .hero p { font-size: 18px; }
-    .steps-container { flex-direction: column; }
-}
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <a href="https://wa.me/55XXXXXXXXXXX?text=Ol%C3%A1!%20Quero%20uma%20consulta%20gratuita" class="whatsapp-fixed" target="_blank" rel="noopener noreferrer" aria-label="Fale conosco no WhatsApp">
@@ -113,7 +17,7 @@ footer { background-color: var(--primary-color); color: var(--white); padding: 5
 
     <header>
         <div class="container">
-            <div class="logo">Oliveira Assessoria</div>
+            <a href="#" class="logo">Oliveira Assessoria</a>
             <nav>
                 <ul id="nav-menu">
                     <li><a href="#servicos">Serviços</a></li>
@@ -136,7 +40,9 @@ footer { background-color: var(--primary-color); color: var(--white); padding: 5
                     <h1 class="fade-in">Resolva seus problemas jurídicos sem complicação</h1>
                     <p class="fade-in">Consulta gratuita. Avaliação em minutos. Solução real.</p>
                     <div class="hero-ctas fade-in">
-                        <a href="https://wa.me/55XXXXXXXXXXX?text=Ol%C3%A1!%20Quero%20uma%20consulta%20gratuita" class="btn btn-primary pulse" target="_blank" rel="noopener noreferrer">Falar com especialista agora</a>
+                        <a href="https://wa.me/55XXXXXXXXXXX?text=Ol%C3%A1!%20Quero%20uma%20consulta%20gratuita" class="btn btn-primary pulse" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-whatsapp"></i> Falar com especialista agora
+                        </a>
                         <a href="#servicos" class="btn btn-secondary">Ver nossos serviços</a>
                     </div>
                 </div>
@@ -150,37 +56,38 @@ footer { background-color: var(--primary-color); color: var(--white); padding: 5
                     <div class="service-card fade-in">
                         <div class="service-icon">⚖️</div>
                         <h3>Negociação de Dívidas</h3>
-                        <p>Reduza ou quite suas dívidas</p>
+                        <p>Reduza ou quite suas dívidas sem precisar de advogado. Negociamos diretamente com credores.</p>
                         <span class="price">Consulta Grátis</span>
                     </div>
                     <div class="service-card fade-in">
                         <div class="service-icon">🏛️</div>
                         <h3>INSS e Previdência</h3>
-                        <p>Aposentadoria, auxílio e benefícios</p>
+                        <p>Aposentadoria por idade ou tempo, auxílio-doença, BPC/LOAS e salário-maternidade.</p>
                         <span class="price">A partir de R$29</span>
+                        <span class="badge-popular">Mais Buscado</span>
                     </div>
                     <div class="service-card fade-in">
                         <div class="service-icon">📜</div>
                         <h3>Precatórios</h3>
-                        <p>Receba o que o governo te deve</p>
+                        <p>Verifique se o governo te deve e saiba como receber. Consultamos no sistema do CNJ.</p>
                         <span class="price">Consulta Grátis</span>
                     </div>
                     <div class="service-card fade-in">
                         <div class="service-icon">🧾</div>
                         <h3>Imposto de Renda</h3>
-                        <p>Declaração, restituição e malha fina</p>
+                        <p>Declaração, restituição e regularização de malha fina. Garantimos a maior restituição possível.</p>
                         <span class="price">A partir de R$149</span>
                     </div>
                     <div class="service-card fade-in">
                         <div class="service-icon">📋</div>
                         <h3>Contratos</h3>
-                        <p>Elaboração e análise de contratos</p>
+                        <p>Elaboração e análise de contratos de prestação de serviço, locação e muito mais.</p>
                         <span class="price">A partir de R$99</span>
                     </div>
                     <div class="service-card fade-in">
                         <div class="service-icon">🏢</div>
                         <h3>Processos Administrativos</h3>
-                        <p>Orientação em processos e recursos</p>
+                        <p>Orientação e acompanhamento em recursos e processos junto a órgãos públicos.</p>
                         <span class="price">A partir de R$49</span>
                     </div>
                 </div>
@@ -190,21 +97,24 @@ footer { background-color: var(--primary-color); color: var(--white); padding: 5
         <section id="como-funciona" class="como-funciona">
             <div class="container">
                 <h2 class="section-title fade-in">Como Funciona</h2>
+                <p class="section-subtitle fade-in">Três passos simples para resolver seu problema</p>
                 <div class="steps-container">
                     <div class="step fade-in">
                         <div class="step-number">1</div>
                         <h3>Fale conosco pelo WhatsApp</h3>
-                        <p>Grátis, sem compromisso</p>
+                        <p>Grátis, sem compromisso. Conte seu caso em poucos minutos.</p>
                     </div>
+                    <div class="step-arrow fade-in"><i class="fas fa-chevron-right"></i></div>
                     <div class="step fade-in">
                         <div class="step-number">2</div>
                         <h3>Receba seu plano de ação</h3>
-                        <p>Análise em minutos pela nossa IA</p>
+                        <p>Nossa IA analisa em minutos e entrega um plano personalizado para o seu caso.</p>
                     </div>
+                    <div class="step-arrow fade-in"><i class="fas fa-chevron-right"></i></div>
                     <div class="step fade-in">
                         <div class="step-number">3</div>
                         <h3>Resolva com especialistas</h3>
-                        <p>Executamos junto com você</p>
+                        <p>Executamos cada passo junto com você até a solução completa.</p>
                     </div>
                 </div>
             </div>
@@ -214,10 +124,34 @@ footer { background-color: var(--primary-color); color: var(--white); padding: 5
             <div class="container">
                 <h2 class="section-title fade-in">Por que nos escolher?</h2>
                 <ul class="diferenciais-list">
-                    <li class="fade-in"><i class="fas fa-check-circle"></i> Atendimento 24h por IA especializada</li>
-                    <li class="fade-in"><i class="fas fa-check-circle"></i> Sem juridiquês, sem burocracia</li>
-                    <li class="fade-in"><i class="fas fa-check-circle"></i> Consulta gratuita ou simbólica</li>
-                    <li class="fade-in"><i class="fas fa-check-circle"></i> Resultados reais, não promessas</li>
+                    <li class="fade-in">
+                        <i class="fas fa-robot"></i>
+                        <div>
+                            <strong>Atendimento 24h por IA especializada</strong>
+                            <p>Resposta imediata a qualquer hora, sem espera</p>
+                        </div>
+                    </li>
+                    <li class="fade-in">
+                        <i class="fas fa-comments"></i>
+                        <div>
+                            <strong>Sem juridiquês, sem burocracia</strong>
+                            <p>Linguagem clara e objetiva do início ao fim</p>
+                        </div>
+                    </li>
+                    <li class="fade-in">
+                        <i class="fas fa-hand-holding-heart"></i>
+                        <div>
+                            <strong>Consulta gratuita ou simbólica</strong>
+                            <p>Você conhece o plano antes de pagar qualquer coisa</p>
+                        </div>
+                    </li>
+                    <li class="fade-in">
+                        <i class="fas fa-trophy"></i>
+                        <div>
+                            <strong>Resultados reais, não promessas</strong>
+                            <p>Acompanhamento até a conclusão do seu caso</p>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </section>
@@ -227,16 +161,19 @@ footer { background-color: var(--primary-color); color: var(--white); padding: 5
                 <h2 class="section-title fade-in">O que dizem nossos clientes</h2>
                 <div class="testimonials-grid">
                     <div class="testimonial-card fade-in">
-                        <p>"Negociei R$15.000 de dívida por R$3.000. Inacreditável!"</p>
-                        <cite>— Maria S.</cite>
+                        <div class="testimonial-stars">★★★★★</div>
+                        <p>"Negociei R$15.000 de dívida por R$3.000. Achei que era impossível, mas a equipe da Oliveira resolveu em menos de uma semana. Inacreditável!"</p>
+                        <cite>— Maria S., Negociação de Dívidas</cite>
                     </div>
                     <div class="testimonial-card fade-in">
-                        <p>"Consegui minha aposentadoria depois de 2 anos tentando sozinho."</p>
-                        <cite>— João P.</cite>
+                        <div class="testimonial-stars">★★★★★</div>
+                        <p>"Consegui minha aposentadoria depois de 2 anos tentando sozinho no INSS. Eles descobriram contribuições que eu nem sabia que tinha. Valeu muito!"</p>
+                        <cite>— João P., INSS e Previdência</cite>
                     </div>
                     <div class="testimonial-card fade-in">
-                        <p>"Contrato profissional por um preço justo. Recomendo!"</p>
-                        <cite>— Ana C.</cite>
+                        <div class="testimonial-stars">★★★★★</div>
+                        <p>"Fiz minha declaração de IR e ainda recebi minha restituição em 2x mais do que eu esperava. Atendimento pelo WhatsApp super rápido. Recomendo!"</p>
+                        <cite>— Ana C., Imposto de Renda</cite>
                     </div>
                 </div>
             </div>
@@ -248,27 +185,27 @@ footer { background-color: var(--primary-color); color: var(--white); padding: 5
                 <div class="faq-container">
                     <div class="faq-item fade-in">
                         <button class="faq-question">Preciso de advogado para negociar dívidas? <i class="fas fa-chevron-down"></i></button>
-                        <div class="faq-answer">Não. Assessoria jurídica resolve.</div>
+                        <div class="faq-answer">Não! Para negociar dívidas diretamente com credores, solicitar parcelamentos, contestar cobranças indevidas ou verificar prescrição de dívidas, não é necessário advogado. Nossa assessoria resolve tudo com agilidade e custo muito menor do que um escritório de advocacia.</div>
                     </div>
                     <div class="faq-item fade-in">
                         <button class="faq-question">Em quanto tempo recebo meu plano de ação? <i class="fas fa-chevron-down"></i></button>
-                        <div class="faq-answer">Em minutos, pelo WhatsApp.</div>
+                        <div class="faq-answer">Em até 30 minutos via WhatsApp. Nossa IA analisa sua situação e entrega um passo a passo personalizado. Em casos mais complexos — como INSS ou precatórios — um especialista humano complementa a análise ainda no mesmo dia.</div>
                     </div>
                     <div class="faq-item fade-in">
                         <button class="faq-question">A consulta é realmente gratuita? <i class="fas fa-chevron-down"></i></button>
-                        <div class="faq-answer">Sim, para avaliação inicial.</div>
+                        <div class="faq-answer">Sim! A avaliação inicial é 100% gratuita e sem compromisso. Você só paga se decidir contratar o serviço de assessoria, após receber e aprovar seu plano de ação. Sem taxa de consulta, sem letra miúda.</div>
                     </div>
                     <div class="faq-item fade-in">
                         <button class="faq-question">Vocês atuam em todo o Brasil? <i class="fas fa-chevron-down"></i></button>
-                        <div class="faq-answer">Sim, 100% digital.</div>
+                        <div class="faq-answer">Sim, atendemos em todo o território nacional. Nosso atendimento é 100% digital, pelo WhatsApp. Documentos são enviados digitalmente e os processos são acompanhados de forma remota, sem precisar sair de casa.</div>
                     </div>
                     <div class="faq-item fade-in">
                         <button class="faq-question">Como funciona o pagamento? <i class="fas fa-chevron-down"></i></button>
-                        <div class="faq-answer">Apenas após aprovação do plano.</div>
+                        <div class="faq-answer">Você só paga após receber e aprovar seu plano de ação personalizado. Aceitamos PIX (com desconto), cartão de crédito em até 12x e boleto bancário. Sem taxas surpresa ou cobranças escondidas.</div>
                     </div>
                     <div class="faq-item fade-in">
                         <button class="faq-question">Quais documentos preciso ter? <i class="fas fa-chevron-down"></i></button>
-                        <div class="faq-answer">Nosso agente te informa na consulta.</div>
+                        <div class="faq-answer">Depende da área. Para INSS: CPF, extrato do CNIS e documentos de contribuição. Para Imposto de Renda: informe de rendimentos e CPF. Para dívidas: apenas o CPF já basta para começar. Nossa IA te informa exatamente o que é necessário no seu caso durante a consulta.</div>
                     </div>
                 </div>
             </div>
@@ -277,9 +214,13 @@ footer { background-color: var(--primary-color); color: var(--white); padding: 5
         <section id="contato" class="cta-final">
             <div class="container">
                 <h2 class="fade-in">Pronto para resolver?</h2>
+                <p class="cta-subtitle fade-in">Fale agora mesmo com nosso especialista. É grátis.</p>
                 <a href="https://wa.me/55XXXXXXXXXXX?text=Ol%C3%A1!%20Quero%20uma%20consulta%20gratuita" class="btn btn-whatsapp fade-in" target="_blank" rel="noopener noreferrer">
-                    <i class="fab fa-whatsapp"></i> Falar no WhatsApp
+                    <i class="fab fa-whatsapp"></i> Falar no WhatsApp agora
                 </a>
+                <div class="divider fade-in">
+                    <span>ou deixe seus dados que entramos em contato</span>
+                </div>
                 <div class="form-container fade-in">
                     <form id="leads-form">
                         <div class="form-group">
@@ -294,8 +235,8 @@ footer { background-color: var(--primary-color); color: var(--white); padding: 5
                             <label for="area">Área de Interesse</label>
                             <select id="area" name="area" required>
                                 <option value="" disabled selected>Selecione uma área</option>
-                                <option value="Dívidas">Dívidas</option>
-                                <option value="INSS/Previdência">INSS/Previdência</option>
+                                <option value="Dívidas">Negociação de Dívidas</option>
+                                <option value="INSS/Previdência">INSS e Previdência</option>
                                 <option value="Precatórios">Precatórios</option>
                                 <option value="Imposto de Renda">Imposto de Renda</option>
                                 <option value="Contratos">Contratos</option>
@@ -304,9 +245,9 @@ footer { background-color: var(--primary-color); color: var(--white); padding: 5
                         </div>
                         <div class="form-group">
                             <label for="mensagem">Mensagem breve</label>
-                            <textarea id="mensagem" name="mensagem" placeholder="Como podemos te ajudar?"></textarea>
+                            <textarea id="mensagem" name="mensagem" placeholder="Descreva brevemente sua situação..."></textarea>
                         </div>
-                        <button type="submit" class="btn-submit">Enviar Mensagem</button>
+                        <button type="submit" class="btn-submit">Enviar — vamos te contatar hoje</button>
                     </form>
                     <div id="form-status" class="form-status"></div>
                 </div>
@@ -316,17 +257,19 @@ footer { background-color: var(--primary-color); color: var(--white); padding: 5
 
     <footer>
         <div class="container">
-            <p>Oliveira Assessoria &copy; 2025</p>
-            <p class="disclaimer">Assessoria jurídica &mdash; não exercemos advocacia</p>
+            <p class="logo footer-logo">Oliveira Assessoria</p>
+            <p class="disclaimer">Assessoria jurídica &mdash; não exercemos advocacia (OAB)</p>
             <div class="footer-links">
                 <a href="#">Política de Privacidade</a>
                 <a href="#">Termos de Uso</a>
             </div>
+            <p class="footer-copy">&copy; 2025 Oliveira Assessoria. Todos os direitos reservados.</p>
         </div>
     </footer>
 
     <script>
 document.addEventListener('DOMContentLoaded', () => {
+    // Mobile menu
     const mobileMenu = document.getElementById('mobile-menu');
     const navMenu = document.getElementById('nav-menu');
     const nav = navMenu ? navMenu.closest('nav') : null;
@@ -338,6 +281,8 @@ document.addEventListener('DOMContentLoaded', () => {
             icon.classList.toggle('fa-times');
         });
     }
+
+    // FAQ accordion
     document.querySelectorAll('.faq-item').forEach(item => {
         item.querySelector('.faq-question').addEventListener('click', () => {
             const isActive = item.classList.contains('active');
@@ -345,37 +290,66 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!isActive) item.classList.add('active');
         });
     });
+
+    // Scroll animations
     const observer = new IntersectionObserver((entries, obs) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) { entry.target.classList.add('visible'); obs.unobserve(entry.target); }
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                obs.unobserve(entry.target);
+            }
         });
     }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // Form submission
     const form = document.getElementById('leads-form');
     const status = document.getElementById('form-status');
     if (form) {
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
-            const data = { nome: form.nome.value, whatsapp: form.whatsapp.value, area: form.area.value, mensagem: form.mensagem.value };
-            status.textContent = 'Enviando...';
-            status.style.cssText = 'display:block;background:#e3f2fd;color:#0d47a1;padding:10px;border-radius:5px;margin-top:20px;';
+            const data = {
+                nome: form.nome.value,
+                whatsapp: form.whatsapp.value,
+                area: form.area.value,
+                mensagem: form.mensagem.value
+            };
+            const btn = form.querySelector('.btn-submit');
+            btn.textContent = 'Enviando...';
+            btn.disabled = true;
+            status.textContent = '';
+            status.style.display = 'none';
             try {
-                const res = await fetch('https://chaoticcow-n8n.cloudfy.live/webhook/oliveira-leads', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(data) });
+                const res = await fetch('https://chaoticcow-n8n.cloudfy.live/webhook/oliveira-leads', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
                 if (res.ok) {
-                    status.textContent = 'Mensagem enviada! Entraremos em contato em breve.';
-                    status.style.cssText = 'display:block;background:#e8f5e9;color:#1b5e20;padding:10px;border-radius:5px;margin-top:20px;';
+                    status.textContent = '✓ Mensagem enviada! Entraremos em contato em breve pelo WhatsApp.';
+                    status.className = 'form-status form-status--success';
                     form.reset();
-                } else throw new Error();
+                } else {
+                    throw new Error();
+                }
             } catch {
-                status.textContent = 'Erro ao enviar. Por favor, use o WhatsApp.';
-                status.style.cssText = 'display:block;background:#ffebee;color:#b71c1c;padding:10px;border-radius:5px;margin-top:20px;';
+                status.textContent = '✗ Erro ao enviar. Por favor, use o WhatsApp acima.';
+                status.className = 'form-status form-status--error';
+            } finally {
+                btn.textContent = 'Enviar — vamos te contatar hoje';
+                btn.disabled = false;
+                status.style.display = 'block';
             }
         });
     }
+
+    // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(a => {
         a.addEventListener('click', e => {
+            const href = a.getAttribute('href');
+            if (href === '#') return;
             e.preventDefault();
-            const target = document.querySelector(a.getAttribute('href'));
+            const target = document.querySelector(href);
             if (target) {
                 if (nav) nav.classList.remove('active');
                 window.scrollTo({ top: target.offsetTop - 70, behavior: 'smooth' });

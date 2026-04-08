@@ -1,0 +1,239 @@
+{
+  "name": "Oliveira — Bot WhatsApp IA (INSS / IR / Precatório / Dívidas)",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "oliveira-whatsapp",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "b0000001-0001-4000-8000-000000000001",
+      "name": "Webhook — Entrada WhatsApp",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [240, 400],
+      "webhookId": "oliveira-whatsapp",
+      "notes": "Configure este webhook na Evolution API como destino das mensagens recebidas. Endpoint: /webhook/oliveira-whatsapp"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "// Parse do payload Evolution API\nconst body = $input.first().json;\n\n// Ignora mensagens enviadas pelo bot ou de grupos\nconst data = body.data || {};\nconst key = data.key || {};\nif (key.fromMe === true) return [];\nif ((key.remoteJid || '').includes('@g.us')) return [];\n\n// Extrai campos\nconst telefone = (key.remoteJid || '').replace('@s.whatsapp.net', '');\nconst pushName  = data.pushName || 'Cliente';\nconst primeiroNome = pushName.split(' ')[0];\n\n// Suporte a texto simples e mensagem de lista/botão\nconst msg = data.message || {};\nconst texto = (\n  msg.conversation ||\n  msg.extendedTextMessage?.text ||\n  msg.listResponseMessage?.singleSelectReply?.selectedRowId ||\n  msg.buttonsResponseMessage?.selectedDisplayText ||\n  ''\n).trim();\n\nif (!texto) return []; // ignora áudio, imagem, etc sem legenda\n\nreturn [{ json: { telefone, pushName, primeiroNome, texto, timestamp: Date.now() } }];"
+      },
+      "id": "b0000001-0002-4000-8000-000000000002",
+      "name": "Code — Extrair Mensagem",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [460, 400]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "-- Upsert lead pelo telefone e retorna dados\nINSERT INTO leads (nome, whatsapp, area_interesse, status)\nVALUES ('{{ $json.pushName }}', '{{ $json.telefone }}', 'Outro', 'Em Atendimento')\nON CONFLICT (whatsapp) DO UPDATE SET\n  nome = CASE WHEN leads.nome = 'Cliente' THEN EXCLUDED.nome ELSE leads.nome END,\n  status = 'Em Atendimento',\n  data_atualizacao = NOW()\nRETURNING id, nome, whatsapp, area_interesse::text AS area;",
+        "options": {}
+      },
+      "id": "b0000001-0003-4000-8000-000000000003",
+      "name": "Postgres — Upsert Lead",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [680, 400],
+      "credentials": {
+        "postgres": { "id": "CONFIGURE_AQUI", "name": "Oliveira DB" }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "-- Busca ou cria sessão ativa\nINSERT INTO sessoes (lead_id, tipo, historico_json, data_inicio)\nSELECT\n  (SELECT id FROM leads WHERE whatsapp = '{{ $('Code — Extrair Mensagem').first().json.telefone }}'),\n  'WhatsApp',\n  '[]'::jsonb,\n  NOW()\nWHERE NOT EXISTS (\n  SELECT 1 FROM sessoes\n  WHERE lead_id = (SELECT id FROM leads WHERE whatsapp = '{{ $('Code — Extrair Mensagem').first().json.telefone }}')\n  AND data_fim IS NULL\n  AND data_inicio > NOW() - INTERVAL '4 hours'\n)\nRETURNING id;\n\n-- Retorna histórico da sessão ativa\nSELECT s.id AS sessao_id, s.historico_json\nFROM sessoes s\nJOIN leads l ON l.id = s.lead_id\nWHERE l.whatsapp = '{{ $('Code — Extrair Mensagem').first().json.telefone }}'\n  AND s.data_fim IS NULL\n  AND s.data_inicio > NOW() - INTERVAL '4 hours'\nORDER BY s.data_inicio DESC\nLIMIT 1;",
+        "options": {}
+      },
+      "id": "b0000001-0004-4000-8000-000000000004",
+      "name": "Postgres — Sessão",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [900, 400],
+      "credentials": {
+        "postgres": { "id": "CONFIGURE_AQUI", "name": "Oliveira DB" }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "-- Busca conhecimento jurídico relevante por palavras-chave (fallback sem embedding)\n-- Para busca vetorial real, configure a chamada de embedding antes deste nó\nSELECT titulo, conteudo, area\nFROM conhecimento_juridico\nWHERE\n  conteudo ILIKE '%{{ $('Code — Extrair Mensagem').first().json.texto.replace(/'/g, \"''\").substring(0, 50) }}%'\n  OR area::text ILIKE ANY(ARRAY[\n    CASE WHEN '{{ $('Code — Extrair Mensagem').first().json.texto }}' ILIKE '%inss%' OR '{{ $('Code — Extrair Mensagem').first().json.texto }}' ILIKE '%aposentadoria%' OR '{{ $('Code — Extrair Mensagem').first().json.texto }}' ILIKE '%benefício%' OR '{{ $('Code — Extrair Mensagem').first().json.texto }}' ILIKE '%previdência%' THEN '%INSS%' ELSE NULL END,\n    CASE WHEN '{{ $('Code — Extrair Mensagem').first().json.texto }}' ILIKE '%dívida%' OR '{{ $('Code — Extrair Mensagem').first().json.texto }}' ILIKE '%débito%' OR '{{ $('Code — Extrair Mensagem').first().json.texto }}' ILIKE '%cobrança%' OR '{{ $('Code — Extrair Mensagem').first().json.texto }}' ILIKE '%negativado%' THEN '%Dívidas%' ELSE NULL END\n  ])\nLIMIT 3;",
+        "options": {}
+      },
+      "id": "b0000001-0005-4000-8000-000000000005",
+      "name": "Postgres — Buscar Conhecimento",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [1120, 400],
+      "credentials": {
+        "postgres": { "id": "CONFIGURE_AQUI", "name": "Oliveira DB" }
+      },
+      "notes": "Busca básica por keyword. Para RAG vetorial completo, adicione um nó antes que chama a API de embedding (Gemini/OpenAI) e use a query: SELECT titulo, conteudo FROM conhecimento_juridico ORDER BY embedding <=> $1::vector LIMIT 3"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "// Monta o contexto completo para a IA\nconst msg     = $('Code — Extrair Mensagem').first().json;\nconst sessao  = $('Postgres — Sessão').first()?.json || {};\nconst conhecs = $('Postgres — Buscar Conhecimento').all().map(i => i.json);\n\n// Histórico de conversa (últimas 10 trocas)\nlet historico = [];\ntry {\n  historico = JSON.parse(sessao.historico_json || '[]').slice(-10);\n} catch(e) {}\n\n// Base de conhecimento encontrada\nlet contextoCon = '';\nif (conhecs.length > 0) {\n  contextoCon = '\\n\\n📚 BASE DE CONHECIMENTO RELEVANTE:\\n';\n  conhecs.forEach(k => {\n    contextoCon += `\\n--- ${k.titulo} ---\\n${k.conteudo}\\n`;\n  });\n}\n\nconst systemPrompt = `Você é o assistente virtual da Oliveira Assessoria Jurídica.\nSeu nome é OLI. Você é especialista em assessoria (não advocacia) nas seguintes áreas:\n\n1. **INSS e Previdência Social**\n   - Aposentadoria por idade (homem: 65 anos / mulher: 62 anos + mínimo de contribuições)\n   - Aposentadoria por tempo de contribuição (regras de transição pós-reforma 2019)\n   - Auxílio-doença (incapacidade temporária, 15 dias de carência)\n   - BPC/LOAS (renda per capita < 1/4 do salário mínimo, pessoa com deficiência ou idoso +65)\n   - Salário-maternidade (CLT: 120 dias; rural e contribuinte individual: 120 dias com 10 contribuições)\n   - Pensão por morte, auxílio-acidente\n   - Como consultar o CNIS (extrato do INSS): meu.inss.gov.br\n   - Prazo para recurso: 30 dias após notificação\n\n2. **Precatórios**\n   - O que é: dívida judicial do governo (União, Estado, Município) reconhecida por sentença\n   - Como verificar: consultaprecatorio.cnj.jus.br ou site do TRF/TJ da região\n   - Precatórios alimentares têm prioridade de pagamento\n   - RPV (Requisição de Pequeno Valor): valores menores, pagos mais rápido\n   - Cessão de precatório: é possível vender o direito a terceiros com deságio\n   - Prazo constitucional: até 31/12 do exercício seguinte ao que foi incluído no orçamento\n\n3. **Imposto de Renda**\n   - Obrigado a declarar (ano-base 2024): rendimentos > R$ 30.639,90 ou bens > R$ 800.000\n   - Documentos: informe de rendimentos, extrato de investimentos, recibos de despesas médicas/educação, comprovante de imóveis/veículos\n   - Deduções: dependentes (R$ 2.275,08/ano), educação (limite R$ 3.561,50), saúde (ilimitado com nota fiscal)\n   - Malha fina: divergência de dados, omissão de rendimentos, deduções sem comprovação\n   - Restituição: depende do imposto pago na fonte e das deduções; prioridade idosos, deficientes, professores\n   - Prazo de entrega: geralmente até 30/04 do ano seguinte\n   - Multa por atraso: mínimo R$ 165,74, máximo 20% do imposto devido\n\n4. **Negociação de Dívidas**\n   - Prescrição: dívidas bancárias = 5 anos (CC Art. 206, §5º, I); CDC = 5 anos; trabalhista = 2 anos\n   - Direitos do devedor: CDC Art. 42 proíbe cobrança vexatória, assédio, ameaça\n   - Negativação indevida gera dano moral (STJ Súmula 385)\n   - Serasa/SPC: credor tem até 5 dias para comunicar devedor antes de negativar\n   - Acordos: descontos de até 90% são possíveis em dívidas antigas\n   - FGTS digitado pode ser usado para quitar dívidas (Lei 14.181/2021)\n\nREGRAS IMPORTANTES:\n- Você faz ASSESSORIA, não advocacia. Não represente o cliente em juízo.\n- Para ações judiciais, oriente a buscar um advogado.\n- Seja OBJETIVO e CLARO. Use linguagem simples, sem juridiquês.\n- Use emojis com moderação para ser mais amigável.\n- Ao identificar a área do cliente, faça perguntas pontuais para coletar as informações necessárias.\n- Ao ter informações suficientes, entregue um PLANO DE AÇÃO numerado e claro.\n- Oriente sempre sobre os próximos passos práticos.\n- Se não souber algo com certeza, diga que vai verificar e peça para o cliente aguardar contato da equipe.\n- Limite respostas a no máximo 350 palavras para não sobrecarregar o WhatsApp.\n${contextoCon}`;\n\nconst messages = [\n  { role: 'system', content: systemPrompt },\n  ...historico,\n  { role: 'user', content: msg.texto }\n];\n\nreturn [{ json: {\n  messages,\n  sessaoId: sessao.sessao_id || null,\n  telefone: msg.telefone,\n  textoUsuario: msg.texto,\n  historico\n}}];"
+      },
+      "id": "b0000001-0006-4000-8000-000000000006",
+      "name": "Code — Montar Contexto IA",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1340, 400]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/chat/completions",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "Authorization", "value": "Bearer SUA_OPENAI_KEY" },
+            { "name": "Content-Type", "value": "application/json" }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"gpt-4o-mini\",\n  \"messages\": {{ JSON.stringify($json.messages) }},\n  \"max_tokens\": 700,\n  \"temperature\": 0.4\n}",
+        "options": { "timeout": 30000 }
+      },
+      "id": "b0000001-0007-4000-8000-000000000007",
+      "name": "HTTP — Chamar OpenAI",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1560, 400],
+      "notes": "Substitua SUA_OPENAI_KEY pela sua chave da OpenAI. Pode trocar por Claude (Anthropic) ou qualquer API compatível com o formato OpenAI Chat Completions."
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "// Extrai a resposta da IA e atualiza o histórico\nconst ctx = $('Code — Montar Contexto IA').first().json;\nconst aiResp = $input.first().json;\n\nconst respostaIA = aiResp.choices?.[0]?.message?.content || 'Desculpe, tive um problema técnico. Nossa equipe vai te contatar em breve!';\n\n// Atualiza histórico (mantém máximo 20 mensagens = 10 trocas)\nconst historicoAtualizado = [\n  ...ctx.historico,\n  { role: 'user', content: ctx.textoUsuario },\n  { role: 'assistant', content: respostaIA }\n].slice(-20);\n\nreturn [{ json: {\n  telefone: ctx.telefone,\n  sessaoId: ctx.sessaoId,\n  respostaIA,\n  historicoAtualizado\n}}];"
+      },
+      "id": "b0000001-0008-4000-8000-000000000008",
+      "name": "Code — Extrair Resposta IA",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1780, 400]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "UPDATE sessoes SET\n  historico_json = '{{ $json.historicoAtualizado.map(m => JSON.stringify(m)).join(',') }}'::jsonb,\n  resumo_ia = '{{ $json.respostaIA.replace(/'/g, \"''\").substring(0, 500) }}'\nWHERE id = {{ $json.sessaoId || 0 }};",
+        "options": {}
+      },
+      "id": "b0000001-0009-4000-8000-000000000009",
+      "name": "Postgres — Salvar Histórico",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [2000, 400],
+      "credentials": {
+        "postgres": { "id": "CONFIGURE_AQUI", "name": "Oliveira DB" }
+      },
+      "notes": "Salva o histórico da conversa na tabela sessoes para manter contexto entre mensagens"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://SUA_EVOLUTION_API/message/sendText/oliveira",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "apikey", "value": "SUA_APIKEY_EVOLUTION" },
+            { "name": "Content-Type", "value": "application/json" }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            { "name": "number", "value": "={{ $json.telefone }}" },
+            { "name": "text", "value": "={{ $json.respostaIA }}" }
+          ]
+        },
+        "options": { "timeout": 15000 }
+      },
+      "id": "b0000001-0010-4000-8000-000000000010",
+      "name": "HTTP — Enviar Resposta WhatsApp",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [2220, 400],
+      "notes": "Substitua SUA_EVOLUTION_API e SUA_APIKEY_EVOLUTION"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={ \"ok\": true }",
+        "options": { "responseCode": 200 }
+      },
+      "id": "b0000001-0011-4000-8000-000000000011",
+      "name": "Resposta — 200 OK",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [2440, 400]
+    }
+  ],
+  "connections": {
+    "Webhook — Entrada WhatsApp": {
+      "main": [[{ "node": "Code — Extrair Mensagem", "type": "main", "index": 0 }]]
+    },
+    "Code — Extrair Mensagem": {
+      "main": [[{ "node": "Postgres — Upsert Lead", "type": "main", "index": 0 }]]
+    },
+    "Postgres — Upsert Lead": {
+      "main": [[{ "node": "Postgres — Sessão", "type": "main", "index": 0 }]]
+    },
+    "Postgres — Sessão": {
+      "main": [[{ "node": "Postgres — Buscar Conhecimento", "type": "main", "index": 0 }]]
+    },
+    "Postgres — Buscar Conhecimento": {
+      "main": [[{ "node": "Code — Montar Contexto IA", "type": "main", "index": 0 }]]
+    },
+    "Code — Montar Contexto IA": {
+      "main": [[{ "node": "HTTP — Chamar OpenAI", "type": "main", "index": 0 }]]
+    },
+    "HTTP — Chamar OpenAI": {
+      "main": [[{ "node": "Code — Extrair Resposta IA", "type": "main", "index": 0 }]]
+    },
+    "Code — Extrair Resposta IA": {
+      "main": [[{ "node": "Postgres — Salvar Histórico", "type": "main", "index": 0 }]]
+    },
+    "Postgres — Salvar Histórico": {
+      "main": [[{ "node": "HTTP — Enviar Resposta WhatsApp", "type": "main", "index": 0 }]]
+    },
+    "HTTP — Enviar Resposta WhatsApp": {
+      "main": [[{ "node": "Resposta — 200 OK", "type": "main", "index": 0 }]]
+    }
+  },
+  "active": false,
+  "settings": { "executionOrder": "v1" },
+  "id": "oliveira-workflow-02",
+  "meta": {
+    "description": "Bot WhatsApp com IA para atendimento de INSS, Precatório, Imposto de Renda e Negociação de Dívidas. Mantém histórico de conversa por sessão. Usa OpenAI GPT-4o-mini + base de conhecimento jurídico do banco.",
+    "fluxo": [
+      "1. Evolution API envia mensagem recebida para o webhook",
+      "2. Extrai texto, telefone e nome do cliente",
+      "3. Upsert lead no banco de dados",
+      "4. Busca sessão ativa (últimas 4 horas) ou cria nova",
+      "5. Busca conhecimento jurídico relevante no banco",
+      "6. Monta contexto com system prompt especializado + histórico + base de conhecimento",
+      "7. Chama OpenAI GPT-4o-mini",
+      "8. Salva resposta no histórico da sessão",
+      "9. Envia resposta de volta ao WhatsApp via Evolution API"
+    ],
+    "configurar": [
+      "1. Credencial PostgreSQL: Settings > Credentials > New > Postgres",
+      "2. OpenAI Key: substitua SUA_OPENAI_KEY (ou use Claude com endpoint da Anthropic)",
+      "3. Evolution API URL: substitua SUA_EVOLUTION_API",
+      "4. Evolution API Key: substitua SUA_APIKEY_EVOLUTION",
+      "5. Nome da instância: ajuste 'oliveira' no endpoint de envio",
+      "6. No Evolution API: configure o webhook para apontar para /webhook/oliveira-whatsapp",
+      "7. Para RAG vetorial real: adicione nó de embedding antes do 'Buscar Conhecimento'"
+    ],
+    "trocarModeloIA": {
+      "claude": "URL: https://api.anthropic.com/v1/messages | Header: x-api-key: SUA_KEY | Body: {model: 'claude-haiku-4-5-20251001', max_tokens: 700, system: messages[0].content, messages: messages.slice(1)}",
+      "gemini": "URL: https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=SUA_KEY"
+    }
+  }
+}
