@@ -91,7 +91,7 @@
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
-            { "name": "Authorization", "value": "Bearer SUA_OPENAI_KEY_AQUI" },
+            { "name": "Authorization", "value": "Bearer SUA_OPENAI_KEY" },
             { "name": "Content-Type", "value": "application/json" }
           ]
         },
@@ -137,11 +137,11 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "=https://chaoticcow-evolution.cloudfy.live/message/sendText/NOME_DA_INSTANCIA",
+        "url": "=https://SUA_EVOLUTION_API/message/sendText/NOME_DA_INSTANCIA",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
-            { "name": "apikey", "value": "hucK88FXjn9xwsHJaimmxxvMnZ1Bzwkb" },
+            { "name": "apikey", "value": "SUA_EVOLUTION_APIKEY" },
             { "name": "Content-Type", "value": "application/json" }
           ]
         },

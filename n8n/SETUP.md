@@ -11,10 +11,10 @@ Acesse o banco e rode o arquivo `db/schema.sql`.
 **Via qualquer cliente SQL (DBeaver, TablePlus, pgAdmin):**
 
 ```
-Host:     chaoticcow-postgres.cloudfy.live
-Porta:    8277
+Host:     SEU_HOST_POSTGRES
+Porta:    SUA_PORTA
 Usuário:  postgres
-Senha:    ltKPcRzBdQuFZXrTwBZQ
+Senha:    SUA_SENHA
 Database: db
 SSL:      Necessário (modo "requer" ou "prefer")
 ```
@@ -23,9 +23,9 @@ Abra `db/schema.sql` e execute. Se já rodou antes, os `CREATE TABLE IF NOT EXIS
 
 **Ou via psql na sua máquina:**
 ```bash
-PGPASSWORD="ltKPcRzBdQuFZXrTwBZQ" psql \
-  -h chaoticcow-postgres.cloudfy.live \
-  -p 8277 -U postgres -d db \
+PGPASSWORD="SUA_SENHA" psql \
+  -h SEU_HOST_POSTGRES \
+  -p SUA_PORTA -U postgres -d db \
   -f db/schema.sql
 ```
 
@@ -41,11 +41,11 @@ PGPASSWORD="ltKPcRzBdQuFZXrTwBZQ" psql \
 | Campo | Valor |
 |---|---|
 | Name | `Oliveira DB` |
-| Host | `chaoticcow-postgres.cloudfy.live` |
-| Port | `8277` |
+| Host | `SEU_HOST_POSTGRES` |
+| Port | `SUA_PORTA` |
 | Database | `db` |
 | User | `postgres` |
-| Password | `ltKPcRzBdQuFZXrTwBZQ` |
+| Password | `SUA_SENHA` |
 | SSL | Ativado |
 
 5. Clique em **Save** e **Test** — deve aparecer "Connection tested successfully"
