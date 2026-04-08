@@ -57,11 +57,11 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "=https://SUA_EVOLUTION_API/message/sendText/oliveira",
+        "url": "=https://chaoticcow-evolution.cloudfy.live/message/sendText/NOME_DA_INSTANCIA",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
-            { "name": "apikey", "value": "SUA_APIKEY_EVOLUTION" },
+            { "name": "apikey", "value": "hucK88FXjn9xwsHJaimmxxvMnZ1Bzwkb" },
             { "name": "Content-Type", "value": "application/json" }
           ]
         },
@@ -79,7 +79,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [1120, 300],
-      "notes": "Substitua SUA_EVOLUTION_API e SUA_APIKEY_EVOLUTION pelos dados da sua instância Evolution API. O nome da instância 'oliveira' também deve ser ajustado."
+      "notes": "⚠️ Substitua NOME_DA_INSTANCIA pelo nome real da sua instância no Evolution API manager."
     },
     {
       "parameters": {

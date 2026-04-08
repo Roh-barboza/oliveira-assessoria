@@ -1,0 +1,163 @@
+# Setup — Oliveira Assessoria n8n + Banco de Dados
+
+Siga os passos abaixo em ordem. Tempo estimado: **15–20 minutos**.
+
+---
+
+## 1. Aplicar o schema no PostgreSQL
+
+Acesse o banco e rode o arquivo `db/schema.sql`.
+
+**Via qualquer cliente SQL (DBeaver, TablePlus, pgAdmin):**
+
+```
+Host:     chaoticcow-postgres.cloudfy.live
+Porta:    8277
+Usuário:  postgres
+Senha:    ltKPcRzBdQuFZXrTwBZQ
+Database: db
+SSL:      Necessário (modo "requer" ou "prefer")
+```
+
+Abra `db/schema.sql` e execute. Se já rodou antes, os `CREATE TABLE IF NOT EXISTS` são seguros.
+
+**Ou via psql na sua máquina:**
+```bash
+PGPASSWORD="ltKPcRzBdQuFZXrTwBZQ" psql \
+  -h chaoticcow-postgres.cloudfy.live \
+  -p 8277 -U postgres -d db \
+  -f db/schema.sql
+```
+
+---
+
+## 2. Criar Credencial PostgreSQL no n8n
+
+1. Acesse **https://chaoticcow-n8n.cloudfy.live**
+2. Vá em **Settings → Credentials → + Add credential**
+3. Selecione **Postgres**
+4. Preencha:
+
+| Campo | Valor |
+|---|---|
+| Name | `Oliveira DB` |
+| Host | `chaoticcow-postgres.cloudfy.live` |
+| Port | `8277` |
+| Database | `db` |
+| User | `postgres` |
+| Password | `ltKPcRzBdQuFZXrTwBZQ` |
+| SSL | Ativado |
+
+5. Clique em **Save** e **Test** — deve aparecer "Connection tested successfully"
+
+---
+
+## 3. Verificar nome da instância Evolution API
+
+1. Acesse **https://chaoticcow-evolution.cloudfy.live/manager**
+2. Anote exatamente o **nome da instância** (ex: `oliveira`, `principal`, `atendimento`)
+
+Você vai precisar desse nome no passo 5 e 7.
+
+---
+
+## 4. Obter chave da OpenAI
+
+1. Acesse **https://platform.openai.com/api-keys**
+2. Crie uma nova chave (ou use uma existente)
+3. Copie — você vai precisar no passo 5
+
+> Custo estimado: ~$0.01 por conversa com GPT-4o-mini (muito barato)
+
+---
+
+## 5. Importar Workflow 1 — Recepção de Leads
+
+**Este workflow processa o formulário da landing page.**
+
+1. No n8n, clique em **+ New Workflow → Import from file**
+2. Selecione o arquivo: `n8n/01-recepcao-leads.json`
+3. Após importar, clique no nó **"Postgres — Upsert Lead"**
+   - Em **Credentials**, selecione **"Oliveira DB"** (que você criou no passo 2)
+4. Clique no nó **"HTTP — Enviar Boas-vindas WhatsApp"**
+   - No campo URL, substitua `NOME_DA_INSTANCIA` pelo nome real da instância (passo 3)
+   - URL final deve ser: `https://chaoticcow-evolution.cloudfy.live/message/sendText/SEU_NOME`
+5. Clique em **Save**
+6. Clique no toggle **Activate** (canto superior direito) → workflow fica verde
+
+---
+
+## 6. Importar Workflow 2 — Bot WhatsApp com IA
+
+**Este é o bot inteligente de atendimento.**
+
+1. No n8n, clique em **+ New Workflow → Import from file**
+2. Selecione: `n8n/02-bot-atendimento.json`
+3. Após importar, configure os **três nós Postgres** (Upsert Lead, Sessão, Buscar Conhecimento):
+   - Em cada um: **Credentials → Oliveira DB**
+4. Clique no nó **"HTTP — Chamar OpenAI"**
+   - Substitua `SUA_OPENAI_KEY_AQUI` pela sua chave da OpenAI
+5. Clique no nó **"HTTP — Enviar Resposta WhatsApp"**
+   - Substitua `NOME_DA_INSTANCIA` pelo nome real da instância
+6. Clique em **Save**
+7. Clique em **Activate**
+8. **Copie a URL do webhook** que aparece no nó "Webhook — Entrada WhatsApp":
+   ```
+   https://chaoticcow-n8n.cloudfy.live/webhook/oliveira-whatsapp
+   ```
+
+---
+
+## 7. Configurar Webhook no Evolution API
+
+**Para o bot receber as mensagens do WhatsApp:**
+
+1. Acesse **https://chaoticcow-evolution.cloudfy.live/manager**
+2. Selecione sua instância
+3. Vá em **Webhooks** (ou "Configurações da instância")
+4. Adicione:
+   - **URL:** `https://chaoticcow-n8n.cloudfy.live/webhook/oliveira-whatsapp`
+   - **Eventos:** `messages.upsert` (ou "Messages" se for seleção por tipo)
+5. Salve
+
+**Alternativamente via API (mais rápido):**
+```bash
+curl -X POST https://chaoticcow-evolution.cloudfy.live/webhook/set/NOME_DA_INSTANCIA \
+  -H "apikey: hucK88FXjn9xwsHJaimmxxvMnZ1Bzwkb" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "webhook": {
+      "enabled": true,
+      "url": "https://chaoticcow-n8n.cloudfy.live/webhook/oliveira-whatsapp",
+      "events": ["MESSAGES_UPSERT"]
+    }
+  }'
+```
+
+---
+
+## 8. Testar tudo
+
+**Teste 1 — Formulário da landing page:**
+1. Abra a landing page
+2. Preencha e envie o formulário
+3. Verifique no n8n (Workflow 1 → Executions) se executou com sucesso
+4. Você deve receber uma mensagem no WhatsApp
+
+**Teste 2 — Bot WhatsApp:**
+1. Envie uma mensagem para o número do WhatsApp conectado na instância
+2. Tente: "Preciso de ajuda com meu INSS"
+3. O bot OLI deve responder em segundos
+
+**Debug se algo falhar:**
+- n8n: vá em **Executions** do workflow com problema → clique na execução → veja o nó vermelho
+- Se der erro de DB: reconfirme as credenciais e se o schema foi aplicado
+- Se der erro de Evolution: verifique o nome da instância e se ela está conectada
+
+---
+
+## 9. Próximos passos opcionais
+
+- **Seed do banco de conhecimento:** rode `npm run seed` na pasta `agent/` após configurar o `.env` com a GEMINI_API_KEY e as credenciais do banco
+- **Número de WhatsApp da landing:** substitua `55XXXXXXXXXXX` nos links da landing page pelo número real
+- **RAG vetorial real:** depois do seed, atualize a query do nó "Postgres — Buscar Conhecimento" para usar busca por embedding (`ORDER BY embedding <=> $1::vector LIMIT 3`)
