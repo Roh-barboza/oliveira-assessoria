@@ -1,5 +1,8 @@
 {
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/landing/index.html" }
+  "outputDirectory": "landing",
+  "routes": [
+    { "handle": "filesystem" },
+    { "src": "/(.*)", "dest": "/index.html" }
   ]
 }
+

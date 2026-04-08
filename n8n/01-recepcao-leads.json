@@ -1,0 +1,127 @@
+{
+  "name": "Oliveira — Recepção e Roteamento de Leads",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "oliveira-leads",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "a1b2c3d4-0001-4000-8000-000000000001",
+      "name": "Webhook — Receber Lead",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [240, 300],
+      "webhookId": "oliveira-leads",
+      "notes": "Recebe o POST do formulário da landing page. Campos: nome, whatsapp, area, mensagem"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "// Normaliza e valida os dados recebidos do formulário\nconst body = $input.first().json;\n\nconst nome = (body.nome || '').trim();\nconst whatsapp = (body.whatsapp || '').replace(/\\D/g, ''); // remove não-dígitos\nconst area = (body.area || 'Outro').trim();\nconst mensagem = (body.mensagem || '').trim();\n\nif (!nome || !whatsapp) {\n  throw new Error('Nome e WhatsApp são obrigatórios');\n}\n\n// Formata número para Evolution API: 55 + DDD + número\nconst whatsappFormatado = whatsapp.startsWith('55') ? whatsapp : `55${whatsapp}`;\n\nreturn [{\n  json: { nome, whatsapp, whatsappFormatado, area, mensagem }\n}];"
+      },
+      "id": "a1b2c3d4-0002-4000-8000-000000000002",
+      "name": "Code — Normalizar Dados",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "INSERT INTO leads (nome, whatsapp, area_interesse, mensagem, status)\nVALUES ('{{ $json.nome }}', '{{ $json.whatsapp }}', '{{ $json.area }}'::area_juridica, '{{ $json.mensagem }}', 'Novo')\nON CONFLICT (whatsapp) DO UPDATE SET\n  nome = EXCLUDED.nome,\n  area_interesse = EXCLUDED.area_interesse,\n  mensagem = EXCLUDED.mensagem,\n  data_atualizacao = NOW()\nRETURNING id, nome, whatsapp, area_interesse, status;",
+        "options": {}
+      },
+      "id": "a1b2c3d4-0003-4000-8000-000000000003",
+      "name": "Postgres — Upsert Lead",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [680, 300],
+      "credentials": {
+        "postgres": { "id": "CONFIGURE_AQUI", "name": "Oliveira DB" }
+      },
+      "notes": "Salva ou atualiza o lead. Configura a credencial PostgreSQL nas configurações do n8n."
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "// Monta mensagem de boas-vindas personalizada por área\nconst lead = $('Code — Normalizar Dados').first().json;\nconst { nome, area, whatsappFormatado } = lead;\n\nconst primeiroNome = nome.split(' ')[0];\n\nconst mensagens = {\n  'Dívidas': `Olá, ${primeiroNome}! 👋\\n\\nRecebi sua solicitação sobre *Negociação de Dívidas*.\\n\\nVou analisar sua situação e em breve você receberá um plano personalizado para reduzir ou quitar suas dívidas.\\n\\n💡 Enquanto isso: você sabe o valor aproximado da dívida e com qual credor/banco?\\n\\nResponda aqui mesmo — nosso assistente já está te esperando!`,\n\n  'INSS/Previdência': `Olá, ${primeiroNome}! 👋\\n\\nRecebi sua solicitação sobre *INSS e Previdência*.\\n\\nTemos especialistas em aposentadoria, auxílio-doença, BPC/LOAS e salário-maternidade.\\n\\n💡 Para agilizar: qual benefício você precisa? (aposentadoria, auxílio, outro?)\\n\\nResponda aqui — nosso assistente vai te orientar passo a passo! 🏛️`,\n\n  'Precatórios': `Olá, ${primeiroNome}! 👋\\n\\nRecebi sua solicitação sobre *Precatórios*.\\n\\nVamos verificar se o governo te deve algum valor e como você pode receber.\\n\\n💡 Para consultar: você tem o número do seu CPF em mãos?\\n\\nResponda aqui para começarmos! 📜`,\n\n  'Imposto de Renda': `Olá, ${primeiroNome}! 👋\\n\\nRecebi sua solicitação sobre *Imposto de Renda*.\\n\\nPodemos te ajudar com declaração, restituição e regularização de malha fina.\\n\\n💡 É para declaração de qual ano? E você recebe informe de rendimentos do empregador?\\n\\nResponda aqui — vamos resolver juntos! 🧾`,\n\n  'Contratos': `Olá, ${primeiroNome}! 👋\\n\\nRecebi sua solicitação sobre *Contratos*.\\n\\nElaboramos e revisamos contratos de prestação de serviço, locação, parceria e mais.\\n\\n💡 Qual tipo de contrato você precisa?\\n\\nMe conta que já te oriento! 📋`,\n\n  'Outro': `Olá, ${primeiroNome}! 👋\\n\\nRecebi sua mensagem e já fiz o cadastro no nosso sistema.\\n\\nUm dos nossos especialistas vai analisar seu caso e entrar em contato em breve pelo WhatsApp.\\n\\nQualquer dúvida, é só responder esta mensagem! 😊`\n};\n\nconst texto = mensagens[area] || mensagens['Outro'];\n\nreturn [{ json: { ...lead, mensagemWhatsApp: texto } }];"
+      },
+      "id": "a1b2c3d4-0004-4000-8000-000000000004",
+      "name": "Code — Montar Mensagem de Boas-vindas",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [900, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://SUA_EVOLUTION_API/message/sendText/NOME_DA_INSTANCIA",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "apikey", "value": "SUA_EVOLUTION_APIKEY" },
+            { "name": "Content-Type", "value": "application/json" }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            { "name": "number", "value": "={{ $json.whatsappFormatado }}" },
+            { "name": "text", "value": "={{ $json.mensagemWhatsApp }}" }
+          ]
+        },
+        "options": { "timeout": 10000 }
+      },
+      "id": "a1b2c3d4-0005-4000-8000-000000000005",
+      "name": "HTTP — Enviar Boas-vindas WhatsApp",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1120, 300],
+      "notes": "⚠️ Substitua NOME_DA_INSTANCIA pelo nome real da sua instância no Evolution API manager."
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={ \"success\": true, \"message\": \"Lead registrado com sucesso\" }",
+        "options": { "responseCode": 200 }
+      },
+      "id": "a1b2c3d4-0006-4000-8000-000000000006",
+      "name": "Resposta — 200 OK",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [1340, 300]
+    }
+  ],
+  "connections": {
+    "Webhook — Receber Lead": {
+      "main": [[{ "node": "Code — Normalizar Dados", "type": "main", "index": 0 }]]
+    },
+    "Code — Normalizar Dados": {
+      "main": [[{ "node": "Postgres — Upsert Lead", "type": "main", "index": 0 }]]
+    },
+    "Postgres — Upsert Lead": {
+      "main": [[{ "node": "Code — Montar Mensagem de Boas-vindas", "type": "main", "index": 0 }]]
+    },
+    "Code — Montar Mensagem de Boas-vindas": {
+      "main": [[{ "node": "HTTP — Enviar Boas-vindas WhatsApp", "type": "main", "index": 0 }]]
+    },
+    "HTTP — Enviar Boas-vindas WhatsApp": {
+      "main": [[{ "node": "Resposta — 200 OK", "type": "main", "index": 0 }]]
+    }
+  },
+  "active": false,
+  "settings": { "executionOrder": "v1" },
+  "id": "oliveira-workflow-01",
+  "meta": {
+    "description": "Recebe leads do formulário da landing page, salva no PostgreSQL e envia mensagem de boas-vindas personalizada por área via WhatsApp (Evolution API).",
+    "configurar": [
+      "1. Credencial PostgreSQL: Settings > Credentials > New > Postgres",
+      "2. Evolution API URL: substitua SUA_EVOLUTION_API",
+      "3. Evolution API Key: substitua SUA_APIKEY_EVOLUTION",
+      "4. Nome da instância Evolution: ajuste 'oliveira' no endpoint",
+      "5. Enum area_juridica no banco: verifique que os valores do select coincidem com o enum do schema"
+    ]
+  }
+}
