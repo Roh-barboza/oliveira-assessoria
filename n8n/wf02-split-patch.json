@@ -1,0 +1,45 @@
+{
+  "_comment": "Patch de correção do WF02 — Anti-Ban Dispatch (ID: iKUKUTSuzMZg2u0Z)",
+  "_instrucoes": [
+    "No campo 'connections' do workflow, localize a chave 'Split in Batches'.",
+    "Substitua o valor de 'main' pelo array abaixo.",
+    "output 0 (índice 0) = [] → saída 'done', sem nenhuma conexão.",
+    "output 1 (índice 1) = conexão com 'Code - Build Message' → saída do loop."
+  ],
+  "workflow_id": "iKUKUTSuzMZg2u0Z",
+  "node_name": "Split in Batches",
+  "patch": {
+    "connections": {
+      "Split in Batches": {
+        "main": [
+          [],
+          [
+            {
+              "node": "Code - Build Message",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  },
+  "api_calls": {
+    "step1_get": {
+      "method": "GET",
+      "url": "https://chaoticcow-n8n.cloudfy.live/api/v1/workflows/iKUKUTSuzMZg2u0Z",
+      "headers": { "Accept": "application/json" }
+    },
+    "step2_put": {
+      "method": "PUT",
+      "url": "https://chaoticcow-n8n.cloudfy.live/api/v1/workflows/iKUKUTSuzMZg2u0Z",
+      "headers": { "Content-Type": "application/json" },
+      "body": "<<workflow completo com connections['Split in Batches']['main'] corrigido>>"
+    },
+    "step3_activate": {
+      "method": "POST",
+      "url": "https://chaoticcow-n8n.cloudfy.live/api/v1/workflows/iKUKUTSuzMZg2u0Z/activate",
+      "headers": { "Content-Type": "application/json" }
+    }
+  }
+}

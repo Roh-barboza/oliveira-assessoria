@@ -1,0 +1,127 @@
+{
+  "name": "Oliveira — WF03 Importação de Leads CSV",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "c3d4e5f6-0001-4000-8000-000000000031",
+      "name": "Trigger Manual",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [100, 300]
+    },
+    {
+      "parameters": {
+        "url": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSJNAR8FC899iEkZ5yxzFwR91vKR81XoeAMZVgNX--IHQRxwx_9DGNEAf-gNzoWthbSeJ4yDVmKGuVw/pub?output=csv",
+        "options": {
+          "timeout": 60000,
+          "redirect": { "redirect": { "followRedirects": true, "maxRedirects": 5 } }
+        },
+        "sendHeaders": false,
+        "responseFormat": "text"
+      },
+      "id": "c3d4e5f6-0002-4000-8000-000000000032",
+      "name": "HTTP — Baixar CSV",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [300, 300]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "CREATE SCHEMA IF NOT EXISTS velloso;\n\nCREATE TABLE IF NOT EXISTS velloso.leads (\n  id                   BIGSERIAL PRIMARY KEY,\n  nome                 TEXT NOT NULL DEFAULT 'Lead',\n  telefone_original    TEXT,\n  telefone_normalizado TEXT UNIQUE NOT NULL,\n  email                TEXT,\n  cidade               TEXT,\n  estado               TEXT,\n  profissao            TEXT,\n  observacao           TEXT,\n  categoria            TEXT NOT NULL DEFAULT 'GERAL',\n  prioridade           INTEGER NOT NULL DEFAULT 0,\n  status_envio         TEXT NOT NULL DEFAULT 'AGUARDANDO',\n  etapa_envio          INTEGER NOT NULL DEFAULT 0,\n  respondeu            BOOLEAN NOT NULL DEFAULT FALSE,\n  data_ultimo_envio    TIMESTAMPTZ,\n  proximo_followup     TIMESTAMPTZ,\n  criado_em            TIMESTAMPTZ NOT NULL DEFAULT NOW(),\n  atualizado_em        TIMESTAMPTZ NOT NULL DEFAULT NOW()\n);\n\nCREATE INDEX IF NOT EXISTS idx_leads_status ON velloso.leads(status_envio);\nCREATE INDEX IF NOT EXISTS idx_leads_prioridade ON velloso.leads(prioridade DESC, id ASC);",
+        "options": {}
+      },
+      "id": "c3d4e5f6-0003-4000-8000-000000000033",
+      "name": "PG — Criar Tabela",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [500, 300],
+      "credentials": {
+        "postgres": { "id": "CONFIGURE_AQUI", "name": "Oliveira DB Velloso" }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "// ─────────────────────────────────────────────────────────────\n// PARSE E FILTRAGEM DO CSV\n// ─────────────────────────────────────────────────────────────\n\nconst csvText = $input.first().json.data || $input.first().json.body || $input.first().json;\n\n// ── Helpers ──────────────────────────────────────────────────\nfunction parseCSV(text) {\n  const lines = text.replace(/\\r/g, '').split('\\n');\n  if (lines.length === 0) return { headers: [], rows: [] };\n  const headers = lines[0].split(',').map(h => h.trim().replace(/^\"|\"$/g, ''));\n  const rows = lines.slice(1).filter(l => l.trim()).map(line => {\n    // CSV simples (sem aspas aninhadas com vírgula)\n    return line.split(',').map(c => c.trim().replace(/^\"|\"$/g, ''));\n  });\n  return { headers, rows };\n}\n\nfunction findCol(headers, candidates) {\n  const lh = headers.map(h => h.toLowerCase().trim());\n  for (const c of candidates) {\n    const i = lh.indexOf(c.toLowerCase().trim());\n    if (i !== -1) return i;\n  }\n  return null;\n}\n\nfunction getCell(row, idx) {\n  if (idx === null || idx === undefined || idx >= row.length) return '';\n  return (row[idx] || '').trim();\n}\n\nfunction normalizePhone(raw) {\n  if (!raw) return null;\n  let digits = raw.replace(/\\D/g, '');\n  if (digits.startsWith('55') && digits.length > 13) digits = digits.slice(2);\n  if (!digits.startsWith('55')) digits = '55' + digits;\n  if (digits.length !== 12 && digits.length !== 13) return null;\n  const ddd = parseInt(digits.slice(2, 4), 10);\n  if (ddd < 11 || ddd > 99) return null;\n  return digits;\n}\n\nfunction contains(text, keywords) {\n  const t = (text || '').toLowerCase();\n  return keywords.some(k => t.includes(k));\n}\n\nfunction detectCategory(nome, prof, obs) {\n  const txt = `${nome} ${prof} ${obs}`;\n  const SAUDE = ['médic','enfermeir','dentist','farmâceut','fisioter','psicólog','nutricion','biomédic','veterinár','cirurgi','radiolog','fonoaud'];\n  const ITALIA = ['bisavô','antepassado','ascendência italiana','nona','nonno'];\n  const PROF = ['engenh','arquitet','contador','economista','administrador','gerente','diretor','professor','analista','coordenador'];\n  if (contains(txt, SAUDE))  return 'SAUDE';\n  if (contains(txt, ITALIA)) return 'ITALIA_SERVICOS';\n  if (contains(txt, PROF))   return 'PERFIL_PROFISSIONAL';\n  return 'GERAL';\n}\n\nfunction calcPriority(hasEmail, hasProf, cat) {\n  let p = 3;\n  if (hasEmail) p += 1;\n  if (hasProf)  p += 1;\n  if (cat === 'ITALIA_SERVICOS')   p += 4;\n  else if (cat === 'SAUDE')        p += 2;\n  else if (cat === 'PERFIL_PROFISSIONAL') p += 2;\n  return p;\n}\n\n// ── Listas de filtro ─────────────────────────────────────────\nconst EMPRESA_KW = ['ltda','s.a.',' me ',' epp ','eireli','cnpj','construtora','imobili','incorporadora','holding','associa','instituto','fundação','sindicato','cooperativa','clínica','hospital','escola','colégio','academia','assessoria','consultoria','agência','financeira','seguradora','corretora','distribuidora','tecnologia','contabilidade'];\nconst JURIDICO_KW = ['oab','advogado','advocacia','jurídico','procurador','defensoria'];\nconst CONCORRENTE_KW = ['cidadania italiana','passaporte italiano','visto europeu','passaporto italiano'];\n\n// ── Parse ────────────────────────────────────────────────────\nconst { headers, rows } = parseCSV(csvText);\nconst total = rows.length;\n\nconst idxNome   = findCol(headers, ['nome','name']);\nconst idxFone   = findCol(headers, ['telefone','whatsapp','celular','fone','phone','tel']);\nconst idxEmail  = findCol(headers, ['email','e-mail']);\nconst idxCidade = findCol(headers, ['cidade','city']);\nconst idxEstado = findCol(headers, ['estado','state','uf']);\nconst idxProf   = findCol(headers, ['profissao','profissão','cargo','ocupação','ocupacao']);\nconst idxObs    = findCol(headers, ['observacao','observação','obs','bio','descricao','descrição']);\n\nconst excluidos = { sem_telefone:0, fone_invalido:0, duplicado:0, empresa:0, juridico:0, concorrente:0 };\nconst seenPhones = new Set();\nconst approved = [];\n\nfor (const row of rows) {\n  const nome   = getCell(row, idxNome) || 'Lead';\n  const fone   = getCell(row, idxFone);\n  const email  = getCell(row, idxEmail);\n  const cidade = getCell(row, idxCidade);\n  const estado = getCell(row, idxEstado);\n  const prof   = getCell(row, idxProf);\n  const obs    = getCell(row, idxObs);\n\n  if (!fone)                     { excluidos.sem_telefone++;  continue; }\n  const norm = normalizePhone(fone);\n  if (!norm)                     { excluidos.fone_invalido++; continue; }\n  if (seenPhones.has(norm))      { excluidos.duplicado++;     continue; }\n  if (contains(nome, EMPRESA_KW) || /\\bgrupo\\b/i.test(nome)) { excluidos.empresa++;    continue; }\n  if (contains(`${nome} ${prof} ${obs}`, JURIDICO_KW))        { excluidos.juridico++;   continue; }\n  if (contains(obs, CONCORRENTE_KW))                          { excluidos.concorrente++; continue; }\n\n  seenPhones.add(norm);\n  const cat  = detectCategory(nome, prof, obs);\n  const prio = calcPriority(!!email, !!prof, cat);\n\n  approved.push({\n    nome,\n    telefone_original:    fone,\n    telefone_normalizado: norm,\n    email:                email || null,\n    cidade:               cidade || null,\n    estado:               estado || null,\n    profissao:            prof || null,\n    observacao:           obs || null,\n    categoria:            cat,\n    prioridade:           prio,\n  });\n}\n\nconsole.log(`Total linhas: ${total}`);\nconsole.log(`Aprovados: ${approved.length}`);\nconsole.log(`Excluídos: ${JSON.stringify(excluidos)}`);\n\nreturn approved.map(lead => ({ json: lead }));"
+      },
+      "id": "c3d4e5f6-0004-4000-8000-000000000034",
+      "name": "Code — Filtrar CSV",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [700, 300]
+    },
+    {
+      "parameters": {
+        "batchSize": 50,
+        "options": {}
+      },
+      "id": "c3d4e5f6-0005-4000-8000-000000000035",
+      "name": "Split in Batches",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [900, 300]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "INSERT INTO velloso.leads\n  (nome, telefone_original, telefone_normalizado, email,\n   cidade, estado, profissao, observacao, categoria, prioridade)\nVALUES\n  ('{{ $json.nome }}',\n   {{ $json.telefone_original ? `'${$json.telefone_original.replace(/'/g, \"''\")}'` : 'NULL' }},\n   '{{ $json.telefone_normalizado }}',\n   {{ $json.email ? `'${$json.email.replace(/'/g, \"''\")}'` : 'NULL' }},\n   {{ $json.cidade ? `'${$json.cidade.replace(/'/g, \"''\")}'` : 'NULL' }},\n   {{ $json.estado ? `'${$json.estado.replace(/'/g, \"''\")}'` : 'NULL' }},\n   {{ $json.profissao ? `'${$json.profissao.replace(/'/g, \"''\")}'` : 'NULL' }},\n   {{ $json.observacao ? `'${$json.observacao.replace(/'/g, \"''\")}'` : 'NULL' }},\n   '{{ $json.categoria }}',\n   {{ $json.prioridade }})\nON CONFLICT (telefone_normalizado) DO NOTHING;",
+        "options": {}
+      },
+      "id": "c3d4e5f6-0006-4000-8000-000000000036",
+      "name": "PG — Inserir Lead",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [1100, 300],
+      "credentials": {
+        "postgres": { "id": "CONFIGURE_AQUI", "name": "Oliveira DB Velloso" }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT\n  COUNT(*) AS total,\n  SUM(CASE WHEN categoria = 'GERAL' THEN 1 ELSE 0 END) AS geral,\n  SUM(CASE WHEN categoria = 'SAUDE' THEN 1 ELSE 0 END) AS saude,\n  SUM(CASE WHEN categoria = 'ITALIA_SERVICOS' THEN 1 ELSE 0 END) AS italia_servicos,\n  SUM(CASE WHEN categoria = 'PERFIL_PROFISSIONAL' THEN 1 ELSE 0 END) AS perfil_profissional\nFROM velloso.leads;",
+        "options": {}
+      },
+      "id": "c3d4e5f6-0007-4000-8000-000000000037",
+      "name": "PG — Contar Leads",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [1300, 300],
+      "credentials": {
+        "postgres": { "id": "CONFIGURE_AQUI", "name": "Oliveira DB Velloso" }
+      }
+    }
+  ],
+  "connections": {
+    "Trigger Manual": {
+      "main": [[{ "node": "HTTP — Baixar CSV", "type": "main", "index": 0 }]]
+    },
+    "HTTP — Baixar CSV": {
+      "main": [[{ "node": "PG — Criar Tabela", "type": "main", "index": 0 }]]
+    },
+    "PG — Criar Tabela": {
+      "main": [[{ "node": "Code — Filtrar CSV", "type": "main", "index": 0 }]]
+    },
+    "Code — Filtrar CSV": {
+      "main": [[{ "node": "Split in Batches", "type": "main", "index": 0 }]]
+    },
+    "Split in Batches": {
+      "main": [
+        [],
+        [{ "node": "PG — Inserir Lead", "type": "main", "index": 0 }]
+      ]
+    },
+    "PG — Inserir Lead": {
+      "main": [[{ "node": "Split in Batches", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2026-04-11T00:00:00.000Z",
+  "versionId": "1"
+}
