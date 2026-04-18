@@ -19,7 +19,7 @@
     {
       "parameters": {
         "mode": "runOnceForAllItems",
-        "jsCode": "// Normaliza e valida os dados recebidos do formulário\nconst body = $input.first().json;\n\nconst nome = (body.nome || '').trim();\nconst whatsapp = (body.whatsapp || '').replace(/\\D/g, ''); // remove não-dígitos\nconst area = (body.area || 'Outro').trim();\nconst mensagem = (body.mensagem || '').trim();\n\nif (!nome || !whatsapp) {\n  throw new Error('Nome e WhatsApp são obrigatórios');\n}\n\n// Formata número para Evolution API: 55 + DDD + número\nconst whatsappFormatado = whatsapp.startsWith('55') ? whatsapp : `55${whatsapp}`;\n\nreturn [{\n  json: { nome, whatsapp, whatsappFormatado, area, mensagem }\n}];"
+        "jsCode": "const body = $input.first().json;\n\nconst nome = (body.nome || '').trim();\nconst whatsapp = (body.whatsapp || '').replace(/\\D/g, '');\nconst area = (body.area || 'Outro').trim();\nconst mensagem = (body.mensagem || '').trim();\n\nif (!nome || !whatsapp) {\n  throw new Error('Nome e WhatsApp são obrigatórios');\n}\n\nconst whatsappFormatado = whatsapp.startsWith('55') ? whatsapp : `55${whatsapp}`;\n\nreturn [{ json: { nome, whatsapp, whatsappFormatado, area, mensagem } }];"
       },
       "id": "a1b2c3d4-0002-4000-8000-000000000002",
       "name": "Code — Normalizar Dados",
@@ -40,13 +40,12 @@
       "position": [680, 300],
       "credentials": {
         "postgres": { "id": "CONFIGURE_AQUI", "name": "Oliveira DB" }
-      },
-      "notes": "Salva ou atualiza o lead. Configura a credencial PostgreSQL nas configurações do n8n."
+      }
     },
     {
       "parameters": {
         "mode": "runOnceForAllItems",
-        "jsCode": "// Monta mensagem de boas-vindas personalizada por área\nconst lead = $('Code — Normalizar Dados').first().json;\nconst { nome, area, whatsappFormatado } = lead;\n\nconst primeiroNome = nome.split(' ')[0];\n\nconst mensagens = {\n  'Dívidas': `Olá, ${primeiroNome}! 👋\\n\\nRecebi sua solicitação sobre *Negociação de Dívidas*.\\n\\nVou analisar sua situação e em breve você receberá um plano personalizado para reduzir ou quitar suas dívidas.\\n\\n💡 Enquanto isso: você sabe o valor aproximado da dívida e com qual credor/banco?\\n\\nResponda aqui mesmo — nosso assistente já está te esperando!`,\n\n  'INSS/Previdência': `Olá, ${primeiroNome}! 👋\\n\\nRecebi sua solicitação sobre *INSS e Previdência*.\\n\\nTemos especialistas em aposentadoria, auxílio-doença, BPC/LOAS e salário-maternidade.\\n\\n💡 Para agilizar: qual benefício você precisa? (aposentadoria, auxílio, outro?)\\n\\nResponda aqui — nosso assistente vai te orientar passo a passo! 🏛️`,\n\n  'Precatórios': `Olá, ${primeiroNome}! 👋\\n\\nRecebi sua solicitação sobre *Precatórios*.\\n\\nVamos verificar se o governo te deve algum valor e como você pode receber.\\n\\n💡 Para consultar: você tem o número do seu CPF em mãos?\\n\\nResponda aqui para começarmos! 📜`,\n\n  'Imposto de Renda': `Olá, ${primeiroNome}! 👋\\n\\nRecebi sua solicitação sobre *Imposto de Renda*.\\n\\nPodemos te ajudar com declaração, restituição e regularização de malha fina.\\n\\n💡 É para declaração de qual ano? E você recebe informe de rendimentos do empregador?\\n\\nResponda aqui — vamos resolver juntos! 🧾`,\n\n  'Contratos': `Olá, ${primeiroNome}! 👋\\n\\nRecebi sua solicitação sobre *Contratos*.\\n\\nElaboramos e revisamos contratos de prestação de serviço, locação, parceria e mais.\\n\\n💡 Qual tipo de contrato você precisa?\\n\\nMe conta que já te oriento! 📋`,\n\n  'Outro': `Olá, ${primeiroNome}! 👋\\n\\nRecebi sua mensagem e já fiz o cadastro no nosso sistema.\\n\\nUm dos nossos especialistas vai analisar seu caso e entrar em contato em breve pelo WhatsApp.\\n\\nQualquer dúvida, é só responder esta mensagem! 😊`\n};\n\nconst texto = mensagens[area] || mensagens['Outro'];\n\nreturn [{ json: { ...lead, mensagemWhatsApp: texto } }];"
+        "jsCode": "const lead = $('Code — Normalizar Dados').first().json;\nconst { nome, area, whatsappFormatado } = lead;\nconst primeiroNome = nome.split(' ')[0];\n\nconst mensagens = {\n  'Dívidas': `Olá, ${primeiroNome}! 👋\\n\\nRecebi sua solicitação sobre *Negociação de Dívidas*.\\n\\nVou analisar sua situação e em breve você receberá um plano personalizado para reduzir ou quitar suas dívidas.\\n\\n💡 Enquanto isso: você sabe o valor aproximado da dívida e com qual credor/banco?\\n\\nResponda aqui mesmo — nosso assistente já está te esperando!`,\n  'INSS/Previdência': `Olá, ${primeiroNome}! 👋\\n\\nRecebi sua solicitação sobre *INSS e Previdência*.\\n\\nTemos especialistas em aposentadoria, auxílio-doença, BPC/LOAS e salário-maternidade.\\n\\n💡 Para agilizar: qual benefício você precisa? (aposentadoria, auxílio, outro?)\\n\\nResponda aqui — nosso assistente vai te orientar passo a passo! 🏛️`,\n  'Precatórios': `Olá, ${primeiroNome}! 👋\\n\\nRecebi sua solicitação sobre *Precatórios*.\\n\\nVamos verificar se o governo te deve algum valor e como você pode receber.\\n\\n💡 Para consultar: você tem o número do seu CPF em mãos?\\n\\nResponda aqui para começarmos! 📜`,\n  'Imposto de Renda': `Olá, ${primeiroNome}! 👋\\n\\nRecebi sua solicitação sobre *Imposto de Renda*.\\n\\nPodemos te ajudar com declaração, restituição e regularização de malha fina.\\n\\n💡 É para declaração de qual ano? E você recebe informe de rendimentos do empregador?\\n\\nResponda aqui — vamos resolver juntos! 🧾`,\n  'Contratos': `Olá, ${primeiroNome}! 👋\\n\\nRecebi sua solicitação sobre *Contratos*.\\n\\nElaboramos e revisamos contratos de prestação de serviço, locação, parceria e mais.\\n\\n💡 Qual tipo de contrato você precisa?\\n\\nMe conta que já te oriento! 📋`,\n  'Outro': `Olá, ${primeiroNome}! 👋\\n\\nRecebi sua mensagem e já fiz o cadastro no nosso sistema.\\n\\nUm dos nossos especialistas vai analisar seu caso e entrar em contato em breve pelo WhatsApp.\\n\\nQualquer dúvida, é só responder esta mensagem! 😊`\n};\n\nconst texto = mensagens[area] || mensagens['Outro'];\nreturn [{ json: { ...lead, mensagemWhatsApp: texto } }];"
       },
       "id": "a1b2c3d4-0004-4000-8000-000000000004",
       "name": "Code — Montar Mensagem de Boas-vindas",
@@ -79,7 +78,71 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [1120, 300],
-      "notes": "⚠️ Substitua NOME_DA_INSTANCIA pelo nome real da sua instância no Evolution API manager."
+      "notes": "⚠️ Substitua NOME_DA_INSTANCIA e SUA_EVOLUTION_APIKEY."
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const lead = $('Code — Normalizar Dados').first().json;\nconst { nome, whatsapp, area, mensagem } = lead;\n\nconst areaContexto = {\n  'INSS/Previdência': 'Benefícios previdenciários: aposentadoria por idade, aposentadoria por incapacidade permanente (invalidez), auxílio por incapacidade temporária (auxílio-doença), BPC/LOAS, pensão por morte, salário-maternidade. Carência geral: 12 meses. Doenças graves: carência zero (Art.151 Lei 8213). Recursos: JR e CRPS.',\n  'Imposto de Renda': 'Declaração anual de IR, retificação, análise de malha fina, restituição. Obrigatoriedade 2024: rendimentos tributáveis acima de R$30.639,90 ou bens acima de R$800k. Prazo: abril de cada ano.',\n  'Precatórios': 'Precatórios são dívidas do poder público reconhecidas judicialmente. Consulta pelo CPF no portal CNJ (cnj.jus.br/precatorios). RPV (Requisição de Pequeno Valor): até 60 salários mínimos. Cessão de precatório: possível com desconto.',\n  'Dívidas': 'Negociação extrajudicial com credores. Prescrição de dívidas: 5 anos (regra geral CDC Art.206 §5º I). Verificar juros abusivos, capitalização irregular. Programas: Desenrola Brasil, Serasa Limpa Nome.',\n  'Contratos': 'Elaboração e revisão de contratos civis e empresariais. Verificar: cláusulas abusivas (CDC), penalidades, prazos, foro.',\n  'Outro': 'Consultoria jurídica geral. Identificar a área correta para encaminhamento.'\n};\n\nconst contexto = areaContexto[area] || areaContexto['Outro'];\nconst dataHoje = new Date().toLocaleDateString('pt-BR');\n\nconst systemPrompt = `Você é um assistente especializado em direito previdenciário, fiscal e do consumidor brasileiro. Analise os dados do lead e gere um relatório completo em português para a assessora jurídica Jennifer da Oliveira Assessoria Jurídica.\n\nContexto técnico da área \"${area}\":\n${contexto}\n\nJennifer pode: gestão administrativa do INSS, recursos administrativos, declaração de IR, negociação de dívidas, consultoria e elaboração de contratos. Ela NÃO pode representar em juízo (sem OAB).\n\nFormate o relatório com as seções exatas abaixo. Use linguagem objetiva e prática.`;\n\nconst userPrompt = `Data do cadastro: ${dataHoje}\nNome: ${nome}\nWhatsApp: ${whatsapp}\nÁrea de interesse: ${area}\nMensagem do cliente: \"${mensagem || 'Não informada'}\"\n\nGere o relatório completo com estas seções:\n\n1. RESUMO DO CASO — 2-3 linhas descrevendo o que o cliente precisa com base na mensagem e na área\n2. ANÁLISE DE ELEGIBILIDADE — avalie se o caso tem viabilidade e quais critérios precisam ser confirmados\n3. DOCUMENTOS NECESSÁRIOS — lista com os documentos que Jennifer deve solicitar ao cliente\n4. PASSO A PASSO — numerado, o que Jennifer deve fazer do passo 1 até a conclusão do caso\n5. PRAZO ESTIMADO — tempo médio para resolver esse tipo de caso\n6. VALOR SUGERIDO — faixa de preço a cobrar pelo serviço (use como referência: IR R$149, gestão INSS R$300-800, parecer R$500-2000, dívidas R$200-500)\n7. PONTOS DE ATENÇÃO — riscos, dúvidas que precisam ser esclarecidas ou limitações (ex: caso precisa de advogado)`;  \n\nreturn [{ json: { ...lead, systemPrompt, userPrompt } }];"
+      },
+      "id": "a1b2c3d4-0006-4000-8000-000000000006",
+      "name": "Code — Montar Prompt Análise IA",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1340, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/chat/completions",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "Authorization", "value": "Bearer SUA_OPENAI_KEY_AQUI" },
+            { "name": "Content-Type", "value": "application/json" }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"gpt-4o-mini\",\n  \"temperature\": 0.3,\n  \"max_tokens\": 1500,\n  \"messages\": [\n    { \"role\": \"system\", \"content\": {{ JSON.stringify($json.systemPrompt) }} },\n    { \"role\": \"user\", \"content\": {{ JSON.stringify($json.userPrompt) }} }\n  ]\n}",
+        "options": { "timeout": 30000 }
+      },
+      "id": "a1b2c3d4-0007-4000-8000-000000000007",
+      "name": "HTTP — OpenAI Análise Lead",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1560, 300],
+      "notes": "⚠️ Substitua SUA_OPENAI_KEY_AQUI pela sua chave da OpenAI."
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const lead = $('Code — Normalizar Dados').first().json;\nconst openaiResponse = $input.first().json;\n\nconst analise = openaiResponse.choices?.[0]?.message?.content || 'Não foi possível gerar a análise.';\nconst dataHora = new Date().toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' });\n\nconst htmlEmail = `<!DOCTYPE html>\n<html lang=\"pt-BR\">\n<head>\n  <meta charset=\"UTF-8\">\n  <style>\n    body { font-family: Arial, sans-serif; background: #f4f4f4; margin: 0; padding: 20px; }\n    .container { max-width: 700px; margin: 0 auto; background: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }\n    .header { background: #0A1628; color: #ffffff; padding: 24px 32px; }\n    .header h1 { margin: 0; font-size: 20px; color: #C9A84C; }\n    .header p { margin: 4px 0 0; font-size: 13px; color: #aab4c4; }\n    .badge { display: inline-block; background: #C9A84C; color: #0A1628; font-weight: bold; font-size: 12px; padding: 3px 10px; border-radius: 20px; margin-top: 8px; }\n    .body { padding: 28px 32px; }\n    .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; background: #f8f9fb; border-radius: 6px; padding: 16px; margin-bottom: 24px; }\n    .info-item label { font-size: 11px; text-transform: uppercase; color: #888; display: block; margin-bottom: 2px; }\n    .info-item span { font-size: 14px; font-weight: bold; color: #0A1628; }\n    .analise-box { background: #f8f9fb; border-left: 4px solid #C9A84C; border-radius: 0 6px 6px 0; padding: 20px 24px; white-space: pre-line; font-size: 14px; line-height: 1.7; color: #333; }\n    .mensagem-cliente { background: #fffbf0; border: 1px solid #f0e0a0; border-radius: 6px; padding: 14px 18px; font-size: 14px; font-style: italic; color: #555; margin-bottom: 24px; }\n    .mensagem-cliente strong { display: block; font-style: normal; color: #0A1628; margin-bottom: 4px; font-size: 12px; text-transform: uppercase; }\n    .footer { background: #f0f2f5; padding: 16px 32px; font-size: 12px; color: #888; text-align: center; }\n  </style>\n</head>\n<body>\n  <div class=\"container\">\n    <div class=\"header\">\n      <h1>📋 Novo Lead — Relatório Completo</h1>\n      <p>${dataHora}</p>\n      <span class=\"badge\">${lead.area}</span>\n    </div>\n    <div class=\"body\">\n      <div class=\"info-grid\">\n        <div class=\"info-item\"><label>Nome</label><span>${lead.nome}</span></div>\n        <div class=\"info-item\"><label>WhatsApp</label><span>${lead.whatsapp}</span></div>\n        <div class=\"info-item\"><label>Área de Interesse</label><span>${lead.area}</span></div>\n        <div class=\"info-item\"><label>Status</label><span>🟢 Novo Lead</span></div>\n      </div>\n      <div class=\"mensagem-cliente\">\n        <strong>Mensagem do cliente:</strong>\n        ${lead.mensagem || '<em>Não informada</em>'}\n      </div>\n      <div class=\"analise-box\">${analise}</div>\n    </div>\n    <div class=\"footer\">Oliveira Assessoria Jurídica · Gerado automaticamente pelo sistema de atendimento</div>\n  </div>\n</body>\n</html>`;\n\nreturn [{ json: { ...lead, analise, htmlEmail } }];"
+      },
+      "id": "a1b2c3d4-0008-4000-8000-000000000008",
+      "name": "Code — Formatar Relatório Email",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1780, 300]
+    },
+    {
+      "parameters": {
+        "fromEmail": "oliveira.assessoria.juridica26@gmail.com",
+        "toEmail": "oliveira.assessoria.juridica26@gmail.com",
+        "subject": "=🆕 Novo Lead: {{ $json.nome }} — {{ $json.area }}",
+        "emailFormat": "html",
+        "html": "={{ $json.htmlEmail }}",
+        "options": {}
+      },
+      "id": "a1b2c3d4-0009-4000-8000-000000000009",
+      "name": "Email — Relatório para Jennifer",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [2000, 300],
+      "credentials": {
+        "smtp": { "id": "CONFIGURE_SMTP_AQUI", "name": "Gmail Oliveira" }
+      },
+      "notes": "⚠️ Configure credencial SMTP: Settings > Credentials > New > SMTP. Use host smtp.gmail.com porta 587 com Senha de App do Google."
     },
     {
       "parameters": {
@@ -87,11 +150,11 @@
         "responseBody": "={ \"success\": true, \"message\": \"Lead registrado com sucesso\" }",
         "options": { "responseCode": 200 }
       },
-      "id": "a1b2c3d4-0006-4000-8000-000000000006",
+      "id": "a1b2c3d4-0010-4000-8000-000000000010",
       "name": "Resposta — 200 OK",
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.1,
-      "position": [1340, 300]
+      "position": [2220, 300]
     }
   ],
   "connections": {
@@ -108,6 +171,18 @@
       "main": [[{ "node": "HTTP — Enviar Boas-vindas WhatsApp", "type": "main", "index": 0 }]]
     },
     "HTTP — Enviar Boas-vindas WhatsApp": {
+      "main": [[{ "node": "Code — Montar Prompt Análise IA", "type": "main", "index": 0 }]]
+    },
+    "Code — Montar Prompt Análise IA": {
+      "main": [[{ "node": "HTTP — OpenAI Análise Lead", "type": "main", "index": 0 }]]
+    },
+    "HTTP — OpenAI Análise Lead": {
+      "main": [[{ "node": "Code — Formatar Relatório Email", "type": "main", "index": 0 }]]
+    },
+    "Code — Formatar Relatório Email": {
+      "main": [[{ "node": "Email — Relatório para Jennifer", "type": "main", "index": 0 }]]
+    },
+    "Email — Relatório para Jennifer": {
       "main": [[{ "node": "Resposta — 200 OK", "type": "main", "index": 0 }]]
     }
   },
@@ -115,13 +190,15 @@
   "settings": { "executionOrder": "v1" },
   "id": "oliveira-workflow-01",
   "meta": {
-    "description": "Recebe leads do formulário da landing page, salva no PostgreSQL e envia mensagem de boas-vindas personalizada por área via WhatsApp (Evolution API).",
+    "description": "Recebe leads do formulário, salva no PostgreSQL, envia boas-vindas no WhatsApp, analisa o caso com GPT-4o-mini e envia relatório completo por email para Jennifer.",
     "configurar": [
-      "1. Credencial PostgreSQL: Settings > Credentials > New > Postgres",
-      "2. Evolution API URL: substitua SUA_EVOLUTION_API",
-      "3. Evolution API Key: substitua SUA_APIKEY_EVOLUTION",
-      "4. Nome da instância Evolution: ajuste 'oliveira' no endpoint",
-      "5. Enum area_juridica no banco: verifique que os valores do select coincidem com o enum do schema"
+      "1. Credencial PostgreSQL: Settings > Credentials > New > Postgres > 'Oliveira DB'",
+      "2. Evolution API URL: substitua SUA_EVOLUTION_API e NOME_DA_INSTANCIA",
+      "3. Evolution API Key: substitua SUA_EVOLUTION_APIKEY",
+      "4. OpenAI Key: substitua SUA_OPENAI_KEY_AQUI no nó 'HTTP — OpenAI Análise Lead'",
+      "5. SMTP Gmail: Settings > Credentials > New > SMTP > nome 'Gmail Oliveira'",
+      "   Host: smtp.gmail.com | Port: 587 | User: oliveira.assessoria.juridica26@gmail.com",
+      "   Password: Senha de App (gerar em myaccount.google.com > Segurança > Senhas de app)"
     ]
   }
 }

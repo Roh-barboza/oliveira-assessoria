@@ -61,33 +61,72 @@ Você vai precisar desse nome no passo 5 e 7.
 
 ---
 
-## 4. Obter chave da OpenAI
+## 4. Criar Credencial SMTP (Gmail) no n8n
+
+**Para receber relatórios de leads por email:**
+
+1. Acesse **https://myaccount.google.com/security** com a conta `oliveira.assessoria.juridica26@gmail.com`
+2. Ative **Verificação em duas etapas** (obrigatória para senhas de app)
+3. Procure **Senhas de app** → selecione "Outro" → escreva `n8n` → clique em **Gerar**
+4. Copie a senha de 16 caracteres gerada
+
+5. No n8n, vá em **Settings → Credentials → + Add credential**
+6. Selecione **SMTP**
+7. Preencha:
+
+| Campo | Valor |
+|---|---|
+| Name | `Gmail Oliveira` |
+| Host | `smtp.gmail.com` |
+| Port | `587` |
+| User | `oliveira.assessoria.juridica26@gmail.com` |
+| Password | (senha de app de 16 caracteres) |
+| SSL/TLS | STARTTLS |
+
+8. Clique em **Save** e **Test**
+
+---
+
+## 5. Obter chave da OpenAI
 
 1. Acesse **https://platform.openai.com/api-keys**
 2. Crie uma nova chave (ou use uma existente)
-3. Copie — você vai precisar no passo 5
+3. Copie — você vai precisar no passo 6
 
-> Custo estimado: ~$0.01 por conversa com GPT-4o-mini (muito barato)
+> Custo estimado: ~$0.02 por lead analisado com GPT-4o-mini (análise + boas-vindas)
 
 ---
 
-## 5. Importar Workflow 1 — Recepção de Leads
+## 6. Importar Workflow 1 — Recepção de Leads
 
-**Este workflow processa o formulário da landing page.**
+**Este workflow: recebe o formulário → salva no banco → envia boas-vindas no WhatsApp → analisa o caso com IA → envia relatório por email.**
 
 1. No n8n, clique em **+ New Workflow → Import from file**
 2. Selecione o arquivo: `n8n/01-recepcao-leads.json`
-3. Após importar, clique no nó **"Postgres — Upsert Lead"**
-   - Em **Credentials**, selecione **"Oliveira DB"** (que você criou no passo 2)
-4. Clique no nó **"HTTP — Enviar Boas-vindas WhatsApp"**
-   - No campo URL, substitua `NOME_DA_INSTANCIA` pelo nome real da instância (passo 3)
-   - URL final deve ser: `https://chaoticcow-evolution.cloudfy.live/message/sendText/SEU_NOME`
-5. Clique em **Save**
-6. Clique no toggle **Activate** (canto superior direito) → workflow fica verde
+3. Configure o nó **"Postgres — Upsert Lead"**:
+   - Em **Credentials**, selecione **"Oliveira DB"**
+4. Configure o nó **"HTTP — Enviar Boas-vindas WhatsApp"**:
+   - Substitua `NOME_DA_INSTANCIA` pelo nome real (passo 3)
+   - Substitua `SUA_EVOLUTION_APIKEY` pela chave da Evolution API
+5. Configure o nó **"HTTP — OpenAI Análise Lead"**:
+   - Substitua `SUA_OPENAI_KEY_AQUI` pela sua chave da OpenAI
+6. Configure o nó **"Email — Relatório para Jennifer"**:
+   - Em **Credentials**, selecione **"Gmail Oliveira"**
+7. Clique em **Save**
+8. Clique no toggle **Activate** → workflow fica verde
+
+**O que você vai receber no email a cada novo lead:**
+- Dados do cliente (nome, WhatsApp, área)
+- Mensagem que ele escreveu
+- Análise de elegibilidade gerada por IA
+- Documentos necessários
+- Passo a passo para resolver o caso
+- Prazo estimado e valor sugerido
+- Pontos de atenção
 
 ---
 
-## 6. Importar Workflow 2 — Bot WhatsApp com IA
+## 7. Importar Workflow 2 — Bot WhatsApp com IA
 
 **Este é o bot inteligente de atendimento.**
 
@@ -108,7 +147,7 @@ Você vai precisar desse nome no passo 5 e 7.
 
 ---
 
-## 7. Configurar Webhook no Evolution API
+## 8. Configurar Webhook no Evolution API
 
 **Para o bot receber as mensagens do WhatsApp:**
 
@@ -136,13 +175,14 @@ curl -X POST https://chaoticcow-evolution.cloudfy.live/webhook/set/NOME_DA_INSTA
 
 ---
 
-## 8. Testar tudo
+## 9. Testar tudo
 
 **Teste 1 — Formulário da landing page:**
 1. Abra a landing page
 2. Preencha e envie o formulário
 3. Verifique no n8n (Workflow 1 → Executions) se executou com sucesso
-4. Você deve receber uma mensagem no WhatsApp
+4. Você deve receber uma mensagem de boas-vindas no WhatsApp do cliente
+5. Você deve receber um email em `oliveira.assessoria.juridica26@gmail.com` com o relatório completo do lead
 
 **Teste 2 — Bot WhatsApp:**
 1. Envie uma mensagem para o número do WhatsApp conectado na instância
@@ -156,7 +196,7 @@ curl -X POST https://chaoticcow-evolution.cloudfy.live/webhook/set/NOME_DA_INSTA
 
 ---
 
-## 9. Próximos passos opcionais
+## 10. Próximos passos opcionais
 
 - **Seed do banco de conhecimento:** rode `npm run seed` na pasta `agent/` após configurar o `.env` com a GEMINI_API_KEY e as credenciais do banco
 - **Número de WhatsApp da landing:** substitua `55XXXXXXXXXXX` nos links da landing page pelo número real
