@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-oliveira-lab="irpf-2026">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Laboratório de mapeamento IRPF</title>
+  <style>
+    body{max-width:760px;margin:40px auto;padding:0 20px;font:16px Arial;color:#21304a}label{display:block;margin:16px 0;font-weight:700}input{display:block;width:100%;margin-top:6px;padding:11px;border:1px solid #bac2cd;border-radius:6px}button{padding:12px 18px;color:#fff;background:#0a1628;border:0;border-radius:6px}.notice{padding:14px;background:#fff2c9;border-radius:7px}
+  </style>
+</head>
+<body>
+  <p class="notice"><strong>Laboratório local:</strong> use somente dados fictícios. Esta página existe para validar a integração da extensão antes do mapeamento autenticado.</p>
+  <h1>Pessoas — Titular</h1>
+  <label>Nome completo<input data-ir-field="taxpayer.fullName"></label>
+  <label>CPF<input data-ir-field="taxpayer.cpf"></label>
+  <label>Data de nascimento<input type="date" data-ir-field="taxpayer.birthDate"></label>
+  <label>Endereço<input data-ir-field="taxpayer.address"></label>
+  <label>Ocupação principal<input data-ir-field="taxpayer.mainOccupation"></label>
+  <label>Senha (deve ser ignorada)<input type="password"></label>
+  <button type="button">Salvar rascunho fictício</button>
+</body>
+</html>

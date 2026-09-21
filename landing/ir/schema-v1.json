@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://oliveira-assessoria.vercel.app/ir/schema-v1.json",
+  "title": "Oliveira Assessoria — Ficha IRPF 2026",
+  "type": "object",
+  "required": ["schemaVersion", "service", "exercise", "taxpayer", "automation"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "service": { "const": "IRPF" },
+    "exercise": { "const": 2026 },
+    "calendarYear": { "const": 2025 },
+    "status": { "const": "review_required" },
+    "taxpayer": {
+      "type": "object",
+      "required": ["fullName", "cpf", "birthDate"],
+      "properties": {
+        "fullName": { "type": "string", "minLength": 3 },
+        "cpf": { "type": "string", "pattern": "^[0-9]{11}$" },
+        "birthDate": { "type": "string", "format": "date" }
+      }
+    },
+    "automation": {
+      "type": "object",
+      "required": ["credentialsIncluded", "finalSubmissionAllowed", "humanReviewRequired"],
+      "properties": {
+        "credentialsIncluded": { "const": false },
+        "finalSubmissionAllowed": { "const": false },
+        "humanReviewRequired": { "const": true }
+      }
+    }
+  }
+}

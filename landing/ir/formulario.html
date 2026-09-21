@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex,nofollow">
+    <title>Checklist IRPF 2026 | Oliveira Assessoria</title>
+    <meta name="description" content="Ficha guiada para organizar as informações da declaração de Imposto de Renda Pessoa Física.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="formulario.css">
+</head>
+<body>
+    <header class="app-header">
+        <a class="brand" href="../imposto-de-renda.html">Oliveira Assessoria</a>
+        <div class="header-meta">
+            <span>IRPF 2026</span>
+            <button id="clear-draft" class="link-button" type="button">Limpar rascunho</button>
+        </div>
+    </header>
+
+    <div class="security-notice" role="note">
+        <strong>Ambiente de checklist:</strong> nesta versão, os dados ficam somente neste navegador e não são enviados pela internet. Não informe senha, código de autenticação ou acesso gov.br.
+    </div>
+
+    <main class="app-shell">
+        <aside class="progress-panel" aria-label="Progresso da ficha">
+            <p class="progress-label">Ficha do cliente</p>
+            <strong id="progress-value">0% concluído</strong>
+            <div class="progress-track" aria-hidden="true"><span id="progress-bar"></span></div>
+            <ol id="step-list">
+                <li class="active"><span>1</span> Orientações</li>
+                <li><span>2</span> Titular</li>
+                <li><span>3</span> Pessoas</li>
+                <li><span>4</span> Rendimentos</li>
+                <li><span>5</span> Pagamentos</li>
+                <li><span>6</span> Patrimônio</li>
+                <li><span>7</span> Situações</li>
+                <li><span>8</span> Revisão</li>
+            </ol>
+            <p class="autosave-status" id="autosave-status">Rascunho salvo neste dispositivo</p>
+        </aside>
+
+        <section class="form-card">
+            <form id="ir-form" novalidate>
+                <section class="form-step active" data-step="0">
+                    <span class="step-kicker">Etapa 1 de 8</span>
+                    <h1>Antes de começar</h1>
+                    <p class="step-intro">A ficha organiza as informações para a análise da declaração. O preenchimento não substitui a conferência dos comprovantes nem representa a transmissão para a Receita Federal.</p>
+                    <div class="info-grid">
+                        <article><strong>20–35 min</strong><span>Tempo médio para preencher</span></article>
+                        <article><strong>Salvamento local</strong><span>Você pode continuar depois</span></article>
+                        <article><strong>Revisão obrigatória</strong><span>Nenhum dado é enviado automaticamente</span></article>
+                    </div>
+                    <div class="check-panel">
+                        <label class="check-row"><input type="checkbox" name="securityAck" required><span>Entendi que não devo informar senha, token, código de acesso ou autenticação gov.br.</span></label>
+                        <label class="check-row"><input type="checkbox" name="accuracyAck" required><span>Vou preencher os dados conforme os documentos e informar quando algo ainda precisar ser confirmado.</span></label>
+                    </div>
+                </section>
+
+                <section class="form-step" data-step="1">
+                    <span class="step-kicker">Etapa 2 de 8</span>
+                    <h2>Dados do titular</h2>
+                    <p class="step-intro">Use os dados que constam nos documentos do contribuinte.</p>
+                    <div class="fields-grid">
+                        <label class="field field--wide">Nome completo<input name="nomeCompleto" autocomplete="name" required></label>
+                        <label class="field">CPF<input name="cpf" inputmode="numeric" maxlength="14" placeholder="000.000.000-00" required></label>
+                        <label class="field">Data de nascimento<input name="dataNascimento" type="date" required></label>
+                        <label class="field">WhatsApp<input name="whatsapp" autocomplete="tel" required placeholder="(00) 00000-0000"></label>
+                        <label class="field">E-mail<input name="email" type="email" autocomplete="email" required></label>
+                        <label class="field">Estado civil<select name="estadoCivil" required><option value="">Selecione</option><option>Solteiro(a)</option><option>Casado(a)</option><option>União estável</option><option>Divorciado(a)</option><option>Separado(a)</option><option>Viúvo(a)</option></select></label>
+                        <label class="field">Ocupação principal<input name="ocupacaoPrincipal" placeholder="Ex.: Analista administrativo" required></label>
+                        <label class="field">Natureza da ocupação<input name="naturezaOcupacao" placeholder="Ex.: Empregado de empresa privada"></label>
+                        <label class="field">CEP<input name="cep" inputmode="numeric" maxlength="9" autocomplete="postal-code" required></label>
+                        <label class="field field--wide">Endereço completo<input name="enderecoCompleto" autocomplete="street-address" required placeholder="Rua, número, complemento, bairro, cidade e UF"></label>
+                    </div>
+                    <fieldset class="choice-group">
+                        <legend>Esta é a primeira declaração?</legend>
+                        <label><input type="radio" name="primeiraDeclaracao" value="sim" required> Sim</label>
+                        <label><input type="radio" name="primeiraDeclaracao" value="nao"> Não</label>
+                        <label><input type="radio" name="primeiraDeclaracao" value="nao_sei"> Não sei</label>
+                    </fieldset>
+                    <label class="field">Número do recibo anterior (se houver)<input name="reciboAnterior" inputmode="numeric"></label>
+                </section>
+
+                <section class="form-step" data-step="2">
+                    <span class="step-kicker">Etapa 3 de 8</span>
+                    <h2>Pessoas relacionadas</h2>
+                    <p class="step-intro">Inclua dependentes, alimentandos e outras pessoas que possam aparecer na declaração.</p>
+                    <div class="toggle-block">
+                        <label class="switch-row"><input type="checkbox" name="possuiDependentes" data-target="dependentes-section"><span><strong>Possui dependentes</strong><small>Filhos, cônjuge, pais ou outras pessoas que atendam aos requisitos.</small></span></label>
+                        <div id="dependentes-section" class="conditional" hidden>
+                            <div id="dependentes-list" class="repeater-list"></div>
+                            <button class="add-button" type="button" data-add="dependente">+ Adicionar dependente</button>
+                        </div>
+                    </div>
+                    <div class="toggle-block">
+                        <label class="switch-row"><input type="checkbox" name="possuiAlimentandos" data-target="alimentandos-section"><span><strong>Possui alimentandos</strong><small>Pensão ou despesas decorrentes de decisão, acordo homologado ou escritura pública.</small></span></label>
+                        <div id="alimentandos-section" class="conditional" hidden>
+                            <div id="alimentandos-list" class="repeater-list"></div>
+                            <button class="add-button" type="button" data-add="alimentando">+ Adicionar alimentando</button>
+                        </div>
+                    </div>
+                    <label class="field field--wide">Observações sobre pessoas<textarea name="pessoasObservacoes" placeholder="Guarda compartilhada, mudança de dependência durante o ano, decisão judicial ou outra informação relevante."></textarea></label>
+                </section>
+
+                <section class="form-step" data-step="3">
+                    <span class="step-kicker">Etapa 4 de 8</span>
+                    <h2>Rendimentos</h2>
+                    <p class="step-intro">Marque tudo o que foi recebido pelo titular ou por dependentes durante 2025.</p>
+                    <div class="check-grid">
+                        <label><input type="checkbox" name="rendaCategorias" value="salario"> Salário ou pró-labore</label>
+                        <label><input type="checkbox" name="rendaCategorias" value="aposentadoria"> Aposentadoria ou pensão</label>
+                        <label><input type="checkbox" name="rendaCategorias" value="autonomo"> Trabalho autônomo</label>
+                        <label><input type="checkbox" name="rendaCategorias" value="aluguel"> Aluguéis recebidos</label>
+                        <label><input type="checkbox" name="rendaCategorias" value="isentos"> Rendimentos isentos</label>
+                        <label><input type="checkbox" name="rendaCategorias" value="exterior"> Rendimentos do exterior</label>
+                        <label><input type="checkbox" name="rendaCategorias" value="financeiros"> Rendimentos financeiros</label>
+                        <label><input type="checkbox" name="rendaCategorias" value="outros"> Outros rendimentos</label>
+                    </div>
+                    <div id="rendimentos-list" class="repeater-list"></div>
+                    <button class="add-button" type="button" data-add="rendimento">+ Adicionar rendimento ou informe</button>
+                    <label class="field field--wide">Observações sobre rendimentos<textarea name="rendimentosObservacoes" placeholder="Informe valores que ainda não conferem, fontes sem comprovante ou dúvidas."></textarea></label>
+                </section>
+
+                <section class="form-step" data-step="4">
+                    <span class="step-kicker">Etapa 5 de 8</span>
+                    <h2>Pagamentos e deduções</h2>
+                    <p class="step-intro">Inclua os pagamentos que precisam ser analisados, mesmo quando ainda não souber se serão dedutíveis.</p>
+                    <div class="check-grid">
+                        <label><input type="checkbox" name="pagamentoCategorias" value="saude"> Médicos e saúde</label>
+                        <label><input type="checkbox" name="pagamentoCategorias" value="educacao"> Educação</label>
+                        <label><input type="checkbox" name="pagamentoCategorias" value="previdencia"> Previdência</label>
+                        <label><input type="checkbox" name="pagamentoCategorias" value="pensao"> Pensão alimentícia</label>
+                        <label><input type="checkbox" name="pagamentoCategorias" value="profissionais"> Profissionais e serviços</label>
+                        <label><input type="checkbox" name="pagamentoCategorias" value="doacoes"> Doações</label>
+                    </div>
+                    <div id="pagamentos-list" class="repeater-list"></div>
+                    <button class="add-button" type="button" data-add="pagamento">+ Adicionar pagamento</button>
+                    <label class="field field--wide">Observações sobre pagamentos<textarea name="pagamentosObservacoes"></textarea></label>
+                </section>
+
+                <section class="form-step" data-step="5">
+                    <span class="step-kicker">Etapa 6 de 8</span>
+                    <h2>Patrimônio e dívidas</h2>
+                    <p class="step-intro">Liste contas, bens, investimentos e obrigações que existiram no ano.</p>
+                    <div class="check-grid">
+                        <label><input type="checkbox" name="patrimonioCategorias" value="contas"> Contas e carteiras digitais</label>
+                        <label><input type="checkbox" name="patrimonioCategorias" value="investimentos"> Investimentos</label>
+                        <label><input type="checkbox" name="patrimonioCategorias" value="imoveis"> Imóveis</label>
+                        <label><input type="checkbox" name="patrimonioCategorias" value="veiculos"> Veículos</label>
+                        <label><input type="checkbox" name="patrimonioCategorias" value="participacoes"> Participações societárias</label>
+                        <label><input type="checkbox" name="patrimonioCategorias" value="cripto"> Criptoativos</label>
+                        <label><input type="checkbox" name="patrimonioCategorias" value="exterior"> Bens no exterior</label>
+                        <label><input type="checkbox" name="patrimonioCategorias" value="outros"> Outros bens ou direitos</label>
+                    </div>
+                    <h3 class="subsection-title">Bens e direitos</h3>
+                    <div id="bens-list" class="repeater-list"></div>
+                    <button class="add-button" type="button" data-add="bem">+ Adicionar bem ou direito</button>
+                    <h3 class="subsection-title">Dívidas e ônus</h3>
+                    <div id="dividas-list" class="repeater-list"></div>
+                    <button class="add-button" type="button" data-add="divida">+ Adicionar dívida</button>
+                </section>
+
+                <section class="form-step" data-step="6">
+                    <span class="step-kicker">Etapa 7 de 8</span>
+                    <h2>Situações específicas e documentos</h2>
+                    <p class="step-intro">Estas respostas ajudam a identificar pontos que exigem uma análise individual.</p>
+                    <div class="check-grid check-grid--stacked">
+                        <label><input type="checkbox" name="situacoes" value="bolsa"> Operou em bolsa ou renda variável</label>
+                        <label><input type="checkbox" name="situacoes" value="ganho_capital"> Vendeu imóvel, veículo ou outro bem</label>
+                        <label><input type="checkbox" name="situacoes" value="exterior"> Teve renda, conta ou bem no exterior</label>
+                        <label><input type="checkbox" name="situacoes" value="atividade_rural"> Exerceu atividade rural</label>
+                        <label><input type="checkbox" name="situacoes" value="heranca_doacao"> Recebeu herança ou doação</label>
+                        <label><input type="checkbox" name="situacoes" value="mudanca_pais"> Entrou ou saiu do Brasil em caráter definitivo</label>
+                        <label><input type="checkbox" name="situacoes" value="espolio"> Declaração de espólio</label>
+                        <label><input type="checkbox" name="situacoes" value="retificadora"> Precisa retificar declaração anterior</label>
+                    </div>
+                    <label class="field field--wide">Explique as situações marcadas<textarea name="situacoesDetalhes" placeholder="Datas, valores aproximados e o que aconteceu."></textarea></label>
+                    <h3 class="subsection-title">Documentos já separados</h3>
+                    <div class="check-grid check-grid--stacked">
+                        <label><input type="checkbox" name="documentos" value="documento_pessoal"> Documento pessoal e comprovante de endereço</label>
+                        <label><input type="checkbox" name="documentos" value="declaracao_anterior"> Declaração e recibo do ano anterior</label>
+                        <label><input type="checkbox" name="documentos" value="informes_rendimentos"> Informes de rendimentos</label>
+                        <label><input type="checkbox" name="documentos" value="informes_bancarios"> Informes bancários e de investimentos</label>
+                        <label><input type="checkbox" name="documentos" value="recibos_pagamentos"> Recibos e notas de pagamentos</label>
+                        <label><input type="checkbox" name="documentos" value="bens_dividas"> Documentos de bens, compras, vendas e dívidas</label>
+                    </div>
+                </section>
+
+                <section class="form-step" data-step="7">
+                    <span class="step-kicker">Etapa 8 de 8</span>
+                    <h2>Revise sua ficha</h2>
+                    <p class="step-intro">Confira o resumo, volte às etapas que precisarem de ajuste e gere a ficha somente quando estiver pronta para análise.</p>
+                    <div id="review-alert" class="review-alert"></div>
+                    <div id="review-summary" class="review-summary"></div>
+                    <div class="final-ack">
+                        <label class="check-row"><input type="checkbox" name="reviewAck"><span>Revisei as informações e entendo que a equipe ainda fará a conferência documental antes do preenchimento.</span></label>
+                    </div>
+                    <button id="download-json" class="primary-button primary-button--wide" type="button">Gerar ficha para análise (.json)</button>
+                    <p class="privacy-note">O arquivo é salvo no seu dispositivo. Envie-o à equipe somente pelo canal de atendimento combinado.</p>
+                </section>
+
+                <div class="form-actions">
+                    <button id="prev-step" class="secondary-button" type="button" hidden>Voltar</button>
+                    <button id="next-step" class="primary-button" type="button">Continuar</button>
+                </div>
+                <div id="form-error" class="form-error" role="alert" aria-live="polite"></div>
+            </form>
+        </section>
+    </main>
+
+    <template id="template-dependente">
+        <article class="repeat-card" data-item-type="dependente">
+            <div class="repeat-card__header"><strong>Dependente</strong><button type="button" data-remove>Remover</button></div>
+            <div class="fields-grid">
+                <label class="field field--wide">Nome completo<input data-key="nome" required></label>
+                <label class="field">CPF<input data-key="cpf" inputmode="numeric" maxlength="14" required></label>
+                <label class="field">Data de nascimento<input data-key="dataNascimento" type="date" required></label>
+                <label class="field">Relação com o titular<input data-key="relacao" required placeholder="Ex.: Filho(a)"></label>
+                <label class="field">Teve rendimentos em 2025?<select data-key="teveRendimentos" required><option value="">Selecione</option><option value="sim">Sim</option><option value="nao">Não</option><option value="nao_sei">Não sei</option></select></label>
+            </div>
+        </article>
+    </template>
+
+    <template id="template-alimentando">
+        <article class="repeat-card" data-item-type="alimentando">
+            <div class="repeat-card__header"><strong>Alimentando</strong><button type="button" data-remove>Remover</button></div>
+            <div class="fields-grid">
+                <label class="field field--wide">Nome completo<input data-key="nome" required></label>
+                <label class="field">CPF<input data-key="cpf" inputmode="numeric" maxlength="14" required></label>
+                <label class="field">Base do pagamento<select data-key="base" required><option value="">Selecione</option><option>Decisão ou acordo judicial</option><option>Escritura pública</option></select></label>
+                <label class="field field--wide">Identificação do processo ou escritura<input data-key="identificacao" required></label>
+            </div>
+        </article>
+    </template>
+
+    <template id="template-rendimento">
+        <article class="repeat-card" data-item-type="rendimento">
+            <div class="repeat-card__header"><strong>Rendimento</strong><button type="button" data-remove>Remover</button></div>
+            <div class="fields-grid">
+                <label class="field">Beneficiário<select data-key="beneficiario" required><option value="titular">Titular</option><option value="dependente">Dependente</option></select></label>
+                <label class="field">Natureza<input data-key="natureza" required placeholder="Ex.: Salário"></label>
+                <label class="field field--wide">Fonte pagadora / recebido de<input data-key="fonte" required></label>
+                <label class="field">CPF ou CNPJ da fonte<input data-key="documentoFonte" inputmode="numeric"></label>
+                <label class="field">Valor do informe (R$)<input data-key="valor" inputmode="decimal" placeholder="0,00"></label>
+                <label class="field field--wide">Observação<input data-key="observacao" placeholder="Ex.: informe ainda não recebido"></label>
+            </div>
+        </article>
+    </template>
+
+    <template id="template-pagamento">
+        <article class="repeat-card" data-item-type="pagamento">
+            <div class="repeat-card__header"><strong>Pagamento</strong><button type="button" data-remove>Remover</button></div>
+            <div class="fields-grid">
+                <label class="field">Beneficiário da despesa<select data-key="beneficiario" required><option value="titular">Titular</option><option value="dependente">Dependente</option><option value="alimentando">Alimentando</option></select></label>
+                <label class="field">Tipo de pagamento<input data-key="tipo" required placeholder="Ex.: Plano de saúde"></label>
+                <label class="field field--wide">Pago para<input data-key="pagoPara" required></label>
+                <label class="field">CPF ou CNPJ<input data-key="documento" inputmode="numeric"></label>
+                <label class="field">Valor total (R$)<input data-key="valor" inputmode="decimal" placeholder="0,00"></label>
+            </div>
+        </article>
+    </template>
+
+    <template id="template-bem">
+        <article class="repeat-card" data-item-type="bem">
+            <div class="repeat-card__header"><strong>Bem ou direito</strong><button type="button" data-remove>Remover</button></div>
+            <div class="fields-grid">
+                <label class="field">Categoria<input data-key="categoria" required placeholder="Ex.: Imóvel"></label>
+                <label class="field">Titularidade<select data-key="titularidade" required><option value="titular">Titular</option><option value="dependente">Dependente</option><option value="conjunto">Em conjunto</option></select></label>
+                <label class="field field--wide">Descrição completa<textarea data-key="descricao" required placeholder="Dados do bem, aquisição e origem dos valores."></textarea></label>
+                <label class="field">Situação em 31/12/2024 (R$)<input data-key="valorAnterior" inputmode="decimal"></label>
+                <label class="field">Situação em 31/12/2025 (R$)<input data-key="valorAtual" inputmode="decimal"></label>
+            </div>
+        </article>
+    </template>
+
+    <template id="template-divida">
+        <article class="repeat-card" data-item-type="divida">
+            <div class="repeat-card__header"><strong>Dívida</strong><button type="button" data-remove>Remover</button></div>
+            <div class="fields-grid">
+                <label class="field field--wide">Credor e descrição<input data-key="descricao" required></label>
+                <label class="field">CPF ou CNPJ do credor<input data-key="documentoCredor" inputmode="numeric"></label>
+                <label class="field">Saldo em 31/12/2024 (R$)<input data-key="saldoAnterior" inputmode="decimal"></label>
+                <label class="field">Saldo em 31/12/2025 (R$)<input data-key="saldoAtual" inputmode="decimal"></label>
+            </div>
+        </article>
+    </template>
+
+    <script src="formulario.js" defer></script>
+</body>
+</html>

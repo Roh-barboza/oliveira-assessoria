@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oliveira Assistant</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header>
+    <span class="eyebrow">Oliveira Assessoria</span>
+    <h1>IRPF Assistant</h1>
+    <p>Login manual • revisão humana</p>
+  </header>
+
+  <main>
+    <section class="card" id="client-card">
+      <div class="card-title"><span>1</span><strong>Ficha do cliente</strong></div>
+      <div id="empty-state">
+        <p>Importe a ficha JSON gerada pelo checklist.</p>
+        <label class="file-button">Selecionar ficha<input id="file-input" type="file" accept="application/json,.json"></label>
+      </div>
+      <div id="client-state" hidden>
+        <strong id="client-name"></strong>
+        <small id="client-meta"></small>
+        <div class="progress"><span id="client-progress"></span></div>
+        <button id="remove-client" class="text-button" type="button">Remover ficha deste navegador</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-title"><span>2</span><strong>Tela atual</strong></div>
+      <p id="page-context" class="muted">Abra o Meu Imposto de Renda após o login manual.</p>
+      <button id="scan-page" class="secondary-button" type="button">Mapear campos da tela</button>
+      <div id="scan-result" class="result" hidden></div>
+      <button id="copy-map" class="text-button" type="button" hidden>Copiar mapa técnico</button>
+    </section>
+
+    <section class="card card--action">
+      <div class="card-title"><span>3</span><strong>Preenchimento assistido</strong></div>
+      <p class="muted">O preenchimento fica bloqueado até o mapa desta tela ser validado.</p>
+      <button id="fill-page" class="primary-button" type="button" disabled>Preencher tela atual</button>
+      <p id="action-status" class="status" role="status"></p>
+    </section>
+
+    <aside class="safety">
+      <strong>Travas ativas</strong>
+      <ul>
+        <li>não lê ou salva senhas;</li>
+        <li>não contorna autenticação;</li>
+        <li>não transmite a declaração;</li>
+        <li>não inventa dados ausentes.</li>
+      </ul>
+    </aside>
+  </main>
+  <script src="popup.js"></script>
+</body>
+</html>

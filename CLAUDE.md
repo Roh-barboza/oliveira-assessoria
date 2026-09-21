@@ -201,6 +201,20 @@ FASE 7: Resposta ao Cliente
 - [ ] **PENDENTE:** Schema para tabelas: clients, cases, documents, analysis
 - [ ] **PENDENTE:** Integração OCR + PGVector para documentos médicos/previdenciários
 
+### Jennifer IR Assistant (MVP iniciado em 21/09/2026)
+- [x] Página comercial específica de Imposto de Renda
+- [x] Removida promessa de "maior restituição garantida"
+- [x] Checklist IRPF 2026 em 8 etapas
+- [x] Rascunho local sem transmissão de dados
+- [x] Exportação de ficha JSON versionada
+- [x] Base da extensão Chrome Manifest V3
+- [x] Scanner de campos sem capturar valores da página
+- [x] Travas explícitas para senha, autenticação e transmissão
+- [ ] **PENDENTE:** Mapear as telas reais do MIR após login manual
+- [ ] **PENDENTE:** Implementar e validar adaptadores tela a tela
+- [ ] **PENDENTE:** Backend autenticado para clientes e documentos reais
+- [ ] **PENDENTE:** Revisão jurídica final da política de privacidade e dos termos
+
 ---
 
 ## O que falta fazer — Prioridade

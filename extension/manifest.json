@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "Oliveira Assistant — IRPF",
+  "version": "0.1.0",
+  "description": "Importa a ficha IRPF, mapeia a tela atual e auxilia o preenchimento após o login manual.",
+  "permissions": ["storage", "activeTab"],
+  "host_permissions": [
+    "https://mir.receita.fazenda.gov.br/*",
+    "http://localhost/*",
+    "http://127.0.0.1/*"
+  ],
+  "action": {
+    "default_title": "Oliveira Assistant",
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://mir.receita.fazenda.gov.br/*",
+        "http://localhost/*",
+        "http://127.0.0.1/*"
+      ],
+      "js": ["content-script.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
