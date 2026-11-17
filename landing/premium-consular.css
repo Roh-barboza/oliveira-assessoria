@@ -60,16 +60,7 @@
   gap: 24px;
   flex-wrap: wrap;
 }
-.hero-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  min-height: 48px;
-  color: white;
-  font-size: 13px;
-  text-decoration: none;
-  border-bottom: 1px solid #809a8e;
-}
+
 .hero-notes {
   display: flex;
   flex-wrap: wrap;
@@ -172,7 +163,7 @@
   flex-direction: column;
   align-items: flex-start;
   min-height: 280px;
-  padding: 28px 24px;
+  padding: 20px 18px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--paper);
@@ -581,13 +572,19 @@
     font-size: 15px;
   }
   .hero-actions {
-    align-items: stretch;
-    flex-direction: column;
-    gap: 12px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
   }
-  .hero-link {
-    align-self: flex-start;
+  .hero-actions .button {
+    padding: 12px 10px;
+    font-size: 13px;
+    min-height: 48px;
   }
+  .hero-actions .icon {
+    display: none;
+  }
+
   .hero-notes {
     gap: 12px;
     font-size: 10px;
@@ -604,26 +601,66 @@
     grid-template-columns: 1fr;
   }
   .service-card {
+    display: grid;
+    grid-template-columns: 24px minmax(0, 1fr);
+    align-content: start;
+    column-gap: 14px;
+    row-gap: 6px;
     min-height: 0;
-    padding: 26px;
+    padding: 18px;
+  }
+  .service-card .service-number {
+    display: none;
+  }
+  .service-card h3 {
+    grid-column: 2;
+    margin: 0;
+    font-size: 21px;
+  }
+  .service-card p,
+  .service-card b {
+    grid-column: 2;
+  }
+  .service-card b {
+    margin-top: 2px;
+    line-height: 1.6;
   }
   .service-card > .icon {
-    margin-bottom: 22px;
+    grid-column: 1;
+    grid-row: 1 / 3;
+    width: 24px;
+    height: 24px;
+    margin: 0;
   }
   .service-card p {
-    font-size: 14px;
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .services-grid,
+  .brazil-grid {
+    gap: 12px;
+  }
+  .brazil-card p {
+    margin-bottom: 10px;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .brazil-card > span {
+    display: none;
   }
   .brazil-card {
-    padding: 28px 24px;
-    grid-template-columns: 28px 1fr;
-    gap: 18px;
+    padding: 20px 18px;
+    grid-template-columns: 24px minmax(0, 1fr);
+    gap: 14px;
   }
   .brazil-card > .icon {
     width: 26px;
     height: 26px;
   }
   .brazil-card h3 {
-    font-size: 23px;
+    margin: 0 0 8px;
+    font-size: 21px;
   }
   .process-steps li {
     grid-template-columns: 36px 1fr;
