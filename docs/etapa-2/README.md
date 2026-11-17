@@ -40,7 +40,19 @@ WhatsApp segue [registrado como pendência](../decisoes/2026-11-17-whatsapp-e-co
 
 Testes locais passaram: 18 páginas × 7 larguras (360, 390, 430, 768, 1024, 1366 e 1920), menu, links e âncoras, teclado/foco, axe, imagens, overflow, busca e filtros, conteúdo padronizado, 404, seleção de serviços e simulações interceptadas de leads. Nenhum lead fictício foi enviado ao n8n.
 
-Resultados finais de Preview, medições Lighthouse e capturas serão anexados antes de concluir a entrega. Não há nota de performance nova declarada antecipadamente.
+**Preview validado:** https://oliveira-assessoria-kdd04ek49-barbozaa-s-projects.vercel.app/servicos.html
+
+Vercel READY, ambiente Preview, deployment `dpl_GF72yGrUaGCqjV2kvGZv6pTcC7JP`, implementação `222faf3e414607fb4b550741a09d1bf5c71e1920`. Commits posteriores desta entrega só acrescentam documentação e evidências; os arquivos servidos permanecem iguais aos testados.
+
+- Testes também passaram **no Preview**: 18 páginas × 7 larguras, 126 combinações por ambiente, com os mesmos testes funcionais. [Evidência local](evidence/validation-local.json) · [Evidência do Preview](evidence/validation-preview.json).
+- Lighthouse: 3 execuções mobile e 3 desktop de cada uma das páginas home e catálogo. Catálogo: 100 / 100 / 100 / 63 em todas. Home: Performance mobile 99–100, desktop 100; Acessibilidade e Boas práticas 100, SEO 63; CLS 0. O noindex automático permanece. [Relatório, comparação e condições](PERFORMANCE.md).
+- [Capturas atualizadas, antes/depois e organização visual](VISUAL.md).
+- [Lista completa de arquivos alterados na Etapa 2](ARQUIVOS.md).
+- PR específico da Etapa 2: https://github.com/Roh-barboza/oliveira-assessoria/pull/6 (base: branch da Etapa 1.1). Sem merge.
+
+A confirmação de HTTP na Vercel inclui catálogo e AIRE com 200/noindex, URL inexistente com 404, e checklist IR mantendo noindex/nofollow e no-store. Nenhum pedido de teste atingiu o n8n: todos os cenários de sucesso, HTTP 500 e falha de rede foram interceptados. Validação por teclado inclui skip link, foco visível, Escape e ativação dos CTAs dos 8 serviços via Enter.
+
+Limitações: não houve envio real, teste em dispositivos físicos, Safari/Firefox, auditoria manual completa de acessibilidade, medição de campo ou revisão de todos os cenários fiscais do checklist IR. Não foi declarada aprovação jurídica ou comercial da operação.
 
 ## Pendências para aprovação
 

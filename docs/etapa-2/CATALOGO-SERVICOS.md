@@ -166,7 +166,7 @@ Verificação inicial: **17/11/2026**. Esta é a matriz de conteúdo e status pa
 | Exclusões | Taxas oficiais e despesas externas; tarefas não confirmadas; emissão e decisões do órgão; atos privativos não incluídos no apoio administrativo. |
 | Documentos | Informações iniciais sobre finalidade, procedimento e documentos já disponíveis; checklist definitivo depende do caso. Lista indicativa, não exigência oficial universal. |
 | Limitações | Sem novos serviços regulamentados, atos jurídicos, promessa de resultado ou cobertura universal. Confirmar profissional responsável e tarefas antes da oferta definitiva. |
-| Fontes oficiais | [INSS — Serviços por canal](https://www.gov.br/inss/pt-br/canais_atendimento/servicos-por-canal-de-atendimento); [Lei 8.906/1994 — fonte oficial](https://www.planalto.gov.br/ccivil_03/leis/l8906.htm) |
+| Fontes oficiais | [INSS — Serviços por canal](https://www.gov.br/inss/pt-br/canais_atendimento/servicos-por-canal-de-atendimento); [Lei 8.906/1994 — fonte oficial](https://legis.senado.gov.br/norma/550782/publicacao/15635070) |
 | Status comercial | Categoria já presente na home; escopo pendente; sem nova página de oferta |
 | Página/CTA | /?servico=INSS%20e%20benef%C3%ADcios#contato |
 | Revisão | Confirmar jurisdição, tarefas e responsabilidade técnica antes de aprovação final. |
@@ -182,7 +182,7 @@ Verificação inicial: **17/11/2026**. Esta é a matriz de conteúdo e status pa
 | Exclusões | Taxas oficiais e despesas externas; tarefas não confirmadas; emissão e decisões do órgão; atos privativos não incluídos no apoio administrativo. |
 | Documentos | Informações iniciais sobre finalidade, procedimento e documentos já disponíveis; checklist definitivo depende do caso. Lista indicativa, não exigência oficial universal. |
 | Limitações | Sem novos serviços regulamentados, atos jurídicos, promessa de resultado ou cobertura universal. Confirmar profissional responsável e tarefas antes da oferta definitiva. |
-| Fontes oficiais | [Lei 8.906/1994 — fonte oficial](https://www.planalto.gov.br/ccivil_03/leis/l8906.htm) |
+| Fontes oficiais | [Lei 8.906/1994 — fonte oficial](https://legis.senado.gov.br/norma/550782/publicacao/15635070) |
 | Status comercial | Categoria já presente na home; escopo pendente; sem nova página de oferta |
 | Página/CTA | /?servico=Processo%20administrativo#contato |
 | Revisão | Confirmar jurisdição, tarefas e responsabilidade técnica antes de aprovação final. |
@@ -198,7 +198,7 @@ Verificação inicial: **17/11/2026**. Esta é a matriz de conteúdo e status pa
 | Exclusões | Taxas oficiais e despesas externas; tarefas não confirmadas; emissão e decisões do órgão; atos privativos não incluídos no apoio administrativo. |
 | Documentos | Informações iniciais sobre finalidade, procedimento e documentos já disponíveis; checklist definitivo depende do caso. Lista indicativa, não exigência oficial universal. |
 | Limitações | Sem novos serviços regulamentados, atos jurídicos, promessa de resultado ou cobertura universal. Confirmar profissional responsável e tarefas antes da oferta definitiva. |
-| Fontes oficiais | [Lei 8.906/1994 — fonte oficial](https://www.planalto.gov.br/ccivil_03/leis/l8906.htm) |
+| Fontes oficiais | [Lei 8.906/1994 — fonte oficial](https://legis.senado.gov.br/norma/550782/publicacao/15635070) |
 | Status comercial | Categoria já presente na home; escopo pendente; sem nova página de oferta |
 | Página/CTA | /?servico=Organiza%C3%A7%C3%A3o%20documental#contato |
 | Revisão | Confirmar jurisdição, tarefas e responsabilidade técnica antes de aprovação final. |
@@ -231,7 +231,7 @@ Verificação inicial: **17/11/2026**. Esta é a matriz de conteúdo e status pa
 | Exclusões | Não há escopo comercial aprovado; sem contratação, representação ou promessa de resultado |
 | Documentos | Não solicitar nova documentação; requisitos só após validação do serviço |
 | Limitações | Categoria encontrada apenas na página antiga; continuidade e tarefas não confirmadas. |
-| Fontes oficiais | [Lei 8.906/1994 — fonte oficial](https://www.planalto.gov.br/ccivil_03/leis/l8906.htm) |
+| Fontes oficiais | [Lei 8.906/1994 — fonte oficial](https://legis.senado.gov.br/norma/550782/publicacao/15635070) |
 | Status comercial | Não aprovado; não anunciado como oferta no catálogo |
 | Próxima decisão | Confirmar inclusão e limites com Jennifer e Rodrigo |
 
@@ -246,7 +246,7 @@ Verificação inicial: **17/11/2026**. Esta é a matriz de conteúdo e status pa
 | Exclusões | Não há escopo comercial aprovado; sem contratação, representação ou promessa de resultado |
 | Documentos | Não solicitar nova documentação; requisitos só após validação do serviço |
 | Limitações | Categoria antiga com fronteiras jurídicas/financeiras que exigem validação; não ofertar parecer, cessão, representação ou intermediação por inferência. |
-| Fontes oficiais | [Lei 8.906/1994 — fonte oficial](https://www.planalto.gov.br/ccivil_03/leis/l8906.htm) |
+| Fontes oficiais | [Lei 8.906/1994 — fonte oficial](https://legis.senado.gov.br/norma/550782/publicacao/15635070) |
 | Status comercial | Não aprovado; não anunciado como oferta no catálogo |
 | Próxima decisão | Confirmar inclusão e limites com Jennifer e Rodrigo |
 
@@ -261,7 +261,7 @@ Verificação inicial: **17/11/2026**. Esta é a matriz de conteúdo e status pa
 | Exclusões | Não há escopo comercial aprovado; sem contratação, representação ou promessa de resultado |
 | Documentos | Não solicitar nova documentação; requisitos só após validação do serviço |
 | Limitações | Categoria antiga sem escopo validado. Organização de arquivos não autoriza consultoria, redação jurídica ou parecer. |
-| Fontes oficiais | [Lei 8.906/1994 — fonte oficial](https://www.planalto.gov.br/ccivil_03/leis/l8906.htm) |
+| Fontes oficiais | [Lei 8.906/1994 — fonte oficial](https://legis.senado.gov.br/norma/550782/publicacao/15635070) |
 | Status comercial | Não aprovado; não anunciado como oferta no catálogo |
 | Próxima decisão | Confirmar inclusão e limites com Jennifer e Rodrigo |
 
@@ -269,7 +269,7 @@ Verificação inicial: **17/11/2026**. Esta é a matriz de conteúdo e status pa
 
 A proposta mantém organização e conferência documental, levantamento de informações e orientação sobre canais oficiais. Ela não concede habilitação profissional nem aprova automaticamente atuação em todos os serviços listados.
 
-A Lei 8.906/1994 reserva consultoria, assessoria e direção **jurídicas** à advocacia. Logo, a afirmação histórica em `CLAUDE.md` de que essas atividades seriam permitidas apenas por formação em Direito não é fundamento válido para o catálogo. Não foram oferecidos pareceres, defesa judicial ou revisão jurídica de contratos. [Fonte oficial](https://www.planalto.gov.br/ccivil_03/leis/l8906.htm).
+A Lei 8.906/1994 reserva consultoria, assessoria e direção **jurídicas** à advocacia. Logo, a afirmação histórica em `CLAUDE.md` de que essas atividades seriam permitidas apenas por formação em Direito não é fundamento válido para o catálogo. Não foram oferecidos pareceres, defesa judicial ou revisão jurídica de contratos. [Fonte oficial](https://legis.senado.gov.br/norma/550782/publicacao/15635070).
 
 Na área fiscal/previdenciária, a descrição de apoio documental não resolve por si a habilitação necessária para cada tarefa. Validar quem executa e responde por atividades reguladas antes de aprovar escopo definitivo. Não foi emitida conclusão jurídica de conformidade sobre a operação da empresa.
 
