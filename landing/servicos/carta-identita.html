@@ -1,1 +1,173 @@
-<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Carta d'Identità | Oliveira Assessoria</title><meta name="description" content="Orientação sobre requisitos e procedimento para Carta d'Identità italiana quando aplicável."><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="../consular.css"></head><body><header><div class="wrap nav"><a class="logo" href="/italia.html">Oliveira Assessoria</a><nav class="navlinks"><a href="/servicos-consulares.html">Serviços Italianos</a><a href="#contato">Contato</a></nav></div></header><main><section class="hero hero-simple"><div class="wrap"><div class="breadcrumbs"><a href="/servicos-consulares.html">Serviços Consulares</a> › Carta d'Identità</div><div class="kicker">Carta d'Identità 🇮🇹</div><h1>Entenda elegibilidade, requisitos e documentação.</h1><p>Antes de iniciar, verificamos se o procedimento está disponível para a situação do cidadão e qual órgão ou consulado é competente.</p><div class="hero-actions"><a class="btn btn-gold" href="#contato">Verificar meu caso</a></div></div></section><section class="section"><div class="wrap content-grid"><article class="content"><h2>O que analisamos</h2><ul class="checklist"><li>Residência e jurisdição consular</li><li>Situação cadastral do cidadão</li><li>AIRE e dados pessoais</li><li>Disponibilidade do serviço no órgão competente</li><li>Documentos exigidos para o atendimento</li></ul><div class="notice">A disponibilidade e o procedimento podem variar conforme a situação do cidadão e o órgão responsável.</div></article><aside class="sidebox"><h3>Carta d'Identità</h3><p>Análise de elegibilidade e preparação documental.</p><a class="btn btn-dark" href="#contato">Quero verificar</a></aside></div></section><section class="section lead" id="contato"><div class="wrap"><div class="title"><small style="color:#dfc56d">Solicitar análise</small><h2 style="color:white">Vamos verificar sua situação</h2></div><form class="formbox" data-service="Carta d'Identità" onsubmit="event.preventDefault();document.getElementById('m').textContent='Estrutura pronta para futura integração com n8n.'"><input type="hidden" name="origem" value="pagina-carta-identita"><input type="hidden" name="area" value="Serviços Consulares Italianos"><input type="hidden" name="servico" value="Carta d'Identità"><div class="field"><label>Nome</label><input name="nome" required></div><div class="field"><label>WhatsApp</label><input name="whatsapp" required></div><div class="field full"><label>Cidade / país de residência</label><input name="localidade"></div><div class="field full"><label>Mensagem</label><textarea name="mensagem"></textarea></div><button class="btn btn-gold full">Solicitar análise</button><p class="form-note" id="m">Prévia: envio automático ainda não ativado.</p></form></div></section></main><footer class="footer">Oliveira Assessoria · Carta d'Identità</footer></body></html>
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Carta d'Identità | Oliveira Assessoria</title>
+    <meta
+      name="description"
+      content="Orientação sobre requisitos e procedimento para Carta d'Identità italiana quando aplicável."
+    />
+    <link rel="stylesheet" href="../consular.css" />
+    <link rel="stylesheet" href="/site.css" />
+    <link
+      rel="icon"
+      href="/assets/logo-mark-oliveira.svg"
+      type="image/svg+xml"
+    />
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
+    <link
+      rel="preload"
+      href="/assets/fonts/dm-sans-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/assets/fonts/playfair-display-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+  </head>
+  <body>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+    <header class="site-header">
+      <div class="shell header-inner">
+        <a
+          class="brand"
+          href="/"
+          aria-label="Oliveira Assessoria — página inicial"
+          ><img
+            src="/assets/logo-oliveira.svg"
+            alt="Oliveira Assessoria — Brasil e Itália"
+            width="380"
+            height="96"
+        /></a>
+        <button
+          id="menu-toggle"
+          class="menu-toggle"
+          type="button"
+          aria-label="Abrir menu"
+          aria-controls="main-nav"
+          aria-expanded="false"
+        >
+          <span aria-hidden="true">☰</span>
+        </button>
+        <nav id="main-nav" class="main-nav" aria-label="Navegação principal">
+          <a href="/#italia">Itália</a><a href="/#brasil">Brasil</a
+          ><a href="/#processo">Como funciona</a
+          ><a href="/#diferenciais">Sobre a Oliveira</a
+          ><a href="/?servico=Carta%20d%27identit%C3%A0#contato">Contato</a>
+        </nav>
+        <a class="header-cta" href="/?servico=Carta%20d%27identit%C3%A0#contato"
+          >Solicitar análise
+          <svg
+            class="icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            aria-hidden="true"
+          >
+            <path d="M6 18 18 6M6 6h12v12" /></svg
+        ></a>
+      </div>
+    </header>
+    <main id="conteudo" tabindex="-1">
+      <section class="hero hero-simple">
+        <div class="wrap">
+          <div class="breadcrumbs">
+            <a href="/servicos-consulares.html">Serviços Consulares</a> › Carta
+            d'Identità
+          </div>
+          <div class="kicker">Carta d'Identità 🇮🇹</div>
+          <h1>Entenda elegibilidade, requisitos e documentação.</h1>
+          <p>
+            Antes de iniciar, verificamos se o procedimento está disponível para
+            a situação do cidadão e qual órgão ou consulado é competente.
+          </p>
+          <div class="hero-actions">
+            <a
+              class="btn btn-gold"
+              href="/?servico=Carta%20d%27identit%C3%A0#contato"
+              >Verificar meu caso</a
+            >
+          </div>
+        </div>
+      </section>
+      <section class="section">
+        <div class="wrap content-grid">
+          <article class="content">
+            <h2>O que analisamos</h2>
+            <ul class="checklist">
+              <li>Residência e jurisdição consular</li>
+              <li>Situação cadastral do cidadão</li>
+              <li>AIRE e dados pessoais</li>
+              <li>Disponibilidade do serviço no órgão competente</li>
+              <li>Documentos exigidos para o atendimento</li>
+            </ul>
+            <div class="notice">
+              A disponibilidade e o procedimento podem variar conforme a
+              situação do cidadão e o órgão responsável.
+            </div>
+          </article>
+          <aside class="sidebox">
+            <h3>Carta d'Identità</h3>
+            <p>Análise de elegibilidade e preparação documental.</p>
+            <a
+              class="btn btn-dark"
+              href="/?servico=Carta%20d%27identit%C3%A0#contato"
+              >Quero verificar</a
+            >
+          </aside>
+        </div>
+      </section>
+      <section class="section lead" id="contato">
+        <div class="wrap">
+          <div class="title">
+            <small style="color: #dfc56d">Solicitar análise</small>
+            <h2 style="color: white">Vamos verificar sua situação</h2>
+          </div>
+          <div class="contact-panel">
+            <p>
+              Para solicitar uma análise, utilize o formulário central da
+              Oliveira Assessoria.
+            </p>
+            <a
+              class="btn btn-gold"
+              href="/?servico=Carta%20d%27identit%C3%A0#contato"
+              >Solicitar análise <span aria-hidden="true">→</span></a
+            >
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div class="shell footer-inner">
+        <a
+          class="brand brand--footer"
+          href="/"
+          aria-label="Oliveira Assessoria — página inicial"
+          ><img
+            src="/assets/logo-oliveira-white.svg"
+            alt="Oliveira Assessoria — Brasil e Itália"
+            width="380"
+            height="96"
+        /></a>
+        <p>
+          Assessoria administrativa e documental<br />no Brasil e na Itália.
+        </p>
+        <nav aria-label="Navegação do rodapé">
+          <a href="/servicos-consulares.html">Serviços consulares</a
+          ><a href="/privacidade.html">Privacidade</a
+          ><a href="/termos.html">Termos de uso</a>
+        </nav>
+      </div>
+    </footer>
+    <script src="/site.js" defer></script>
+  </body>
+</html>

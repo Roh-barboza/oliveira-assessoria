@@ -1,3 +1,7 @@
+> **Atualização de escopo — 17/11/2026:** o usuário avaliou favoravelmente as Etapas 1/1.1 e autorizou seguir para as próximas etapas. A Etapa 2 pode começar; a instrução nova prevalece sobre as travas históricas abaixo. Preferência persistente: botão com ícone de WhatsApp e link para o número empresarial assim que ele for fornecido; número ainda indisponível. Manter contato por formulário até lá. Ver [decisão registrada](docs/decisoes/2026-11-17-whatsapp-e-continuidade.md). Não presumir aprovação individual de Jennifer, merge, produção, envio real, contratos ou pagamentos.
+
+> **Escopo atual — Etapa 1, 17/11/2026:** redesign de apresentação, performance, acessibilidade e responsividade em branch/PR, conforme issue #4 e [relatório](docs/etapa-1/README.md). Oliveira é uma assessoria administrativa, documental e consular independente. O restante deste arquivo contém contexto histórico que requer revisão; não autoriza atividades jurídicas, execução de seeds, banco, credenciais, Clicksign, contratos ou pagamentos. Não publicar em produção nem iniciar a Etapa 2 sem aprovação expressa de Jennifer e Rodrigo. A implementação e os testes desta etapa estão no relatório; a integração real n8n continua pendente de validação ponta a ponta.
+
 # Oliveira Assessoria Jurídica — Contexto do Projeto
 
 > Este arquivo é a memória do projeto. Qualquer IA ou desenvolvedor que continuar o trabalho deve ler este arquivo primeiro.

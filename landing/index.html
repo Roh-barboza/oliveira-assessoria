@@ -8,24 +8,39 @@
       name="description"
       content="Assessoria documental e operacional para serviços consulares italianos e demandas brasileiras, incluindo AIRE, passaporte, Fast It, Imposto de Renda, INSS e organização documental."
     />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-    />
+
     <link rel="stylesheet" href="premium-consular.css" />
     <link
       rel="icon"
       href="assets/logo-mark-oliveira.svg"
       type="image/svg+xml"
     />
+    <link rel="stylesheet" href="/site.css" />
+    <link
+      rel="icon"
+      href="/assets/logo-mark-oliveira.svg"
+      type="image/svg+xml"
+    />
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
+    <link
+      rel="preload"
+      href="/assets/fonts/dm-sans-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/assets/fonts/playfair-display-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
   </head>
   <body>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
     <div class="top-line">
       <span>Assessoria documental no Brasil e na Itália</span
       ><span>Atendimento digital e personalizado</span>
@@ -34,10 +49,10 @@
       <div class="shell header-inner">
         <a
           class="brand"
-          href="index.html"
-          aria-label="Oliveira Assessoria - página inicial"
+          href="/"
+          aria-label="Oliveira Assessoria — página inicial"
           ><img
-            src="assets/logo-oliveira.svg"
+            src="/assets/logo-oliveira.svg"
             alt="Oliveira Assessoria — Brasil e Itália"
             width="380"
             height="96"
@@ -47,68 +62,125 @@
           class="menu-toggle"
           type="button"
           aria-label="Abrir menu"
+          aria-controls="main-nav"
           aria-expanded="false"
         >
-          <i class="fa-solid fa-bars"></i>
+          <span aria-hidden="true">☰</span>
         </button>
         <nav id="main-nav" class="main-nav" aria-label="Navegação principal">
-          <a href="#italia">Itália</a><a href="#brasil">Brasil</a
-          ><a href="#processo">Como funciona</a
-          ><a href="#diferenciais">Diferenciais</a
-          ><a href="#contato">Contato</a>
+          <a href="/#italia">Itália</a><a href="/#brasil">Brasil</a
+          ><a href="/#processo">Como funciona</a
+          ><a href="/#diferenciais">Sobre a Oliveira</a
+          ><a href="/#contato">Contato</a>
         </nav>
-        <a class="header-cta" href="#contato"
+        <a class="header-cta" href="/#contato"
           >Solicitar análise
-          <i class="fa-solid fa-arrow-up-right-from-square"></i
+          <svg
+            class="icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            aria-hidden="true"
+          >
+            <path d="M6 18 18 6M6 6h12v12" /></svg
         ></a>
       </div>
     </header>
 
-    <main>
+    <main id="conteudo" tabindex="-1">
       <section class="hero-premium">
         <div class="hero-grid shell">
           <div class="hero-copy">
             <p class="eyebrow"><span></span> Brasil & Itália</p>
-            <h1>Sua vida documental, <em>tratada com método.</em></h1>
+            <h1>
+              Brasil e Itália.<br />Seus documentos, <em>em boas mãos.</em>
+            </h1>
             <p class="hero-text">
-              Cuidamos de serviços consulares italianos e demandas
-              administrativas brasileiras com organização, orientação clara e
-              atendimento pessoal do início ao fim.
+              Serviços consulares e documentais no Brasil e na Itália. Cuidamos
+              de demandas administrativas brasileiras com organização,
+              orientação clara e atendimento pessoal do início ao fim.
             </p>
             <div class="hero-actions">
-              <a class="button button--gold" href="#contato"
-                >Falar sobre meu caso <i class="fa-solid fa-arrow-right"></i></a
-              ><a class="hero-link" href="#italia"
-                >Ver serviços <i class="fa-solid fa-arrow-down"></i
-              ></a>
+              <a class="button button--gold" href="#italia"
+                >Explorar serviços
+                <svg
+                  class="icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M4 12h16m-6-6 6 6-6 6" /></svg></a
+              ><a class="button button--outline" href="#contato"
+                >Solicitar análise</a
+              >
             </div>
             <div class="hero-notes">
               <span
-                ><i class="fa-solid fa-shield-halved"></i> Processo
-                organizado</span
+                ><svg
+                  class="icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6z m-4 9 3 3 5-6" />
+                </svg>
+                Processo organizado</span
               ><span
-                ><i class="fa-regular fa-file-lines"></i> Checklist
-                documental</span
+                ><svg
+                  class="icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M14 3H6v18h12V7z M14 3v5h4 M9 12h6m-6 4h6" />
+                </svg>
+                Checklist documental</span
               ><span
-                ><i class="fa-solid fa-user-check"></i> Atendimento
-                pessoal</span
+                ><svg
+                  class="icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M16 7a4 4 0 1 1-8 0 4 4 0 0 1 8 0 M4 21v-3c0-6 16-6 16 0v3"
+                  />
+                </svg>
+                Atendimento pessoal</span
               >
             </div>
           </div>
           <div class="hero-image-wrap">
-            <div class="italy-badge">
-              <small>Origem</small><strong>ITALIA</strong><i></i><i></i><i></i>
-            </div>
             <img
-              src="assets/hero-consular-premium.webp"
-              alt="Cliente com passaporte italiano em Roma"
+              src="assets/hero-consular-960.webp"
+              srcset="
+                assets/hero-consular-640.webp      640w,
+                assets/hero-consular-960.webp      960w,
+                assets/hero-consular-premium.webp 1672w
+              "
+              sizes="(max-width: 900px) calc(100vw - 40px), 55vw"
+              alt="Mulher com passaporte italiano, com Roma ao fundo"
               width="1672"
               height="941"
               fetchpriority="high"
             />
-            <div class="hero-image-caption">
-              <span>OLIVEIRA</span><span>ASSESSORIA CONSULAR</span>
-            </div>
           </div>
         </div>
       </section>
@@ -145,7 +217,20 @@
             class="service-card service-card--primary"
             href="servicos/passaporte-italiano.html"
             ><span class="service-number">01</span
-            ><i class="fa-solid fa-passport"></i>
+            ><svg
+              class="icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path
+                d="M5 3h14v18H5z M16 10a4 4 0 1 1-8 0 4 4 0 0 1 8 0 M8 17h8 M12 6v8m-4-4h8"
+              />
+            </svg>
             <h3>Passaporte italiano</h3>
             <p>
               Preparação documental e suporte para o agendamento de primeira
@@ -155,7 +240,18 @@
           >
           <a class="service-card" href="servicos/aire.html"
             ><span class="service-number">02</span
-            ><i class="fa-solid fa-house"></i>
+            ><svg
+              class="icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="m3 11 9-8 9 8 M5 10v11h14V10 M10 21v-7h4v7" />
+            </svg>
             <h3>AIRE</h3>
             <p>
               Inscrição, atualização de endereço e regularização do cadastro
@@ -165,7 +261,18 @@
           >
           <a class="service-card" href="servicos/fast-it.html"
             ><span class="service-number">03</span
-            ><i class="fa-solid fa-laptop"></i>
+            ><svg
+              class="icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M5 3h14v13H5z M2 20h20" />
+            </svg>
             <h3>Fast It</h3>
             <p>
               Orientação para uso do portal e acompanhamento de solicitações
@@ -175,7 +282,18 @@
           >
           <a class="service-card" href="servicos/estado-civil.html"
             ><span class="service-number">04</span
-            ><i class="fa-regular fa-rectangle-list"></i>
+            ><svg
+              class="icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M14 3H6v18h12V7z M14 3v5h4 M9 12h6m-6 4h6" />
+            </svg>
             <h3>Estado civil</h3>
             <p>
               Trascrições e atualizações de nascimento, casamento, divórcio e
@@ -185,7 +303,20 @@
           >
           <a class="service-card" href="servicos/registro-filhos.html"
             ><span class="service-number">05</span
-            ><i class="fa-solid fa-people-roof"></i>
+            ><svg
+              class="icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path
+                d="M16 7a4 4 0 1 1-8 0 4 4 0 0 1 8 0 M4 21v-3c0-6 16-6 16 0v3"
+              />
+            </svg>
             <h3>Registro de filhos</h3>
             <p>
               Organização do procedimento para filhos de cidadãos italianos.
@@ -194,7 +325,18 @@
           >
           <a class="service-card" href="servicos/certidoes-italianas.html"
             ><span class="service-number">06</span
-            ><i class="fa-regular fa-file-lines"></i>
+            ><svg
+              class="icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M14 3H6v18h12V7z M14 3v5h4 M9 12h6m-6 4h6" />
+            </svg>
             <h3>Certidões italianas</h3>
             <p>
               Solicitação e apoio na localização de registros junto aos comuni
@@ -204,7 +346,18 @@
           >
           <a class="service-card" href="servicos/carta-identita.html"
             ><span class="service-number">07</span
-            ><i class="fa-regular fa-address-card"></i>
+            ><svg
+              class="icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M3 5h18v14H3z M7 9h3v4H7z M14 9h4m-4 4h4m-11 3h11" />
+            </svg>
             <h3>Carta d'identità</h3>
             <p>Orientação para emissão e renovação da identidade italiana.</p>
             <b>Conhecer o serviço <span>→</span></b></a
@@ -213,7 +366,18 @@
             class="service-card service-card--dark"
             href="servicos/regularizacao-consular.html"
             ><span class="service-number">08</span
-            ><i class="fa-regular fa-folder-open"></i>
+            ><svg
+              class="icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M3 6h7l2 3h9v12H3z" />
+            </svg>
             <h3>Outras regularizações</h3>
             <p>Declarações, atualizações e demandas consulares específicas.</p>
             <b>Entender possibilidades <span>→</span></b></a
@@ -237,7 +401,19 @@
             <a
               class="brazil-card brazil-card--featured"
               href="imposto-de-renda.html"
-              ><span>01</span><i class="fa-solid fa-file-invoice-dollar"></i>
+              ><span>01</span
+              ><svg
+                class="icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M14 3H6v18h12V7z M14 3v5h4 M9 12h6m-6 4h6" />
+              </svg>
               <div>
                 <h3>Imposto de Renda</h3>
                 <p>
@@ -252,7 +428,19 @@
               class="brazil-card"
               href="#contato"
               data-service="INSS e benefícios"
-              ><span>02</span><i class="fa-solid fa-landmark"></i>
+              ><span>02</span
+              ><svg
+                class="icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M14 3H6v18h12V7z M14 3v5h4 M9 12h6m-6 4h6" />
+              </svg>
               <div>
                 <h3>INSS e benefícios</h3>
                 <p>
@@ -267,7 +455,19 @@
               class="brazil-card"
               href="#contato"
               data-service="Processo administrativo"
-              ><span>03</span><i class="fa-solid fa-scale-balanced"></i>
+              ><span>03</span
+              ><svg
+                class="icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M14 3H6v18h12V7z M14 3v5h4 M9 12h6m-6 4h6" />
+              </svg>
               <div>
                 <h3>Processos administrativos</h3>
                 <p>
@@ -282,7 +482,19 @@
               class="brazil-card"
               href="#contato"
               data-service="Organização documental"
-              ><span>04</span><i class="fa-solid fa-folder-tree"></i>
+              ><span>04</span
+              ><svg
+                class="icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M3 6h7l2 3h9v12H3z" />
+              </svg>
               <div>
                 <h3>Organização documental</h3>
                 <p>
@@ -347,13 +559,12 @@
 
       <section id="diferenciais" class="values-section shell">
         <div class="value-panel">
-          <p class="eyebrow eyebrow--dark">
-            <span></span> Nossa forma de atender
-          </p>
+          <p class="eyebrow eyebrow--dark"><span></span> Sobre a Oliveira</p>
           <h2>Clareza para decisões importantes.</h2>
           <p>
-            Não é só preencher um formulário. É cuidar de uma etapa que impacta
-            sua documentação, sua família e seus planos com a Itália.
+            Somos uma assessoria independente de apoio administrativo e
+            documental no Brasil e na Itália. Organizamos informações e
+            procedimentos com orientação clara em cada etapa.
           </p>
           <div class="value-tags">
             <span>Documentos</span><span>Consulados</span><span>Comuni</span
@@ -362,7 +573,20 @@
         </div>
         <div class="values-list">
           <article>
-            <i class="fa-solid fa-compass"></i>
+            <svg
+              class="icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path
+                d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0 M16 8l-3 6-5 2 2-5z"
+              />
+            </svg>
             <div>
               <h3>Orientação objetiva</h3>
               <p>
@@ -372,7 +596,18 @@
             </div>
           </article>
           <article>
-            <i class="fa-solid fa-layer-group"></i>
+            <svg
+              class="icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="m12 3 10 6-10 6L2 9z M2 13l10 6 10-6 M2 17l10 6 10-6" />
+            </svg>
             <div>
               <h3>Organização por etapas</h3>
               <p>
@@ -381,7 +616,18 @@
             </div>
           </article>
           <article>
-            <i class="fa-solid fa-comments"></i>
+            <svg
+              class="icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M3 4h18v14H8l-5 4z M7 9h10m-10 4h7" />
+            </svg>
             <div>
               <h3>Comunicação próxima</h3>
               <p>
@@ -424,6 +670,7 @@
             ><label
               >WhatsApp<input
                 name="whatsapp"
+                type="tel"
                 required
                 autocomplete="tel"
                 placeholder="(00) 00000-0000" /></label
@@ -454,38 +701,71 @@
                 placeholder="Ex.: preciso organizar meus documentos e entender qual procedimento devo iniciar."
               ></textarea></label
             ><button class="button button--gold full" type="submit">
-              Solicitar análise <i class="fa-solid fa-arrow-right"></i>
+              Solicitar análise
+              <svg
+                class="icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M4 12h16m-6-6 6 6-6 6" />
+              </svg>
             </button>
+            <p class="form-privacy full">
+              Ao enviar, consulte nossa
+              <a href="/privacidade.html">Política de Privacidade</a>. Não
+              inclua documentos ou informações sensíveis na mensagem.
+            </p>
             <p id="form-status" class="form-status" role="status"></p>
           </form>
         </div>
       </section>
     </main>
 
-    <footer>
+    <footer class="site-footer">
       <div class="shell footer-inner">
-        <a class="brand brand--footer" href="index.html"
+        <a
+          class="brand brand--footer"
+          href="/"
+          aria-label="Oliveira Assessoria — página inicial"
           ><img
-            src="assets/logo-oliveira-white.svg"
+            src="/assets/logo-oliveira-white.svg"
             alt="Oliveira Assessoria — Brasil e Itália"
             width="380"
             height="96"
         /></a>
-        <p>Assessoria administrativa e documental no Brasil e na Itália.</p>
-        <div>
-          <a href="privacidade.html">Privacidade</a
-          ><a href="termos.html">Termos de uso</a>
-        </div>
+        <p>
+          Assessoria administrativa e documental<br />no Brasil e na Itália.
+        </p>
+        <nav aria-label="Navegação do rodapé">
+          <a href="/servicos-consulares.html">Serviços consulares</a
+          ><a href="/privacidade.html">Privacidade</a
+          ><a href="/termos.html">Termos de uso</a>
+        </nav>
       </div>
     </footer>
-    <button
+    <a
       class="floating-contact"
-      type="button"
-      data-scroll="#contato"
-      aria-label="Abrir formulário de contato"
+      href="#contato"
+      aria-label="Ir ao formulário de contato"
+      ><svg
+        class="icon"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M3 4h18v14H8l-5 4z M7 9h10m-10 4h7" /></svg
+      ><span>Fale conosco</span></a
     >
-      <i class="fa-brands fa-whatsapp"></i><span>Fale conosco</span>
-    </button>
-    <script src="premium-consular.js"></script>
+    <script src="premium-consular.js" defer></script>
+    <script src="/site.js" defer></script>
   </body>
 </html>

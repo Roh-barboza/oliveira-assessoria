@@ -1,20 +1,16 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const toggle = document.getElementById("menu-toggle");
-  const nav = document.getElementById("main-nav");
   const form = document.getElementById("consular-form");
   const status = document.getElementById("form-status");
   const scrollToTarget = (selector) =>
     document
       .querySelector(selector)
-      ?.scrollIntoView({ behavior: "smooth", block: "start" });
+      ?.scrollIntoView({
+        behavior: matchMedia("(prefers-reduced-motion: reduce)").matches
+          ? "auto"
+          : "smooth",
+        block: "start",
+      });
 
-  toggle?.addEventListener("click", () => {
-    const isOpen = nav.classList.toggle("open");
-    toggle.setAttribute("aria-expanded", String(isOpen));
-    toggle.querySelector("i").className = isOpen
-      ? "fa-solid fa-xmark"
-      : "fa-solid fa-bars";
-  });
   document
     .querySelectorAll("[data-scroll]")
     .forEach((button) =>
@@ -28,13 +24,6 @@ document.addEventListener("DOMContentLoaded", () => {
       if (select) select.value = link.dataset.service;
     }),
   );
-  nav?.querySelectorAll('a[href^="#"]').forEach((link) =>
-    link.addEventListener("click", () => {
-      nav.classList.remove("open");
-      toggle?.setAttribute("aria-expanded", "false");
-    }),
-  );
-
   form?.addEventListener("submit", async (event) => {
     event.preventDefault();
     const button = form.querySelector('button[type="submit"]');
@@ -68,8 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
       status.style.color = "#9a2a38";
     } finally {
       button.disabled = false;
-      button.innerHTML =
-        'Solicitar análise <i class="fa-solid fa-arrow-right"></i>';
+      button.innerHTML = 'Solicitar análise <span aria-hidden="true">→</span>';
     }
   });
 });
