@@ -1,0 +1,732 @@
+{
+  "landing/index.html": [
+    {
+      "tag": "h1",
+      "text": "Brasil e Itália. Seus documentos, em boas mãos."
+    },
+    {
+      "tag": "h2",
+      "text": "Sua vida consular italiana em ordem."
+    },
+    {
+      "tag": "h3",
+      "text": "Passaporte italiano"
+    },
+    {
+      "tag": "h3",
+      "text": "AIRE"
+    },
+    {
+      "tag": "h3",
+      "text": "Fast It"
+    },
+    {
+      "tag": "h3",
+      "text": "Estado civil"
+    },
+    {
+      "tag": "h3",
+      "text": "Registro de filhos"
+    },
+    {
+      "tag": "h3",
+      "text": "Certidões italianas"
+    },
+    {
+      "tag": "h3",
+      "text": "Carta d'identità"
+    },
+    {
+      "tag": "h3",
+      "text": "Outras regularizações"
+    },
+    {
+      "tag": "h2",
+      "text": "Organização e suporte para suas demandas brasileiras."
+    },
+    {
+      "tag": "h3",
+      "text": "Imposto de Renda"
+    },
+    {
+      "tag": "h3",
+      "text": "INSS e benefícios"
+    },
+    {
+      "tag": "h3",
+      "text": "Processos administrativos"
+    },
+    {
+      "tag": "h3",
+      "text": "Organização documental"
+    },
+    {
+      "tag": "h2",
+      "text": "Um caminho simples para um processo que precisa ser preciso."
+    },
+    {
+      "tag": "li",
+      "text": "01 Entendemos seu momento Você explica a necessidade e enviamos as primeiras orientações."
+    },
+    {
+      "tag": "li",
+      "text": "02 Montamos o checklist Organizamos documentos, exigências e próximos passos do seu serviço."
+    },
+    {
+      "tag": "li",
+      "text": "03 Acompanhamos o procedimento Você sabe o que foi feito, o que falta e quando agir."
+    },
+    {
+      "tag": "h2",
+      "text": "Clareza para decisões importantes."
+    },
+    {
+      "tag": "h3",
+      "text": "Orientação objetiva"
+    },
+    {
+      "tag": "h3",
+      "text": "Organização por etapas"
+    },
+    {
+      "tag": "h3",
+      "text": "Comunicação próxima"
+    },
+    {
+      "tag": "h2",
+      "text": "Conte o que você precisa resolver."
+    },
+    {
+      "tag": "option",
+      "text": "Selecione uma opção"
+    },
+    {
+      "tag": "option",
+      "text": "Passaporte italiano"
+    },
+    {
+      "tag": "option",
+      "text": "AIRE"
+    },
+    {
+      "tag": "option",
+      "text": "Fast It"
+    },
+    {
+      "tag": "option",
+      "text": "Estado civil"
+    },
+    {
+      "tag": "option",
+      "text": "Registro de filhos"
+    },
+    {
+      "tag": "option",
+      "text": "Certidão italiana"
+    },
+    {
+      "tag": "option",
+      "text": "Carta d'identità"
+    },
+    {
+      "tag": "option",
+      "text": "Outra regularização consular"
+    },
+    {
+      "tag": "option",
+      "text": "Imposto de Renda"
+    },
+    {
+      "tag": "option",
+      "text": "INSS e benefícios"
+    },
+    {
+      "tag": "option",
+      "text": "Processo administrativo"
+    },
+    {
+      "tag": "option",
+      "text": "Organização documental"
+    },
+    {
+      "tag": "option",
+      "text": "Não sei qual serviço preciso"
+    }
+  ],
+  "landing/italia.html": [
+    {
+      "tag": "h1",
+      "text": "Soluções para sua vida no Brasil e seus assuntos na Itália."
+    },
+    {
+      "tag": "h2",
+      "text": "Uma assessoria, duas frentes de atendimento"
+    },
+    {
+      "tag": "h3",
+      "text": "Administrativo & Documental"
+    },
+    {
+      "tag": "h3",
+      "text": "Serviços Consulares Italianos"
+    },
+    {
+      "tag": "h2",
+      "text": "Serviços Consulares Italianos"
+    },
+    {
+      "tag": "h3",
+      "text": "Passaporte Italiano"
+    },
+    {
+      "tag": "h3",
+      "text": "AIRE"
+    },
+    {
+      "tag": "h3",
+      "text": "Estado Civil"
+    },
+    {
+      "tag": "h3",
+      "text": "Registro de Filhos"
+    },
+    {
+      "tag": "h3",
+      "text": "Certidões Italianas"
+    },
+    {
+      "tag": "h3",
+      "text": "FAST IT"
+    },
+    {
+      "tag": "h3",
+      "text": "Carta d'Identità"
+    },
+    {
+      "tag": "h3",
+      "text": "Regularização Consular"
+    },
+    {
+      "tag": "h3",
+      "text": "Não sabe qual procedimento precisa?"
+    },
+    {
+      "tag": "h2",
+      "text": "Como funciona"
+    },
+    {
+      "tag": "h3",
+      "text": "Conte sua necessidade"
+    },
+    {
+      "tag": "h3",
+      "text": "Análise do caso"
+    },
+    {
+      "tag": "h3",
+      "text": "Plano de atendimento"
+    },
+    {
+      "tag": "h3",
+      "text": "Acompanhamento"
+    },
+    {
+      "tag": "h2",
+      "text": "Como podemos ajudar?"
+    }
+  ],
+  "landing/imposto-de-renda.html": [
+    {
+      "tag": "h1",
+      "text": "Sua declaração organizada, conferida e preenchida com cuidado"
+    },
+    {
+      "tag": "li",
+      "text": "Sem promessa de restituição"
+    },
+    {
+      "tag": "li",
+      "text": "Sem armazenamento de senha gov.br"
+    },
+    {
+      "tag": "li",
+      "text": "Conferência antes da transmissão"
+    },
+    {
+      "tag": "h2",
+      "text": "O que você recebe"
+    },
+    {
+      "tag": "li",
+      "text": "01 Checklist personalizado"
+    },
+    {
+      "tag": "li",
+      "text": "02 Organização das informações"
+    },
+    {
+      "tag": "li",
+      "text": "03 Conferência da pré-preenchida"
+    },
+    {
+      "tag": "li",
+      "text": "04 Revisão de pendências"
+    },
+    {
+      "tag": "li",
+      "text": "05 Apoio até a transmissão"
+    },
+    {
+      "tag": "h2",
+      "text": "O que analisamos na sua declaração"
+    },
+    {
+      "tag": "h3",
+      "text": "Pessoas"
+    },
+    {
+      "tag": "h3",
+      "text": "Rendimentos"
+    },
+    {
+      "tag": "h3",
+      "text": "Pagamentos"
+    },
+    {
+      "tag": "h3",
+      "text": "Patrimônio"
+    },
+    {
+      "tag": "h3",
+      "text": "Situações especiais"
+    },
+    {
+      "tag": "h3",
+      "text": "Conferência final"
+    },
+    {
+      "tag": "h2",
+      "text": "Um processo claro em cinco etapas"
+    },
+    {
+      "tag": "h3",
+      "text": "Preencha sua ficha"
+    },
+    {
+      "tag": "h3",
+      "text": "Separe os comprovantes"
+    },
+    {
+      "tag": "h3",
+      "text": "Acesso manual"
+    },
+    {
+      "tag": "h3",
+      "text": "Preenchimento assistido"
+    },
+    {
+      "tag": "h3",
+      "text": "Revisão e autorização"
+    },
+    {
+      "tag": "h2",
+      "text": "Tecnologia para reduzir trabalho repetitivo, sem perder o controle"
+    },
+    {
+      "tag": "li",
+      "text": "✓ Login e autenticação sempre manuais"
+    },
+    {
+      "tag": "li",
+      "text": "✓ Nenhuma senha armazenada pela extensão"
+    },
+    {
+      "tag": "li",
+      "text": "✓ Pendências visíveis antes do preenchimento"
+    },
+    {
+      "tag": "li",
+      "text": "✓ Origem de cada dado registrada na ficha"
+    },
+    {
+      "tag": "li",
+      "text": "✓ Revisão humana obrigatória antes da transmissão"
+    },
+    {
+      "tag": "h2",
+      "text": "Perguntas frequentes"
+    },
+    {
+      "tag": "h2",
+      "text": "Descubra o que falta para sua declaração"
+    }
+  ],
+  "landing/servicos/estado-civil.html": [
+    {
+      "tag": "h1",
+      "text": "Casamento, divórcio e atualizações do registro italiano."
+    },
+    {
+      "tag": "h2",
+      "text": "Atualizações mais comuns"
+    },
+    {
+      "tag": "li",
+      "text": "Transcrição de casamento"
+    },
+    {
+      "tag": "li",
+      "text": "Atualização de divórcio"
+    },
+    {
+      "tag": "li",
+      "text": "Alterações de nome vinculadas ao estado civil"
+    },
+    {
+      "tag": "li",
+      "text": "Regularização antes de passaporte ou outro serviço consular"
+    },
+    {
+      "tag": "h3",
+      "text": "Documentos"
+    },
+    {
+      "tag": "h3",
+      "text": "Estado Civil"
+    },
+    {
+      "tag": "h2",
+      "text": "Qual atualização você precisa?"
+    }
+  ],
+  "landing/servicos/fast-it.html": [
+    {
+      "tag": "h1",
+      "text": "Suporte para cadastro, acesso e solicitações no portal."
+    },
+    {
+      "tag": "h2",
+      "text": "Em quais situações ajudamos"
+    },
+    {
+      "tag": "li",
+      "text": "Dificuldade de acesso ao portal"
+    },
+    {
+      "tag": "li",
+      "text": "Cadastro com informações divergentes"
+    },
+    {
+      "tag": "li",
+      "text": "Atualização de endereço"
+    },
+    {
+      "tag": "li",
+      "text": "Solicitações relacionadas ao AIRE"
+    },
+    {
+      "tag": "li",
+      "text": "Dúvidas sobre protocolo e acompanhamento"
+    },
+    {
+      "tag": "h3",
+      "text": "Antes de protocolar"
+    },
+    {
+      "tag": "h3",
+      "text": "FAST IT"
+    },
+    {
+      "tag": "h2",
+      "text": "Qual dificuldade você encontrou?"
+    }
+  ],
+  "landing/servicos/aire.html": [
+    {
+      "tag": "h1",
+      "text": "Inscrição, atualização e regularização cadastral."
+    },
+    {
+      "tag": "h2",
+      "text": "Quando este serviço pode ser necessário"
+    },
+    {
+      "tag": "li",
+      "text": "Primeira inscrição no AIRE"
+    },
+    {
+      "tag": "li",
+      "text": "Mudança de endereço"
+    },
+    {
+      "tag": "li",
+      "text": "Mudança de jurisdição consular"
+    },
+    {
+      "tag": "li",
+      "text": "Cadastro desatualizado ou divergente"
+    },
+    {
+      "tag": "li",
+      "text": "Regularização antes de outro serviço consular"
+    },
+    {
+      "tag": "h3",
+      "text": "Como trabalhamos"
+    },
+    {
+      "tag": "h3",
+      "text": "AIRE"
+    },
+    {
+      "tag": "h2",
+      "text": "Conte o que precisa atualizar"
+    }
+  ],
+  "landing/servicos/registro-filhos.html": [
+    {
+      "tag": "h1",
+      "text": "Orientação para transcrição de nascimento e atualização familiar."
+    },
+    {
+      "tag": "h2",
+      "text": "O que verificamos"
+    },
+    {
+      "tag": "li",
+      "text": "Situação do genitor italiano"
+    },
+    {
+      "tag": "li",
+      "text": "Idade do filho"
+    },
+    {
+      "tag": "li",
+      "text": "Registro de nascimento disponível"
+    },
+    {
+      "tag": "li",
+      "text": "Estado civil dos pais"
+    },
+    {
+      "tag": "li",
+      "text": "Consulado ou comune competente"
+    },
+    {
+      "tag": "h3",
+      "text": "Preparação documental"
+    },
+    {
+      "tag": "h3",
+      "text": "Registro de Filhos"
+    },
+    {
+      "tag": "h2",
+      "text": "Conte sobre o registro"
+    }
+  ],
+  "landing/servicos/regularizacao-consular.html": [
+    {
+      "tag": "h1",
+      "text": "Quando você sabe que existe uma pendência, mas não sabe por onde começar."
+    },
+    {
+      "tag": "h2",
+      "text": "Casos comuns"
+    },
+    {
+      "tag": "li",
+      "text": "AIRE ou endereço desatualizado"
+    },
+    {
+      "tag": "li",
+      "text": "Estado civil ainda não atualizado"
+    },
+    {
+      "tag": "li",
+      "text": "Filhos ainda não registrados"
+    },
+    {
+      "tag": "li",
+      "text": "Divergências de cadastro"
+    },
+    {
+      "tag": "li",
+      "text": "Dificuldades no FAST IT"
+    },
+    {
+      "tag": "li",
+      "text": "Pendências antes de solicitar passaporte ou documento"
+    },
+    {
+      "tag": "h3",
+      "text": "O objetivo da análise"
+    },
+    {
+      "tag": "h3",
+      "text": "Não sabe qual serviço?"
+    },
+    {
+      "tag": "h2",
+      "text": "Conte tudo o que está acontecendo"
+    }
+  ],
+  "landing/servicos/carta-identita.html": [
+    {
+      "tag": "h1",
+      "text": "Entenda elegibilidade, requisitos e documentação."
+    },
+    {
+      "tag": "h2",
+      "text": "O que analisamos"
+    },
+    {
+      "tag": "li",
+      "text": "Residência e jurisdição consular"
+    },
+    {
+      "tag": "li",
+      "text": "Situação cadastral do cidadão"
+    },
+    {
+      "tag": "li",
+      "text": "AIRE e dados pessoais"
+    },
+    {
+      "tag": "li",
+      "text": "Disponibilidade do serviço no órgão competente"
+    },
+    {
+      "tag": "li",
+      "text": "Documentos exigidos para o atendimento"
+    },
+    {
+      "tag": "h3",
+      "text": "Carta d'Identità"
+    },
+    {
+      "tag": "h2",
+      "text": "Vamos verificar sua situação"
+    }
+  ],
+  "landing/servicos/passaporte-italiano.html": [
+    {
+      "tag": "h1",
+      "text": "Primeira emissão ou renovação com orientação em cada etapa."
+    },
+    {
+      "tag": "h2",
+      "text": "Como funciona o serviço"
+    },
+    {
+      "tag": "h3",
+      "text": "O que normalmente precisa estar em ordem"
+    },
+    {
+      "tag": "li",
+      "text": "Cidadania italiana já reconhecida"
+    },
+    {
+      "tag": "li",
+      "text": "Cadastro consular e AIRE compatíveis com a situação atual"
+    },
+    {
+      "tag": "li",
+      "text": "Dados pessoais atualizados"
+    },
+    {
+      "tag": "li",
+      "text": "Estado civil e endereço sem pendências relevantes"
+    },
+    {
+      "tag": "li",
+      "text": "Documento de identidade aceito pelo consulado competente"
+    },
+    {
+      "tag": "li",
+      "text": "Documentação específica exigida para o atendimento"
+    },
+    {
+      "tag": "h3",
+      "text": "Etapas do atendimento"
+    },
+    {
+      "tag": "li",
+      "text": "Triagem do caso e identificação do consulado competente"
+    },
+    {
+      "tag": "li",
+      "text": "Verificação da situação cadastral e documental"
+    },
+    {
+      "tag": "li",
+      "text": "Orientação sobre eventuais regularizações prévias"
+    },
+    {
+      "tag": "li",
+      "text": "Preparação para o agendamento"
+    },
+    {
+      "tag": "li",
+      "text": "Conferência final da documentação"
+    },
+    {
+      "tag": "li",
+      "text": "Orientação para comparecimento ao consulado"
+    },
+    {
+      "tag": "h3",
+      "text": "Passaporte Italiano"
+    },
+    {
+      "tag": "h2",
+      "text": "Passaporte italiano"
+    },
+    {
+      "tag": "h2",
+      "text": "Conte sua situação"
+    }
+  ],
+  "landing/servicos/certidoes-italianas.html": [
+    {
+      "tag": "h1",
+      "text": "Solicitação de documentos junto a órgãos italianos."
+    },
+    {
+      "tag": "h2",
+      "text": "Como iniciamos"
+    },
+    {
+      "tag": "li",
+      "text": "Identificação do tipo de certidão"
+    },
+    {
+      "tag": "li",
+      "text": "Confirmação do comune ou órgão responsável"
+    },
+    {
+      "tag": "li",
+      "text": "Conferência dos dados disponíveis"
+    },
+    {
+      "tag": "li",
+      "text": "Definição da finalidade do documento"
+    },
+    {
+      "tag": "li",
+      "text": "Orientação sobre próximos passos após a emissão"
+    },
+    {
+      "tag": "h3",
+      "text": "Por que a finalidade importa?"
+    },
+    {
+      "tag": "h3",
+      "text": "Certidões Italianas"
+    },
+    {
+      "tag": "h2",
+      "text": "Qual documento você procura?"
+    }
+  ]
+}
