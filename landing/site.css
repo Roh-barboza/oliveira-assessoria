@@ -1,0 +1,432 @@
+/* Shared foundations. Local variable fonts: SIL Open Font License in assets/fonts. */
+@font-face {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("/assets/fonts/dm-sans-latin.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Playfair Display";
+  font-style: normal;
+  font-weight: 500 700;
+  font-display: swap;
+  src: url("/assets/fonts/playfair-display-latin.woff2") format("woff2");
+}
+:root {
+  --forest: #0b332b;
+  --forest-deep: #061f1b;
+  --forest-soft: #17483d;
+  --gold: #c8a767;
+  --cream: #f7f2e9;
+  --paper: #fffdfa;
+  --ink: #202a26;
+  --muted: #5d665f;
+  --line: #deded3;
+  --wine: #782b3c;
+  --sans: "DM Sans", Arial, sans-serif;
+  --serif: "Playfair Display", Georgia, serif;
+  --space-section: clamp(64px, 7vw, 104px);
+  --radius: 4px;
+  --green: var(--forest);
+  --green2: var(--forest-soft);
+  --navy: var(--forest);
+  --navy-2: var(--forest-soft);
+  --soft: var(--cream);
+  --primary-color: var(--forest);
+  --accent-color: var(--gold);
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+}
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.65;
+}
+h1,
+h2,
+h3 {
+  font-family: var(--serif);
+  font-weight: 600;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+img {
+  max-width: 100%;
+}
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+input,
+select,
+textarea {
+  min-width: 0;
+}
+a {
+  color: var(--forest);
+  text-underline-offset: 4px;
+}
+button,
+a,
+input,
+select,
+textarea,
+summary {
+  -webkit-tap-highlight-color: transparent;
+}
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible {
+  outline: 3px solid #936c21;
+  outline-offset: 5px;
+}
+button:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+.shell,
+.wrap,
+.container {
+  width: min(1240px, calc(100% - 64px));
+  margin-inline: auto;
+  padding-inline: 0;
+}
+.icon {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+.skip-link {
+  position: fixed;
+  top: 12px;
+  left: 16px;
+  z-index: 100;
+  padding: 12px 20px;
+  background: var(--paper);
+  color: var(--forest);
+  transform: translateY(-180%);
+}
+.skip-link:focus {
+  transform: none;
+}
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  display: block;
+  height: auto;
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: none;
+}
+.header-inner {
+  min-height: 88px;
+  height: auto;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+.brand {
+  display: inline-flex;
+  align-items: center;
+  flex: none;
+  text-decoration: none;
+}
+.brand img {
+  display: block;
+  width: 220px;
+  height: auto;
+}
+.main-nav {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+}
+.main-nav a {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--forest);
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.main-nav a:hover {
+  text-decoration: underline;
+}
+.header-cta,
+.button,
+.btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  min-height: 48px;
+  padding: 13px 20px;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  font: 600 14px/1.5 var(--sans);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.header-cta,
+.button--dark,
+.btn-dark,
+.btn-green,
+.btn-primary,
+.btn-header {
+  background: var(--forest);
+  color: white;
+}
+.header-cta:hover,
+.btn-dark:hover,
+.btn-primary:hover {
+  background: var(--forest-soft);
+}
+.button:hover,
+.btn:hover,
+.header-cta:hover {
+  transform: none;
+}
+.button--gold,
+.btn-gold,
+.gold {
+  color: var(--forest-deep);
+  background: var(--gold);
+}
+.button--gold:hover,
+.btn-gold:hover {
+  background: #d8bb80;
+}
+.button--outline,
+.btn-outline,
+.outline {
+  border: 1px solid #bcc8c0;
+  background: transparent;
+  color: white;
+}
+.menu-toggle {
+  display: none;
+  min-width: 48px;
+  min-height: 48px;
+  margin-left: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--forest);
+  font-size: 24px;
+  cursor: pointer;
+}
+.menu-toggle span {
+  display: block;
+}
+.eyebrow,
+.kicker,
+.title small {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.eyebrow--dark,
+.title small {
+  color: #765c27;
+}
+.site-footer {
+  padding: 48px 0;
+  background: var(--forest-deep);
+  color: #d4ded6;
+}
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+}
+.footer-inner p {
+  margin: 0;
+  font-size: 13px;
+}
+.footer-inner nav {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.footer-inner nav a {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  color: #e1e8e3;
+  font-size: 12px;
+  text-decoration: none;
+}
+.footer-inner a:hover {
+  text-decoration: underline;
+}
+.brand--footer img {
+  width: 200px;
+}
+.form-privacy {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+/* IR tools keep their existing behavior and IDs, using the same visual foundations. */
+.app-header .brand {
+  font: 600 21px var(--serif);
+  color: #e1c98e;
+}
+.header-meta {
+  color: #e0e8e2;
+}
+.progress-label,
+.autosave-status,
+.progress-panel li {
+  color: #d6e1da;
+}
+.progress-panel li.active {
+  color: white;
+}
+.app-header {
+  gap: 12px;
+  flex-wrap: wrap;
+  padding-block: 12px;
+}
+.link-button {
+  min-height: 44px;
+}
+.app-shell button {
+  min-height: 44px;
+}
+.security-notice {
+  color: #57471c;
+}
+.form-card {
+  border-radius: var(--radius);
+}
+.form-step h1 {
+  font-size: clamp(28px, 4vw, 42px);
+}
+@media (max-width: 1100px) {
+  .header-inner {
+    gap: 20px;
+  }
+  .main-nav {
+    gap: 16px;
+  }
+  .header-cta {
+    display: none;
+  }
+}
+@media (max-width: 900px) {
+  .shell,
+  .wrap,
+  .container {
+    width: calc(100% - 40px);
+  }
+  .header-inner {
+    min-height: 76px;
+    flex-wrap: wrap;
+    gap: 0;
+  }
+  .brand img {
+    width: 200px;
+  }
+  .menu-toggle {
+    display: inline-grid;
+    place-items: center;
+  }
+  .main-nav {
+    width: 100%;
+    flex: auto;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 8px 0 20px;
+  }
+  .main-nav a {
+    min-height: 48px;
+    padding: 10px 6px;
+    border-bottom: 1px solid var(--line);
+  }
+  .js .main-nav {
+    display: none;
+  }
+  .js .main-nav.open {
+    display: flex;
+  }
+  .main-nav {
+    position: static;
+    box-shadow: none;
+    border: 0;
+    background: var(--paper);
+  }
+  .footer-inner {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+  .footer-inner nav {
+    gap: 16px;
+  }
+  .app-header {
+    padding-inline: 20px;
+  }
+  html {
+    scroll-padding-top: 90px;
+  }
+}
+@media (max-width: 520px) {
+  .footer-inner {
+    flex-direction: column;
+    gap: 24px;
+  }
+  .footer-inner nav {
+    flex-direction: column;
+    gap: 0;
+  }
+  .header-meta {
+    gap: 14px;
+  }
+  .app-header .brand {
+    font-size: 19px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+/* Gold text needs a darker tone on the paper background. */
+.step-kicker,
+.feature-card > span {
+  color: #765c27;
+}

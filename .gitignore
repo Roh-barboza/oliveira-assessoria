@@ -21,3 +21,8 @@ yarn-error.log*
 # OS
 .DS_Store
 Thumbs.db
+
+# Local validation and deployment files
+.vercel/
+.env.*
+test-results/
