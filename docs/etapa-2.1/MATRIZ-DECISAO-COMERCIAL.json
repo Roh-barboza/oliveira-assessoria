@@ -316,16 +316,17 @@
       "id": "C-01",
       "nome": "Passaporte brasileiro",
       "categoria": "Brasil — candidato interno",
-      "publico": "A confirmar conforme o eventual modelo aprovado.",
+      "publico": "Brasileiros que precisam compreender a solicitação de passaporte; público e local de atendimento a confirmar.",
       "atividades_propostas": [
-        "Avaliação de viabilidade de apoio administrativo/documental; nenhuma nova execução ofertada."
+        "Avaliar apoio à organização do checklist e compreensão das etapas oficiais da PF.",
+        "Execução, limites, privacidade e modelo do apoio privado dependem de autorização; nenhuma oferta publicada."
       ],
       "atividades_excluidas": [
         "Publicação como oferta, contratação e execução antes da validação específica.",
         "Atos privativos, representação e resultados garantidos não presumidos."
       ],
       "responsavel_execucao": "A confirmar; nenhum executor foi nomeado.",
-      "regiao_consulado": "A confirmar; para passaporte brasileiro, definir público/local de atendimento e autoridade competente.",
+      "regiao_consulado": "A confirmar: público/local de atendimento e autoridade competente da PF.",
       "habilitacao_parceiro": "Avaliar requisitos profissionais, autorizações e eventual parceiro conforme a atividade; não atribuir habilitação à empresa por este documento.",
       "pendencias": [
         "Avaliar primeiro o modelo de apoio privado opcional, privacidade, limites e instruções da PF. O procedimento oficial e suas orientações são acessíveis diretamente pelo cidadão.",
@@ -339,7 +340,7 @@
       "id": "C-02",
       "nome": "Negociação de Dívidas",
       "categoria": "Brasil — candidato interno",
-      "publico": "A confirmar conforme o eventual modelo aprovado.",
+      "publico": "Pessoas que buscam organizar documentação de dívidas; finalidade e público final a confirmar.",
       "atividades_propostas": [
         "Avaliação de viabilidade de apoio administrativo/documental; nenhuma nova execução ofertada."
       ],
@@ -348,7 +349,7 @@
         "Atos privativos, representação e resultados garantidos não presumidos."
       ],
       "responsavel_execucao": "A confirmar; nenhum executor foi nomeado.",
-      "regiao_consulado": "A confirmar; para passaporte brasileiro, definir público/local de atendimento e autoridade competente.",
+      "regiao_consulado": "A confirmar: regiões e órgãos relacionados ao eventual escopo aprovado.",
       "habilitacao_parceiro": "Avaliar requisitos profissionais, autorizações e eventual parceiro conforme a atividade; não atribuir habilitação à empresa por este documento.",
       "pendencias": [
         "Confirmar continuidade e tarefas; não presumir negociação, mandato, análise jurídica ou intermediação.",
@@ -362,7 +363,7 @@
       "id": "C-03",
       "nome": "Precatórios",
       "categoria": "Brasil — candidato interno",
-      "publico": "A confirmar conforme o eventual modelo aprovado.",
+      "publico": "Pessoas com documentos relativos a precatórios; necessidade e finalidade a confirmar.",
       "atividades_propostas": [
         "Avaliação de viabilidade de apoio administrativo/documental; nenhuma nova execução ofertada."
       ],
@@ -371,7 +372,7 @@
         "Atos privativos, representação e resultados garantidos não presumidos."
       ],
       "responsavel_execucao": "A confirmar; nenhum executor foi nomeado.",
-      "regiao_consulado": "A confirmar; para passaporte brasileiro, definir público/local de atendimento e autoridade competente.",
+      "regiao_consulado": "A confirmar: regiões e órgãos relacionados ao eventual escopo aprovado.",
       "habilitacao_parceiro": "Avaliar requisitos profissionais, autorizações e eventual parceiro conforme a atividade; não atribuir habilitação à empresa por este documento.",
       "pendencias": [
         "Definir se existe atividade administrativa viável, seus limites e responsáveis; não presumir atuação jurídica, cessão ou intermediação.",
@@ -385,7 +386,7 @@
       "id": "C-04",
       "nome": "Contratos",
       "categoria": "Brasil — candidato interno",
-      "publico": "A confirmar conforme o eventual modelo aprovado.",
+      "publico": "Pessoas com documentos contratuais para organização; finalidade a confirmar, sem presumir análise jurídica.",
       "atividades_propostas": [
         "Avaliação de viabilidade de apoio administrativo/documental; nenhuma nova execução ofertada."
       ],
@@ -394,7 +395,7 @@
         "Atos privativos, representação e resultados garantidos não presumidos."
       ],
       "responsavel_execucao": "A confirmar; nenhum executor foi nomeado.",
-      "regiao_consulado": "A confirmar; para passaporte brasileiro, definir público/local de atendimento e autoridade competente.",
+      "regiao_consulado": "A confirmar: regiões e órgãos relacionados ao eventual escopo aprovado.",
       "habilitacao_parceiro": "Avaliar requisitos profissionais, autorizações e eventual parceiro conforme a atividade; não atribuir habilitação à empresa por este documento.",
       "pendencias": [
         "Distinguir organização de arquivos de consultoria, parecer ou elaboração jurídica; validar escopo antes de qualquer oferta.",

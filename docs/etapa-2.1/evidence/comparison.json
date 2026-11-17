@@ -1,0 +1,146 @@
+[
+  {
+    "label": "before",
+    "width": 390,
+    "page": "home",
+    "height": 7452,
+    "words": 583,
+    "analysisLinks": 0,
+    "checklistLinks": 0
+  },
+  {
+    "label": "before",
+    "width": 390,
+    "page": "aire",
+    "height": 4709,
+    "words": 475,
+    "analysisLinks": 3,
+    "checklistLinks": 0
+  },
+  {
+    "label": "before",
+    "width": 390,
+    "page": "ir",
+    "height": 8781,
+    "words": 649,
+    "analysisLinks": 1,
+    "checklistLinks": 2
+  },
+  {
+    "label": "before",
+    "width": 390,
+    "page": "catalogo",
+    "height": 5030,
+    "words": 391,
+    "analysisLinks": 7,
+    "checklistLinks": 0
+  },
+  {
+    "label": "before",
+    "width": 1366,
+    "page": "home",
+    "height": 4823,
+    "words": 583,
+    "analysisLinks": 0,
+    "checklistLinks": 0
+  },
+  {
+    "label": "before",
+    "width": 1366,
+    "page": "aire",
+    "height": 3845,
+    "words": 475,
+    "analysisLinks": 3,
+    "checklistLinks": 0
+  },
+  {
+    "label": "before",
+    "width": 1366,
+    "page": "ir",
+    "height": 5466,
+    "words": 649,
+    "analysisLinks": 1,
+    "checklistLinks": 2
+  },
+  {
+    "label": "before",
+    "width": 1366,
+    "page": "catalogo",
+    "height": 2863,
+    "words": 391,
+    "analysisLinks": 7,
+    "checklistLinks": 0
+  },
+  {
+    "label": "after",
+    "width": 390,
+    "page": "home",
+    "height": 7452,
+    "words": 588,
+    "analysisLinks": 0,
+    "checklistLinks": 0
+  },
+  {
+    "label": "after",
+    "width": 390,
+    "page": "aire",
+    "height": 4076,
+    "words": 397,
+    "analysisLinks": 2,
+    "checklistLinks": 0
+  },
+  {
+    "label": "after",
+    "width": 390,
+    "page": "ir",
+    "height": 7894,
+    "words": 596,
+    "analysisLinks": 2,
+    "checklistLinks": 1
+  },
+  {
+    "label": "after",
+    "width": 390,
+    "page": "catalogo",
+    "height": 5030,
+    "words": 406,
+    "analysisLinks": 7,
+    "checklistLinks": 0
+  },
+  {
+    "label": "after",
+    "width": 1366,
+    "page": "home",
+    "height": 4823,
+    "words": 588,
+    "analysisLinks": 0,
+    "checklistLinks": 0
+  },
+  {
+    "label": "after",
+    "width": 1366,
+    "page": "aire",
+    "height": 3401,
+    "words": 397,
+    "analysisLinks": 2,
+    "checklistLinks": 0
+  },
+  {
+    "label": "after",
+    "width": 1366,
+    "page": "ir",
+    "height": 5092,
+    "words": 596,
+    "analysisLinks": 2,
+    "checklistLinks": 1
+  },
+  {
+    "label": "after",
+    "width": 1366,
+    "page": "catalogo",
+    "height": 2909,
+    "words": 406,
+    "analysisLinks": 7,
+    "checklistLinks": 0
+  }
+]

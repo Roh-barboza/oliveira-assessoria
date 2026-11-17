@@ -1,0 +1,20 @@
+{
+  "pages": [
+    "estado-civil.html",
+    "fast-it.html",
+    "aire.html",
+    "registro-filhos.html",
+    "regularizacao-consular.html",
+    "carta-identita.html",
+    "passaporte-italiano.html",
+    "certidoes-italianas.html"
+  ],
+  "retained": [
+    "activity lists",
+    "exclusion lists",
+    "document lists",
+    "limitations",
+    "official links"
+  ],
+  "removedFaq": "4 duplicate questions; answers retained in exclusions/limitations"
+}

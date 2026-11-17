@@ -223,11 +223,11 @@ Responsável e cobertura são campos a confirmar em cada ficha. A coluna de habi
 | --- | --- |
 | Nome | Passaporte brasileiro |
 | Categoria | Brasil — candidato interno |
-| Público atendido | A confirmar conforme o eventual modelo aprovado. |
-| Atividades efetivamente propostas | Avaliação de viabilidade de apoio administrativo/documental; nenhuma nova execução ofertada. |
+| Público atendido | Brasileiros que precisam compreender a solicitação de passaporte; público e local de atendimento a confirmar. |
+| Atividades efetivamente propostas | Avaliar apoio à organização do checklist e compreensão das etapas oficiais da PF. Execução, limites, privacidade e modelo do apoio privado dependem de autorização; nenhuma oferta publicada. |
 | Atividades excluídas | Publicação como oferta, contratação e execução antes da validação específica. Atos privativos, representação e resultados garantidos não presumidos. |
 | Responsável pela execução | A confirmar; nenhum executor foi nomeado. |
-| Região ou consulado atendido | A confirmar; para passaporte brasileiro, definir público/local de atendimento e autoridade competente. |
+| Região ou consulado atendido | A confirmar: público/local de atendimento e autoridade competente da PF. |
 | Habilitação profissional ou parceiro | Avaliar requisitos profissionais, autorizações e eventual parceiro conforme a atividade; não atribuir habilitação à empresa por este documento. |
 | Pendências de validação | Avaliar primeiro o modelo de apoio privado opcional, privacidade, limites e instruções da PF. O procedimento oficial e suas orientações são acessíveis diretamente pelo cidadão. Decisão expressa sobre inclusão, público, executor e limites. |
 | Status | candidato |
@@ -239,11 +239,11 @@ Responsável e cobertura são campos a confirmar em cada ficha. A coluna de habi
 | --- | --- |
 | Nome | Negociação de Dívidas |
 | Categoria | Brasil — candidato interno |
-| Público atendido | A confirmar conforme o eventual modelo aprovado. |
+| Público atendido | Pessoas que buscam organizar documentação de dívidas; finalidade e público final a confirmar. |
 | Atividades efetivamente propostas | Avaliação de viabilidade de apoio administrativo/documental; nenhuma nova execução ofertada. |
 | Atividades excluídas | Publicação como oferta, contratação e execução antes da validação específica. Atos privativos, representação e resultados garantidos não presumidos. |
 | Responsável pela execução | A confirmar; nenhum executor foi nomeado. |
-| Região ou consulado atendido | A confirmar; para passaporte brasileiro, definir público/local de atendimento e autoridade competente. |
+| Região ou consulado atendido | A confirmar: regiões e órgãos relacionados ao eventual escopo aprovado. |
 | Habilitação profissional ou parceiro | Avaliar requisitos profissionais, autorizações e eventual parceiro conforme a atividade; não atribuir habilitação à empresa por este documento. |
 | Pendências de validação | Confirmar continuidade e tarefas; não presumir negociação, mandato, análise jurídica ou intermediação. Decisão expressa sobre inclusão, público, executor e limites. |
 | Status | candidato |
@@ -255,11 +255,11 @@ Responsável e cobertura são campos a confirmar em cada ficha. A coluna de habi
 | --- | --- |
 | Nome | Precatórios |
 | Categoria | Brasil — candidato interno |
-| Público atendido | A confirmar conforme o eventual modelo aprovado. |
+| Público atendido | Pessoas com documentos relativos a precatórios; necessidade e finalidade a confirmar. |
 | Atividades efetivamente propostas | Avaliação de viabilidade de apoio administrativo/documental; nenhuma nova execução ofertada. |
 | Atividades excluídas | Publicação como oferta, contratação e execução antes da validação específica. Atos privativos, representação e resultados garantidos não presumidos. |
 | Responsável pela execução | A confirmar; nenhum executor foi nomeado. |
-| Região ou consulado atendido | A confirmar; para passaporte brasileiro, definir público/local de atendimento e autoridade competente. |
+| Região ou consulado atendido | A confirmar: regiões e órgãos relacionados ao eventual escopo aprovado. |
 | Habilitação profissional ou parceiro | Avaliar requisitos profissionais, autorizações e eventual parceiro conforme a atividade; não atribuir habilitação à empresa por este documento. |
 | Pendências de validação | Definir se existe atividade administrativa viável, seus limites e responsáveis; não presumir atuação jurídica, cessão ou intermediação. Decisão expressa sobre inclusão, público, executor e limites. |
 | Status | candidato |
@@ -271,11 +271,11 @@ Responsável e cobertura são campos a confirmar em cada ficha. A coluna de habi
 | --- | --- |
 | Nome | Contratos |
 | Categoria | Brasil — candidato interno |
-| Público atendido | A confirmar conforme o eventual modelo aprovado. |
+| Público atendido | Pessoas com documentos contratuais para organização; finalidade a confirmar, sem presumir análise jurídica. |
 | Atividades efetivamente propostas | Avaliação de viabilidade de apoio administrativo/documental; nenhuma nova execução ofertada. |
 | Atividades excluídas | Publicação como oferta, contratação e execução antes da validação específica. Atos privativos, representação e resultados garantidos não presumidos. |
 | Responsável pela execução | A confirmar; nenhum executor foi nomeado. |
-| Região ou consulado atendido | A confirmar; para passaporte brasileiro, definir público/local de atendimento e autoridade competente. |
+| Região ou consulado atendido | A confirmar: regiões e órgãos relacionados ao eventual escopo aprovado. |
 | Habilitação profissional ou parceiro | Avaliar requisitos profissionais, autorizações e eventual parceiro conforme a atividade; não atribuir habilitação à empresa por este documento. |
 | Pendências de validação | Distinguir organização de arquivos de consultoria, parecer ou elaboração jurídica; validar escopo antes de qualquer oferta. Decisão expressa sobre inclusão, público, executor e limites. |
 | Status | candidato |
