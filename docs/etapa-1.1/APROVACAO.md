@@ -1,3 +1,5 @@
+> **Atualização de 17/11/2026:** o usuário considerou o resultado bom e autorizou a continuidade. A preferência por WhatsApp foi [registrada](../decisoes/2026-11-17-whatsapp-e-continuidade.md); o número ainda não foi informado. Etapa 2 autorizada por essa instrução posterior, sem presumir as aprovações individuais da tabela, merge ou publicação. O texto abaixo é o checklist histórico.
+
 # Aprovação humana — Etapa 1.1
 
 Preview: https://oliveira-assessoria-k0k74uy2g-barbozaa-s-projects.vercel.app/
