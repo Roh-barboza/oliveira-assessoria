@@ -169,4 +169,3 @@
 - **Custos:** honorários serão definidos na Etapa 3; taxas e despesas de terceiros devem ser identificadas pela jurisdição/finalidade, sem valores presumidos.
 - **CTA existente:** `/?servico=Organiza%C3%A7%C3%A3o%20documental#contato`.
 - **Fontes/revisão:** consultar a matriz [Por finalidade](FONTES-E-REVISAO.md); validar o caso e a jurisdição antes da publicação de regras detalhadas.
-

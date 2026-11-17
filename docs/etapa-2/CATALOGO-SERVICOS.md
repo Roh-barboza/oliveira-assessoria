@@ -276,4 +276,3 @@ Na área fiscal/previdenciária, a descrição de apoio documental não resolve 
 ## Decisões pendentes
 
 Consulados/regiões atendidos; escopo operacional por serviço; fronteiras entre AIRE/Fast It e Estado civil/filhos; continuidade dos três legados; eventual inclusão de passaporte brasileiro; responsabilidades técnicas; validação final de Jennifer e Rodrigo. Preços e pacotes são da Etapa 3, não iniciada.
-
