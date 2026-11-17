@@ -1,3 +1,5 @@
+> **Atualização:** esta página registra a entrega original. Os refinamentos da Etapa 1.1, Preview atual, testes, métricas e aprovação estão no [relatório da Etapa 1.1](../etapa-1.1/README.md).
+
 # Etapa 1 — redesign premium e validação
 
 Base: `feature/jennifer-ir-assistant-mvp` (`2adb1afa303e6e0d82147de985a401575c6505be`).

@@ -1,0 +1,154 @@
+[
+  {
+    "label": "before",
+    "width": 360,
+    "documentHeight": 8595,
+    "italianCardsHeight": 2084.015625,
+    "brazilianCardsHeight": 1040.59375,
+    "cta": [
+      {
+        "text": "Explorar serviços",
+        "height": 50,
+        "width": 320
+      },
+      {
+        "text": "Solicitar análise",
+        "height": 48,
+        "width": 103.796875
+      }
+    ]
+  },
+  {
+    "label": "before",
+    "width": 390,
+    "documentHeight": 8432,
+    "italianCardsHeight": 2060.21875,
+    "brazilianCardsHeight": 1017.5,
+    "cta": [
+      {
+        "text": "Explorar serviços",
+        "height": 50,
+        "width": 350
+      },
+      {
+        "text": "Solicitar análise",
+        "height": 48,
+        "width": 103.796875
+      }
+    ]
+  },
+  {
+    "label": "before",
+    "width": 430,
+    "documentHeight": 8186,
+    "italianCardsHeight": 2012.625,
+    "brazilianCardsHeight": 944.875,
+    "cta": [
+      {
+        "text": "Explorar serviços",
+        "height": 50,
+        "width": 390
+      },
+      {
+        "text": "Solicitar análise",
+        "height": 48,
+        "width": 103.796875
+      }
+    ]
+  },
+  {
+    "label": "before",
+    "width": 1366,
+    "documentHeight": 4638,
+    "italianCardsHeight": 578,
+    "brazilianCardsHeight": 424.65625,
+    "cta": [
+      {
+        "text": "Explorar serviços",
+        "height": 50,
+        "width": 192.21875
+      },
+      {
+        "text": "Solicitar análise",
+        "height": 48,
+        "width": 103.796875
+      }
+    ]
+  },
+  {
+    "label": "after",
+    "width": 360,
+    "documentHeight": 7423,
+    "italianCardsHeight": 1241.765625,
+    "brazilianCardsHeight": 772.625,
+    "cta": [
+      {
+        "text": "Explorar serviços",
+        "height": 48,
+        "width": 155
+      },
+      {
+        "text": "Solicitar análise",
+        "height": 48,
+        "width": 155
+      }
+    ]
+  },
+  {
+    "label": "after",
+    "width": 390,
+    "documentHeight": 7241,
+    "italianCardsHeight": 1220.96875,
+    "brazilianCardsHeight": 727.6875,
+    "cta": [
+      {
+        "text": "Explorar serviços",
+        "height": 48,
+        "width": 170
+      },
+      {
+        "text": "Solicitar análise",
+        "height": 48,
+        "width": 170
+      }
+    ]
+  },
+  {
+    "label": "after",
+    "width": 430,
+    "documentHeight": 7032,
+    "italianCardsHeight": 1179.375,
+    "brazilianCardsHeight": 686.09375,
+    "cta": [
+      {
+        "text": "Explorar serviços",
+        "height": 48,
+        "width": 190
+      },
+      {
+        "text": "Solicitar análise",
+        "height": 48,
+        "width": 190
+      }
+    ]
+  },
+  {
+    "label": "after",
+    "width": 1366,
+    "documentHeight": 4638,
+    "italianCardsHeight": 578,
+    "brazilianCardsHeight": 424.65625,
+    "cta": [
+      {
+        "text": "Explorar serviços",
+        "height": 50,
+        "width": 192.21875
+      },
+      {
+        "text": "Solicitar análise",
+        "height": 49,
+        "width": 148.421875
+      }
+    ]
+  }
+]

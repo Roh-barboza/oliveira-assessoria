@@ -1,3 +1,5 @@
+> Avaliar também o [checklist da Etapa 1.1](../etapa-1.1/APROVACAO.md), com o Preview atualizado. Nenhuma aprovação foi presumida.
+
 # Aprovação visual — Jennifer e Rodrigo
 
 Preview: https://oliveira-assessoria-i7jrm8te6-barbozaa-s-projects.vercel.app/

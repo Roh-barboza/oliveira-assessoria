@@ -1,0 +1,54 @@
+# Arquivos alterados na Etapa 1.1
+
+Comparação com `3c29cca`, entrega anterior do PR #5.
+
+- `docs/etapa-1.1/APROVACAO.md`
+- `docs/etapa-1.1/ARQUIVOS.md`
+- `docs/etapa-1.1/PERFORMANCE.md`
+- `docs/etapa-1.1/README.md`
+- `docs/etapa-1.1/VISUAL.md`
+- `docs/etapa-1.1/evidence/after-aire-1366.webp`
+- `docs/etapa-1.1/evidence/after-aire-390.webp`
+- `docs/etapa-1.1/evidence/after-hero-1366.webp`
+- `docs/etapa-1.1/evidence/after-hero-390.webp`
+- `docs/etapa-1.1/evidence/after-home-1366.webp`
+- `docs/etapa-1.1/evidence/after-home-390.webp`
+- `docs/etapa-1.1/evidence/before-aire-1366.webp`
+- `docs/etapa-1.1/evidence/before-aire-390.webp`
+- `docs/etapa-1.1/evidence/before-hero-1366.webp`
+- `docs/etapa-1.1/evidence/before-hero-390.webp`
+- `docs/etapa-1.1/evidence/before-home-1366.webp`
+- `docs/etapa-1.1/evidence/before-home-390.webp`
+- `docs/etapa-1.1/evidence/layout-comparison.json`
+- `docs/etapa-1.1/evidence/lighthouse-local-summary.json`
+- `docs/etapa-1.1/evidence/lighthouse-preview-summary.json`
+- `docs/etapa-1.1/evidence/lighthouse/local-desktop-1.json.gz`
+- `docs/etapa-1.1/evidence/lighthouse/local-desktop-2.json.gz`
+- `docs/etapa-1.1/evidence/lighthouse/local-desktop-3.json.gz`
+- `docs/etapa-1.1/evidence/lighthouse/local-mobile-1.json.gz`
+- `docs/etapa-1.1/evidence/lighthouse/local-mobile-2.json.gz`
+- `docs/etapa-1.1/evidence/lighthouse/local-mobile-3.json.gz`
+- `docs/etapa-1.1/evidence/lighthouse/preview-desktop-1.json.gz`
+- `docs/etapa-1.1/evidence/lighthouse/preview-desktop-2.json.gz`
+- `docs/etapa-1.1/evidence/lighthouse/preview-desktop-3.json.gz`
+- `docs/etapa-1.1/evidence/lighthouse/preview-mobile-1.json.gz`
+- `docs/etapa-1.1/evidence/lighthouse/preview-mobile-2.json.gz`
+- `docs/etapa-1.1/evidence/lighthouse/preview-mobile-3.json.gz`
+- `docs/etapa-1.1/evidence/validation-local.json`
+- `docs/etapa-1.1/evidence/validation-preview.json`
+- `docs/etapa-1/APROVACAO.md`
+- `docs/etapa-1/README.md`
+- `landing/imposto-de-renda.html`
+- `landing/index.html`
+- `landing/italia.html`
+- `landing/premium-consular.css`
+- `landing/servicos-consulares.html`
+- `landing/servicos/aire.html`
+- `landing/servicos/carta-identita.html`
+- `landing/servicos/certidoes-italianas.html`
+- `landing/servicos/estado-civil.html`
+- `landing/servicos/fast-it.html`
+- `landing/servicos/passaporte-italiano.html`
+- `landing/servicos/registro-filhos.html`
+- `landing/servicos/regularizacao-consular.html`
+- `tests/public-site.mjs`
