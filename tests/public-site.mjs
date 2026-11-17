@@ -10,7 +10,12 @@ let server;
 if (!process.env.BASE_URL) ({ server } = await import("../scripts/serve.mjs"));
 const browser = await chromium.launch({
   executablePath: process.env.CHROME_PATH || "/usr/bin/chromium",
-  args: ["--no-sandbox"],
+  args: [
+    "--no-sandbox",
+    ...(process.env.IGNORE_CERT_ERRORS === "1"
+      ? ["--ignore-certificate-errors"]
+      : []),
+  ],
 });
 const pages = (await readdir("landing", { recursive: true })).filter((p) =>
   p.endsWith(".html"),
@@ -32,7 +37,10 @@ try {
     for (const path of pages) {
       const response = await page.goto(`${base}/${path}`);
       await page.evaluate(() => document.fonts.ready);
-      check(response.ok(), `${width} ${path}: HTTP ${response.status()}`);
+      check(
+        response.ok() || (path === "404.html" && response.status() === 404),
+        `${width} ${path}: HTTP ${response.status()}`,
+      );
       check(
         (await page.locator("h1").count()) === 1,
         `${path}: exactly one h1`,

@@ -1,3 +1,5 @@
+> **Escopo atual — Etapa 1, 17/11/2026:** redesign de apresentação, performance, acessibilidade e responsividade em branch/PR, conforme issue #4 e [relatório](docs/etapa-1/README.md). Oliveira é uma assessoria administrativa, documental e consular independente. O restante deste arquivo contém contexto histórico que requer revisão; não autoriza atividades jurídicas, execução de seeds, banco, credenciais, Clicksign, contratos ou pagamentos. Não publicar em produção nem iniciar a Etapa 2 sem aprovação expressa de Jennifer e Rodrigo. A implementação e os testes desta etapa estão no relatório; a integração real n8n continua pendente de validação ponta a ponta.
+
 # Oliveira Assessoria Jurídica — Contexto do Projeto
 
 > Este arquivo é a memória do projeto. Qualquer IA ou desenvolvedor que continuar o trabalho deve ler este arquivo primeiro.
