@@ -6,7 +6,7 @@
     <title>AIRE | Oliveira Assessoria</title>
     <meta
       name="description"
-      content="Assessoria para inscrição, atualização e regularização do AIRE."
+      content="Organização documental para inscrição, mudança de endereço e atualização do cadastro AIRE."
     />
     <link rel="stylesheet" href="../consular.css" />
     <link rel="stylesheet" href="/site.css" />
@@ -32,6 +32,7 @@
       type="font/woff2"
       crossorigin
     />
+    <link rel="stylesheet" href="/catalogo.css" />
   </head>
   <body>
     <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
@@ -58,7 +59,8 @@
           <span aria-hidden="true">☰</span>
         </button>
         <nav id="main-nav" class="main-nav" aria-label="Navegação principal">
-          <a href="/#italia">Itália</a><a href="/#brasil">Brasil</a
+          <a href="/servicos.html#italia">Itália</a
+          ><a href="/servicos.html#brasil">Brasil</a
           ><a href="/#processo">Como funciona</a
           ><a href="/#diferenciais">Sobre a Oliveira</a
           ><a href="/?servico=AIRE#contato">Contato</a>
@@ -80,53 +82,196 @@
     <main id="conteudo" tabindex="-1">
       <section class="hero hero-simple">
         <div class="wrap">
-          <div class="breadcrumbs">
-            <a href="/servicos-consulares.html">Serviços Consulares</a> › AIRE
-          </div>
-          <div class="kicker">AIRE 🇮🇹</div>
-          <h1>Inscrição, atualização e regularização cadastral.</h1>
+          <nav class="breadcrumbs" aria-label="Localização">
+            <a href="/servicos.html#italia">Serviços italianos</a> / AIRE
+          </nav>
+          <p class="kicker">Assessoria consular e documental</p>
+          <h1>AIRE</h1>
           <p>
-            Organizamos a documentação e orientamos o cidadão italiano nos
-            procedimentos relacionados ao cadastro consular de residentes no
-            exterior.
+            Organização documental para inscrição, mudança de endereço e
+            atualização do cadastro AIRE.
           </p>
           <div class="hero-actions">
             <a class="btn btn-gold" href="/?servico=AIRE#contato"
-              >Analisar meu AIRE</a
+              >Solicitar análise de AIRE</a
+            ><a class="btn btn-outline" href="#documentos"
+              >Ver checklist inicial</a
             >
           </div>
         </div>
       </section>
       <section class="section">
-        <div class="wrap content-grid">
-          <article class="content">
-            <h2>Quando este serviço pode ser necessário</h2>
-            <ul class="checklist">
-              <li>Primeira inscrição no AIRE</li>
-              <li>Mudança de endereço</li>
-              <li>Mudança de jurisdição consular</li>
-              <li>Cadastro desatualizado ou divergente</li>
-              <li>Regularização antes de outro serviço consular</li>
-            </ul>
-            <h3>Como trabalhamos</h3>
-            <p>
-              Primeiro identificamos o consulado competente e a situação atual
-              do cadastro. Depois orientamos sobre documentos, comprovantes e
-              etapas do pedido, acompanhando a regularização conforme o
-              procedimento aplicável.
-            </p>
-            <div class="notice">
-              A documentação pode variar conforme consulado e tipo de
-              atualização.
-            </div>
+        <div class="wrap service-layout">
+          <article class="content service-content">
+            <section aria-labelledby="para-quem">
+              <h2 id="para-quem">Para quem é indicado</h2>
+              <p>
+                Cidadãos italianos residentes no exterior que precisam conferir
+                ou atualizar a situação cadastral.
+              </p>
+            </section>
+            <section aria-labelledby="incluido">
+              <h2 id="incluido">O que a assessoria abrange</h2>
+              <p>
+                Estas são as atividades apresentadas para análise. As tarefas e
+                a disponibilidade do atendimento serão confirmadas na triagem.
+              </p>
+              <ul class="checklist">
+                <li>
+                  Identificação da atualização necessária e do consulado
+                  responsável.
+                </li>
+                <li>Conferência dos dados e comprovantes informados.</li>
+                <li>
+                  Orientação para preparação do pedido e acompanhamento das
+                  pendências administrativas.
+                </li>
+              </ul>
+            </section>
+            <section aria-labelledby="excluido">
+              <h2 id="excluido">O que não está incluído</h2>
+              <ul class="checklist">
+                <li>
+                  Taxas oficiais e despesas de terceiros, incluindo serviços
+                  externos que forem necessários.
+                </li>
+                <li>
+                  Atividades não confirmadas no escopo, como tradução,
+                  apostilamento ou representação especializada.
+                </li>
+                <li>
+                  Emissão de documentos, decisões e resultados que cabem às
+                  autoridades públicas.
+                </li>
+              </ul>
+              <p>
+                A assessoria é privada e opcional. Os procedimentos oficiais
+                seguem seus próprios canais, inclusive quando são gratuitos
+                perante o órgão.
+              </p>
+            </section>
+            <section aria-labelledby="documentos">
+              <h2 id="documentos">
+                Checklist inicial de documentos e informações
+              </h2>
+              <p>
+                Lista indicativa para organizar a análise, não uma relação
+                definitiva de exigências legais. As instruções do órgão
+                competente serão verificadas para o seu caso.
+              </p>
+              <ul class="checklist">
+                <li>Documento de identificação disponível.</li>
+                <li>
+                  Informações e comprovantes de residência pertinentes ao
+                  pedido.
+                </li>
+                <li>
+                  Dados do cadastro atual e eventuais protocolos anteriores.
+                </li>
+              </ul>
+              <p class="notice">
+                No formulário inicial, descreva a necessidade. Não envie senhas,
+                códigos de acesso ou documentos sensíveis na mensagem.
+              </p>
+            </section>
+            <section aria-labelledby="como-funciona">
+              <h2 id="como-funciona">Como funciona</h2>
+              <ol class="service-flow">
+                <li>
+                  <strong>Triagem.</strong> Entender a necessidade, a residência
+                  e o órgão responsável.
+                </li>
+                <li>
+                  <strong>Conferência documental.</strong> Organizar o que está
+                  disponível e identificar pendências.
+                </li>
+                <li>
+                  <strong>Preparação.</strong> Confirmar requisitos e tarefas do
+                  atendimento.
+                </li>
+                <li>
+                  <strong>Orientação ou encaminhamento.</strong> Seguir o canal
+                  oficial aplicável, conforme o escopo.
+                </li>
+                <li>
+                  <strong>Acompanhamento.</strong> Conferir as pendências nas
+                  etapas que forem acordadas.
+                </li>
+              </ol>
+            </section>
+            <section aria-labelledby="limites">
+              <h2 id="limites">Limitações do atendimento</h2>
+              <p>
+                Primeira inscrição, alteração de residência e mudança de
+                jurisdição podem exigir percursos diferentes. O órgão
+                responsável confirma os documentos e decide o pedido.
+              </p>
+            </section>
+            <section aria-labelledby="duvidas">
+              <h2 id="duvidas">Perguntas frequentes</h2>
+              <div class="faq">
+                <details>
+                  <summary>AIRE e Fast It são a mesma coisa?</summary>
+                  <p>
+                    Não. AIRE é o cadastro; Fast It é um portal utilizado em
+                    procedimentos consulares. O suporte ao portal deve ser
+                    delimitado para não duplicar o serviço cadastral.
+                  </p>
+                </details>
+                <details>
+                  <summary>Mudei de endereço. Por onde começo?</summary>
+                  <p>
+                    Informe a residência atual e a situação do cadastro na
+                    análise. As instruções do consulado competente indicam como
+                    comunicar a alteração.
+                  </p>
+                </details>
+                <details>
+                  <summary>
+                    Atualizar AIRE também atualiza meu estado civil?
+                  </summary>
+                  <p>
+                    Não presuma que uma solicitação cadastral resolve outros
+                    registros. Consulte o canal específico do evento de estado
+                    civil no consulado responsável.
+                  </p>
+                </details>
+                <details>
+                  <summary>A assessoria é obrigatória?</summary>
+                  <p>
+                    Não. É um apoio privado opcional. O cidadão pode consultar
+                    as instruções oficiais e realizar os procedimentos pelos
+                    canais disponibilizados pelo órgão.
+                  </p>
+                </details>
+              </div>
+            </section>
+            <section class="official-sources" aria-labelledby="fontes">
+              <h2 id="fontes">Consulte as orientações oficiais</h2>
+              <p>
+                As fontes abaixo ajudam a entender o procedimento. Instruções de
+                uma sede não se aplicam automaticamente a outras jurisdições.
+              </p>
+              <ul>
+                <li>
+                  <a
+                    href="https://conssanpaolo.esteri.it/it/servizi-consolari-e-visti/servizi-per-il-cittadino-italiano/anagrafe-degli-italiani-residenti-allestero-aire/"
+                    >Consulado de São Paulo — AIRE e canais</a
+                  >
+                </li>
+              </ul>
+            </section>
           </article>
-          <aside class="sidebox">
-            <h3>AIRE</h3>
+          <aside class="sidebox" aria-label="Resumo do atendimento">
+            <h2>AIRE</h2>
             <p>
-              Cadastro consular para cidadãos italianos residentes no exterior.
+              Organização documental e orientação administrativa. O escopo é
+              confirmado antes do atendimento.
             </p>
             <a class="btn btn-dark" href="/?servico=AIRE#contato"
-              >Quero regularizar</a
+              >Solicitar análise</a
+            ><a class="back-catalog" href="/servicos.html#italia"
+              >Ver outros serviços italianos</a
             >
           </aside>
         </div>
@@ -134,16 +279,13 @@
       <section class="section lead" id="contato">
         <div class="wrap">
           <div class="title">
-            <small style="color: #dfc56d">Solicitar análise</small>
-            <h2 style="color: white">Conte o que precisa atualizar</h2>
-          </div>
-          <div class="contact-panel">
+            <small>Próximo passo</small>
+            <h2>Conte sua necessidade</h2>
             <p>
-              Para solicitar uma análise, utilize o formulário central da
-              Oliveira Assessoria.
+              Você será direcionado ao formulário central com AIRE selecionado.
             </p>
             <a class="btn btn-gold" href="/?servico=AIRE#contato"
-              >Solicitar análise <span aria-hidden="true">→</span></a
+              >Solicitar análise</a
             >
           </div>
         </div>

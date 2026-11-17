@@ -149,6 +149,8 @@ try {
         await page.locator("#main-nav").isVisible(),
         `${width}: desktop navigation visible`,
       );
+    await page.goto(base);
+    await page.evaluate(() => document.fonts.ready);
     await page.screenshot({
       path: `${evidence}/after-home-${width}.png`,
       fullPage: true,
@@ -282,6 +284,70 @@ try {
   );
   assert.equal(missing.status(), 404);
   assert.match(await page.locator("h1").innerText(), /não foi encontrado/);
+  // Catalog discovery, accent/punctuation normalization and progressive enhancement.
+  await page.goto(base + "/servicos.html");
+  assert.equal(await page.locator(".catalog-card").count(), 12);
+  const search = page.locator("#catalog-search");
+  const category = page.locator("#catalog-category");
+  await category.selectOption("brasil");
+  assert.equal(await page.locator(".catalog-card:visible").count(), 4);
+  await category.selectOption("italia");
+  assert.equal(await page.locator(".catalog-card:visible").count(), 8);
+  await category.selectOption("todos");
+  for (const [term, expected] of [
+    ["PASSAPORTE", 1],
+    ["certidoes", 1],
+    ["Carta d'identita", 1],
+    ["endereco", 1],
+    ["INSS", 1],
+  ]) {
+    await search.fill(term);
+    assert.equal(
+      await page.locator(".catalog-card:visible").count(),
+      expected,
+      term,
+    );
+  }
+  await search.fill("zz-inexistente-zz");
+  assert.equal(await page.locator(".catalog-card:visible").count(), 0);
+  assert.equal(await page.locator("#catalog-empty").isVisible(), true);
+  await search.fill("");
+  assert.equal(await page.locator(".catalog-card:visible").count(), 12);
+  await page.locator(".catalog-card h3 a").filter({ hasText: "AIRE" }).click();
+  assert.match(new URL(page.url()).pathname, /servicos\/aire.html/);
+  for (const slug of Object.keys(services)) {
+    await page.goto(`${base}/servicos/${slug}.html`);
+    for (const id of [
+      "para-quem",
+      "incluido",
+      "excluido",
+      "documentos",
+      "como-funciona",
+      "limites",
+      "duvidas",
+      "fontes",
+    ])
+      assert.equal(await page.locator("#" + id).count(), 1, slug + " " + id);
+    const questions = await page.locator(".faq details").count();
+    assert.ok(questions >= 3 && questions <= 5, slug + " useful FAQ count");
+  }
+  await page.goto(base + "/imposto-de-renda.html");
+  assert.equal(await page.locator("#documentos").count(), 1);
+  assert.equal(await page.locator("#ir-excluido").count(), 1);
+  assert.equal(
+    await page
+      .locator("body")
+      .innerText()
+      .then((text) => /R\$\s*149/.test(text)),
+    false,
+  );
+  const nojsCatalog = await browser.newPage({
+    javaScriptEnabled: false,
+    viewport: { width: 390, height: 844 },
+  });
+  await nojsCatalog.goto(base + "/servicos.html");
+  assert.equal(await nojsCatalog.locator(".catalog-card:visible").count(), 12);
+  await nojsCatalog.close();
   // IR wizard's local persistence and conditional blocks remain operational.
   await page.goto(base + "/ir/formulario.html");
   await page.locator('[name="securityAck"]').check();
@@ -319,6 +385,10 @@ try {
         keyboard:
           "skip link, focus outline, Enter, Escape and menu focus verified",
         missingPage: "unknown URL returns HTTP 404",
+        catalog:
+          "12 entries, category filter, title/description search, accent and punctuation normalization, empty state, link to detail, no-JS fallback",
+        servicePages:
+          "8 standardized consular pages with 4 FAQ each; IR includes documents/exclusions and no price",
         date: new Date().toISOString(),
       },
       null,

@@ -1,0 +1,250 @@
+/* Catalog and service detail composition; foundations remain in site.css. */
+.catalog-hero {
+  padding: 44px 0;
+}
+.catalog-hero h1 {
+  max-width: 1000px;
+  font-size: clamp(34px, 4vw, 52px);
+}
+.catalog-hero .hero-actions {
+  margin-top: 20px;
+}
+.hero .kicker {
+  font-size: 11px;
+}
+.catalog-section {
+  padding-top: 48px;
+}
+.catalog-tools {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(230px, 1fr);
+  gap: 24px;
+  padding: 28px;
+  background: var(--cream);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.catalog-tools label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--forest);
+}
+.catalog-tools input,
+.catalog-tools select {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px;
+  border: 1px solid #9eaa9f;
+  border-radius: 2px;
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 16px;
+}
+#catalog-count {
+  margin: 18px 0 36px;
+  color: var(--muted);
+  font-size: 13px;
+}
+#catalog-empty {
+  padding: 28px;
+  border: 1px solid var(--line);
+  color: var(--muted);
+}
+.catalog-group {
+  margin-bottom: 64px;
+  scroll-margin-top: 100px;
+}
+.catalog-heading {
+  margin-bottom: 24px;
+}
+.catalog-heading h2 {
+  margin: 10px 0 0;
+  color: var(--forest);
+  font-size: clamp(30px, 3vw, 42px);
+}
+.catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+.catalog-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 26px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--paper);
+}
+.catalog-label {
+  margin: 0 0 16px;
+  color: #765c27;
+  font-size: 11px;
+  font-weight: 600;
+}
+.catalog-card h3 {
+  margin: 0;
+  font-size: 24px;
+}
+.catalog-card h3 a {
+  text-decoration: none;
+  color: var(--forest);
+}
+.catalog-card h3 a:hover {
+  text-decoration: underline;
+}
+.catalog-description {
+  margin: 14px 0 18px;
+  color: var(--muted);
+  font-size: 14px;
+}
+.catalog-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  margin-top: auto;
+  color: var(--wine);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.catalog-action:hover {
+  text-decoration: underline;
+}
+.catalog-help {
+  padding: 32px 0 0;
+}
+.catalog-help h2 {
+  color: var(--forest);
+  font-size: 32px;
+}
+.catalog-help p {
+  color: var(--muted);
+}
+.catalog-group[hidden],
+.catalog-card[hidden],
+#catalog-empty[hidden] {
+  display: none !important;
+}
+.service-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(260px, 1fr);
+  gap: 64px;
+  align-items: start;
+}
+.service-content > section {
+  margin-bottom: 48px;
+}
+.service-content h2 {
+  font-size: clamp(27px, 3vw, 36px);
+  scroll-margin-top: 110px;
+}
+.service-content > section:last-child {
+  margin-bottom: 0;
+}
+.service-content .faq {
+  margin: 0;
+}
+.service-content .faq summary {
+  padding: 10px 0;
+}
+.service-content .faq p {
+  margin: 10px 0 0;
+}
+.service-flow {
+  padding-left: 24px;
+}
+.service-flow li {
+  padding: 10px 0;
+}
+.sidebox h2 {
+  margin: 0 0 18px;
+  color: var(--forest);
+  font-size: 28px;
+}
+.sidebox .btn {
+  width: 100%;
+}
+.back-catalog {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  margin-top: 16px;
+  font-size: 13px;
+}
+.official-sources p,
+.official-sources li {
+  font-size: 13px;
+}
+
+.catalog-section .eyebrow {
+  margin-bottom: 0;
+}
+@media (max-width: 1000px) {
+  .catalog-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .service-layout {
+    gap: 32px;
+  }
+}
+@media (max-width: 900px) {
+  .service-layout {
+    grid-template-columns: 1fr;
+  }
+  .service-layout .sidebox {
+    position: static;
+  }
+  .catalog-tools {
+    padding: 24px;
+    gap: 18px;
+  }
+}
+@media (max-width: 560px) {
+  .catalog-grid,
+  .catalog-tools {
+    grid-template-columns: 1fr;
+  }
+  .catalog-tools {
+    padding: 20px;
+  }
+  .catalog-card {
+    padding: 22px;
+  }
+  .catalog-card h3 {
+    font-size: 22px;
+  }
+  .catalog-description {
+    margin: 10px 0;
+    font-size: 14px;
+  }
+  .catalog-label {
+    margin-bottom: 10px;
+  }
+  .catalog-group {
+    margin-bottom: 44px;
+  }
+  .catalog-section {
+    padding-top: 32px;
+  }
+  .service-content > section {
+    margin-bottom: 36px;
+  }
+  .service-content .checklist li {
+    font-size: 14px;
+  }
+  .service-layout .sidebox {
+    padding: 24px;
+  }
+  .service-content .faq summary {
+    font-size: 16px;
+  }
+}
+
+.service-content section p {
+  max-width: 780px;
+}

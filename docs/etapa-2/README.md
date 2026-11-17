@@ -1,59 +1,49 @@
-# Etapa 2 — consolidação do catálogo existente
+# Etapa 2 — catálogo premium para revisão
 
-**Status: iniciada; primeira proposta preparada para revisão operacional.** A autorização de continuidade foi recebida em 17/11/2026 e está [registrada](../decisoes/2026-11-17-whatsapp-e-continuidade.md). Esta entrega documental não altera o site público, não declara catálogo definitivo aprovado e não cria condições comerciais.
+**Implementação preparada em Preview, sujeita à revisão de Jennifer e Rodrigo.** Mesma branch `feature/etapa-2-catalogo-servicos`, PR #6, base `feature/etapa-1-premium-responsiva`. Sem merge, produção ou início da Etapa 3.
 
-## Entregáveis preparados
+## Catálogo encontrado
 
-- [Inventário extraído das páginas atuais](INVENTARIO.json): títulos, listas e opções existentes, sem executar scripts do site.
-- [Catálogo proposto estruturado](CATALOGO-PROPOSTO.json): 12 entradas atuais, com preservação dos valores exatos do formulário.
-- [Fichas de revisão dos 12 serviços](FICHAS.md): público, apresentação, triagem, limites, fluxo, custos a definir e decisões pendentes.
-- [Fontes oficiais consultadas e matriz de revisão](FONTES-E-REVISAO.md).
-- [Checklist e decisões para fechar a Etapa 2](APROVACAO.md).
+12 entradas existentes: 8 italianas (Passaporte, AIRE, Fast It, Estado civil, Registro de filhos, Certidões, Carta d’Identità e Regularizações) e 4 brasileiras (IR, INSS, Processos administrativos e Organização documental). Existência confirmada nos arquivos não significa aprovação comercial do escopo.
 
-## Organização proposta
+Três categorias legadas — Negociação de Dívidas, Precatórios e Contratos — estavam apenas na página antiga, sem correspondência no formulário atual. Passaporte brasileiro foi acrescentado somente à documentação como possibilidade futura solicitada, não como oferta pública. Nenhum desses quatro candidatos foi implementado como novo serviço.
 
-| Itália — 8 serviços já existentes | Brasil — 4 serviços da home |
-| --- | --- |
-| Passaporte italiano | Imposto de Renda |
-| AIRE | INSS e benefícios |
-| Fast It | Processos administrativos |
-| Estado civil | Organização documental |
-| Registro de filhos | |
-| Certidões italianas | |
-| Carta d’identità | |
-| Regularização consular | |
+## Implementado
 
-As oito páginas consulares e a página de IR já existem. INSS, Processos administrativos e Organização documental ainda direcionam ao contato da home; páginas novas deverão ser preparadas após delimitar o escopo. A proposta não remove serviços nem modifica suas URLs.
+- `/servicos.html`: catálogo completo por Itália/Brasil, busca local por título e descrição, filtro de categoria, contador e estado vazio. Busca ignora acentos, maiúsculas e diferenças de pontuação; nenhum dado é enviado a um backend. Sem JavaScript todos os serviços permanecem disponíveis.
+- Home mantém serviços existentes e CTAs de análise; “Explorar serviços” e links de categoria levam ao catálogo completo. Cabeçalhos e rodapés públicos recebem navegação rastreável para o catálogo. O CSS específico do catálogo não é carregado na home.
+- Oito páginas consulares existentes padronizadas com nome/descrição, público, atividades, exclusões, checklist indicativo, cinco etapas, limitações, quatro FAQs, fontes oficiais e CTA direto ao formulário com serviço pré-selecionado. Sem nova coleta de dados, preços ou garantias.
+- Página existente de IR recebe público, documentos indicativos, exclusões e fontes oficiais; preserva checklist local e sua lógica. O preço legado “a partir de R$ 149” sai da apresentação pública conforme a instrução expressa desta etapa de não incluir preços. Nenhum novo valor foi definido.
+- As três categorias brasileiras amplas permanecem disponíveis para análise de escopo, identificadas como condicionais; não receberam páginas comerciais detalhadas sem definição operacional.
+- AIRE/Fast It, Estado civil/filhos e regularização/serviços específicos têm fronteiras explicitadas. Instruções de São Paulo não são tratadas como requisitos universais.
+- Assessoria privada opcional é diferenciada dos procedimentos oficiais, inclusive gratuitos. Sem promessa de agendamento, emissão, deferimento ou prazo controlado por autoridade.
+- As três categorias brasileiras legadas deixam de ser promovidas nos chips de `italia.html`; permanecem inventariadas como sugestões internas até decisão de escopo. URL da página e suas âncoras continuam existentes.
+- URLs das páginas mantidas; âncoras antigas de contato e `#requisitos`/`#faq` de passaporte preservadas. Sem redirecionamento de domínio.
 
-## Inconsistências encontradas e encaminhamento
+## Conteúdo e rastreabilidade
 
-1. **Fast It × AIRE:** tratar claramente a diferença entre suporte ao portal e procedimento cadastral. Preservar os dois nomes existentes até decidir o modelo de oferta; não criar preço duplicado ou prometer canal aplicável a todo serviço.
-2. **Estado civil × Registro de filhos:** definir fronteira entre eventos e rota de atendimento familiar. O enquadramento de menores exige revisão técnica por caso e jurisdição; não presumir aquisição automática de cidadania.
-3. **Regularização consular:** funcionar como porta de triagem, sem sugerir pacote ilimitado ou que todo procedimento esteja incluído.
-4. **Brasil:** confirmar tarefas e órgãos atendidos antes de transformar categorias amplas em ofertas detalhadas.
-5. **Legado em `italia.html`:** Negociação de Dívidas, Precatórios e Contratos aparecem nessa página, mas não no formulário e na home atuais. Permanecem registrados e não foram removidos; precisam de confirmação de continuidade e delimitação administrativa.
-6. **Preço de IR:** a página atual já mostra “a partir de R$ 149”. Esse valor foi inventariado como legado; não é uma nova aprovação de preço nem foi alterado. Preços/pacotes pertencem à Etapa 3.
-7. **Formulário:** “Certidão italiana”, “Outra regularização consular” e “Processo administrativo” são valores internos diferentes dos títulos plurais. Preservá-los evita regressão no payload n8n e na seleção automática.
+- [Matriz completa por serviço e status comercial](CATALOGO-SERVICOS.md), incluindo tabelas dos 12 existentes e 4 candidatos/legados.
+- [Fontes oficiais e limites da revisão](FONTES-E-REVISAO.md).
+- [Catálogo estruturado atualizado](CATALOGO-PROPOSTO.json).
+- [Inventário anterior à implementação](INVENTARIO.json) e [primeiras fichas de planejamento](FICHAS.md) permanecem como histórico; a matriz CATALOGO-SERVICOS é a referência atual.
+- [Checklist de aprovação e decisões pendentes](APROVACAO.md).
 
-## Próximas decisões concretas
+A documentação histórica de `CLAUDE.md` contém afirmações antigas sobre atividades jurídicas que não foram usadas como fundamento para a oferta. Consultoria e assessoria jurídicas não foram incluídas no apoio administrativo. Responsabilidades profissionais e comerciais devem ser validadas antes de aprovar o escopo definitivo.
 
-Duas informações foram solicitadas ao usuário durante esta preparação e seguem sem resposta no momento do registro:
+## Preservação
 
-- Consulados/regiões efetivamente atendidos pela Oliveira hoje.
-- Continuidade de Negociação de Dívidas, Precatórios e Contratos.
+Logo, foto da home/enquadramento, arquivos de imagem, fontes WOFF2, tokens visuais e menu acessível preservados. Sem novas dependências. Contrato do formulário central, endpoint/payload n8n, credenciais, Clicksign, banco, pagamentos, extensão e lógica de IR inalterados. Páginas legais mantêm seu conteúdo principal; apenas o rodapé aponta ao catálogo.
 
-Enquanto isso, a proposta organiza o material existente e explicita o que precisa de validação, sem assumir cobertura operacional nacional/mundial. Depois dessas definições, completar conteúdo das páginas com escopos incluídos/excluídos, requisitos oficiais por jurisdição, etapas, despesas externas e FAQ revisados. Nenhuma condição comercial ausente foi presumida.
+WhatsApp segue [registrado como pendência](../decisoes/2026-11-17-whatsapp-e-continuidade.md): usar ícone e link real quando o número empresarial for fornecido. Até lá, contato por formulário sem número fictício.
 
-## Preservação e validação desta entrega
+## Validação e entrega
 
-Alterações somente em documentação; HTML, CSS, JavaScript, recursos visuais, URLs, n8n, Clicksign, banco, contratos e pagamentos permanecem iguais à Etapa 1.1. Por isso não foram repetidos Lighthouse ou testes de interface nesta proposta. Eventuais Previews automáticos da integração Git continuam servindo o mesmo código público; o Preview visual avaliado favoravelmente pelo usuário permanece na entrega anterior.
+Testes locais passaram: 18 páginas × 7 larguras (360, 390, 430, 768, 1024, 1366 e 1920), menu, links e âncoras, teclado/foco, axe, imagens, overflow, busca e filtros, conteúdo padronizado, 404, seleção de serviços e simulações interceptadas de leads. Nenhum lead fictício foi enviado ao n8n.
 
-Verificações desta etapa: JSON válido; inventário confrontado com 8 páginas consulares, 4 opções brasileiras e 3 categorias legadas; existência dos caminhos locais; correspondência exata das 12 opções com o formulário. Fontes oficiais iniciais consultadas em 17/11/2026, com limitações e necessidade de revisão registradas. Não há medição de performance nova nesta entrega documental.
+Resultados finais de Preview, medições Lighthouse e capturas serão anexados antes de concluir a entrega. Não há nota de performance nova declarada antecipadamente.
 
-## WhatsApp
+## Pendências para aprovação
 
-Preferência salva: botão com ícone de WhatsApp e link para número empresarial quando informado. Número ainda indisponível; contato atual permanece por formulário. Não usar ícone enganoso ou número fictício. Ver [decisão persistente](../decisoes/2026-11-17-whatsapp-e-continuidade.md).
+Consulados/regiões atendidos; escopo e responsáveis por serviço; exercícios de IR; benefícios e tarefas INSS; órgãos/processos administrativos; entregáveis de organização documental; continuidade dos 3 legados; decisão sobre passaporte brasileiro; revisão profissional dos limites de atuação. Checklist é indicativo e não substitui instruções oficiais do caso.
 
-## Limites da autorização
-
-O usuário autorizou avançar; isso permite iniciar esta etapa sem repetir o pedido de aprovação visual. Não implica aprovação individual de Jennifer, merge ou produção. Esta proposta não aprova automaticamente preços, contratação Clicksign, cobranças ou envio real ao n8n/WhatsApp. A Etapa 3 depende de catálogo e escopos definidos; integrações e publicação continuam nos marcos próprios do projeto.
+Nenhum serviço foi marcado como comercialmente aprovado por esta implementação. Catálogo pronto para revisão, não autorização automática de contratação, taxas, pacotes, merge ou publicação. Etapa 3 aguarda aprovação do catálogo. Envio real ao n8n não foi realizado.

@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>FAST IT | Oliveira Assessoria</title>
+    <title>Fast It | Oliveira Assessoria</title>
     <meta
       name="description"
-      content="Orientação para cadastro, acesso e solicitações no portal FAST IT."
+      content="Orientação sobre cadastro, dados e solicitações disponíveis no portal consular Fast It."
     />
     <link rel="stylesheet" href="../consular.css" />
     <link rel="stylesheet" href="/site.css" />
@@ -32,6 +32,7 @@
       type="font/woff2"
       crossorigin
     />
+    <link rel="stylesheet" href="/catalogo.css" />
   </head>
   <body>
     <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
@@ -58,7 +59,8 @@
           <span aria-hidden="true">☰</span>
         </button>
         <nav id="main-nav" class="main-nav" aria-label="Navegação principal">
-          <a href="/#italia">Itália</a><a href="/#brasil">Brasil</a
+          <a href="/servicos.html#italia">Itália</a
+          ><a href="/servicos.html#brasil">Brasil</a
           ><a href="/#processo">Como funciona</a
           ><a href="/#diferenciais">Sobre a Oliveira</a
           ><a href="/?servico=Fast%20It#contato">Contato</a>
@@ -80,46 +82,193 @@
     <main id="conteudo" tabindex="-1">
       <section class="hero hero-simple">
         <div class="wrap">
-          <div class="breadcrumbs">
-            <a href="/servicos-consulares.html">Serviços Consulares</a> › FAST
-            IT
-          </div>
-          <div class="kicker">FAST IT 🇮🇹</div>
-          <h1>Suporte para cadastro, acesso e solicitações no portal.</h1>
+          <nav class="breadcrumbs" aria-label="Localização">
+            <a href="/servicos.html#italia">Serviços italianos</a> / Fast It
+          </nav>
+          <p class="kicker">Assessoria consular e documental</p>
+          <h1>Fast It</h1>
           <p>
-            Auxiliamos na conferência dos dados, organização dos documentos e
-            entendimento do procedimento que será realizado no FAST IT.
+            Orientação sobre cadastro, dados e solicitações disponíveis no
+            portal consular Fast It.
           </p>
           <div class="hero-actions">
             <a class="btn btn-gold" href="/?servico=Fast%20It#contato"
-              >Analisar meu caso</a
+              >Solicitar análise de Fast It</a
+            ><a class="btn btn-outline" href="#documentos"
+              >Ver checklist inicial</a
             >
           </div>
         </div>
       </section>
       <section class="section">
-        <div class="wrap content-grid">
-          <article class="content">
-            <h2>Em quais situações ajudamos</h2>
-            <ul class="checklist">
-              <li>Dificuldade de acesso ao portal</li>
-              <li>Cadastro com informações divergentes</li>
-              <li>Atualização de endereço</li>
-              <li>Solicitações relacionadas ao AIRE</li>
-              <li>Dúvidas sobre protocolo e acompanhamento</li>
-            </ul>
-            <h3>Antes de protocolar</h3>
-            <p>
-              Conferimos a finalidade da solicitação, os dados do cidadão e os
-              documentos disponíveis para reduzir retrabalho e evitar que o
-              pedido seja enviado de forma incompleta.
-            </p>
+        <div class="wrap service-layout">
+          <article class="content service-content">
+            <section aria-labelledby="para-quem">
+              <h2 id="para-quem">Para quem é indicado</h2>
+              <p>
+                Pessoas que precisam entender o uso do portal e identificar o
+                caminho da sua solicitação consular.
+              </p>
+            </section>
+            <section aria-labelledby="incluido">
+              <h2 id="incluido">O que a assessoria abrange</h2>
+              <p>
+                Estas são as atividades apresentadas para análise. As tarefas e
+                a disponibilidade do atendimento serão confirmadas na triagem.
+              </p>
+              <ul class="checklist">
+                <li>
+                  Levantamento da dificuldade de cadastro ou da solicitação
+                  pretendida.
+                </li>
+                <li>
+                  Conferência das informações que precisam ser organizadas.
+                </li>
+                <li>
+                  Orientação sobre os recursos do portal aplicáveis ao
+                  procedimento.
+                </li>
+              </ul>
+            </section>
+            <section aria-labelledby="excluido">
+              <h2 id="excluido">O que não está incluído</h2>
+              <ul class="checklist">
+                <li>
+                  Taxas oficiais e despesas de terceiros, incluindo serviços
+                  externos que forem necessários.
+                </li>
+                <li>
+                  Atividades não confirmadas no escopo, como tradução,
+                  apostilamento ou representação especializada.
+                </li>
+                <li>
+                  Emissão de documentos, decisões e resultados que cabem às
+                  autoridades públicas.
+                </li>
+              </ul>
+              <p>
+                A assessoria é privada e opcional. Os procedimentos oficiais
+                seguem seus próprios canais, inclusive quando são gratuitos
+                perante o órgão.
+              </p>
+            </section>
+            <section aria-labelledby="documentos">
+              <h2 id="documentos">
+                Checklist inicial de documentos e informações
+              </h2>
+              <p>
+                Lista indicativa para organizar a análise, não uma relação
+                definitiva de exigências legais. As instruções do órgão
+                competente serão verificadas para o seu caso.
+              </p>
+              <ul class="checklist">
+                <li>
+                  Descrição da dificuldade, sem senha ou código de acesso.
+                </li>
+                <li>Informações do cadastro e do consulado de referência.</li>
+                <li>
+                  Número de protocolo ou mensagem de pendência, quando houver.
+                </li>
+              </ul>
+              <p class="notice">
+                No formulário inicial, descreva a necessidade. Não envie senhas,
+                códigos de acesso ou documentos sensíveis na mensagem.
+              </p>
+            </section>
+            <section aria-labelledby="como-funciona">
+              <h2 id="como-funciona">Como funciona</h2>
+              <ol class="service-flow">
+                <li>
+                  <strong>Triagem.</strong> Entender a necessidade, a residência
+                  e o órgão responsável.
+                </li>
+                <li>
+                  <strong>Conferência documental.</strong> Organizar o que está
+                  disponível e identificar pendências.
+                </li>
+                <li>
+                  <strong>Preparação.</strong> Confirmar requisitos e tarefas do
+                  atendimento.
+                </li>
+                <li>
+                  <strong>Orientação ou encaminhamento.</strong> Seguir o canal
+                  oficial aplicável, conforme o escopo.
+                </li>
+                <li>
+                  <strong>Acompanhamento.</strong> Conferir as pendências nas
+                  etapas que forem acordadas.
+                </li>
+              </ol>
+            </section>
+            <section aria-labelledby="limites">
+              <h2 id="limites">Limitações do atendimento</h2>
+              <p>
+                Fast It é um canal, não um procedimento único. O catálogo não
+                presume que todos os serviços consulares possam ser concluídos
+                pelo portal.
+              </p>
+            </section>
+            <section aria-labelledby="duvidas">
+              <h2 id="duvidas">Perguntas frequentes</h2>
+              <div class="faq">
+                <details>
+                  <summary>Posso enviar minha senha para a análise?</summary>
+                  <p>
+                    Não. Não informe senha, código de autenticação ou
+                    credenciais no formulário de contato.
+                  </p>
+                </details>
+                <details>
+                  <summary>O suporte ao portal inclui meu pedido AIRE?</summary>
+                  <p>
+                    O escopo precisa ser confirmado na triagem. AIRE e suporte
+                    ao portal são apresentados separadamente para esclarecer o
+                    que será atendido.
+                  </p>
+                </details>
+                <details>
+                  <summary>Todo serviço consular é feito pelo Fast It?</summary>
+                  <p>
+                    Não presuma isso. Confira o canal indicado pela autoridade
+                    para o procedimento desejado; podem existir instruções
+                    próprias fora do portal.
+                  </p>
+                </details>
+                <details>
+                  <summary>Vocês alteram a decisão do consulado?</summary>
+                  <p>
+                    Não. O apoio organiza informações e orienta o uso do canal;
+                    a análise e a decisão cabem ao órgão competente.
+                  </p>
+                </details>
+              </div>
+            </section>
+            <section class="official-sources" aria-labelledby="fontes">
+              <h2 id="fontes">Consulte as orientações oficiais</h2>
+              <p>
+                As fontes abaixo ajudam a entender o procedimento. Instruções de
+                uma sede não se aplicam automaticamente a outras jurisdições.
+              </p>
+              <ul>
+                <li>
+                  <a
+                    href="https://conssanpaolo.esteri.it/it/servizi-consolari-e-visti/servizi-per-il-cittadino-italiano/anagrafe-degli-italiani-residenti-allestero-aire/"
+                    >Consulado de São Paulo — AIRE e canais</a
+                  >
+                </li>
+              </ul>
+            </section>
           </article>
-          <aside class="sidebox">
-            <h3>FAST IT</h3>
-            <p>Suporte digital para procedimentos consulares online.</p>
+          <aside class="sidebox" aria-label="Resumo do atendimento">
+            <h2>Fast It</h2>
+            <p>
+              Organização documental e orientação administrativa. O escopo é
+              confirmado antes do atendimento.
+            </p>
             <a class="btn btn-dark" href="/?servico=Fast%20It#contato"
-              >Quero ajuda</a
+              >Solicitar análise</a
+            ><a class="back-catalog" href="/servicos.html#italia"
+              >Ver outros serviços italianos</a
             >
           </aside>
         </div>
@@ -127,16 +276,14 @@
       <section class="section lead" id="contato">
         <div class="wrap">
           <div class="title">
-            <small style="color: #dfc56d">Solicitar análise</small>
-            <h2 style="color: white">Qual dificuldade você encontrou?</h2>
-          </div>
-          <div class="contact-panel">
+            <small>Próximo passo</small>
+            <h2>Conte sua necessidade</h2>
             <p>
-              Para solicitar uma análise, utilize o formulário central da
-              Oliveira Assessoria.
+              Você será direcionado ao formulário central com Fast It
+              selecionado.
             </p>
             <a class="btn btn-gold" href="/?servico=Fast%20It#contato"
-              >Solicitar análise <span aria-hidden="true">→</span></a
+              >Solicitar análise</a
             >
           </div>
         </div>
