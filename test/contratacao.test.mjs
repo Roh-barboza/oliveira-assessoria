@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { createHmac, randomUUID } from 'node:crypto';
 import { test } from 'node:test';
 import { PDFDocument } from 'pdf-lib';
+import endpoint from '../api/contratacao.mjs';
 import { runtime } from '../server/contratacao/app.mjs';
 import { services, testClient } from '../server/contratacao/catalog.mjs';
 import { clicksign } from '../server/contratacao/clicksign.mjs';
@@ -75,6 +76,7 @@ async function login(call, role = 'tester') {
 }
 
 test('o ambiente só habilita localhost ou preview e bloqueia produção mesmo com as flags ligadas', () => {
+  assert.equal(typeof endpoint.fetch, 'function');
   assert.equal(runtime(env).local, true);
   assert.equal(runtime({ ...env, VERCEL: '1', VERCEL_ENV: 'production' }), null);
   assert.equal(runtime({ ...env, VERCEL: '1', VERCEL_ENV: 'preview', VERCEL_TARGET_ENV: 'production' }), null);

@@ -2,7 +2,7 @@ import { createApp, responseHeaders, runtime } from '../server/contratacao/app.m
 import { postgres } from '../server/contratacao/store.mjs';
 
 let app;
-export default function handler(request) {
+function handler(request) {
   try {
     if (!app) {
       const env = process.env;
@@ -20,3 +20,5 @@ export default function handler(request) {
     return Response.json({ error: 'Configuração do ambiente de testes incompleta.' }, { status: 503, headers: responseHeaders });
   }
 }
+
+export default { fetch: handler };
