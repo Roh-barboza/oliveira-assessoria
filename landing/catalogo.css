@@ -327,3 +327,8 @@
     order: -1;
   }
 }
+
+.service-hero__actions .btn-primary {
+  background: var(--gold);
+  color: var(--forest-deep);
+}

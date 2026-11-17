@@ -367,6 +367,7 @@ try {
   await page.goto(base + "/imposto-de-renda.html");
   assert.equal(await page.locator("#documentos").count(), 1);
   assert.equal(await page.locator("#ir-excluido").count(), 1);
+  assert.equal(await page.locator(".service-hero__actions a").count(), 2);
   assert.equal(await page.locator('main a[href*="?servico="]').count(), 2);
   assert.equal(
     await page.locator('main a[href="ir/formulario.html"]').count(),
