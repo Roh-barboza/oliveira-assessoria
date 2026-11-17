@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="referrer" content="no-referrer">
+  <title>Contratação digital | Oliveira Assessoria</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Playfair+Display:wght@500;600;700&amp;display=swap">
+  <link rel="stylesheet" href="/contratacao.css">
+  <script type="module" src="/contratacao.js"></script>
+</head>
+<body>
+  <header class="brandbar">
+    <a href="/" aria-label="Oliveira Assessoria, página inicial"><img src="/assets/logo-oliveira-white.svg" alt="Oliveira Assessoria" width="184" height="45"></a>
+    <a href="/">Voltar ao site</a>
+  </header>
+  <main>
+    <div class="intro">
+      <p class="kicker">Assessoria consular e documental</p>
+      <h1 id="page-title">Contratação digital</h1>
+      <p class="notice">Ambiente de testes. Use a identidade fictícia incluída no formulário. Valores ilustrativos e cobranças desativadas.</p>
+    </div>
+    <p id="feedback" class="feedback" role="status" aria-live="polite">Carregando ambiente de testes…</p>
+
+    <section id="access" class="panel narrow" hidden aria-labelledby="access-title">
+      <h2 id="access-title">Acesso ao sandbox</h2>
+      <form id="login">
+        <label>Perfil de acesso
+          <select name="role"><option value="tester">Participante do teste</option><option value="jennifer">Jennifer</option><option value="rodrigo">Rodrigo</option></select>
+        </label>
+        <label id="credential-label">Código de convite
+          <input name="password" type="password" required maxlength="256" autocomplete="current-password">
+        </label>
+        <button type="submit">Entrar</button>
+      </form>
+    </section>
+
+    <nav id="session" class="toolbar" hidden aria-label="Menu da contratação">
+      <button id="new-order" type="button">Nova contratação</button>
+      <button id="orders-button" type="button" class="secondary">Meus pedidos</button>
+      <button id="logout" type="button" class="secondary push">Sair</button>
+    </nav>
+
+    <section id="intake" class="layout" hidden aria-labelledby="intake-title">
+      <form id="draft" class="panel">
+        <h2 id="intake-title">Serviço e triagem</h2>
+        <div class="fields">
+          <label>Serviço <select name="serviceId" required></select></label>
+          <label>Circunscrição consular <select name="consulate" required></select></label>
+        </div>
+        <label>O requerente tem 18 anos ou mais?
+          <select name="adult" required><option value="">Selecione</option><option value="yes">Sim</option><option value="no">Não</option><option value="unknown">A confirmar</option></select>
+        </label>
+        <fieldset id="questions"><legend>Condições do serviço</legend></fieldset>
+        <fieldset><legend>Identidade do teste</legend>
+          <div class="fields">
+            <label>Nome <input name="name" readonly></label>
+            <label>CPF fictício <input name="cpf" readonly></label>
+            <label>E-mail fictício <input name="email" readonly></label>
+            <label>Endereço fictício <input name="address" readonly></label>
+          </div>
+        </fieldset>
+        <label class="check"><input type="checkbox" name="acknowledged" required> Confirmo que estou testando com dados fictícios.</label>
+        <button type="submit">Continuar para conferência</button>
+      </form>
+      <aside class="summary">
+        <h2 id="service-name"></h2>
+        <p id="service-price" class="price"></p>
+        <p id="service-scope"></p>
+        <p class="fine">Taxas consulares, certidões, traduções, apostilas e postagem são despesas à parte.</p>
+      </aside>
+    </section>
+
+    <section id="orders" class="panel" hidden aria-labelledby="orders-title">
+      <div class="section-heading">
+        <h2 id="orders-title">Meus pedidos</h2>
+        <label id="status-filter" hidden>Filtrar situação <select id="filter"></select></label>
+      </div>
+      <div id="order-list"></div>
+      <div class="toolbar" id="pages" hidden><button id="previous-page" type="button" class="secondary">Anterior</button><button id="next-page" type="button" class="secondary">Próxima</button></div>
+    </section>
+
+    <section id="order" class="panel" hidden aria-labelledby="order-title">
+      <div class="section-heading">
+        <div><p id="order-status" class="kicker"></p><h2 id="order-title" tabindex="-1"></h2></div>
+        <button id="refresh" type="button" class="secondary">Atualizar situação</button>
+      </div>
+      <dl id="order-meta" class="metadata"></dl>
+      <div id="order-content"></div>
+      <div id="widget" hidden><p id="widget-note" role="status"></p><div id="clicksign-container"></div></div>
+    </section>
+    <noscript>Ative o JavaScript para acessar a contratação digital.</noscript>
+  </main>
+</body>
+</html>
