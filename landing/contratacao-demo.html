@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Protótipo de contratação | Oliveira Assessoria</title>
+  <meta name="description" content="Demonstração local do preenchimento automático de contrato de assessoria. Nenhuma assinatura ou pagamento real.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --wine:#522136; --wine2:#692f45; --cream:#f8f4ed; --paper:#fffefb; --gold:#c49b64; --ink:#242427; --muted:#69666a; --line:#e6ddd5; --shadow:0 22px 70px rgba(57,35,40,.09); }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--cream); font-family:"DM Sans",sans-serif; color:var(--ink); }
+    button,input,select { font:inherit; }
+    button { cursor:pointer; }
+    a { color:inherit; }
+    header { background:var(--wine); color:#fff; padding:20px max(22px,calc((100% - 1150px)/2)); display:flex; align-items:center; justify-content:space-between; gap:20px; }
+    header .brand { text-decoration:none; font-family:"Playfair Display",serif; font-weight:700; letter-spacing:.03em; font-size:22px; }
+    header a.back { font-size:13px; color:#f0dfd9; text-decoration:none; }
+    header a.back:hover { color:#fff; }
+    .shell { max-width:1150px; margin:0 auto; padding:40px 22px 80px; }
+    .eyebrow { color:#9c7143; text-transform:uppercase; letter-spacing:.22em; font-size:11px; font-weight:700; margin:0 0 10px; }
+    h1,h2,h3 { font-family:"Playfair Display",serif; }
+    h1 { font-size:clamp(32px,4.3vw,51px); line-height:1.12; font-weight:600; max-width:800px; margin:0; color:var(--wine); }
+    .lead { max-width:750px; color:var(--muted); line-height:1.7; font-size:15px; margin:15px 0 28px; }
+    .warning { border:1px solid #e5c992; background:#fff9ea; border-radius:12px; padding:15px 18px; color:#6c562e; font-size:13px; line-height:1.6; margin-bottom:22px; }
+    .stepper { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin:0 0 25px; }
+    .stepper span { background:#ebe1da; color:#706269; padding:11px 8px; text-align:center; border-radius:8px; font-size:12px; font-weight:600; }
+    .stepper span.active { background:var(--wine); color:white; }
+    .layout { display:grid; grid-template-columns:minmax(0,1fr) 320px; gap:25px; align-items:start; }
+    .panel { background:var(--paper); border:1px solid var(--line); border-radius:17px; box-shadow:var(--shadow); padding:30px; }
+    .side { background:#f0e7db; border:1px solid #dfd1bd; border-radius:17px; padding:25px; position:sticky; top:20px; }
+    h2 { font-size:28px; margin:0 0 9px; color:var(--wine); }
+    h3 { font-size:21px; margin:0 0 8px; }
+    .sub { color:var(--muted); font-size:14px; line-height:1.65; margin:0 0 23px; }
+    .fields { display:grid; grid-template-columns:1fr 1fr; gap:17px; }
+    .field.wide { grid-column:1/-1; }
+    label { display:block; font-size:12px; font-weight:700; margin-bottom:7px; color:#494249; }
+    input,select { width:100%; border:1px solid #d6cdc8; border-radius:9px; padding:12px; color:var(--ink); background:#fff; min-height:46px; }
+    input:focus,select:focus { outline:2px solid #b69173; outline-offset:1px; }
+    .service-list { display:grid; gap:12px; }
+    .service { display:grid; grid-template-columns:21px 1fr auto; gap:12px; align-items:center; cursor:pointer; padding:16px; border:1px solid #ded2cc; border-radius:11px; background:#fff; margin:0; }
+    .service:has(input:checked) { border:2px solid var(--wine); background:#fdf8f8; padding:15px; }
+    .service input { width:18px; min-height:18px; accent-color:var(--wine); }
+    .service strong { font-size:14px; }
+    .service small { display:block; margin-top:4px; font-weight:400; color:var(--muted); font-size:11px; line-height:1.45; }
+    .service .price { white-space:nowrap; color:var(--wine); font-weight:700; font-size:18px; }
+    .nav { display:flex; align-items:center; justify-content:space-between; gap:13px; margin-top:27px; }
+    .primary { border:0; color:#fff; background:var(--wine); border-radius:9px; padding:13px 23px; font-weight:700; font-size:14px; }
+    .primary:hover { background:var(--wine2); }
+    .secondary { background:transparent; color:var(--wine); border:1px solid #baa8a9; border-radius:9px; padding:12px 20px; font-weight:700; font-size:14px; }
+    .secondary:hover { background:#f8f1f1; }
+    .tiny { color:#716c6e; font-size:12px; line-height:1.6; }
+    .side .tag { font-size:10px; letter-spacing:.18em; text-transform:uppercase; color:#875c3e; font-weight:700; }
+    .side .figure { color:var(--wine); font:700 36px "Playfair Display",serif; margin:8px 0; }
+    .side hr { border:0; border-top:1px solid #d9cab8; margin:20px 0; }
+    .side ul { margin:9px 0; padding-left:20px; color:#605553; line-height:1.85; font-size:12px; }
+    .document { background:white; border:1px solid #d9d2cc; border-radius:4px; box-shadow:0 5px 16px #4d303015; padding:30px; font-size:12px; line-height:1.7; margin-top:18px; }
+    .document .doc-head { text-align:center; border-bottom:1px solid #e4ddd7; padding-bottom:18px; margin-bottom:17px; }
+    .doc-head .doc-brand { color:var(--wine); font-family:"Playfair Display",serif; font-size:22px; font-weight:700; }
+    .document h3 { text-transform:uppercase; font-family:"DM Sans",sans-serif; font-size:12px; margin:19px 0 5px; }
+    .document p { margin:9px 0; }
+    .document .line { display:inline-block; border-bottom:1px solid #bbb; min-width:180px; }
+    .checkline { display:flex; gap:10px; align-items:start; font-size:13px; line-height:1.55; margin:16px 0; }
+    .checkline input { flex:0 0 18px; min-height:18px; width:18px; margin-top:2px; accent-color:var(--wine); }
+    .signature { border:1px dashed #cbb9a8; background:#f9f5f0; padding:20px; margin:18px 0; border-radius:10px; text-align:center; }
+    .signature strong { font-family:"Playfair Display",serif; font-size:26px; font-style:italic; color:var(--wine); display:block; margin:11px 0; }
+    .hidden { display:none !important; }
+    .status { border:1px solid #d3c7bf; padding:18px; border-radius:12px; background:#fffaf3; line-height:1.65; font-size:14px; }
+    .status b { color:var(--wine); }
+    footer { text-align:center; padding:23px; font-size:11px; color:#8a8183; }
+    @media (max-width:850px) { .layout { grid-template-columns:1fr; }.side { position:static; } }
+    @media (max-width:580px) { header .brand { font-size:18px; } .shell { padding-top:26px; } .panel { padding:18px; } .fields { grid-template-columns:1fr; } .stepper span { font-size:10px; } .service { grid-template-columns:21px 1fr; } .price { grid-column:2; } .document { padding:15px; }.nav { flex-wrap:wrap; } }
+    @media print { header,.eyebrow,h1,.lead,.warning,.stepper,.side,.nav,.sub,.checkline,footer { display:none !important; } body { background:#fff; } .shell { padding:0; } .layout { display:block; } .panel { border:0; box-shadow:none; padding:0; } .document { border:0; box-shadow:none; margin:0; padding:0; } #stage-1,#stage-2,#stage-4 { display:none !important; } #stage-3 { display:block !important; } #stage-3>h2 { display:none !important; } }
+  </style>
+</head>
+<body>
+  <header><a class="brand" href="index.html">OLIVEIRA ASSESSORIA</a><a class="back" href="index.html">← Voltar ao site</a></header>
+  <main class="shell">
+    <p class="eyebrow">Experiência de contratação · Versão demonstrativa</p>
+    <h1>Do formulário ao contrato, em poucos passos.</h1>
+    <p class="lead">Esta é uma prévia funcional da experiência que estamos construindo para a Oliveira Assessoria. Escolha um serviço, preencha dados fictícios e visualize o contrato personalizado.</p>
+    <div class="warning"><strong>Ambiente de demonstração.</strong> Não insira dados pessoais reais. As informações ficam apenas na memória desta página e não são enviadas a servidores. Não há cobrança, armazenamento, assinatura válida ou integração ativa com a Clicksign.</div>
+    <div class="stepper" aria-label="Etapas da demonstração">
+      <span id="nav-1" class="active">1. Serviço</span><span id="nav-2">2. Seus dados</span><span id="nav-3">3. Contrato</span><span id="nav-4">4. Assinatura</span>
+    </div>
+    <div class="layout">
+      <div class="panel">
+        <section id="stage-1">
+          <h2>Qual serviço você procura?</h2><p class="sub">Valores apenas ilustrativos até a aprovação da tabela comercial definitiva.</p>
+          <div class="service-list">
+            <label class="service"><input type="radio" name="servico" value="aire" checked><span><strong>Atualização de endereço AIRE</strong><small>Assessoria administrativa para atualização cadastral, sujeita à verificação do caso.</small></span><span class="price">R$ 179</span></label>
+            <label class="service"><input type="radio" name="servico" value="inscricao"><span><strong>Primeira inscrição no AIRE</strong><small>Organização documental e assistência no procedimento oficial.</small></span><span class="price">R$ 249</span></label>
+            <label class="service"><input type="radio" name="servico" value="passaporte"><span><strong>Passaporte italiano · Primeira emissão</strong><small>Conferência de requisitos e documentos e orientação administrativa.</small></span><span class="price">R$ 449</span></label>
+            <label class="service"><input type="radio" name="servico" value="renovacao"><span><strong>Passaporte italiano · Renovação</strong><small>Preparação documental e orientação para agendamento, sem garantia de vaga.</small></span><span class="price">R$ 399</span></label>
+          </div>
+          <div class="nav"><span class="tiny">Taxas oficiais e despesas de terceiros não incluídas.</span><button class="primary" type="button" data-next="2">Continuar →</button></div>
+        </section>
+        <section id="stage-2" class="hidden">
+          <h2>Dados do contratante</h2><p class="sub">Use exclusivamente dados fictícios nesta demonstração.</p>
+          <div class="fields">
+            <div class="field wide"><label for="nome">Nome completo fictício</label><input id="nome" autocomplete="off" value="Maria Cliente Exemplo"></div>
+            <div class="field"><label for="cpf">CPF ilustrativo</label><input id="cpf" autocomplete="off" value="000.000.000-00"></div>
+            <div class="field"><label for="email">E-mail fictício</label><input id="email" type="text" autocomplete="off" value="maria@exemplo.test"></div>
+            <div class="field wide"><label for="endereco">Endereço fictício</label><input id="endereco" autocomplete="off" value="Rua Exemplo, 100, São Paulo - SP"></div>
+            <div class="field"><label for="telefone">Telefone fictício</label><input id="telefone" autocomplete="off" value="(11) 90000-0000"></div>
+            <div class="field"><label for="consulado">Consulado ou circunscrição</label><select id="consulado"><option>São Paulo</option><option>Rio de Janeiro</option><option>Curitiba</option><option>Porto Alegre</option><option>Belo Horizonte</option><option>Recife</option><option>Outro / a confirmar</option></select></div>
+          </div>
+          <div class="nav"><button class="secondary" type="button" data-prev="1">← Voltar</button><button class="primary" type="button" data-next="3">Visualizar contrato →</button></div>
+        </section>
+        <section id="stage-3" class="hidden">
+          <h2>Confira o contrato gerado</h2><p class="sub">Esta prévia atualiza automaticamente os dados da etapa anterior. O texto é uma minuta inicial, pendente de revisão jurídica e cadastro da pessoa jurídica contratada.</p>
+          <article class="document" id="contract" aria-label="Prévia do contrato">
+            <div class="doc-head"><div class="doc-brand">OLIVEIRA ASSESSORIA</div><strong>CONTRATO DE PRESTAÇÃO DE SERVIÇOS</strong><div>ASSESSORIA ADMINISTRATIVA E CONSULAR</div></div>
+            <p><strong>CONTRATANTE:</strong> <span data-value="nome"></span>, CPF <span data-value="cpf"></span>, residente em <span data-value="endereco"></span>, contato <span data-value="email"></span> / <span data-value="telefone"></span>.</p>
+            <p><strong>CONTRATADA:</strong> Oliveira Assessoria, <strong>[razão social, CNPJ, endereço e representante legal a cadastrar antes da publicação real]</strong>.</p>
+            <h3>Quadro-resumo da contratação</h3>
+            <p><strong>Serviço:</strong> <span data-value="servico"></span><br><strong>Consulado/circunscrição informada:</strong> <span data-value="consulado"></span><br><strong>Valor:</strong> <span data-value="valor"></span><br><strong>Forma de pagamento:</strong> a definir no checkout seguro, após aprovação da contratação.</p>
+            <h3>Cláusula 1ª · Objeto</h3>
+            <p>Prestação de assessoria administrativa e documental para <span data-value="servico"></span>, incluindo <span data-value="escopo"></span>. A análise de elegibilidade e o escopo definitivo deverão ser confirmados antes da contratação real.</p>
+            <h3>Cláusula 2ª · Deveres e limites</h3>
+            <p>A CONTRATADA prestará orientações e apoio operacional dentro do escopo contratado. O CONTRATANTE fornecerá informações corretas, documentos necessários e realizará pessoalmente atos de identidade exigidos pelos órgãos oficiais. Não há garantia de deferimento, emissão, vaga de agendamento ou prazo de autoridade pública.</p>
+            <h3>Cláusula 3ª · Custos externos</h3>
+            <p>O preço remunera exclusivamente a assessoria privada, opcional. Taxas oficiais aplicáveis, certidões, traduções, apostilamentos, remessas e demais custos de terceiros não estão incluídos e serão pagos separadamente pelo CONTRATANTE. Eventuais procedimentos gratuitos nos órgãos oficiais assim permanecerão.</p>
+            <h3>Cláusula 4ª · Pagamento, execução e cancelamento</h3>
+            <p>O pagamento e o início da execução observarão as condições informadas no quadro-resumo definitivo. O direito de arrependimento em contratações pela internet será assegurado nos termos do art. 49 do Código de Defesa do Consumidor, quando aplicável. As demais hipóteses de cancelamento e restituição seguirão a legislação de consumo e as condições efetivamente contratadas.</p>
+            <h3>Cláusula 5ª · Dados pessoais e assinatura eletrônica</h3>
+            <p>Dados pessoais serão tratados para a contratação, execução e obrigações legais, conforme política de privacidade e legislação aplicável. Na versão final, a assinatura eletrônica será realizada por provedor especializado, com autenticação e registro de integridade e evidências.</p>
+            <h3>Concordância</h3>
+            <p>Este documento é uma <strong>minuta demonstrativa sem assinatura, sem aceite contratual e sem efeitos de contratação</strong>. A versão definitiva exigirá revisão jurídica, termos completos e identificação da CONTRATADA.</p>
+            <p><br>Contratante: <span data-value="nome"></span><br>Representante da contratada: <span class="line"></span></p>
+          </article>
+          <div class="nav"><button class="secondary" type="button" data-prev="2">← Corrigir dados</button><button class="secondary" type="button" id="print">Imprimir prévia</button></div>
+          <label class="checkline"><input id="agree" type="checkbox"><span>Li a prévia e entendi que ela é apenas uma simulação, sem assinatura ou contratação real.</span></label>
+          <button class="primary" type="button" data-next="4" id="next-sign" disabled>Ver etapa de assinatura →</button>
+        </section>
+        <section id="stage-4" class="hidden">
+          <h2>Como será a assinatura?</h2><p class="sub">Etapa demonstrativa. Nenhuma assinatura é capturada nesta página.</p>
+          <div class="signature"><span class="tiny">Espaço reservado para o componente de assinatura Clicksign</span><strong id="sig-name">Nome do contratante</strong><span class="tiny">Na versão real: identificação do signatário, confirmação eletrônica e trilha de auditoria.</span></div>
+          <div class="status"><b>Integração pendente.</b> Após ativação segura da API, esta etapa enviará o contrato final para a Clicksign. A assinatura será acompanhada por eventos de webhook, e o PDF assinado será disponibilizado após confirmação. Não há assinatura, documento enviado ou pagamento nesta demonstração.</div>
+          <div class="nav"><button class="secondary" type="button" data-prev="3">← Revisar contrato</button><a class="primary" style="text-decoration:none" href="index.html">Voltar ao site</a></div>
+        </section>
+      </div>
+      <aside class="side"><div class="tag">Resumo da simulação</div><h3 id="aside-service">Atualização AIRE</h3><div class="figure" id="aside-price">R$ 179</div><span class="tiny">Preço indicativo, não há cobrança.</span><hr><strong style="font-size:13px">O futuro sistema incluirá:</strong><ul><li>Triagem prévia de elegibilidade</li><li>Contrato completo revisado</li><li>PDF gerado no servidor</li><li>Assinatura via Clicksign</li><li>Confirmações por webhook</li><li>Pagamento e área do cliente</li></ul><hr><p class="tiny"><strong>Privacidade:</strong> este protótipo não transmite dados para o servidor. Não use dados reais.</p></aside>
+    </div>
+  </main>
+  <footer>Oliveira Assessoria · Protótipo interno · Não utilizar para contratações reais</footer>
+  <script>
+    (function () {
+      "use strict";
+      var services = {
+        aire:{name:"Atualização de endereço AIRE",short:"Atualização AIRE",price:179,scope:"triagem, conferência documental, orientação de preenchimento e assistência no encaminhamento administrativo permitido"},
+        inscricao:{name:"Primeira inscrição no AIRE",short:"Primeira inscrição AIRE",price:249,scope:"triagem, organização documental, orientação de cadastro e suporte no encaminhamento administrativo permitido"},
+        passaporte:{name:"Assessoria para primeira emissão de passaporte italiano",short:"Primeiro passaporte italiano",price:449,scope:"análise inicial dos requisitos, checklist, conferência de documentos e orientação sobre os procedimentos oficiais de agendamento"},
+        renovacao:{name:"Assessoria para renovação de passaporte italiano",short:"Renovação de passaporte",price:399,scope:"análise inicial dos requisitos, checklist, conferência de documentos e orientação sobre os procedimentos oficiais de agendamento"}
+      };
+      var step = 1;
+      function getService() { return services[document.querySelector('input[name="servico"]:checked').value]; }
+      function val(id) { return document.getElementById(id).value.trim() || "[não informado]"; }
+      function render() {
+        var item = getService();
+        var values = {nome:val("nome"),cpf:val("cpf"),email:val("email"),telefone:val("telefone"),endereco:val("endereco"),consulado:val("consulado"),servico:item.name,escopo:item.scope,valor:item.price.toLocaleString("pt-BR",{style:"currency",currency:"BRL"})};
+        document.querySelectorAll("[data-value]").forEach(function(node){node.textContent = values[node.dataset.value];});
+        document.getElementById("aside-service").textContent=item.short;
+        document.getElementById("aside-price").textContent=values.valor;
+        document.getElementById("sig-name").textContent=values.nome;
+      }
+      function show(n) {
+        step=n;
+        for(var i=1;i<=4;i++){document.getElementById("stage-"+i).classList.toggle("hidden",i!==n);document.getElementById("nav-"+i).classList.toggle("active",i===n);}
+        render();
+        window.scrollTo({top:0,behavior:"smooth"});
+      }
+      document.querySelectorAll("[data-next]").forEach(function(b){b.addEventListener("click",function(){show(Number(b.dataset.next));});});
+      document.querySelectorAll("[data-prev]").forEach(function(b){b.addEventListener("click",function(){show(Number(b.dataset.prev));});});
+      document.querySelectorAll("input,select").forEach(function(el){el.addEventListener("input",render);el.addEventListener("change",render);});
+      document.getElementById("agree").addEventListener("change",function(e){document.getElementById("next-sign").disabled=!e.target.checked;});
+      document.getElementById("print").addEventListener("click",function(){render();window.print();});
+      render();
+    })();
+  </script>
+</body>
+</html>
