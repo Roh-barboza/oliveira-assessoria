@@ -234,7 +234,7 @@ try {
     await page.goto(`${base}/servicos/${slug}.html`);
     for (const selector of [
       ".hero-actions .btn-gold",
-      ".sidebox .btn",
+      ".service-contact .btn",
       ".header-cta",
       "#main-nav a:last-child",
     ]) {
@@ -289,6 +289,20 @@ try {
   assert.equal(await page.locator(".catalog-card").count(), 12);
   const search = page.locator("#catalog-search");
   const category = page.locator("#catalog-category");
+  assert.equal(
+    await page
+      .locator(".catalog-label")
+      .filter({ hasText: "Em validação comercial" })
+      .count(),
+    3,
+  );
+  assert.equal(
+    await page
+      .locator(".catalog-action")
+      .filter({ hasText: "Consultar possibilidade de atendimento" })
+      .count(),
+    3,
+  );
   await category.selectOption("brasil");
   assert.equal(await page.locator(".catalog-card:visible").count(), 4);
   await category.selectOption("italia");
@@ -328,12 +342,42 @@ try {
       "fontes",
     ])
       assert.equal(await page.locator("#" + id).count(), 1, slug + " " + id);
+    assert.equal(
+      await page.locator('main a[href*="?servico="]').count(),
+      2,
+      slug + " has one opening and one final analysis CTA",
+    );
+    assert.equal(
+      await page.locator('.service-index a[href*="?servico="]').count(),
+      0,
+    );
+    await page.locator(".service-index-panel > summary").focus();
+    await page.keyboard.press("Enter");
+    assert.equal(
+      await page
+        .locator('.service-index nav a[href="#documentos"]')
+        .isVisible(),
+      true,
+    );
+    await page.locator('.service-index nav a[href="#documentos"]').click();
+    assert.equal(new URL(page.url()).hash, "#documentos");
     const questions = await page.locator(".faq details").count();
     assert.ok(questions >= 3 && questions <= 5, slug + " useful FAQ count");
   }
   await page.goto(base + "/imposto-de-renda.html");
   assert.equal(await page.locator("#documentos").count(), 1);
   assert.equal(await page.locator("#ir-excluido").count(), 1);
+  assert.equal(await page.locator('main a[href*="?servico="]').count(), 2);
+  assert.equal(
+    await page.locator('main a[href="ir/formulario.html"]').count(),
+    1,
+  );
+  await page.locator(".service-index-panel > summary").click();
+  assert.equal(
+    await page.locator('.service-index a[href="#ir-fontes"]').isVisible(),
+    true,
+  );
+
   assert.equal(
     await page
       .locator("body")
@@ -381,14 +425,16 @@ try {
         form: "intercepted only: valid/invalid/success/HTTP500/offline; no real lead sent",
         ir: "local draft persistence",
         serviceFlow:
-          "all 8 consular hero CTAs via keyboard plus IR direct to central form; matching selected option; header, sidebar and contact navigation targets verified",
+          "all 8 consular hero CTAs via keyboard plus IR direct to central form; matching selected option; header and final contact navigation targets verified",
         keyboard:
           "skip link, focus outline, Enter, Escape and menu focus verified",
         missingPage: "unknown URL returns HTTP 404",
+        editorialRefinement:
+          "two analysis CTAs per detail main; accessible native section index; 3 conditional Brazilian categories; IR local checklist link retained",
         catalog:
           "12 entries, category filter, title/description search, accent and punctuation normalization, empty state, link to detail, no-JS fallback",
         servicePages:
-          "8 standardized consular pages with 4 FAQ each; IR includes documents/exclusions and no price",
+          "8 standardized consular pages with 3–4 FAQ each; IR includes documents/exclusions and no price",
         date: new Date().toISOString(),
       },
       null,

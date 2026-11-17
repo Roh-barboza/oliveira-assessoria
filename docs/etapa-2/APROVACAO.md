@@ -1,3 +1,5 @@
+> **Revisão vigente — Etapa 2.1:** consultar a [matriz de decisão comercial](../etapa-2.1/MATRIZ-DECISAO-COMERCIAL.md) e as [confirmações necessárias](../etapa-2.1/CONFIRMACOES.md). As fichas abaixo registram a preparação anterior, sem aprovação comercial automática.
+
 # Revisão de Jennifer e Rodrigo — catálogo da Etapa 2
 
 O início e a implementação para revisão foram autorizados. A existência de serviços na versão anterior não equivale à aprovação comercial dos escopos detalhados. Nenhum item abaixo é marcado automaticamente.

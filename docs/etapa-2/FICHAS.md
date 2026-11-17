@@ -1,3 +1,5 @@
+> **Revisão vigente — Etapa 2.1:** consultar a [matriz de decisão comercial](../etapa-2.1/MATRIZ-DECISAO-COMERCIAL.md) e as [confirmações necessárias](../etapa-2.1/CONFIRMACOES.md). As fichas abaixo registram a preparação anterior, sem aprovação comercial automática.
+
 # Fichas propostas dos serviços existentes
 
 **Rascunho para validação operacional.** Não é oferta comercial definitiva. Descrições consolidam o site atual; requisitos são informações iniciais de triagem, não checklists legais completos. Nenhum item amplia automaticamente a capacidade de atendimento da empresa.

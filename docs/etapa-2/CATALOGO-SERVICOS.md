@@ -1,3 +1,5 @@
+> **Revisão vigente — Etapa 2.1:** consultar a [matriz de decisão comercial](../etapa-2.1/MATRIZ-DECISAO-COMERCIAL.md) e as [confirmações necessárias](../etapa-2.1/CONFIRMACOES.md). As fichas abaixo registram a preparação anterior, sem aprovação comercial automática.
+
 # Catálogo de serviços — Etapa 2
 
 Verificação inicial: **17/11/2026**. Esta é a matriz de conteúdo e status para revisão de Jennifer e Rodrigo. Existência no site não equivale a aprovação comercial. A jurisdição efetivamente atendida e os escopos finais continuam sem confirmação.

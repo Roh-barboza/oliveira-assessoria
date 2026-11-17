@@ -248,3 +248,82 @@
 .service-content section p {
   max-width: 780px;
 }
+/* The sidebar is a content index; analysis actions stay at the start and end. */
+.service-index nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.service-index nav a {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 13px;
+  text-decoration: none;
+}
+.service-index nav a:hover {
+  text-decoration: underline;
+}
+.service-summary.service-index nav a {
+  color: #e1e8e3;
+  border-color: #527063;
+}
+
+.service-contact {
+  padding: 32px 0;
+  background: var(--cream);
+  border-top: 1px solid var(--line);
+}
+.local-checklist-note {
+  font-size: 14px !important;
+  color: #dce5df !important;
+}
+.service-contact .container {
+  display: flex;
+  justify-content: flex-start;
+}
+@media (max-width: 900px) {
+  .service-index {
+    position: static;
+  }
+  .service-layout {
+    display: flex;
+    flex-direction: column;
+  }
+  .service-layout .service-content {
+    width: 100%;
+  }
+  .service-layout .service-index {
+    width: 100%;
+  }
+}
+@media (max-width: 560px) {
+  .service-contact .btn {
+    width: 100%;
+  }
+  .service-index nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 20px;
+  }
+}
+.service-index-panel > summary {
+  min-height: 44px;
+  padding: 0;
+  cursor: pointer;
+  font: 600 22px/1.5 var(--serif);
+  color: inherit;
+}
+.sidebox.service-index {
+  color: var(--forest);
+}
+.service-index-panel[open] > summary {
+  margin-bottom: 12px;
+}
+@media (max-width: 900px) {
+  .service-layout .service-index {
+    order: -1;
+  }
+}

@@ -1,3 +1,5 @@
+> **Revisão atual:** refinamentos editoriais e matriz para aprovação comercial na [Etapa 2.1](../etapa-2.1/README.md). A entrega abaixo registra a Etapa 2 original.
+
 # Etapa 2 — catálogo premium para revisão
 
 **Implementação preparada em Preview, sujeita à revisão de Jennifer e Rodrigo.** Mesma branch `feature/etapa-2-catalogo-servicos`, PR #6, base `feature/etapa-1-premium-responsiva`. Sem merge, produção ou início da Etapa 3.

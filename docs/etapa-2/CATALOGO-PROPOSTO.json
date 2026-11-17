@@ -1,5 +1,5 @@
 {
-  "status": "implementacao_em_preview_para_revisao",
+  "status": "refinamento_2.1_para_aprovacao_comercial",
   "data_verificacao": "2026-11-17",
   "servicos": [
     {
@@ -13,7 +13,8 @@
       "decisao_pendente": "Definir se haverá apenas orientação ou também acompanhamento de agendamento, sem garantia de vaga.",
       "descricao": "Preparação documental e orientação para primeira emissão ou renovação do passaporte italiano.",
       "detalhamento_pendente": false,
-      "commercial_status": "Existente no site; escopo e cobertura dependem de validação operacional"
+      "commercial_status": "Existente no site; escopo e cobertura dependem de validação operacional",
+      "status_decisao_comercial": "pendente"
     },
     {
       "id": "IT-02",
@@ -26,7 +27,8 @@
       "decisao_pendente": "Diferenciar primeira inscrição, mudança de endereço e mudança de jurisdição; confirmar serviços efetivamente executados.",
       "descricao": "Organização documental para inscrição, mudança de endereço e atualização do cadastro AIRE.",
       "detalhamento_pendente": false,
-      "commercial_status": "Existente no site; escopo e cobertura dependem de validação operacional"
+      "commercial_status": "Existente no site; escopo e cobertura dependem de validação operacional",
+      "status_decisao_comercial": "pendente"
     },
     {
       "id": "IT-03",
@@ -39,7 +41,8 @@
       "decisao_pendente": "Definir como suporte de canal se diferencia de AIRE e de outros serviços, evitando escopos sobrepostos.",
       "descricao": "Orientação sobre cadastro, dados e solicitações disponíveis no portal consular Fast It.",
       "detalhamento_pendente": false,
-      "commercial_status": "Existente no site; escopo e cobertura dependem de validação operacional"
+      "commercial_status": "Existente no site; escopo e cobertura dependem de validação operacional",
+      "status_decisao_comercial": "pendente"
     },
     {
       "id": "IT-04",
@@ -52,7 +55,8 @@
       "decisao_pendente": "Confirmar eventos atendidos e fronteira com Registro de filhos; traduções e apostilas dependem de definição operacional.",
       "descricao": "Organização de registros de casamento, divórcio e outras alterações do estado civil.",
       "detalhamento_pendente": false,
-      "commercial_status": "Existente no site; escopo e cobertura dependem de validação operacional"
+      "commercial_status": "Existente no site; escopo e cobertura dependem de validação operacional",
+      "status_decisao_comercial": "pendente"
     },
     {
       "id": "IT-05",
@@ -65,7 +69,8 @@
       "decisao_pendente": "Separar registro/transcrição de eventual aquisição de cidadania; revisão técnica das regras de menores antes de publicar requisitos.",
       "descricao": "Triagem e organização documental para compreender o procedimento aplicável ao registro de filhos.",
       "detalhamento_pendente": false,
-      "commercial_status": "Existente no site; escopo e cobertura dependem de validação operacional"
+      "commercial_status": "Existente no site; escopo e cobertura dependem de validação operacional",
+      "status_decisao_comercial": "pendente"
     },
     {
       "id": "IT-06",
@@ -78,7 +83,8 @@
       "decisao_pendente": "Confirmar se há busca documental, limites dessa busca, representação e formato de entrega; não prometer localização/emissão.",
       "descricao": "Apoio na organização das informações necessárias para localizar ou solicitar certidões italianas.",
       "detalhamento_pendente": false,
-      "commercial_status": "Existente no site; escopo e cobertura dependem de validação operacional"
+      "commercial_status": "Existente no site; escopo e cobertura dependem de validação operacional",
+      "status_decisao_comercial": "pendente"
     },
     {
       "id": "IT-07",
@@ -91,7 +97,8 @@
       "decisao_pendente": "Confirmar atendimento por jurisdição e modalidade do documento; não divulgar disponibilidade universal.",
       "descricao": "Análise inicial de elegibilidade e preparação documental para a Carta d’Identità.",
       "detalhamento_pendente": false,
-      "commercial_status": "Existente no site; escopo e cobertura dependem de validação operacional"
+      "commercial_status": "Existente no site; escopo e cobertura dependem de validação operacional",
+      "status_decisao_comercial": "pendente"
     },
     {
       "id": "IT-08",
@@ -104,7 +111,8 @@
       "decisao_pendente": "Usar como entrada de triagem; definir quando encaminhar a serviço específico e como evitar duplicidade de cobrança futura.",
       "descricao": "Triagem de pendências para organizar a sequência dos procedimentos consulares necessários.",
       "detalhamento_pendente": false,
-      "commercial_status": "Existente no site; escopo e cobertura dependem de validação operacional"
+      "commercial_status": "Existente no site; escopo e cobertura dependem de validação operacional",
+      "status_decisao_comercial": "pendente"
     },
     {
       "id": "BR-01",
@@ -117,7 +125,8 @@
       "decisao_pendente": "Confirmar exercícios atendidos e responsabilidades de preparação/transmissão; o checklist atual é local e não envia dados.",
       "descricao": "Organização de informações e documentos para análise e preenchimento assistido da declaração.",
       "detalhamento_pendente": false,
-      "commercial_status": "Existente no site; escopo e cobertura dependem de validação operacional"
+      "commercial_status": "Existente no site; escopo e cobertura dependem de validação operacional",
+      "status_decisao_comercial": "pendente"
     },
     {
       "id": "BR-02",
@@ -128,9 +137,10 @@
       "publicado_na_home": true,
       "escopo_operacional_aprovado": false,
       "decisao_pendente": "Definir benefícios e tarefas atendidas, limites de acompanhamento e separação de atuação jurídica. Página individual ainda não existe.",
-      "descricao": "Análise da necessidade de apoio documental em requerimentos administrativos previdenciários.",
+      "descricao": "Categoria em avaliação para apoio documental no INSS. Benefícios e tarefas atendidos ainda precisam ser definidos.",
       "detalhamento_pendente": true,
-      "commercial_status": "Existente no site; escopo e cobertura dependem de validação operacional"
+      "commercial_status": "Existente no site; escopo e cobertura dependem de validação operacional",
+      "status_decisao_comercial": "pendente"
     },
     {
       "id": "BR-03",
@@ -141,9 +151,10 @@
       "publicado_na_home": true,
       "escopo_operacional_aprovado": false,
       "decisao_pendente": "Definir órgãos e procedimentos realmente atendidos; o rótulo atual é abrangente. Página individual ainda não existe.",
-      "descricao": "Análise de organização documental para solicitações perante órgãos e plataformas públicas.",
+      "descricao": "Categoria em avaliação para organização documental perante órgãos públicos. Procedimentos e limites ainda serão definidos.",
       "detalhamento_pendente": true,
-      "commercial_status": "Existente no site; escopo e cobertura dependem de validação operacional"
+      "commercial_status": "Existente no site; escopo e cobertura dependem de validação operacional",
+      "status_decisao_comercial": "pendente"
     },
     {
       "id": "BR-04",
@@ -154,9 +165,10 @@
       "publicado_na_home": true,
       "escopo_operacional_aprovado": false,
       "decisao_pendente": "Definir entregável, formatos e limites da conferência; não incluir emissão, tradução ou apostilamento automaticamente. Página individual ainda não existe.",
-      "descricao": "Triagem, estruturação e conferência de documentos para demandas pessoais e familiares.",
+      "descricao": "Categoria em avaliação para organização de documentos pessoais e familiares. Entregáveis e limites ainda serão definidos.",
       "detalhamento_pendente": true,
-      "commercial_status": "Existente no site; escopo e cobertura dependem de validação operacional"
+      "commercial_status": "Existente no site; escopo e cobertura dependem de validação operacional",
+      "status_decisao_comercial": "pendente"
     }
   ],
   "candidatos_nao_publicados": [
@@ -164,5 +176,8 @@
     "Negociação de Dívidas",
     "Precatórios",
     "Contratos"
+  ],
+  "candidatos_prioritarios": [
+    "Passaporte brasileiro"
   ]
 }
