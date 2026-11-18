@@ -2,6 +2,10 @@
 
 Implementação posterior ao PR #6, sem merge e sem alteração da produção. Branch: `feature/plataforma-operacional-preview`; base: `fb91d10`. A instrução de execução completa mais recente autoriza implementar as etapas posteriores em teste; não representa aprovação comercial, jurídica ou de publicação.
 
+## Preview validado
+
+[Site e catálogo](https://oliveira-assessoria-ekhw33jq9-barbozaa-s-projects.vercel.app/) · [Plataforma de teste](https://oliveira-assessoria-ekhw33jq9-barbozaa-s-projects.vercel.app/plataforma.html) · [PR #7](https://github.com/Roh-barboza/oliveira-assessoria/pull/7), vinculado ao [PR #6](https://github.com/Roh-barboza/oliveira-assessoria/pull/6). Código funcional validado: `96df056`. Produção permanece no deployment anterior `dpl_9WmwZYXXnmXQscmwMRATydJKUxNq`; nenhuma promoção foi feita.
+
 ## Como revisar
 
 - `/servicos.html`: catálogo com 12 registros preservados, busca e filtros Brasil/Itália; seleção do piloto indicada, IR e filhos adiados, demais registros para expansão.

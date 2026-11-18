@@ -27,7 +27,7 @@ Cobertura inicial dos cinco: São Paulo. Confirmar sede competente, procedimento
 
 | Área | Estado | Dependência residual |
 |---|---|---|
-| Catálogo premium, busca, filtros e fichas | Implementado; regressão em validação | Revisão final comercial |
+| Catálogo premium, busca, filtros e fichas | Implementado; regressão pública passou | Revisão final comercial |
 | Formulário autenticado e retomada | Implementado no teste | Identidade real/convites/MFA fora do demo |
 | RBAC, casos, responsáveis, histórico, tarefas | Implementado no teste | Escala, observabilidade e gestão de identidades reais |
 | Documentos e dupla revisão | Funcional com fixture, SQLite cifrado; ACL no servidor | G3 real, canal durável externo e política LGPD |

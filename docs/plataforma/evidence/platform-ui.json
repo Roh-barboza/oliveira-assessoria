@@ -1,0 +1,42 @@
+{
+  "base": "https://oliveira-assessoria-ekhw33jq9-barbozaa-s-projects.vercel.app",
+  "results": [
+    {
+      "view": "case",
+      "width": 360,
+      "overflow": false
+    },
+    {
+      "view": "case",
+      "width": 390,
+      "overflow": false
+    },
+    {
+      "view": "case",
+      "width": 430,
+      "overflow": false
+    },
+    {
+      "view": "case",
+      "width": 768,
+      "overflow": false
+    },
+    {
+      "view": "case",
+      "width": 1366,
+      "overflow": false
+    },
+    {
+      "view": "case",
+      "width": 1920,
+      "overflow": false
+    },
+    {
+      "flow": "admin → request → upload → PDF → followup → pricing → Jennifer review → Rodrigo review → client signature → second client isolation",
+      "status": "passed",
+      "axe": "zero violations in checked states"
+    }
+  ],
+  "errors": [],
+  "at": "2026-11-18T19:32:29.697Z"
+}

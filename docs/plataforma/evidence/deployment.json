@@ -1,0 +1,14 @@
+{
+  "codeCommit": "96df0565e4a566516e9aada629073aad36a606d2",
+  "preview": "https://oliveira-assessoria-ekhw33jq9-barbozaa-s-projects.vercel.app",
+  "deploymentId": "dpl_CPqKDxdwX3mKEFAq8trWPfdQmbW9",
+  "state": "READY",
+  "target": "preview",
+  "region": "gru1",
+  "privateStorage": "temporario; external key/connection not configured",
+  "productionLastObserved": {
+    "deployment": "dpl_9WmwZYXXnmXQscmwMRATydJKUxNq",
+    "sha": "2adb1afa303e6e0d82147de985a401575c6505be",
+    "noPromotionPerformed": true
+  }
+}
