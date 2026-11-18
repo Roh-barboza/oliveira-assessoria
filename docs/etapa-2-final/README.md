@@ -37,4 +37,14 @@ Sem preços, pacotes, merge, produção, contratação real ou início da Etapa 
 
 Validação local concluída: **19 páginas × 7 larguras**, 133 combinações, sem falhas registradas. Busca/filtros, teclado, menu, links, âncoras, axe, imagens, overflow, erros JS, formulário interceptado e persistência local do checklist IR. [Resultado local](evidence/validation-local.json) · [Preservação de recursos, fontes oficiais e checklists](evidence/preservation.json).
 
-Preview, capturas finais e Lighthouse serão registrados após a verificação do deployment.
+Preview, capturas finais e Lighthouse estão registrados na entrega verificada abaixo.
+
+## Entrega final verificada
+
+**[Abrir o novo Preview completo](https://oliveira-assessoria-90onhrh0b-barbozaa-s-projects.vercel.app/)** · [Catálogo](https://oliveira-assessoria-90onhrh0b-barbozaa-s-projects.vercel.app/servicos.html) · [Organização Documental](https://oliveira-assessoria-90onhrh0b-barbozaa-s-projects.vercel.app/servicos/organizacao-documental.html).
+
+Deployment `dpl_HHNqoPNd6pPYNDBqVTmc8e9aoVrG`, READY, ambiente Preview (`target: null`), implementação `5d40796efc9e3934005993a32196f28a109bbbab`. Commits posteriores apenas registram documentação/evidências; arquivos servidos iguais aos testados.
+
+Testes finais passaram também no Preview: **19 páginas × 7 larguras**, 133 combinações por ambiente. [Relatório e limites](TESTES.md) · [24 capturas desktop/mobile](VISUAL.md) · [30 execuções Lighthouse](PERFORMANCE.md) · [Arquivos modificados](ARQUIVOS.md).
+
+Para encerrar a Etapa 2 falta registrar a decisão comercial e profissional de Jennifer e Rodrigo por serviço, conforme [pendências](PENDENCIAS-APROVACAO.md). Sem Etapa 3, merge ou produção.
