@@ -1,3 +1,5 @@
+> **Revisão vigente — 18/11/2026:** ver [finalização da Etapa 2](../etapa-2-final/README.md). Registro abaixo preservado como histórico; nenhuma aprovação comercial automática.
+
 > **Revisão atual:** refinamentos editoriais e matriz para aprovação comercial na [Etapa 2.1](../etapa-2.1/README.md). A entrega abaixo registra a Etapa 2 original.
 
 # Etapa 2 — catálogo premium para revisão

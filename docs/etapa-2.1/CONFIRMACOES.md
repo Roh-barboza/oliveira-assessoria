@@ -1,3 +1,5 @@
+> **Revisão vigente — 18/11/2026:** ver [finalização da Etapa 2](../etapa-2-final/PENDENCIAS-APROVACAO.md). Registro abaixo preservado como histórico; nenhuma aprovação comercial automática.
+
 # O que Jennifer e Rodrigo precisam confirmar
 
 As respostas devem ser vinculadas às linhas da [matriz comercial](MATRIZ-DECISAO-COMERCIAL.md). Esta lista organiza a aprovação; não aprova serviços automaticamente.

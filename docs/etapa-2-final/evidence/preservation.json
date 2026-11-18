@@ -1,0 +1,64 @@
+{
+  "base": "2f3b9c3",
+  "protectedPathsUnchanged": [
+    "landing/site.js",
+    "landing/catalogo.js",
+    "landing/ir",
+    "landing/assets",
+    "landing/site.css",
+    "landing/catalogo.css",
+    "n8n",
+    "extension",
+    "agent",
+    "db",
+    "vercel.json",
+    "package.json",
+    "package-lock.json"
+  ],
+  "details": [
+    {
+      "page": "landing/servicos/estado-civil.html",
+      "officialSourcesPreserved": true,
+      "indicativeDocumentItemsPreserved": true
+    },
+    {
+      "page": "landing/servicos/fast-it.html",
+      "officialSourcesPreserved": true,
+      "indicativeDocumentItemsPreserved": true
+    },
+    {
+      "page": "landing/servicos/aire.html",
+      "officialSourcesPreserved": true,
+      "indicativeDocumentItemsPreserved": true
+    },
+    {
+      "page": "landing/servicos/registro-filhos.html",
+      "officialSourcesPreserved": true,
+      "indicativeDocumentItemsPreserved": true
+    },
+    {
+      "page": "landing/servicos/regularizacao-consular.html",
+      "officialSourcesPreserved": true,
+      "indicativeDocumentItemsPreserved": true
+    },
+    {
+      "page": "landing/servicos/carta-identita.html",
+      "officialSourcesPreserved": true,
+      "indicativeDocumentItemsPreserved": true
+    },
+    {
+      "page": "landing/servicos/passaporte-italiano.html",
+      "officialSourcesPreserved": true,
+      "indicativeDocumentItemsPreserved": true
+    },
+    {
+      "page": "landing/servicos/certidoes-italianas.html",
+      "officialSourcesPreserved": true,
+      "indicativeDocumentItemsPreserved": true
+    }
+  ],
+  "noProductionJavascriptChanged": true,
+  "newRuntimeDependencies": 0,
+  "n8nRealSubmission": "not performed; intercepted tests only",
+  "candidatePublicPages": 0
+}

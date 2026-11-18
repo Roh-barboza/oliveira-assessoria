@@ -1,3 +1,5 @@
+> **Revisão vigente — 18/11/2026:** ver [finalização da Etapa 2](../etapa-2-final/README.md). Registro abaixo preservado como histórico; nenhuma aprovação comercial automática.
+
 # Etapa 2.1 — refinamento para aprovação comercial
 
 Base: `fec7143`, entrega da Etapa 2. Mesma branch `feature/etapa-2-catalogo-servicos` e PR #6. Esta revisão não aprova serviços nem inicia a Etapa 3.

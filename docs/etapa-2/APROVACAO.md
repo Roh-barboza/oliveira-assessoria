@@ -1,3 +1,5 @@
+> **Revisão vigente — 18/11/2026:** ver [finalização da Etapa 2](../etapa-2-final/PENDENCIAS-APROVACAO.md). Registro abaixo preservado como histórico; nenhuma aprovação comercial automática.
+
 > **Revisão vigente — Etapa 2.1:** consultar a [matriz de decisão comercial](../etapa-2.1/MATRIZ-DECISAO-COMERCIAL.md) e as [confirmações necessárias](../etapa-2.1/CONFIRMACOES.md). As fichas abaixo registram a preparação anterior, sem aprovação comercial automática.
 
 # Revisão de Jennifer e Rodrigo — catálogo da Etapa 2

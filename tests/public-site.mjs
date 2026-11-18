@@ -229,6 +229,7 @@ try {
     "certidoes-italianas": "Certidão italiana",
     "carta-identita": "Carta d'identità",
     "regularizacao-consular": "Outra regularização consular",
+    "organizacao-documental": "Organização documental",
   };
   for (const [slug, service] of Object.entries(services)) {
     await page.goto(`${base}/servicos/${slug}.html`);
@@ -294,14 +295,14 @@ try {
       .locator(".catalog-label")
       .filter({ hasText: "Em validação comercial" })
       .count(),
-    3,
+    12,
   );
   assert.equal(
     await page
       .locator(".catalog-action")
       .filter({ hasText: "Consultar possibilidade de atendimento" })
       .count(),
-    3,
+    2,
   );
   await category.selectOption("brasil");
   assert.equal(await page.locator(".catalog-card:visible").count(), 4);
@@ -310,7 +311,7 @@ try {
   await category.selectOption("todos");
   for (const [term, expected] of [
     ["PASSAPORTE", 1],
-    ["certidoes", 1],
+    ["certidoes", 2],
     ["Carta d'identita", 1],
     ["endereco", 1],
     ["INSS", 1],
@@ -322,6 +323,12 @@ try {
       term,
     );
   }
+  await search.fill("certidoes");
+  for (const selected of ["brasil", "italia"]) {
+    await category.selectOption(selected);
+    assert.equal(await page.locator(".catalog-card:visible").count(), 1);
+  }
+  await category.selectOption("todos");
   await search.fill("zz-inexistente-zz");
   assert.equal(await page.locator(".catalog-card:visible").count(), 0);
   assert.equal(await page.locator("#catalog-empty").isVisible(), true);
@@ -337,6 +344,8 @@ try {
       "excluido",
       "documentos",
       "como-funciona",
+      "entregas",
+      "responsabilidades",
       "limites",
       "duvidas",
       "fontes",
@@ -363,10 +372,65 @@ try {
     assert.equal(new URL(page.url()).hash, "#documentos");
     const questions = await page.locator(".faq details").count();
     assert.ok(questions >= 3 && questions <= 5, slug + " useful FAQ count");
+    assert.match(
+      await page.locator(".kicker").innerText(),
+      /validação comercial/i,
+    );
   }
+  // Priority is not commercial approval; candidates never become public offers.
+  const matrix = JSON.parse(
+    await readFile("docs/etapa-2-final/MATRIZ-CONSOLIDADA.json", "utf8"),
+  );
+  assert.equal(matrix.servicos.length, 16);
+  assert.equal(
+    matrix.servicos.filter((s) => s.status === "aprovado").length,
+    0,
+  );
+  assert.equal(
+    matrix.servicos.filter((s) => s.status === "pendente").length,
+    12,
+  );
+  assert.equal(
+    matrix.servicos.filter((s) => s.status === "candidato").length,
+    4,
+  );
+  assert.equal(
+    matrix.servicos.filter((s) => s.prioritario_estruturacao).length,
+    8,
+  );
+  for (const path of pages) {
+    const html = await readFile(resolve("landing", path), "utf8");
+    assert.doesNotMatch(
+      html,
+      /Passaporte brasileiro|Negociação de Dívidas|Precatórios|>Contratos</i,
+      path + " does not promote candidates",
+    );
+  }
+  await page.goto(base + "/servicos/organizacao-documental.html");
+  assert.match(
+    await page
+      .locator("#incluido + ul, [aria-labelledby=incluido] ul")
+      .innerText(),
+    /digitalização/,
+  );
+  await page.locator(".hero-actions .btn-gold").click();
+  await page.waitForURL((u) => u.hash === "#contato" && u.pathname === "/");
+  assert.equal(
+    await page.locator('[name="servico"]').inputValue(),
+    "Organização documental",
+  );
+  assert.equal(
+    await page
+      .locator('[name="servico"] option')
+      .filter({ hasText: "Passaporte brasileiro" })
+      .count(),
+    0,
+  );
   await page.goto(base + "/imposto-de-renda.html");
   assert.equal(await page.locator("#documentos").count(), 1);
   assert.equal(await page.locator("#ir-excluido").count(), 1);
+  for (const id of ["ir-atividades", "ir-entregas", "ir-limites"])
+    assert.equal(await page.locator("#" + id).count(), 1);
   assert.equal(await page.locator(".service-hero__actions a").count(), 2);
   assert.equal(await page.locator('main a[href*="?servico="]').count(), 2);
   assert.equal(
@@ -426,16 +490,16 @@ try {
         form: "intercepted only: valid/invalid/success/HTTP500/offline; no real lead sent",
         ir: "local draft persistence",
         serviceFlow:
-          "all 8 consular hero CTAs via keyboard plus IR direct to central form; matching selected option; header and final contact navigation targets verified",
+          "8 consular + organization hero CTAs via keyboard plus IR direct to central form; matching selected option; header and final navigation targets verified",
         keyboard:
           "skip link, focus outline, Enter, Escape and menu focus verified",
         missingPage: "unknown URL returns HTTP 404",
         editorialRefinement:
-          "two analysis CTAs per detail main; accessible native section index; 3 conditional Brazilian categories; IR local checklist link retained",
+          "two analysis CTAs per detail main; accessible native section index; 12 entries pending; 8 priorities, 0 approvals; 4 candidates absent from public offers; IR local checklist retained",
         catalog:
           "12 entries, category filter, title/description search, accent and punctuation normalization, empty state, link to detail, no-JS fallback",
         servicePages:
-          "8 standardized consular pages with 3–4 FAQ each; IR includes documents/exclusions and no price",
+          "8 standardized consular + organization pages with deliveries, responsibilities and FAQ; IR scoped and without price",
         date: new Date().toISOString(),
       },
       null,

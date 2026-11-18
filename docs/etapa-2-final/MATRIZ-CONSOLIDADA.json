@@ -1,0 +1,632 @@
+{
+  "etapa": "2 — finalização para revisão",
+  "data_registro": "2026-11-18",
+  "status_permitidos": [
+    "aprovado",
+    "pendente",
+    "candidato"
+  ],
+  "criterio": "Prioridade de estruturação não é aprovação. 12 pendentes, 4 candidatos, 0 aprovados; decisão expressa de Jennifer e Rodrigo necessária.",
+  "servicos": [
+    {
+      "id": "IT-01",
+      "nome": "Passaporte italiano",
+      "categoria": "Itália",
+      "publico": "Cidadãos italianos que precisam verificar o cadastro e organizar a documentação antes do atendimento consular.",
+      "atividades_propostas": [
+        "Triagem de cidadania já reconhecida, residência, circunscrição e situação cadastral/AIRE informadas pelo cliente.",
+        "Checklist por modalidade, conferência material e organização dos documentos e complementos.",
+        "Orientação guiada para uso do Prenot@mi e preparação para o comparecimento.",
+        "Registro de tentativas e andamento informados pelo cliente, sem acesso à sua conta ou automação de vagas."
+      ],
+      "atividades_excluidas": [
+        "Taxas oficiais e despesas de terceiros, incluindo serviços externos que forem necessários.",
+        "Atividades não confirmadas no escopo, como tradução, apostilamento ou representação especializada.",
+        "Emissão de documentos, decisões e resultados que cabem às autoridades públicas.",
+        "Correções de AIRE ou estado civil não discriminadas no escopo; reconhecimento de cidadania.",
+        "Busca automatizada de vagas, acesso à conta do cliente pela assessoria ou promessa de agendamento."
+      ],
+      "responsavel_execucao": "A confirmar por Jennifer e Rodrigo: nome, função e responsabilidade.",
+      "regiao_consulado": "Piloto proposto, não aprovado: residentes em SP ligados ao Consulado Geral da Itália em São Paulo. MT, MS, RO, AC e demais sedes dependem de mapeamento e aceitação expressa.",
+      "habilitacao_parceiro": "Confirmar limites do suporte a agendamento e atos pessoais; identificar terceiros para tradução/formalidades quando necessários.",
+      "pendencias": [
+        "Definir se haverá apenas orientação ou também acompanhamento de agendamento, sem garantia de vaga.",
+        "Confirmar responsável, cobertura, tarefas e eventuais terceiros."
+      ],
+      "status": "pendente",
+      "prioridade": "prioritário para estruturação",
+      "pagina_existente": "servicos/passaporte-italiano.html",
+      "prioritario_estruturacao": true,
+      "decisao_comercial": {
+        "jennifer": null,
+        "rodrigo": null,
+        "data": null,
+        "condicoes": []
+      },
+      "entregas_propostas": [
+        "Checklist individual, pasta digital organizada e relação de documentos pendentes.",
+        "Histórico dos contatos e do andamento informado pelo cliente, com instruções finais."
+      ],
+      "limites_operacionais": "Primeira emissão e renovação têm percursos próprios. Menores e urgências exigem avaliação específica. Modalidade, revisões e período de acompanhamento serão definidos antes do atendimento; não representam prazo do consulado.",
+      "papeis_sugeridos": "Jennifer: referência de triagem/documentação; Rodrigo: referência operacional digital e supervisão de automação. Sugestões sem aceitação formal; executor, revisor e parceiros a confirmar.",
+      "responsabilidades": "Oliveira: organização/conferência material conforme escopo; cliente: veracidade, validação, contas, assinaturas e atos pessoais; órgão: vagas, análise, decisão, registro e emissão. Profissionais habilitados: atos especializados próprios.",
+      "modalidades": [
+        "primeira emissão",
+        "renovação"
+      ],
+      "hipoteses_internas_nao_aprovadas": {
+        "vigencia_acompanhamento_dias": {
+          "primeira_emissao": 180,
+          "renovacao": 60
+        },
+        "cadencia_teste": {
+          "primeira_emissao": "quinzenal",
+          "renovacao": "semanal"
+        },
+        "observacao": "Propostas de vigência privada e cadência interna; não prazos do órgão, não exibidas como compromisso no site. Início, pausa, extensão e encerramento a validar."
+      }
+    },
+    {
+      "id": "IT-02",
+      "nome": "AIRE",
+      "categoria": "Itália",
+      "publico": "Cidadãos italianos residentes no exterior que precisam conferir ou atualizar a situação cadastral.",
+      "atividades_propostas": [
+        "Identificação da modalidade, do cadastro existente e do consulado competente.",
+        "Conferência material de dados e comprovantes; checklist e preparação de anexos conforme a modalidade.",
+        "Orientação para apresentação pelo titular e registro de protocolos e pendências que ele informar."
+      ],
+      "atividades_excluidas": [
+        "Taxas oficiais e despesas de terceiros, incluindo serviços externos que forem necessários.",
+        "Atividades não confirmadas no escopo, como tradução, apostilamento ou representação especializada.",
+        "Emissão de documentos, decisões e resultados que cabem às autoridades públicas."
+      ],
+      "responsavel_execucao": "A confirmar por Jennifer e Rodrigo: nome, função e responsabilidade.",
+      "regiao_consulado": "Piloto proposto, não aprovado: residentes em SP ligados ao Consulado Geral da Itália em São Paulo. MT, MS, RO, AC e demais sedes dependem de mapeamento e aceitação expressa.",
+      "habilitacao_parceiro": "Confirmar tarefas administrativas e autorizações admitidas no órgão; questões jurídicas e serviços de terceiros não são assumidos.",
+      "pendencias": [
+        "Diferenciar primeira inscrição, mudança de endereço e mudança de jurisdição; confirmar serviços efetivamente executados.",
+        "Confirmar responsável, cobertura, tarefas e eventuais terceiros."
+      ],
+      "status": "pendente",
+      "prioridade": "prioritário para estruturação",
+      "pagina_existente": "servicos/aire.html",
+      "prioritario_estruturacao": true,
+      "decisao_comercial": {
+        "jennifer": null,
+        "rodrigo": null,
+        "data": null,
+        "condicoes": []
+      },
+      "entregas_propostas": [
+        "Dossiê documental, lista de pendências e roteiro específico da atualização.",
+        "Registro de andamento fornecido pelo cliente, dentro do acompanhamento definido."
+      ],
+      "limites_operacionais": "AIRE é o cadastro; FAST IT é um canal operacional. Casamento, divórcio, nascimento e óbito seguem o setor de Registro Civil e formalidades próprias. Em São Paulo, estado civil não é atualizado pelo FAST IT. Sua organização pode integrar a proposta de regularidade cadastral, mas precisa de atividades discriminadas e avaliação específica.",
+      "papeis_sugeridos": "Jennifer: referência de triagem/documentação; Rodrigo: referência operacional digital e supervisão de automação. Sugestões sem aceitação formal; executor, revisor e parceiros a confirmar.",
+      "responsabilidades": "Oliveira: organização/conferência material conforme escopo; cliente: veracidade, validação, contas, assinaturas e atos pessoais; órgão: vagas, análise, decisão, registro e emissão. Profissionais habilitados: atos especializados próprios."
+    },
+    {
+      "id": "IT-03",
+      "nome": "Fast It",
+      "categoria": "Itália",
+      "publico": "Pessoas que precisam entender o uso do portal e identificar o caminho da sua solicitação consular.",
+      "atividades_propostas": [
+        "Orientação ao titular para criação de conta e associação cadastral, quando permitidas.",
+        "Apoio de navegação, organização de anexos e compreensão de mensagens técnicas.",
+        "Identificação de dificuldades e orientação sobre os canais oficiais de suporte, sem contornar restrições."
+      ],
+      "atividades_excluidas": [
+        "Taxas oficiais e despesas de terceiros, incluindo serviços externos que forem necessários.",
+        "Atividades não confirmadas no escopo, como tradução, apostilamento ou representação especializada.",
+        "Emissão de documentos, decisões e resultados que cabem às autoridades públicas."
+      ],
+      "responsavel_execucao": "A confirmar por Jennifer e Rodrigo: nome, função e responsabilidade.",
+      "regiao_consulado": "Piloto proposto, não aprovado: residentes em SP ligados ao Consulado Geral da Itália em São Paulo. MT, MS, RO, AC e demais sedes dependem de mapeamento e aceitação expressa.",
+      "habilitacao_parceiro": "Definir orientação de uso e controle de acesso pelo cliente; confirmar autorizações para qualquer atuação em nome de terceiros.",
+      "pendencias": [
+        "Definir como suporte de canal se diferencia de AIRE e de outros serviços, evitando escopos sobrepostos.",
+        "Confirmar responsável, cobertura, tarefas e eventuais terceiros."
+      ],
+      "status": "pendente",
+      "prioridade": "prioritário para estruturação",
+      "pagina_existente": "servicos/fast-it.html",
+      "prioritario_estruturacao": true,
+      "decisao_comercial": {
+        "jennifer": null,
+        "rodrigo": null,
+        "data": null,
+        "condicoes": []
+      },
+      "entregas_propostas": [
+        "Sessão orientativa, roteiro de uso e checklist de pendências técnicas."
+      ],
+      "limites_operacionais": "FAST IT é uma plataforma, não um processo consular autônomo. Cliente controla login, autenticação, assinaturas e envios. O mesmo suporte já incluído em AIRE ou outra assessoria não será tratado como atendimento avulso duplicado. Sessões e limites dependem da definição do escopo.",
+      "papeis_sugeridos": "Jennifer: referência de triagem/documentação; Rodrigo: referência operacional digital e supervisão de automação. Sugestões sem aceitação formal; executor, revisor e parceiros a confirmar.",
+      "responsabilidades": "Oliveira: organização/conferência material conforme escopo; cliente: veracidade, validação, contas, assinaturas e atos pessoais; órgão: vagas, análise, decisão, registro e emissão. Profissionais habilitados: atos especializados próprios."
+    },
+    {
+      "id": "IT-04",
+      "nome": "Estado civil",
+      "categoria": "Itália",
+      "publico": "Cidadãos que precisam verificar como comunicar um evento de estado civil aos órgãos italianos.",
+      "atividades_propostas": [
+        "Identificação do evento e dos registros disponíveis.",
+        "Conferência e organização da documentação para análise.",
+        "Orientação das etapas administrativas e das pendências do procedimento aplicável."
+      ],
+      "atividades_excluidas": [
+        "Taxas oficiais e despesas de terceiros, incluindo serviços externos que forem necessários.",
+        "Atividades não confirmadas no escopo, como tradução, apostilamento ou representação especializada.",
+        "Emissão de documentos, decisões e resultados que cabem às autoridades públicas."
+      ],
+      "responsavel_execucao": "A confirmar por Jennifer e Rodrigo: nome, função e responsabilidade.",
+      "regiao_consulado": "Piloto proposto, não aprovado: residentes em SP ligados ao Consulado Geral da Itália em São Paulo. MT, MS, RO, AC e demais sedes dependem de mapeamento e aceitação expressa.",
+      "habilitacao_parceiro": "Identificar necessidade de tradução juramentada ou outro prestador; questões e pareceres jurídicos exigem avaliação profissional própria.",
+      "pendencias": [
+        "Confirmar eventos atendidos e fronteira com Registro de filhos; traduções e apostilas dependem de definição operacional.",
+        "Confirmar responsável, cobertura, tarefas e eventuais terceiros."
+      ],
+      "status": "pendente",
+      "prioridade": "preservado para decisão posterior",
+      "pagina_existente": "servicos/estado-civil.html",
+      "prioritario_estruturacao": false,
+      "decisao_comercial": {
+        "jennifer": null,
+        "rodrigo": null,
+        "data": null,
+        "condicoes": []
+      },
+      "entregas_propostas": [
+        "Dossiê organizado por evento, checklist de formalidades e pendências documentais."
+      ],
+      "limites_operacionais": "Formalidades, tradução, apostilamento e canal de apresentação devem ser confirmados para o evento e a jurisdição. Situações que exijam atuação jurídica precisam de avaliação profissional própria. A preparação pode se relacionar à regularidade cadastral, mas Registro Civil tem canal próprio; em São Paulo não é atualização pelo FAST IT. Registro de filhos exige avaliação específica do procedimento e da situação familiar.",
+      "papeis_sugeridos": "Jennifer: referência de triagem/documentação; Rodrigo: referência operacional digital e supervisão de automação. Sugestões sem aceitação formal; executor, revisor e parceiros a confirmar.",
+      "responsabilidades": "Oliveira: organização/conferência material conforme escopo; cliente: veracidade, validação, contas, assinaturas e atos pessoais; órgão: vagas, análise, decisão, registro e emissão. Profissionais habilitados: atos especializados próprios."
+    },
+    {
+      "id": "IT-05",
+      "nome": "Registro de filhos",
+      "categoria": "Itália",
+      "publico": "Famílias que precisam conferir o enquadramento do caso e os registros disponíveis antes de apresentar um pedido.",
+      "atividades_propostas": [
+        "Triagem factual da cidadania informada dos responsáveis, vínculo familiar, idade, datas, residência e registros existentes.",
+        "Checklist indicativo e organização das certidões e formulários oficiais pertinentes.",
+        "Encaminhamento do procedimento específico após revisão técnica do enquadramento e acompanhamento documental conforme escopo."
+      ],
+      "atividades_excluidas": [
+        "Taxas oficiais e despesas de terceiros, incluindo serviços externos que forem necessários.",
+        "Atividades não confirmadas no escopo, como tradução, apostilamento ou representação especializada.",
+        "Emissão de documentos, decisões e resultados que cabem às autoridades públicas.",
+        "Conclusão automática de cidadania ou aconselhamento jurídico pela assessoria administrativa."
+      ],
+      "responsavel_execucao": "A confirmar por Jennifer e Rodrigo: nome, função e responsabilidade.",
+      "regiao_consulado": "Piloto proposto, não aprovado: residentes em SP ligados ao Consulado Geral da Itália em São Paulo. MT, MS, RO, AC e demais sedes dependem de mapeamento e aceitação expressa.",
+      "habilitacao_parceiro": "Validar enquadramento com profissional adequado quando houver questão jurídica; traduções/formalidades são externas ao escopo não confirmado.",
+      "pendencias": [
+        "Separar registro/transcrição de eventual aquisição de cidadania; revisão técnica das regras de menores antes de publicar requisitos.",
+        "Confirmar responsável, cobertura, tarefas e eventuais terceiros."
+      ],
+      "status": "pendente",
+      "prioridade": "prioritário para estruturação",
+      "pagina_existente": "servicos/registro-filhos.html",
+      "prioritario_estruturacao": true,
+      "decisao_comercial": {
+        "jennifer": null,
+        "rodrigo": null,
+        "data": null,
+        "condicoes": []
+      },
+      "entregas_propostas": [
+        "Dossiê familiar, checklist por modalidade e relação de informações faltantes.",
+        "Histórico documental e encaminhamentos à revisão especializada quando necessários."
+      ],
+      "limites_operacionais": "Registro de nascimento, transcrição e aquisição de cidadania por benefício de lei não são equivalentes. As regras vigentes, datas e situação familiar precisam de revisão técnica antes da execução. Elegibilidade, declaração de vontade e dúvidas jurídicas exigem profissional habilitado para o caso e a jurisdição; os pais cumprem os atos pessoais.",
+      "papeis_sugeridos": "Jennifer: referência de triagem/documentação; Rodrigo: referência operacional digital e supervisão de automação. Sugestões sem aceitação formal; executor, revisor e parceiros a confirmar.",
+      "responsabilidades": "Oliveira: organização/conferência material conforme escopo; cliente: veracidade, validação, contas, assinaturas e atos pessoais; órgão: vagas, análise, decisão, registro e emissão. Profissionais habilitados: atos especializados próprios."
+    },
+    {
+      "id": "IT-06",
+      "nome": "Certidões italianas",
+      "categoria": "Itália",
+      "publico": "Pessoas que precisam identificar um registro italiano e o documento adequado à finalidade pretendida.",
+      "atividades_propostas": [
+        "Levantamento dos dados conhecidos e da finalidade da certidão.",
+        "Organização das informações para identificar o órgão custodiante.",
+        "Orientação sobre a solicitação documental e as pendências informadas."
+      ],
+      "atividades_excluidas": [
+        "Taxas oficiais e despesas de terceiros, incluindo serviços externos que forem necessários.",
+        "Atividades não confirmadas no escopo, como tradução, apostilamento ou representação especializada.",
+        "Emissão de documentos, decisões e resultados que cabem às autoridades públicas."
+      ],
+      "responsavel_execucao": "A confirmar por Jennifer e Rodrigo: nome, função e responsabilidade.",
+      "regiao_consulado": "Piloto proposto, não aprovado: residentes em SP ligados ao Consulado Geral da Itália em São Paulo. MT, MS, RO, AC e demais sedes dependem de mapeamento e aceitação expressa.",
+      "habilitacao_parceiro": "Confirmar regras de solicitação por terceiros, pesquisa e entrega; avaliar parceiro local e tradução conforme a finalidade.",
+      "pendencias": [
+        "Confirmar se há busca documental, limites dessa busca, representação e formato de entrega; não prometer localização/emissão.",
+        "Confirmar responsável, cobertura, tarefas e eventuais terceiros."
+      ],
+      "status": "pendente",
+      "prioridade": "preservado para decisão posterior",
+      "pagina_existente": "servicos/certidoes-italianas.html",
+      "prioritario_estruturacao": false,
+      "decisao_comercial": {
+        "jennifer": null,
+        "rodrigo": null,
+        "data": null,
+        "condicoes": []
+      },
+      "entregas_propostas": [
+        "Dados do registro organizados, indicação do órgão custodiante e roteiro da solicitação.",
+        "Histórico dos pedidos permitidos e documentos recebidos, se houver e conforme o escopo."
+      ],
+      "limites_operacionais": "A localização e emissão dependem da existência do registro e do órgão responsável. Formato, taxas, envio e eventual pesquisa adicional precisam ser confirmados; não há garantia de localização.",
+      "papeis_sugeridos": "Jennifer: referência de triagem/documentação; Rodrigo: referência operacional digital e supervisão de automação. Sugestões sem aceitação formal; executor, revisor e parceiros a confirmar.",
+      "responsabilidades": "Oliveira: organização/conferência material conforme escopo; cliente: veracidade, validação, contas, assinaturas e atos pessoais; órgão: vagas, análise, decisão, registro e emissão. Profissionais habilitados: atos especializados próprios."
+    },
+    {
+      "id": "IT-07",
+      "nome": "Carta d’identità",
+      "categoria": "Itália",
+      "publico": "Cidadãos italianos que precisam verificar a disponibilidade e o procedimento de emissão do documento no órgão competente.",
+      "atividades_propostas": [
+        "Conferência das informações de residência e situação cadastral.",
+        "Identificação das instruções e da disponibilidade do atendimento.",
+        "Organização do checklist e orientação para preparação do pedido."
+      ],
+      "atividades_excluidas": [
+        "Taxas oficiais e despesas de terceiros, incluindo serviços externos que forem necessários.",
+        "Atividades não confirmadas no escopo, como tradução, apostilamento ou representação especializada.",
+        "Emissão de documentos, decisões e resultados que cabem às autoridades públicas."
+      ],
+      "responsavel_execucao": "A confirmar por Jennifer e Rodrigo: nome, função e responsabilidade.",
+      "regiao_consulado": "Piloto proposto, não aprovado: residentes em SP ligados ao Consulado Geral da Itália em São Paulo. MT, MS, RO, AC e demais sedes dependem de mapeamento e aceitação expressa.",
+      "habilitacao_parceiro": "Confirmar atos que exigem presença do interessado e limites da orientação; emissão é atribuição da autoridade.",
+      "pendencias": [
+        "Confirmar atendimento por jurisdição e modalidade do documento; não divulgar disponibilidade universal.",
+        "Confirmar responsável, cobertura, tarefas e eventuais terceiros."
+      ],
+      "status": "pendente",
+      "prioridade": "preservado para decisão posterior",
+      "pagina_existente": "servicos/carta-identita.html",
+      "prioritario_estruturacao": false,
+      "decisao_comercial": {
+        "jennifer": null,
+        "rodrigo": null,
+        "data": null,
+        "condicoes": []
+      },
+      "entregas_propostas": [
+        "Checklist preparatório, relação de pendências e roteiro do atendimento oficial aplicável."
+      ],
+      "limites_operacionais": "Disponibilidade, modalidade e exigências variam conforme a situação e o órgão. O catálogo não anuncia emissão universal nem substitui o atendimento exigido pela autoridade.",
+      "papeis_sugeridos": "Jennifer: referência de triagem/documentação; Rodrigo: referência operacional digital e supervisão de automação. Sugestões sem aceitação formal; executor, revisor e parceiros a confirmar.",
+      "responsabilidades": "Oliveira: organização/conferência material conforme escopo; cliente: veracidade, validação, contas, assinaturas e atos pessoais; órgão: vagas, análise, decisão, registro e emissão. Profissionais habilitados: atos especializados próprios."
+    },
+    {
+      "id": "IT-08",
+      "nome": "Regularização consular",
+      "categoria": "Itália",
+      "publico": "Pessoas com divergências de cadastro, solicitações anteriores ou múltiplas pendências que ainda não sabem por onde começar.",
+      "atividades_propostas": [
+        "Inventário de dados, documentos e solicitações já iniciadas.",
+        "Identificação de divergências aparentes em cadastro, AIRE, registros civis e pedidos consulares.",
+        "Organização das dependências e encaminhamento aos procedimentos específicos ou à revisão especializada."
+      ],
+      "atividades_excluidas": [
+        "Taxas oficiais e despesas de terceiros, incluindo serviços externos que forem necessários.",
+        "Atividades não confirmadas no escopo, como tradução, apostilamento ou representação especializada.",
+        "Emissão de documentos, decisões e resultados que cabem às autoridades públicas."
+      ],
+      "responsavel_execucao": "A confirmar por Jennifer e Rodrigo: nome, função e responsabilidade.",
+      "regiao_consulado": "Piloto proposto, não aprovado: residentes em SP ligados ao Consulado Geral da Itália em São Paulo. MT, MS, RO, AC e demais sedes dependem de mapeamento e aceitação expressa.",
+      "habilitacao_parceiro": "Delimitar triagem documental; encaminhar necessidades jurídicas, traduções ou outros atos especializados para avaliação apropriada.",
+      "pendencias": [
+        "Usar como entrada de triagem; definir quando encaminhar a serviço específico e como evitar duplicidade de cobrança futura.",
+        "Confirmar responsável, cobertura, tarefas e eventuais terceiros."
+      ],
+      "status": "pendente",
+      "prioridade": "prioritário para estruturação",
+      "pagina_existente": "servicos/regularizacao-consular.html",
+      "prioritario_estruturacao": true,
+      "decisao_comercial": {
+        "jennifer": null,
+        "rodrigo": null,
+        "data": null,
+        "condicoes": []
+      },
+      "entregas_propostas": [
+        "Mapa de pendências e sequência factual de providências administrativas.",
+        "Relação de procedimentos e encaminhamentos, distinguindo triagem de execução adicional."
+      ],
+      "limites_operacionais": "A triagem não é um pacote ilimitado. Execução de AIRE, Estado Civil, Certidões ou outro procedimento exige atividades discriminadas no escopo próprio, sem duplicidade de atendimento. Questões jurídicas são encaminhadas a profissional habilitado.",
+      "papeis_sugeridos": "Jennifer: referência de triagem/documentação; Rodrigo: referência operacional digital e supervisão de automação. Sugestões sem aceitação formal; executor, revisor e parceiros a confirmar.",
+      "responsabilidades": "Oliveira: organização/conferência material conforme escopo; cliente: veracidade, validação, contas, assinaturas e atos pessoais; órgão: vagas, análise, decisão, registro e emissão. Profissionais habilitados: atos especializados próprios."
+    },
+    {
+      "id": "BR-01",
+      "nome": "Imposto de Renda",
+      "categoria": "Brasil",
+      "publico": "Contribuintes que precisam organizar a declaração e conferir informações.",
+      "atividades_propostas": [
+        "Checklist, organização e conferência material de informes/comprovantes.",
+        "Identificação de lacunas e preparação de dados para preenchimento assistido.",
+        "Preparação/transmissão acompanhada somente após definir responsável profissional, permissões e escopo."
+      ],
+      "atividades_excluidas": [
+        "Taxas, impostos e despesas de terceiros.",
+        "Atividades não acordadas, atos privativos não validados e garantia de resultado."
+      ],
+      "responsavel_execucao": "A confirmar por Jennifer e Rodrigo: nome, função e responsabilidade.",
+      "regiao_consulado": "A confirmar; não foi presumida cobertura territorial. Cobertura digital/presencial brasileira ainda a validar.",
+      "habilitacao_parceiro": "Confirmar responsável e habilitação aplicável às tarefas fiscais/contábeis; não presumir autorização para atos privativos.",
+      "pendencias": [
+        "Confirmar exercícios atendidos e responsabilidades de preparação/transmissão; o checklist atual é local e não envia dados.",
+        "Confirmar responsável, cobertura, tarefas e eventuais terceiros."
+      ],
+      "status": "pendente",
+      "prioridade": "prioritário para estruturação",
+      "pagina_existente": "imposto-de-renda.html",
+      "prioritario_estruturacao": true,
+      "decisao_comercial": {
+        "jennifer": null,
+        "rodrigo": null,
+        "data": null,
+        "condicoes": []
+      },
+      "papeis_sugeridos": "Jennifer: referência de triagem/documentação; Rodrigo: referência operacional digital e supervisão de automação. Sugestões sem aceitação formal; executor, revisor e parceiros a confirmar.",
+      "responsabilidades": "Oliveira: organização/conferência material conforme escopo; cliente: veracidade, validação, contas, assinaturas e atos pessoais; órgão: vagas, análise, decisão, registro e emissão. Profissionais habilitados: atos especializados próprios.",
+      "entregas_propostas": [
+        "Inventário e dados organizados; pendências.",
+        "Arquivo final e recibo apenas se transmissão expressamente definida e validada."
+      ]
+    },
+    {
+      "id": "BR-02",
+      "nome": "INSS e benefícios",
+      "categoria": "Brasil",
+      "publico": "Pessoas com necessidade documental relacionada ao INSS; benefícios atendidos a definir.",
+      "atividades_propostas": [
+        "Avaliar a viabilidade de apoio documental em requerimentos.",
+        "Definir benefícios, tarefas e limites antes de assumir atendimento."
+      ],
+      "atividades_excluidas": [
+        "Taxas, impostos e despesas de terceiros.",
+        "Atividades não acordadas, atos privativos não validados e garantia de resultado."
+      ],
+      "responsavel_execucao": "A confirmar por Jennifer e Rodrigo: nome, função e responsabilidade.",
+      "regiao_consulado": "A confirmar; não foi presumida cobertura territorial. Cobertura digital/presencial brasileira ainda a validar.",
+      "habilitacao_parceiro": "Validar tarefas, eventual representação e autorizações; não incluir análise jurídica ou defesa por inferência.",
+      "pendencias": [
+        "Definir benefícios e tarefas atendidas, limites de acompanhamento e separação de atuação jurídica. Página individual ainda não existe.",
+        "Confirmar responsável, cobertura, tarefas e eventuais terceiros."
+      ],
+      "status": "pendente",
+      "prioridade": "preservado para decisão posterior",
+      "pagina_existente": null,
+      "prioritario_estruturacao": false,
+      "decisao_comercial": {
+        "jennifer": null,
+        "rodrigo": null,
+        "data": null,
+        "condicoes": []
+      },
+      "papeis_sugeridos": "Jennifer: referência de triagem/documentação; Rodrigo: referência operacional digital e supervisão de automação. Sugestões sem aceitação formal; executor, revisor e parceiros a confirmar.",
+      "responsabilidades": "Oliveira: organização/conferência material conforme escopo; cliente: veracidade, validação, contas, assinaturas e atos pessoais; órgão: vagas, análise, decisão, registro e emissão. Profissionais habilitados: atos especializados próprios."
+    },
+    {
+      "id": "BR-03",
+      "nome": "Processos administrativos",
+      "categoria": "Brasil",
+      "publico": "Pessoas com solicitação perante órgão público; procedimentos atendidos a definir.",
+      "atividades_propostas": [
+        "Avaliar organização documental para uma solicitação identificada.",
+        "Definir órgão, procedimento e limites antes da oferta."
+      ],
+      "atividades_excluidas": [
+        "Taxas, impostos e despesas de terceiros.",
+        "Atividades não acordadas, atos privativos não validados e garantia de resultado."
+      ],
+      "responsavel_execucao": "A confirmar por Jennifer e Rodrigo: nome, função e responsabilidade.",
+      "regiao_consulado": "A confirmar; não foi presumida cobertura territorial. Cobertura digital/presencial brasileira ainda a validar.",
+      "habilitacao_parceiro": "Identificar órgão, permissões de atuação por terceiros e atividades que exijam profissional habilitado.",
+      "pendencias": [
+        "Definir órgãos e procedimentos realmente atendidos; o rótulo atual é abrangente. Página individual ainda não existe.",
+        "Confirmar responsável, cobertura, tarefas e eventuais terceiros."
+      ],
+      "status": "pendente",
+      "prioridade": "preservado para decisão posterior",
+      "pagina_existente": null,
+      "prioritario_estruturacao": false,
+      "decisao_comercial": {
+        "jennifer": null,
+        "rodrigo": null,
+        "data": null,
+        "condicoes": []
+      },
+      "papeis_sugeridos": "Jennifer: referência de triagem/documentação; Rodrigo: referência operacional digital e supervisão de automação. Sugestões sem aceitação formal; executor, revisor e parceiros a confirmar.",
+      "responsabilidades": "Oliveira: organização/conferência material conforme escopo; cliente: veracidade, validação, contas, assinaturas e atos pessoais; órgão: vagas, análise, decisão, registro e emissão. Profissionais habilitados: atos especializados próprios."
+    },
+    {
+      "id": "BR-04",
+      "nome": "Organização documental",
+      "categoria": "Brasil",
+      "publico": "Pessoas/famílias com finalidade documental identificada; entregáveis a definir.",
+      "atividades_propostas": [
+        "Organização, classificação, inventário e digitalização de documentos pessoais e familiares.",
+        "Solicitação e acompanhamento de certidões perante cartórios e órgãos, quando permitidos e com as autorizações necessárias.",
+        "Conferência material dos dados e identificação de divergências aparentes, sem certificar autenticidade ou validade jurídica.",
+        "Preparação de pastas e dossiês para procedimentos brasileiros e italianos.",
+        "Orientação sobre tradução e apostilamento e coordenação de prestadores externos, quando incluídas no escopo específico."
+      ],
+      "atividades_excluidas": [
+        "Taxas, impostos e despesas de terceiros.",
+        "Atividades não acordadas, atos privativos não validados e garantia de resultado.",
+        "Parecer jurídico, técnico ou contábil; certificação de autenticidade ou validade jurídica.",
+        "Emissão própria de certidões e execução de tradução ou apostilamento sem prestador competente.",
+        "Garantia de localização de registros ou resultado dos órgãos."
+      ],
+      "responsavel_execucao": "A confirmar por Jennifer e Rodrigo: nome, função e responsabilidade.",
+      "regiao_consulado": "A confirmar; não foi presumida cobertura territorial. Cobertura digital/presencial brasileira ainda a validar.",
+      "habilitacao_parceiro": "Organização material de documentos proposta; avaliação jurídica, contábil ou técnica não é presumida.",
+      "pendencias": [
+        "Confirmar cobertura e finalidade; formatos, quantidades e revisões.",
+        "Definir canal seguro, guarda, devolução, acesso e descarte; logística de originais.",
+        "Validar solicitação por terceiros, autorizações e parceiros de cartório/tradução/apostilamento.",
+        "Confirmar executor e revisor; a nova ficha não aprova comercialmente o serviço."
+      ],
+      "status": "pendente",
+      "prioridade": "prioritário para estruturação",
+      "pagina_existente": "servicos/organizacao-documental.html",
+      "prioritario_estruturacao": true,
+      "decisao_comercial": {
+        "jennifer": null,
+        "rodrigo": null,
+        "data": null,
+        "condicoes": []
+      },
+      "entregas_propostas": [
+        "Pasta digital estruturada, índice/inventário, checklist e relação de pendências.",
+        "Relação dos pedidos a órgãos, documentos recebidos e despesas externas, quando aplicáveis."
+      ],
+      "limites_operacionais": "Formato, quantidades, revisões, cobertura remota/presencial e logística de originais ainda dependem de validação. Antes de receber documentos, serão definidos canal seguro, acesso, guarda, devolução e descarte. Documentos pessoais não devem ser compartilhados em grupos ou enviados desnecessariamente a ferramentas de IA.",
+      "papeis_sugeridos": "Jennifer: referência de triagem/documentação; Rodrigo: referência operacional digital e supervisão de automação. Sugestões sem aceitação formal; executor, revisor e parceiros a confirmar.",
+      "responsabilidades": "Oliveira: organização/conferência material conforme escopo; cliente: veracidade, validação, contas, assinaturas e atos pessoais; órgão: vagas, análise, decisão, registro e emissão. Profissionais habilitados: atos especializados próprios."
+    },
+    {
+      "id": "C-01",
+      "nome": "Passaporte brasileiro",
+      "categoria": "Brasil — candidato interno",
+      "publico": "Brasileiros que precisam compreender a solicitação de passaporte; público e local de atendimento a confirmar.",
+      "atividades_propostas": [
+        "Preparar material interno sobre apoio privado opcional à organização e compreensão das etapas oficiais.",
+        "Avaliar utilidade, privacidade, permissões e enquadramento antes de qualquer anúncio."
+      ],
+      "atividades_excluidas": [
+        "Publicação como oferta, contratação e execução antes da validação específica.",
+        "Atos privativos, representação e resultados garantidos não presumidos."
+      ],
+      "responsavel_execucao": "A confirmar; nenhum executor foi nomeado.",
+      "regiao_consulado": "A confirmar: público/local de atendimento e autoridade competente da PF. Cobertura digital/presencial brasileira ainda a validar.",
+      "habilitacao_parceiro": "Avaliar requisitos profissionais, autorizações e eventual parceiro conforme a atividade; não atribuir habilitação à empresa por este documento.",
+      "pendencias": [
+        "Avaliar primeiro o modelo de apoio privado opcional, privacidade, limites e instruções da PF. O procedimento oficial e suas orientações são acessíveis diretamente pelo cidadão.",
+        "Decisão expressa sobre inclusão, público, executor e limites."
+      ],
+      "status": "candidato",
+      "prioridade": "candidato prioritário — avaliar antes de anunciar",
+      "pagina_existente": null,
+      "prioritario_estruturacao": true,
+      "decisao_comercial": {
+        "jennifer": null,
+        "rodrigo": null,
+        "data": null,
+        "condicoes": []
+      },
+      "papeis_sugeridos": "Jennifer: referência de triagem/documentação; Rodrigo: referência operacional digital e supervisão de automação. Sugestões sem aceitação formal; executor, revisor e parceiros a confirmar.",
+      "responsabilidades": "Oliveira: organização/conferência material conforme escopo; cliente: veracidade, validação, contas, assinaturas e atos pessoais; órgão: vagas, análise, decisão, registro e emissão. Profissionais habilitados: atos especializados próprios.",
+      "entregas_propostas": [
+        "Checklist indicativo e roteiro para o interessado usar o site oficial da PF."
+      ],
+      "material_interno": "PASSAPORTE-BRASILEIRO-CANDIDATO.md"
+    },
+    {
+      "id": "C-02",
+      "nome": "Negociação de Dívidas",
+      "categoria": "Brasil — candidato interno",
+      "publico": "Pessoas que buscam organizar documentação de dívidas; finalidade e público final a confirmar.",
+      "atividades_propostas": [
+        "Avaliação de viabilidade de apoio administrativo/documental; nenhuma nova execução ofertada."
+      ],
+      "atividades_excluidas": [
+        "Publicação como oferta, contratação e execução antes da validação específica.",
+        "Atos privativos, representação e resultados garantidos não presumidos."
+      ],
+      "responsavel_execucao": "A confirmar; nenhum executor foi nomeado.",
+      "regiao_consulado": "A confirmar: regiões e órgãos relacionados ao eventual escopo aprovado. Cobertura digital/presencial brasileira ainda a validar.",
+      "habilitacao_parceiro": "Avaliar requisitos profissionais, autorizações e eventual parceiro conforme a atividade; não atribuir habilitação à empresa por este documento.",
+      "pendencias": [
+        "Confirmar continuidade e tarefas; não presumir negociação, mandato, análise jurídica ou intermediação.",
+        "Decisão expressa sobre inclusão, público, executor e limites."
+      ],
+      "status": "candidato",
+      "prioridade": "preservado para decisão posterior",
+      "pagina_existente": null,
+      "prioritario_estruturacao": false,
+      "decisao_comercial": {
+        "jennifer": null,
+        "rodrigo": null,
+        "data": null,
+        "condicoes": []
+      },
+      "papeis_sugeridos": "Jennifer: referência de triagem/documentação; Rodrigo: referência operacional digital e supervisão de automação. Sugestões sem aceitação formal; executor, revisor e parceiros a confirmar.",
+      "responsabilidades": "Oliveira: organização/conferência material conforme escopo; cliente: veracidade, validação, contas, assinaturas e atos pessoais; órgão: vagas, análise, decisão, registro e emissão. Profissionais habilitados: atos especializados próprios."
+    },
+    {
+      "id": "C-03",
+      "nome": "Precatórios",
+      "categoria": "Brasil — candidato interno",
+      "publico": "Pessoas com documentos relativos a precatórios; necessidade e finalidade a confirmar.",
+      "atividades_propostas": [
+        "Avaliação de viabilidade de apoio administrativo/documental; nenhuma nova execução ofertada."
+      ],
+      "atividades_excluidas": [
+        "Publicação como oferta, contratação e execução antes da validação específica.",
+        "Atos privativos, representação e resultados garantidos não presumidos."
+      ],
+      "responsavel_execucao": "A confirmar; nenhum executor foi nomeado.",
+      "regiao_consulado": "A confirmar: regiões e órgãos relacionados ao eventual escopo aprovado. Cobertura digital/presencial brasileira ainda a validar.",
+      "habilitacao_parceiro": "Avaliar requisitos profissionais, autorizações e eventual parceiro conforme a atividade; não atribuir habilitação à empresa por este documento.",
+      "pendencias": [
+        "Definir se existe atividade administrativa viável, seus limites e responsáveis; não presumir atuação jurídica, cessão ou intermediação.",
+        "Decisão expressa sobre inclusão, público, executor e limites."
+      ],
+      "status": "candidato",
+      "prioridade": "preservado para decisão posterior",
+      "pagina_existente": null,
+      "prioritario_estruturacao": false,
+      "decisao_comercial": {
+        "jennifer": null,
+        "rodrigo": null,
+        "data": null,
+        "condicoes": []
+      },
+      "papeis_sugeridos": "Jennifer: referência de triagem/documentação; Rodrigo: referência operacional digital e supervisão de automação. Sugestões sem aceitação formal; executor, revisor e parceiros a confirmar.",
+      "responsabilidades": "Oliveira: organização/conferência material conforme escopo; cliente: veracidade, validação, contas, assinaturas e atos pessoais; órgão: vagas, análise, decisão, registro e emissão. Profissionais habilitados: atos especializados próprios."
+    },
+    {
+      "id": "C-04",
+      "nome": "Contratos",
+      "categoria": "Brasil — candidato interno",
+      "publico": "Pessoas com documentos contratuais para organização; finalidade a confirmar, sem presumir análise jurídica.",
+      "atividades_propostas": [
+        "Avaliação de viabilidade de apoio administrativo/documental; nenhuma nova execução ofertada."
+      ],
+      "atividades_excluidas": [
+        "Publicação como oferta, contratação e execução antes da validação específica.",
+        "Atos privativos, representação e resultados garantidos não presumidos."
+      ],
+      "responsavel_execucao": "A confirmar; nenhum executor foi nomeado.",
+      "regiao_consulado": "A confirmar: regiões e órgãos relacionados ao eventual escopo aprovado. Cobertura digital/presencial brasileira ainda a validar.",
+      "habilitacao_parceiro": "Avaliar requisitos profissionais, autorizações e eventual parceiro conforme a atividade; não atribuir habilitação à empresa por este documento.",
+      "pendencias": [
+        "Distinguir organização de arquivos de consultoria, parecer ou elaboração jurídica; validar escopo antes de qualquer oferta.",
+        "Decisão expressa sobre inclusão, público, executor e limites."
+      ],
+      "status": "candidato",
+      "prioridade": "preservado para decisão posterior",
+      "pagina_existente": null,
+      "prioritario_estruturacao": false,
+      "decisao_comercial": {
+        "jennifer": null,
+        "rodrigo": null,
+        "data": null,
+        "condicoes": []
+      },
+      "papeis_sugeridos": "Jennifer: referência de triagem/documentação; Rodrigo: referência operacional digital e supervisão de automação. Sugestões sem aceitação formal; executor, revisor e parceiros a confirmar.",
+      "responsabilidades": "Oliveira: organização/conferência material conforme escopo; cliente: veracidade, validação, contas, assinaturas e atos pessoais; órgão: vagas, análise, decisão, registro e emissão. Profissionais habilitados: atos especializados próprios."
+    }
+  ],
+  "fonte": "../decisoes/2026-11-18-proposta-consolidada-8-servicos.md"
+}

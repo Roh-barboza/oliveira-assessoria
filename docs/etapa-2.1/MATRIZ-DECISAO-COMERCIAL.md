@@ -1,3 +1,5 @@
+> **Revisão vigente — 18/11/2026:** ver [finalização da Etapa 2](../etapa-2-final/MATRIZ-CONSOLIDADA.md). Registro abaixo preservado como histórico; nenhuma aprovação comercial automática.
+
 # Matriz de decisão comercial — Etapa 2.1
 
 Registro: **17/11/2026**. Referência para aprovação de Jennifer e Rodrigo. **12 serviços/categorias pendentes, 4 candidatos, 0 aprovados** nesta matriz. Existência no site e aprovação técnica do layout não equivalem a aprovação comercial.
