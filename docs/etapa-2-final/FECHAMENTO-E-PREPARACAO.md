@@ -2,6 +2,8 @@
 
 # Fechamento documental da Etapa 2 e preparação interna da Etapa 3
 
+> **Atualização de seleção comercial (18/11/2026):** Jennifer e Rodrigo confirmaram em conjunto a escolha preliminar **A** para Passaporte italiano, AIRE, FAST IT, Regularização consular e Organização documental e **C (adiar)** para Registro de filhos e Imposto de Renda. Passaporte brasileiro segue candidato. Os cinco A **não** estão liberados para venda, pois ainda restam aceite das condições específicas e comprovação de G1–G3. Ver [decisão registrada](../decisoes/2026-11-18-selecao-comercial-preliminar.md) e [pendências atualizadas](PENDENCIAS-APROVACAO.md).
+
 Atualização: 18/11/2026. Base desta revisão documental: `26d9977`. [PR #6](https://github.com/Roh-barboza/oliveira-assessoria/pull/6).
 
 ## Entregue
@@ -28,12 +30,13 @@ Não foram repetidos testes de navegador ou Lighthouse: esta tarefa altera somen
 | Apresentação técnica do catálogo | Entregue e validada na revisão anterior; preservada |
 | Divisão operacional e princípio de cobertura SP | Confirmados nesta decisão |
 | Estrutura interna de precificação/pacotes | Preparada, sem valores nem liberação comercial |
-| Aprovação comercial final por serviço/modalidade | Pendente |
+| Escolha preliminar de modalidades de lançamento | **Concluída: A para cinco; C para filhos e IR** |
+| Aprovação comercial final por serviço/modalidade | Pendente, exige G1–G3 para as cinco A |
 | Profissionais habilitados, revisão, limites e instrumentos | Pendentes conforme a modalidade |
 | Encerramento formal da Etapa 2 | Ainda impedido pelas decisões comerciais/profissionais/operacionais remanescentes |
 | Implementação comercial, pagamentos, automação e publicação | Não autorizados |
 
-Jennifer e Rodrigo precisam escolher modalidades de lançamento/adiamento, designar revisores e parceiros habilitados, definir entregas/quantidades/vigências/continuidade e proteção documental, levantar custos e deliberar posteriormente sobre valores/parcelamento. Filhos e IR exigem validações específicas; passaporte brasileiro segue candidato até decisão própria. Não é necessário aprovar todos os serviços para encerrar a etapa, mas o conjunto liberado e os itens adiados precisam de registro expresso.
+Jennifer e Rodrigo **já escolheram as modalidades** A/C. Agora precisam aceitar ou ajustar limites propostos para os cinco serviços A, garantir os revisores/terceiros competentes e definir o procedimento documental seguro (G1–G3). Depois levantarão custos e deliberarão sobre valores/parcelamento na Etapa 3. Filhos e IR exigem validações específicas; passaporte brasileiro segue candidato até decisão própria. Não é necessário aprovar todos os serviços para encerrar a etapa, mas o conjunto liberado e os itens adiados precisam de registro expresso.
 
 A preparação interna da Etapa 3 está expressamente autorizada em paralelo; não resolve os impedimentos nem libera venda. Sem valores inventados, merge, publicação de alteração visual/funcional, contratações, mensagens, automações ou pagamentos. Clicksign e webhook n8n preservados. WhatsApp ainda aguarda número empresarial.
 
