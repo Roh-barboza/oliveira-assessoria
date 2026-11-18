@@ -1,24 +1,26 @@
 # Decisão comercial final — proposta única para Jennifer e Rodrigo
 
+> **Atualização em 18/11/2026:** recebida a **seleção comercial preliminar conjunta**: **A** para Passaporte italiano, AIRE, FAST IT, Regularização consular e Organização documental; **C** para Registro de filhos e Imposto de Renda. Passaporte brasileiro permanece **candidato**. **A não é aprovação para venda**: as condições/revisões e os requisitos G1–G3 continuam a ser concluídos. Consulte [registro da decisão](../decisoes/2026-11-18-selecao-comercial-preliminar.md).
+
 **18/11/2026 — versão para uma rodada de revisão, não aprovação.** Recomendo preparar o lançamento administrativo de cinco linhas e ajustar duas linhas técnicas antes de liberá-las. Passaporte brasileiro fica fora da liberação inicial. Nenhum serviço muda de status nesta proposta.
 
 **Já confirmado:** Jennifer no atendimento, triagem e documentação; Rodrigo no suporte operacional, canais digitais e supervisão; cobertura inicial São Paulo. Outras localidades exigem avaliação. Essas decisões não voltam à votação.
 
 ## 1. Decisão em uma tabela
 
-Marcar **uma opção por serviço**: **A — Aprovar após requisitos atendidos**; **B — Ajustar antes da aprovação**; **C — Adiar para uma etapa futura**. Selecionar A com requisito ainda aberto mantém o serviço pendente; não é aprovação condicional já concedida. As recomendações estão preenchidas, as escolhas dos responsáveis estão vazias.
+Marcar **uma opção por serviço**: **A — Aprovar após requisitos atendidos**; **B — Ajustar antes da aprovação**; **C — Adiar para uma etapa futura**. Selecionar A com requisito ainda aberto mantém o serviço pendente; não é aprovação condicional já concedida. As recomendações originais estão preservadas, e a escolha preliminar conjunta A/C foi registrada na tabela. Permanecem pendentes os aceites dos limites específicos, revisores e requisitos para liberação.
 
 | Serviço | Recomendação | Fundamentação e bloqueio real | Escolha conjunta | Ajuste pontual |
 | --- | --- | --- | --- | --- |
-| [Passaporte italiano](#it-01) | **A** — Aprovar após requisitos atendidos | Preparação documental e orientação ao titular têm entrega verificável. Manter fluxos de primeira emissão e renovação; não vender obtenção de vaga. Requisitos: G1, G2, G3. | ☐ A ☐ B ☐ C | ___ |
-| [AIRE — inscrição e atualizações](#it-02) | **A** — Aprovar após requisitos atendidos | Permite iniciar com modalidades administrativas definidas e encaminhar cada evento civil pelo canal próprio, sem vender a mesma orientação FAST IT duas vezes. Requisitos: G1, G2, G3. | ☐ A ☐ B ☐ C | ___ |
-| [FAST IT — suporte avulso](#it-03) | **A** — Aprovar após requisitos atendidos | Uma dificuldade operacional delimitada permite entrega curta e mensurável, sem transformar suporte de portal em processo consular ou duplicar AIRE. Requisitos: G1, G2, G3. | ☐ A ☐ B ☐ C | ___ |
-| [Regularização consular](#it-08) | **A** — Aprovar após requisitos atendidos | Recomendo lançar como diagnóstico factual e plano administrativo. Isso delimita a personalização e impede que a triagem seja vendida como solução ilimitada. Requisitos: G1, G2, G3. | ☐ A ☐ B ☐ C | ___ |
-| [Organização documental](#br-04) | **A** — Aprovar após requisitos atendidos | Recomendo um dossiê com finalidade e lista de itens fechadas na triagem. Os níveis diferenciam trabalho material e coordenação, sem inventar limites de páginas nem habilitação superior. Requisitos: G1, G2, G3. | ☐ A ☐ B ☐ C | ___ |
-| [Registro de filhos](#it-05) | **B** — Ajustar antes da aprovação | Recomendo preparar o dossiê de casos previamente enquadrados por revisão competente. Não liberar uma oferta ampla de registro/transmissão de cidadania enquanto procedimento e responsável técnico não estiverem definidos. Requisitos: G1, G2, G3, G4. | ☐ A ☐ B ☐ C | ___ |
-| [Imposto de Renda](#br-01) | **B** — Ajustar antes da aprovação | Recomendo piloto de perfis previamente aceitos, com revisão fiscal identificada. Até designá-la, não liberar preenchimento/transmissão como serviço completo; organização material isolada pode ser avaliada na linha documental, sem aprovação automática. Requisitos: G1, G2, G3, G5. | ☐ A ☐ B ☐ C | ___ |
+| [Passaporte italiano](#it-01) | **A** — Aprovar após requisitos atendidos | Preparação documental e orientação ao titular têm entrega verificável. Manter fluxos de primeira emissão e renovação; não vender obtenção de vaga. Requisitos: G1, G2, G3. | **A — seleção preliminar confirmada** | Aceite dos limites e requisitos pendente |
+| [AIRE — inscrição e atualizações](#it-02) | **A** — Aprovar após requisitos atendidos | Permite iniciar com modalidades administrativas definidas e encaminhar cada evento civil pelo canal próprio, sem vender a mesma orientação FAST IT duas vezes. Requisitos: G1, G2, G3. | **A — seleção preliminar confirmada** | Aceite dos limites e requisitos pendente |
+| [FAST IT — suporte avulso](#it-03) | **A** — Aprovar após requisitos atendidos | Uma dificuldade operacional delimitada permite entrega curta e mensurável, sem transformar suporte de portal em processo consular ou duplicar AIRE. Requisitos: G1, G2, G3. | **A — seleção preliminar confirmada** | Aceite dos limites e requisitos pendente |
+| [Regularização consular](#it-08) | **A** — Aprovar após requisitos atendidos | Recomendo lançar como diagnóstico factual e plano administrativo. Isso delimita a personalização e impede que a triagem seja vendida como solução ilimitada. Requisitos: G1, G2, G3. | **A — seleção preliminar confirmada** | Aceite dos limites e requisitos pendente |
+| [Organização documental](#br-04) | **A** — Aprovar após requisitos atendidos | Recomendo um dossiê com finalidade e lista de itens fechadas na triagem. Os níveis diferenciam trabalho material e coordenação, sem inventar limites de páginas nem habilitação superior. Requisitos: G1, G2, G3. | **A — seleção preliminar confirmada** | Aceite dos limites e requisitos pendente |
+| [Registro de filhos](#it-05) | **B** — Ajustar antes da aprovação | Recomendo preparar o dossiê de casos previamente enquadrados por revisão competente. Não liberar uma oferta ampla de registro/transmissão de cidadania enquanto procedimento e responsável técnico não estiverem definidos. Requisitos: G1, G2, G3, G4. | **C — seleção preliminar confirmada** | Aceite dos limites e requisitos pendente |
+| [Imposto de Renda](#br-01) | **B** — Ajustar antes da aprovação | Recomendo piloto de perfis previamente aceitos, com revisão fiscal identificada. Até designá-la, não liberar preenchimento/transmissão como serviço completo; organização material isolada pode ser avaliada na linha documental, sem aprovação automática. Requisitos: G1, G2, G3, G5. | **C — seleção preliminar confirmada** | Aceite dos limites e requisitos pendente |
 
-**Recomendação de conjunto:** A para Passaporte italiano, AIRE, FAST IT, Regularização consular e Organização documental, com escopos administrativos abaixo. B para Registro de filhos e IR até resolver revisão/profissional. Se não houver responsável técnico disponível para essas duas linhas, escolher C para elas e encerrar a Etapa 2 com o conjunto viável, sem bloquear as outras cinco. Nenhuma venda é liberada agora.
+**Seleção preliminar efetivamente recebida:** A para Passaporte italiano, AIRE, FAST IT, Regularização consular e Organização documental; C (adiamento) para Registro de filhos e IR. Passaporte brasileiro permanece candidato. **Ainda não há liberação comercial:** falta aceitar as condições propostas e resolver G1–G3 das cinco linhas A. As fichas detalhadas preservam propostas e espaços de aceite, não se presumem assinaturas ou habilitações.
 
 ## 2. Somente os requisitos impeditivos
 
@@ -65,7 +67,7 @@ As [regras gerais propostas](CONDICOES-PADRAO-ATENDIMENTO.md) integram esta roda
 **Por que estes limites:** 180/60 dias reaproveitam a hipótese operacional já discutida, sem tratá-la como aceite; duas rodadas consolidam complementos e tornam o esforço mensurável sem limitar a orientação a três sessões.
 
 **Aceite/ajuste dos limites acima:** ___  **Jennifer:** ___  **Rodrigo:** ___  **Data:** ___
-**Requisitos desta ficha:** G1, G2, G3. **Status atual:** pendente; nenhuma escolha/assinatura foi preenchida.
+**Requisitos desta ficha:** G1, G2, G3. **Status atual:** pendente; escolha preliminar registrada na tabela. Aceite das condições específicas, comprovação dos requisitos e assinatura/registro individual ainda pendentes.
 
 <a id="it-02"></a>
 
@@ -92,7 +94,7 @@ As [regras gerais propostas](CONDICOES-PADRAO-ATENDIMENTO.md) integram esta roda
 **Por que estes limites:** 30/180 dias mantêm a separação já proposta entre preparar e acompanhar; duas rodadas evitam pedidos fragmentados. O ciclo do órgão continua independente.
 
 **Aceite/ajuste dos limites acima:** ___  **Jennifer:** ___  **Rodrigo:** ___  **Data:** ___
-**Requisitos desta ficha:** G1, G2, G3. **Status atual:** pendente; nenhuma escolha/assinatura foi preenchida.
+**Requisitos desta ficha:** G1, G2, G3. **Status atual:** pendente; escolha preliminar registrada na tabela. Aceite das condições específicas, comprovação dos requisitos e assinatura/registro individual ainda pendentes.
 
 <a id="it-03"></a>
 
@@ -119,7 +121,7 @@ As [regras gerais propostas](CONDICOES-PADRAO-ATENDIMENTO.md) integram esta roda
 **Por que estes limites:** A janela de sete dias e a sessão/retorno curtos delimitam uma dificuldade técnica e permitem medir o suporte; não pretendem acompanhar um processo consular.
 
 **Aceite/ajuste dos limites acima:** ___  **Jennifer:** ___  **Rodrigo:** ___  **Data:** ___
-**Requisitos desta ficha:** G1, G2, G3. **Status atual:** pendente; nenhuma escolha/assinatura foi preenchida.
+**Requisitos desta ficha:** G1, G2, G3. **Status atual:** pendente; escolha preliminar registrada na tabela. Aceite das condições específicas, comprovação dos requisitos e assinatura/registro individual ainda pendentes.
 
 <a id="it-08"></a>
 
@@ -146,7 +148,7 @@ As [regras gerais propostas](CONDICOES-PADRAO-ATENDIMENTO.md) integram esta roda
 **Por que estes limites:** Quinze dias e duas interações delimitadas são uma proposta de piloto para entregar inventário/relatório, sem embutir execução de procedimentos. Ajustar somente se a capacidade real não comportar.
 
 **Aceite/ajuste dos limites acima:** ___  **Jennifer:** ___  **Rodrigo:** ___  **Data:** ___
-**Requisitos desta ficha:** G1, G2, G3. **Status atual:** pendente; nenhuma escolha/assinatura foi preenchida.
+**Requisitos desta ficha:** G1, G2, G3. **Status atual:** pendente; escolha preliminar registrada na tabela. Aceite das condições específicas, comprovação dos requisitos e assinatura/registro individual ainda pendentes.
 
 <a id="br-04"></a>
 
@@ -173,7 +175,7 @@ As [regras gerais propostas](CONDICOES-PADRAO-ATENDIMENTO.md) integram esta roda
 **Por que estes limites:** Separar 30 dias de produção e 60 de controle externo evita manter a pasta indefinidamente aberta. A lista fechada na triagem é a unidade de volume; não se inventa quantidade de documentos sem conhecer o caso.
 
 **Aceite/ajuste dos limites acima:** ___  **Jennifer:** ___  **Rodrigo:** ___  **Data:** ___
-**Requisitos desta ficha:** G1, G2, G3. **Status atual:** pendente; nenhuma escolha/assinatura foi preenchida.
+**Requisitos desta ficha:** G1, G2, G3. **Status atual:** pendente; escolha preliminar registrada na tabela. Aceite das condições específicas, comprovação dos requisitos e assinatura/registro individual ainda pendentes.
 
 <a id="it-05"></a>
 
@@ -200,7 +202,7 @@ As [regras gerais propostas](CONDICOES-PADRAO-ATENDIMENTO.md) integram esta roda
 **Por que estes limites:** O ciclo documental proposto acompanha o padrão de AIRE, mas só começa após validação do procedimento; revisão especializada e prazos legais reais têm precedência.
 
 **Aceite/ajuste dos limites acima:** ___  **Jennifer:** ___  **Rodrigo:** ___  **Data:** ___
-**Requisitos desta ficha:** G1, G2, G3, G4. **Status atual:** pendente; nenhuma escolha/assinatura foi preenchida.
+**Requisitos desta ficha:** G1, G2, G3, G4. **Status atual:** pendente; escolha preliminar registrada na tabela. Aceite das condições específicas, comprovação dos requisitos e assinatura/registro individual ainda pendentes.
 
 <a id="br-01"></a>
 
@@ -227,7 +229,7 @@ As [regras gerais propostas](CONDICOES-PADRAO-ATENDIMENTO.md) integram esta roda
 **Por que estes limites:** Trinta dias é uma janela privada máxima de trabalho do piloto, com duas rodadas de dados e revisão fiscal; não é prazo legal e o aceite depende de capacidade de cumprir a data real do exercício.
 
 **Aceite/ajuste dos limites acima:** ___  **Jennifer:** ___  **Rodrigo:** ___  **Data:** ___
-**Requisitos desta ficha:** G1, G2, G3, G5. **Status atual:** pendente; nenhuma escolha/assinatura foi preenchida.
+**Requisitos desta ficha:** G1, G2, G3, G5. **Status atual:** pendente; escolha preliminar registrada na tabela. Aceite das condições específicas, comprovação dos requisitos e assinatura/registro individual ainda pendentes.
 
 ## 4. Regras para o ato administrativo e o ato especializado
 
