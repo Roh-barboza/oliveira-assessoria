@@ -48,3 +48,9 @@ Passaporte primeira emissão: até 180 dias; renovação: até 60 dias. AIRE: pr
 ## Sequência para definir valores posteriormente
 
 Validar modalidade e entregas → resolver revisor/profissional/permissões → medir trabalho/capacidade → obter custos de parceiros e fontes oficiais → separar custos/repasse → definir vigência e condições → simular internamente com dados reais → aprovar preço/pacote → autorizar eventual apresentação. Nenhuma dessas etapas autoriza publicar, contratar ou ativar cobrança automaticamente.
+
+## Atividades e apontamento de horas preparados nesta rodada
+
+As mesmas vinte linhas agora indicam `atividades_geradoras_custo`, necessidade de parceiros e `base_medicao`, diferenciando os três níveis documentais. Foram acrescentados campos vazios para horas de atendimento/triagem, documentação, suporte digital, revisão, acompanhamento e encerramento, além de despesas internas diretas e de terceiros/logística. Não somar o total geral novamente às fases nem duplicar despesas.
+
+`proposta_revisoes` e `proposta_acompanhamento` referenciam a [proposta única](../etapa-2-final/DECISAO-COMERCIAL-FINAL.md); são hipóteses textuais para decisão, não prazo/revisões contratados. Os campos efetivos `prazo_acompanhamento`, `revisoes_incluidas`, horas, preços, custos e margens continuam vazios. Duração de sessão proposta não se converte automaticamente em custo ou esforço conhecido.

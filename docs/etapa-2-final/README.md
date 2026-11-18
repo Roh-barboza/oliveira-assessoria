@@ -1,3 +1,5 @@
+> **Rodada única vigente:** [DECISAO-COMERCIAL-FINAL](DECISAO-COMERCIAL-FINAL.md) apresenta as sete recomendações com documentos, revisões, vigência privada, encerramento e bloqueios G1–G5. Os limites são propostos, sem aprovação automática.
+
 # Etapa 2 — catálogo validado tecnicamente e decisões operacionais confirmadas
 
 **Atualização operacional de 18/11/2026:** Jennifer no atendimento/documentação; Rodrigo no suporte operacional/digital/supervisão; cobertura inicial São Paulo. [Decisão rastreável](../decisoes/2026-11-18-responsaveis-cobertura-e-preparacao-comercial.md). [Preparação interna de preços/pacotes](../etapa-3-preparacao/README.md), sem valores ou liberação comercial.

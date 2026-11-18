@@ -1,3 +1,5 @@
+> **Próxima decisão em uma rodada:** [sete fichas e tabela A/B/C](../etapa-2-final/DECISAO-COMERCIAL-FINAL.md). Modelo continua com as mesmas vinte linhas e valores vazios; agora inclui atividades geradoras de custo e horas por fase a preencher.
+
 # Preparação interna da Etapa 3 — preços e pacotes
 
 Autorizada em 18/11/2026 exclusivamente como rascunho interno, sem inventar valores. [Decisão confirmada](../decisoes/2026-11-18-responsaveis-cobertura-e-preparacao-comercial.md) · [PR #6](https://github.com/Roh-barboza/oliveira-assessoria/pull/6).

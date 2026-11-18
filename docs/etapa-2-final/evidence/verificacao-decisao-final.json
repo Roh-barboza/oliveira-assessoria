@@ -1,0 +1,49 @@
+{
+  "data": "2026-11-18T15:41:11.092598+00:00",
+  "base": "53d663f",
+  "tipo": "verificação documental; sem nova execução de navegador/Lighthouse",
+  "propostas": 7,
+  "recomendacoes": {
+    "aprovar_apos_requisitos": 5,
+    "ajustar_antes_aprovacao": 2
+  },
+  "todos_campos_operacionais_exigidos": true,
+  "decisoes_e_aprovacoes_vazias": true,
+  "inventario": {
+    "pendente": 12,
+    "candidato": 4,
+    "aprovado": 0
+  },
+  "ids_20_linhas_preservados": true,
+  "JSON_CSV_consistentes": true,
+  "campos_financeiros_horas_e_condicoes_efetivas_vazios": [
+    "preco_venda_sugerido",
+    "custo_operacional_estimado",
+    "custos_parceiros",
+    "taxas_oficiais_separadas",
+    "horas_estimadas_trabalho",
+    "custo_hora_interno",
+    "custos_variaveis_adicionais",
+    "tributos_sobre_venda",
+    "custos_meio_pagamento",
+    "prazo_acompanhamento",
+    "margem_contribuicao_valor",
+    "margem_contribuicao_percentual",
+    "possibilidade_parcelamento",
+    "revisoes_incluidas",
+    "condicoes_continuidade",
+    "despesas_internas_diretas",
+    "despesas_terceiros_logistica",
+    "horas_atendimento_triagem",
+    "horas_documentacao",
+    "horas_suporte_digital",
+    "horas_revisao",
+    "horas_acompanhamento",
+    "horas_encerramento"
+  ],
+  "papel_revisor_somente_recomendado": true,
+  "responsaveis_e_SP_confirmados_preservados": true,
+  "arquivos_servidos_testes_dependencias_integracoes_intactos": true,
+  "nenhum_modelo_publicavel_ou_contratavel": true,
+  "formalmente_encerrado": false
+}

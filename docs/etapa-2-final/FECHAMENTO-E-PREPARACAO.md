@@ -1,3 +1,5 @@
+> **Rodada única vigente:** [DECISAO-COMERCIAL-FINAL](DECISAO-COMERCIAL-FINAL.md) apresenta as sete recomendações com documentos, revisões, vigência privada, encerramento e bloqueios G1–G5. Os limites são propostos, sem aprovação automática.
+
 # Fechamento documental da Etapa 2 e preparação interna da Etapa 3
 
 Atualização: 18/11/2026. Base desta revisão documental: `26d9977`. [PR #6](https://github.com/Roh-barboza/oliveira-assessoria/pull/6).

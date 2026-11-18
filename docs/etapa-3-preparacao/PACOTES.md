@@ -1,3 +1,5 @@
+> **Limites recomendados para revisão:** as composições abaixo permanecem hipóteses. Ver [proposta única de sete serviços](../etapa-2-final/DECISAO-COMERCIAL-FINAL.md) para revisões, acompanhamento, encerramento, documentos e requisitos profissionais. Nenhum pacote foi aprovado.
+
 # Hipóteses internas de composição — sem preços e sem liberação
 
 Cada linha é uma composição para avaliação, não oferta aprovada. São Paulo é a cobertura inicial confirmada; atendimento fora dela exige avaliação. Jennifer responde por atendimento/documentação; Rodrigo por suporte digital/operacional e supervisão. Revisores e habilitados são designações distintas ainda pendentes.

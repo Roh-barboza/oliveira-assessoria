@@ -1,3 +1,5 @@
+> **Decisão de referência para uma rodada:** [sete recomendações completas e tabela A/B/C](DECISAO-COMERCIAL-FINAL.md). Limites antes em aberto agora têm proposta concreta; aguardam aceite, sem alterar os status abaixo. As oito prioridades de estruturação incluem passaporte brasileiro candidato; somente sete compõem a decisão de lançamento inicial.
+
 # Matriz consolidada — operação confirmada e pendências comerciais
 
 Atualização: 18/11/2026. [Decisão operacional confirmada](../decisoes/2026-11-18-responsaveis-cobertura-e-preparacao-comercial.md). [Proposta de escopos](../decisoes/2026-11-18-proposta-consolidada-8-servicos.md).
@@ -89,7 +91,7 @@ Oliveira: organização/conferência material conforme escopo; cliente: veracida
 - Delimitar menores, urgências e exceções; nomear segundo revisor e parceiros quando necessários.
 - Validar instrumentos, autorizações e escopo final; registrar aprovação comercial expressa.
 
-**Segundo revisor:** a designar. **Profissional habilitado:** a designar quando necessário.
+**Segundo revisor:** função recomendada e limites na [ficha IT-01](DECISAO-COMERCIAL-FINAL.md#it-01); designação efetiva ainda não registrada. **Profissional habilitado:** a designar quando exigido pelo caso.
 
 **Aprovação comercial de Jennifer/Rodrigo:** não registrada; os campos individuais permanecem vazios.
 
@@ -156,7 +158,7 @@ Oliveira: organização/conferência material conforme escopo; cliente: veracida
 - Decidir duração da preparação e acompanhamento; hipóteses anteriores de 30/180 dias não aprovadas.
 - Nomear revisor e parceiros de formalidades/questões especializadas, validar permissões e condições finais.
 
-**Segundo revisor:** a designar. **Profissional habilitado:** a designar quando necessário.
+**Segundo revisor:** função recomendada e limites na [ficha IT-02](DECISAO-COMERCIAL-FINAL.md#it-02); designação efetiva ainda não registrada. **Profissional habilitado:** a designar quando exigido pelo caso.
 
 **Aprovação comercial de Jennifer/Rodrigo:** não registrada; os campos individuais permanecem vazios.
 
@@ -219,7 +221,7 @@ Oliveira: organização/conferência material conforme escopo; cliente: veracida
 - Definir duração/número de sessões, dúvidas e encerramento; delimitar associação conforme permissões do portal.
 - Identificar segundo revisor aplicável e condições de suporte, sem duplicar orientação já incluída em AIRE.
 
-**Segundo revisor:** a designar. **Profissional habilitado:** a designar quando necessário.
+**Segundo revisor:** função recomendada e limites na [ficha IT-03](DECISAO-COMERCIAL-FINAL.md#it-03); designação efetiva ainda não registrada. **Profissional habilitado:** a designar quando exigido pelo caso.
 
 **Aprovação comercial de Jennifer/Rodrigo:** não registrada; os campos individuais permanecem vazios.
 
@@ -346,7 +348,7 @@ Oliveira: organização/conferência material conforme escopo; cliente: veracida
 - Designar revisor técnico e profissional habilitado quando necessário; definir limite documental e atos dos responsáveis.
 - Aprovar acompanhamento, revisões, despesas, proteção de dados de menores e condições finais.
 
-**Segundo revisor:** a designar. **Profissional habilitado:** a designar quando necessário.
+**Segundo revisor:** função recomendada e limites na [ficha IT-05](DECISAO-COMERCIAL-FINAL.md#it-05); designação efetiva ainda não registrada. **Profissional habilitado:** a designar quando exigido pelo caso.
 
 **Aprovação comercial de Jennifer/Rodrigo:** não registrada; os campos individuais permanecem vazios.
 
@@ -534,7 +536,7 @@ Oliveira: organização/conferência material conforme escopo; cliente: veracida
 - Definir critérios de complexidade, aceitação/recusa e limite da triagem; discriminar execução adicional sem sobreposição.
 - Nomear revisor/parceiro para necessidades especializadas e validar condições de acompanhamento e encerramento.
 
-**Segundo revisor:** a designar. **Profissional habilitado:** a designar quando necessário.
+**Segundo revisor:** função recomendada e limites na [ficha IT-08](DECISAO-COMERCIAL-FINAL.md#it-08); designação efetiva ainda não registrada. **Profissional habilitado:** a designar quando exigido pelo caso.
 
 **Aprovação comercial de Jennifer/Rodrigo:** não registrada; os campos individuais permanecem vazios.
 
@@ -594,7 +596,7 @@ Oliveira: organização/conferência material conforme escopo; cliente: veracida
 - Validar preparação/transmissão e autorização oficial de acesso; cliente confirma os dados.
 - Definir revisões, acompanhamento, despesas e exclusões de casos complexos antes da aprovação comercial.
 
-**Segundo revisor:** a designar. **Profissional habilitado:** a designar quando necessário.
+**Segundo revisor:** função recomendada e limites na [ficha BR-01](DECISAO-COMERCIAL-FINAL.md#br-01); designação efetiva ainda não registrada. **Profissional habilitado:** a designar quando exigido pelo caso.
 
 **Aprovação comercial de Jennifer/Rodrigo:** não registrada; os campos individuais permanecem vazios.
 
@@ -768,7 +770,7 @@ Oliveira: organização/conferência material conforme escopo; cliente: veracida
 - Definir canal seguro, guarda, devolução, acesso, descarte e autorizações de solicitação por terceiros.
 - Validar prestadores, despesas externas e revisão; não certificar autenticidade ou validade jurídica.
 
-**Segundo revisor:** a designar. **Profissional habilitado:** a designar quando necessário.
+**Segundo revisor:** função recomendada e limites na [ficha BR-04](DECISAO-COMERCIAL-FINAL.md#br-04); designação efetiva ainda não registrada. **Profissional habilitado:** a designar quando exigido pelo caso.
 
 **Aprovação comercial de Jennifer/Rodrigo:** não registrada; os campos individuais permanecem vazios.
 
