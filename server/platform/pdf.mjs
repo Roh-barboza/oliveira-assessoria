@@ -1,8 +1,8 @@
-import { PDFDocument, StandardFonts, rgb } from 'pdf-lib';
+import { PDFDocument, StandardFonts, rgb } from "pdf-lib";
 
 export async function renderPdf(sections, createdAt) {
   const pdf = await PDFDocument.create({ updateMetadata: false });
-  pdf.setTitle('Minuta de teste | Oliveira Assessoria');
+  pdf.setTitle("Minuta de teste | Oliveira Assessoria");
   pdf.setCreationDate(createdAt);
   pdf.setModificationDate(createdAt);
   const regular = await pdf.embedFont(StandardFonts.Helvetica);
@@ -18,9 +18,26 @@ export async function renderPdf(sections, createdAt) {
 
   function newPage() {
     page = pdf.addPage([width, height]);
-    page.drawText('OLIVEIRA ASSESSORIA', { x: margin, y: height - 52, font: serif, size: 20, color: wine });
-    page.drawText('SANDBOX · MINUTA FICTÍCIA SEM VALIDADE', { x: margin, y: height - 74, font: bold, size: 10, color: wine });
-    page.drawLine({ start: { x: margin, y: height - 87 }, end: { x: width - margin, y: height - 87 }, thickness: 1, color: wine });
+    page.drawText("OLIVEIRA ASSESSORIA", {
+      x: margin,
+      y: height - 52,
+      font: serif,
+      size: 20,
+      color: wine,
+    });
+    page.drawText("SANDBOX · MINUTA FICTÍCIA SEM VALIDADE", {
+      x: margin,
+      y: height - 74,
+      font: bold,
+      size: 10,
+      color: wine,
+    });
+    page.drawLine({
+      start: { x: margin, y: height - 87 },
+      end: { x: width - margin, y: height - 87 },
+      thickness: 1,
+      color: wine,
+    });
     y = height - 115;
   }
 
@@ -34,9 +51,9 @@ export async function renderPdf(sections, createdAt) {
   for (const [title, paragraph] of sections) {
     if (y < 110) newPage();
     line(title, bold, 12, wine);
-    for (const block of paragraph.split('\n')) {
-      let row = '';
-      for (const word of block.split(' ')) {
+    for (const block of paragraph.split("\n")) {
+      let row = "";
+      for (const word of block.split(" ")) {
         const next = row ? `${row} ${word}` : word;
         if (regular.widthOfTextAtSize(next, 11) <= width - margin * 2) {
           row = next;

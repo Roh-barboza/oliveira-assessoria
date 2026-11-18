@@ -10,7 +10,7 @@ if (!process.env.BASE_URL) ({ server } = await import("./serve.mjs"));
 const summary = [];
 try {
   for (const mode of ["mobile", "desktop"])
-    for (let run = 1; run <= 3; run++) {
+    for (let run = 1; run <= Number(process.env.LIGHTHOUSE_RUNS || 3); run++) {
       const chrome = await launch({
         chromePath: process.env.CHROME_PATH || "/usr/bin/chromium",
         chromeFlags: [
