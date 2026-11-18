@@ -47,6 +47,8 @@ Foi criado um store **privado e vazio** `oliveira-platform-preview` (`store_85Ar
 
 Somente após comprovar o isolamento exigido, configurar **somente Preview e somente esta branch**: `OLIVEIRA_PLATFORM_STORE=blob`, `BLOB_STORE_ID` e `OLIVEIRA_DATA_KEY` (64 hex aleatórios, protegida), conectar o store ao projeto de teste com permissões mínimas/OIDC e provar reinício, concorrência, ACL e recuperação. Nenhuma variável existente deve ser lida ou substituída. Alternativa futura: Postgres dedicado com `OLIVEIRA_PREVIEW_DATABASE_URL`, mesma chave protegida e migração explícita. Não habilitar ambos.
 
+**Tentativa de destino exclusivo:** após a continuidade autorizada, a criação de `oliveira-plataforma-preview` foi recusada pela Vercel com HTTP 403. A conexão atual não permite criar o projeto e não há CLI autenticada de fallback. O store continua desconectado; é necessário disponibilizar o projeto exclusivo ou liberar sua criação antes de retomar a configuração e os testes remotos. [Registro técnico](VALIDACAO-ISOLAMENTO-BLOB.md#continuação-tentativa-de-destino-exclusivo).
+
 ## Evidências e próximos passos
 
 Veja [TESTES.md](TESTES.md), [SEGURANCA-E-OPERACAO.md](SEGURANCA-E-OPERACAO.md) e [MATRIZ-ENTREGA.md](MATRIZ-ENTREGA.md). Capturas contêm apenas casos sintéticos e não incluem senhas ou cookies. A implementação não deve ser descrita como pronta para clientes reais enquanto os bloqueios de persistência, identidade, LGPD, minutas e operação externa permanecerem.
