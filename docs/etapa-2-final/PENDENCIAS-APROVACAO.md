@@ -1,32 +1,49 @@
-# Pendências para a última revisão comercial
+# Decisões restantes para encerramento formal da Etapa 2
 
-Fonte: proposta de 18/11/2026. **Estruturação não é aprovação.** [Matriz de 16 registros](MATRIZ-CONSOLIDADA.md). Nenhum serviço foi marcado aprovado.
+Atualização: 18/11/2026. [Decisão confirmada](../decisoes/2026-11-18-responsaveis-cobertura-e-preparacao-comercial.md) · [Matriz dos 16 registros](MATRIZ-CONSOLIDADA.md).
 
-| Prioridade | Jennifer e Rodrigo precisam decidir | Condição para liberação |
+**Resolvidos:** Jennifer no atendimento inicial, triagem e documentação; Rodrigo no suporte operacional/digital e supervisão; cobertura inicial São Paulo. Outras localidades exigem avaliação prévia. Não voltar a pedir confirmação genérica desses papéis ou de SP como se ainda fossem sugestões.
+
+**Permanecem 12 pendentes, quatro candidatos, zero aprovados.** Nomeação operacional não resolve habilitação, segundo revisor, limites contratuais ou aprovação comercial por modalidade.
+
+| Decisão restante | O que Jennifer e Rodrigo precisam definir | Bloqueio correspondente |
 | --- | --- | --- |
-| Geral | Aceitar ou ajustar as fichas dos sete existentes prioritários e o material do candidato | Decisão expressa por serviço, data e condições |
-| Geral | Confirmar executor, segundo revisor e responsabilidade profissional | Aceitação nominal e habilitações/parceiros verificados quando aplicáveis |
-| Consular | Aceitar piloto proposto para residentes em SP vinculados ao Consulado de São Paulo | Listar modalidades e exclusões; MT/MS/RO/AC e demais sedes não incluídos automaticamente |
-| Passaporte italiano | Primeira emissão/renovação; menores/urgências; contatos, revisões, início, pausa, extensão e encerramento | 180/60 dias são hipóteses de vigência privada, sem compromisso público ou prazo do órgão |
-| AIRE | Primeira inscrição, endereço, circunscrição e demais atualizações; acompanhamento por evento | Registro Civil mantém canal/checklist próprios, sem atualização por FAST IT em São Paulo |
-| FAST IT | Sessões, criação/associação, dúvidas técnicas e responsável | Cliente controla acesso e envios; não duplicar suporte já incluído em outro escopo |
-| Regularização | Critérios de complexidade, aceitação/recusa e execução adicional | Triagem delimitada; serviços adicionais discriminados e especialista quando necessário |
-| Organização documental | Formatos, quantidades, revisões, cobertura, originais, solicitações permitidas e parceiros | Canal seguro, autorizações, acesso, guarda, devolução e descarte definidos |
-| Registro de filhos | Modalidades, datas/situação familiar, regras aplicáveis e prazos legais reais | Revisão técnica; profissional habilitado para questão jurídica e jurisdição pertinentes |
-| Imposto de Renda | Responsável, exercícios, perfis e eventual preparação/transmissão | Habilitação conforme tarefa, autorização oficial adequada e validação do cliente; complexos não incluídos automaticamente |
-| Passaporte brasileiro | Utilidade frente ao canal gratuito, privacidade, permissões, executor e cobertura | Aprovação específica antes de anunciar; permanece candidato |
-| Outros existentes | Estado civil, Certidões, CIE, INSS e Processos Administrativos | Preservados, pendentes; confirmar escopo e cobertura, sem remoção ou promoção automática |
-| Legados | Negociação de Dívidas, Precatórios e Contratos | Manter fora das ofertas até validação específica |
-| Atendimento futuro | Número WhatsApp, canal, opt-in, responsabilidades, cadências e proteção de dados | Documentação apenas; implementação/ativação dependem de autorização própria |
+| Conjunto de lançamento | Aceitar/ajustar/adiar cada modalidade dos sete existentes prioritários; candidato tratado separadamente | Não há aprovação comercial final registrada |
+| Revisão e capacidade | Nomear segundo revisor, substituição e capacidade efetiva por modalidade | Os papéis gerais não designam revisão técnica ou profissional |
+| Profissionais/parceiros | Nome, tarefa, habilitação aplicável e forma de encaminhamento/contratação | Não liberar atos regulamentados sem responsável competente |
+| Cobertura por procedimento | Sede/órgão/unidade e modalidades dentro de SP; logística remota/presencial | SP confirmado não significa todos os procedimentos admitidos ou cobertura nacional |
+| Passaporte italiano | Vigência, revisões, marcos, contatos, início/pausas/extensão, encerramento; menores e urgências | 180/60 dias continuam hipóteses privadas; três sessões é proposta superada |
+| AIRE | Checklist e exceções por inscrição/atualização/circunscrição; revisões, vigência e acompanhamento | 30/180 dias não aprovados; Registro Civil mantém subfluxo próprio |
+| FAST IT | Duração/sessões, dúvidas, associação permitida e encerramento | Não duplicar suporte incluído em AIRE; cliente controla acesso/envio |
+| Regularização | Critérios de complexidade e aceitação, limite da triagem e execução adicional | Não tratar como pacote ilimitado ou resolução jurídica |
+| Organização documental | Formatos, volumes, revisões, originais, certidões permitidas e prestadores | Autorizações, segurança, guarda/devolução/descarte e despesas ainda a definir |
+| Registro de filhos | Procedimento, situação familiar, datas/regras e prazos legais realmente aplicáveis | Revisão técnica e profissional habilitado quando necessário; sem cidadania automática |
+| IR | Responsável/habilitação, exercícios/perfis, complexidade e permissões de preparação/transmissão | Não oferecer execução fiscal completa indiscriminada |
+| Passaporte brasileiro | Utilidade, privacidade, permissões, enquadramento, unidade PF e decisão de inclusão | Permanece candidato, sem anúncio, preço público ou execução |
+| Outros existentes | Escopos de Estado Civil, Certidões, CIE, INSS e Processos Administrativos | Preservar documentação e status pendente, sem exclusão ou liberação automática |
+| Outros candidatos | Decidir continuidade específica de Dívidas, Precatórios e Contratos | Permanecem fora das ofertas |
+| Condições comuns | Entrega, revisões, acompanhamento, pausas, despesas, autorizações, sigilo e encerramento | Validar os instrumentos adequados sem alterar contratos/Clicksign agora |
+| Custos e preços futuros | Levantar trabalho/horas, custos internos, parceiros, taxas, incidências e capacidade; depois decidir valores, margem e parcelamento | Modelo preenchido com valores vazios; sem preço/pacote liberado |
+| Canal e automação futura | Número WhatsApp, canal autorizado, opt-in, dados e cadência | Direção individual escolhida; integração e envio continuam inativos |
 
-Papéis de Jennifer e Rodrigo são sugestões, sem aceitação formal. O número empresarial continua pendente: manter contato por formulário e substituir pelo ícone/link real do WhatsApp quando fornecido e autorizado no fluxo pertinente.
+## Quem fornece as informações para precificar
 
-## Registro mínimo por serviço
+Jennifer levanta atividades documentais, tempo, revisões e pendências recorrentes. Rodrigo levanta suporte digital, supervisão, capacidade e controle operacional. Parceiros identificados informam seus serviços/custos. Fontes oficiais fundamentam taxas apenas quando verificadas. Profissional competente valida incidências/classificações quando necessário. Jennifer e Rodrigo deliberam sobre preços, composição e condições; este documento não lhes atribui habilitação regulamentada.
 
-`ID | decisão de Jennifer | decisão de Rodrigo | data | escopo/entrega | executor/revisor | cobertura | parceiro/habilitação | condições | pendências bloqueantes`
+## Existe impedimento para o encerramento formal?
 
-Só marcar aprovado após decisão expressa e requisitos atendidos. É possível encerrar a revisão com itens adiados, desde que a decisão os mantenha fora do conjunto liberado. Preparação técnica e Preview não autorizam execução comercial.
+**Sim.** A apresentação técnica foi entregue e validada anteriormente, mas ainda faltam aprovação comercial expressa por modalidade e solução/adiamento dos bloqueios profissionais, operacionais, documentais e contratuais acima. A decisão de papéis/SP encerra apenas esses pontos gerais.
 
-## Critério de encerramento da Etapa 2
+É possível encerrar formalmente com serviços adiados, desde que Jennifer e Rodrigo registrem quais modalidades estão aprovadas com requisitos atendidos e quais ficam fora do lançamento. Não é necessário converter todos os 16 em aprovados. Passaporte brasileiro pode continuar candidato.
 
-Revisão visual e funcional entregue; fichas/matriz e limitações verificadas; decisões de ambos registradas; conjunto comercialmente liberado explicitamente identificado; pendências bloqueantes resolvidas ou serviços correspondentes adiados. A Etapa 3 continua não iniciada e exige autorização expressa. Merge, produção, preços, pagamentos, contratos e ativação de automação não decorrem desta revisão.
+O levantamento de preços com campos vazios está autorizado em paralelo como preparação interna da Etapa 3. Não depende de declarar artificialmente encerrada a Etapa 2 e não autoriza venda ou publicação. Preencher preços e aprovar oferta são decisões posteriores distintas.
+
+Preços, custos, margens e parcelamento ainda vazios **não são, por si, impedimento ao encerramento da Etapa 2**: pertencem à definição comercial da Etapa 3. Os bloqueios atuais de encerramento são a decisão final dos escopos/modalidades e os requisitos profissionais, de revisão e de condições operacionais/contratuais correspondentes.
+
+## Registro para cada decisão final
+
+`ID/modalidade | decisão expressa de Jennifer | decisão expressa de Rodrigo | data | entregas/limites | executor operacional | segundo revisor | habilitado/parceiro | órgão/cobertura | vigência/revisões | despesas | condições | bloqueios resolvidos ou adiamento`
+
+Não alterar status para aprovado enquanto houver impedimento não resolvido da modalidade. Para liberação parcial futura, registrar o subescopo exato; a aprovação de um ato material não libera atos especializados.
+
+Sem merge, publicação de alterações no site, contratações, pagamentos, automação ou mudança de Clicksign/n8n. WhatsApp aguarda número, mantendo a preferência pelo ícone/link real quando fornecido; nenhum placeholder.

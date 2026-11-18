@@ -433,5 +433,14 @@
       "sources": [],
       "status": "pendente"
     }
+  },
+  "decisao_operacional": {
+    "data": "2026-11-18",
+    "documento": "../decisoes/2026-11-18-responsaveis-cobertura-e-preparacao-comercial.md",
+    "jennifer": "Atendimento, triagem e documentação",
+    "rodrigo": "Suporte operacional/digital e supervisão",
+    "cobertura_inicial": "São Paulo",
+    "segundo_revisor": null,
+    "habilitacoes_nao_presumidas": true
   }
 }

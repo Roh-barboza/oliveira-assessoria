@@ -1,4 +1,6 @@
-# Finalização da Etapa 2 — catálogo pronto para última revisão
+# Etapa 2 — catálogo validado tecnicamente e decisões operacionais confirmadas
+
+**Atualização operacional de 18/11/2026:** Jennifer no atendimento/documentação; Rodrigo no suporte operacional/digital/supervisão; cobertura inicial São Paulo. [Decisão rastreável](../decisoes/2026-11-18-responsaveis-cobertura-e-preparacao-comercial.md). [Preparação interna de preços/pacotes](../etapa-3-preparacao/README.md), sem valores ou liberação comercial.
 
 Fonte: [proposta consolidada de 18/11/2026](../decisoes/2026-11-18-proposta-consolidada-8-servicos.md). Branch `feature/etapa-2-catalogo-servicos`, [PR #6](https://github.com/Roh-barboza/oliveira-assessoria/pull/6), base de implementação desta revisão `2f3b9c3`.
 
@@ -23,7 +25,7 @@ Fonte: [proposta consolidada de 18/11/2026](../decisoes/2026-11-18-proposta-cons
 - [Passaporte brasileiro: material interno, não publicado](PASSAPORTE-BRASILEIRO-CANDIDATO.md).
 - [Arquitetura futura de atendimento e follow-ups — inativa](ATENDIMENTO-ARQUITETURA.md).
 
-Arquitetura documenta componentes, entidades, estados, executor/revisor, pendências, histórico, modalidade/vigência, origem de protocolos, alertas, deduplicação, consentimento, pausa, encerramento e continuidade. Não cria banco, agente, fila, cron ou integração. Papéis de Jennifer/Rodrigo e piloto SP são propostas não aceitas formalmente. Hipóteses de vigência de 180/60 dias de passaporte ficam apenas internas; não são prazos oficiais ou compromissos aprovados.
+Arquitetura documenta componentes, entidades, estados, executor/revisor, pendências, histórico, modalidade/vigência, origem de protocolos, alertas, deduplicação, consentimento, pausa, encerramento e continuidade. Não cria banco, agente, fila, cron ou integração. Jennifer/Rodrigo e cobertura inicial SP estão confirmados na nova decisão operacional; segundo revisor, profissionais habilitados e condições por serviço continuam pendentes. Hipóteses de vigência de 180/60 dias de passaporte ficam apenas internas; não são prazos oficiais ou compromissos aprovados.
 
 ## Preservação
 
@@ -31,7 +33,7 @@ Logo, fotografia, fontes locais, tokens visuais, estilos e dependências preserv
 
 Clicksign, n8n, banco, credenciais, extensão e lógica do checklist IR, contratos e pagamentos não foram alterados. Nenhuma mensagem automática ou cobrança foi ativada; nenhum lead de teste foi enviado ao webhook. WhatsApp permanece aguardando número empresarial, sem link fictício.
 
-Sem preços, pacotes, merge, produção, contratação real ou início da Etapa 3. Fontes e checklists continuam indicativos, sem novos requisitos, taxas ou prazos oficiais universais. Validar fonte específica antes da execução de cada caso.
+Na entrega técnica anterior não houve preços, pacotes, merge, produção, contratação real ou início da Etapa 3. Agora está autorizada somente a preparação interna de preços/pacotes com valores vazios, sem alterações no site. Fontes e checklists continuam indicativos, sem novos requisitos, taxas ou prazos oficiais universais. Validar fonte específica antes da execução de cada caso.
 
 ## Verificação e entrega
 
@@ -47,4 +49,8 @@ Deployment `dpl_HHNqoPNd6pPYNDBqVTmc8e9aoVrG`, READY, ambiente Preview (`target:
 
 Testes finais passaram também no Preview: **19 páginas × 7 larguras**, 133 combinações por ambiente. [Relatório e limites](TESTES.md) · [24 capturas desktop/mobile](VISUAL.md) · [30 execuções Lighthouse](PERFORMANCE.md) · [Arquivos modificados](ARQUIVOS.md).
 
-Para encerrar a Etapa 2 falta registrar a decisão comercial e profissional de Jennifer e Rodrigo por serviço, conforme [pendências](PENDENCIAS-APROVACAO.md). Sem Etapa 3, merge ou produção.
+Para encerrar formalmente a Etapa 2 ainda falta aprovação comercial por modalidade, segundo revisor, responsáveis habilitados quando necessários e condições finais, conforme [pendências](PENDENCIAS-APROVACAO.md). Divisão operacional e SP já não são decisões em aberto. Preparação interna da Etapa 3 autorizada; definição/liberação de valores, merge e produção continuam não autorizados.
+
+## Fechamento documental e preparação comercial
+
+[Relatório desta atualização e verificação de preservação](FECHAMENTO-E-PREPARACAO.md). Não houve alteração visual/funcional; Preview, capturas e Lighthouse acima pertencem à implementação técnica já medida. Não se apresentam essas medições como testes novos desta atualização documental.

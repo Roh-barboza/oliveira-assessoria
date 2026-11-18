@@ -2,7 +2,7 @@
 
 Data: 18/11/2026. Referência: [proposta consolidada](../decisoes/2026-11-18-proposta-consolidada-8-servicos.md).
 
-Este documento prepara a implementação futura. Não cria banco, API, fila, cron, agente em execução, credenciais ou conexão com WhatsApp. Não altera o webhook n8n, Clicksign, pagamentos ou contratos. A arquitetura não constitui início da Etapa 3 nem autorização para sua implementação.
+Este documento prepara a implementação futura. Não cria banco, API, fila, cron, agente em execução, credenciais ou conexão com WhatsApp. Não altera o webhook n8n, Clicksign, pagamentos ou contratos. A preparação interna de preços/pacotes da Etapa 3 foi posteriormente autorizada, sem valores; esta arquitetura continua inativa e não autoriza implementar ou ativar integrações.
 
 ## Situação atual e fronteira técnica
 
@@ -77,7 +77,7 @@ Deduplicar por caso + pendência + janela de contato + canal, com chave idempote
 
 ## Modalidade, vigência e encerramento
 
-Registrar separadamente modalidade do serviço e forma de atendimento (individual remoto/presencial). Papéis sugeridos: Jennifer para triagem/documentação e Rodrigo para canais digitais/supervisão, **sem aceitação formal ou designação definitiva**. Casos sensíveis precisam de segundo revisor e profissional habilitado quando necessário.
+Registrar separadamente modalidade do serviço e forma de atendimento (individual remoto/presencial). Papéis operacionais confirmados em 18/11/2026: Jennifer para atendimento, triagem, conferência/organização documental, pendências e comunicação; Rodrigo para suporte operacional/digital, supervisão dos fluxos e organização do acompanhamento. Cobertura inicial São Paulo; outras localidades exigem avaliação antes da aceitação. A confirmação não concede habilitação profissional nem designa automaticamente segundo revisor. Casos sensíveis precisam de segundo revisor e profissional habilitado quando necessário.
 
 As hipóteses de 180 dias na primeira emissão e 60 na renovação de passaporte são vigências privadas propostas, não prazos do órgão ou condições aprovadas. Início, pausa, revisões, extensão, direitos do consumidor e encerramento permanecem para decisão. Nada é exibido no site como prazo contratado.
 
@@ -85,7 +85,7 @@ Ao encerrar: relatório de atividades e entregas, andamento conhecido, pendênci
 
 ## Validação antes de qualquer ativação futura
 
-1. Aprovação por serviço, cobertura, executor/revisor e parceiros habilitados.
+1. Aprovação por serviço/modalidade, confirmação de unidade/procedimento dentro da cobertura SP, designação de segundo revisor e parceiros habilitados quando necessários. Papéis operacionais de Jennifer/Rodrigo já confirmados.
 2. Número empresarial, titularidade, canal/provedor e integração autorizados; opt-in e opção de atendimento humano.
 3. Base e finalidade de tratamento, acesso por função, retenção/descarte, canal documental, segregação e atendimento aos titulares definidos.
 4. Simulações com dados sintéticos: duplicidade, revogação, falha/retry, resposta do cliente, pausa, fim de vigência, caso encerrado, prazo incorreto e encaminhamento humano.
@@ -93,3 +93,7 @@ Ao encerrar: relatório de atividades e entregas, andamento conhecido, pendênci
 6. Aprovação própria para implementar e depois ativar; chave geral de desativação, auditoria e plano de interrupção.
 
 Nenhuma dessas etapas é acionada por esta documentação. Clicksign, webhook n8n e pagamentos permanecem intactos.
+
+## Atualização de decisão
+
+[Registro confirmado de responsáveis e cobertura](../decisoes/2026-11-18-responsaveis-cobertura-e-preparacao-comercial.md). Jennifer/Rodrigo deixam de ser sugestões operacionais, mas nenhuma automação, vigência, cadência ou habilitação foi aprovada por essa nomeação.

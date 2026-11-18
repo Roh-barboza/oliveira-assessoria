@@ -1,0 +1,35 @@
+{
+  "data_verificacao": "2026-11-18T15:14:25.397593+00:00",
+  "base": "26d9977",
+  "tipo": "verificação documental e de dados; navegador/Lighthouse não repetidos",
+  "inventario": {
+    "pendente": 12,
+    "candidato": 4,
+    "aprovado": 0
+  },
+  "servicos": 16,
+  "prioritarios": 8,
+  "linhas_modelo": 20,
+  "json_csv_consistentes": true,
+  "campos_financeiros_e_prazo_vazios": [
+    "preco_venda_sugerido",
+    "custo_operacional_estimado",
+    "custos_parceiros",
+    "taxas_oficiais_separadas",
+    "horas_estimadas_trabalho",
+    "custo_hora_interno",
+    "custos_variaveis_adicionais",
+    "tributos_sobre_venda",
+    "custos_meio_pagamento",
+    "prazo_acompanhamento",
+    "margem_contribuicao_valor",
+    "margem_contribuicao_percentual",
+    "possibilidade_parcelamento"
+  ],
+  "nenhum_modelo_publicavel_ou_contratavel": true,
+  "papeis_confirmados_sem_habilitacao_presumida": true,
+  "site_e_integracoes_sem_alteracoes": true,
+  "arquivos_servidos_preservados": 47,
+  "aprovacao_comercial_automatica": false,
+  "novo_deploy_solicitado": false
+}

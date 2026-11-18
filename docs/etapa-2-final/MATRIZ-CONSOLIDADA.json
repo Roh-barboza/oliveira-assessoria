@@ -6,7 +6,7 @@
     "pendente",
     "candidato"
   ],
-  "criterio": "Prioridade de estruturação não é aprovação. 12 pendentes, 4 candidatos, 0 aprovados; decisão expressa de Jennifer e Rodrigo necessária.",
+  "criterio": "Divisão operacional e cobertura SP confirmadas em 18/11/2026. Não equivalem à aprovação comercial. 12 pendentes, 4 candidatos, 0 aprovados; preparação interna de preços/pacotes autorizada, sem valores.",
   "servicos": [
     {
       "id": "IT-01",
@@ -26,12 +26,13 @@
         "Correções de AIRE ou estado civil não discriminadas no escopo; reconhecimento de cidadania.",
         "Busca automatizada de vagas, acesso à conta do cliente pela assessoria ou promessa de agendamento."
       ],
-      "responsavel_execucao": "A confirmar por Jennifer e Rodrigo: nome, função e responsabilidade.",
-      "regiao_consulado": "Piloto proposto, não aprovado: residentes em SP ligados ao Consulado Geral da Itália em São Paulo. MT, MS, RO, AC e demais sedes dependem de mapeamento e aceitação expressa.",
+      "responsavel_execucao": "Jennifer — atendimento, triagem, conferência/organização documental, pendências, comunicação e acompanhamento documental; Rodrigo — suporte operacional, plataformas digitais e supervisão do acompanhamento. Divisão confirmada; execução comercial depende das pendências da linha.",
+      "regiao_consulado": "Cobertura inicial confirmada: São Paulo. Para o piloto consular, residentes em SP com competência do Consulado Geral da Itália em São Paulo; outros estados/sedes e localidades exigem avaliação específica antes da aceitação.",
       "habilitacao_parceiro": "Confirmar limites do suporte a agendamento e atos pessoais; identificar terceiros para tradução/formalidades quando necessários.",
       "pendencias": [
-        "Definir se haverá apenas orientação ou também acompanhamento de agendamento, sem garantia de vaga.",
-        "Confirmar responsável, cobertura, tarefas e eventuais terceiros."
+        "Aprovar vigência, marcos, revisões, atendimento humano, início, pausas, extensão e encerramento de cada modalidade; 180/60 dias continuam hipóteses privadas.",
+        "Delimitar menores, urgências e exceções; nomear segundo revisor e parceiros quando necessários.",
+        "Validar instrumentos, autorizações e escopo final; registrar aprovação comercial expressa."
       ],
       "status": "pendente",
       "prioridade": "prioritário para estruturação",
@@ -48,7 +49,6 @@
         "Histórico dos contatos e do andamento informado pelo cliente, com instruções finais."
       ],
       "limites_operacionais": "Primeira emissão e renovação têm percursos próprios. Menores e urgências exigem avaliação específica. Modalidade, revisões e período de acompanhamento serão definidos antes do atendimento; não representam prazo do consulado.",
-      "papeis_sugeridos": "Jennifer: referência de triagem/documentação; Rodrigo: referência operacional digital e supervisão de automação. Sugestões sem aceitação formal; executor, revisor e parceiros a confirmar.",
       "responsabilidades": "Oliveira: organização/conferência material conforme escopo; cliente: veracidade, validação, contas, assinaturas e atos pessoais; órgão: vagas, análise, decisão, registro e emissão. Profissionais habilitados: atos especializados próprios.",
       "modalidades": [
         "primeira emissão",
@@ -63,7 +63,31 @@
           "primeira_emissao": "quinzenal",
           "renovacao": "semanal"
         },
-        "observacao": "Propostas de vigência privada e cadência interna; não prazos do órgão, não exibidas como compromisso no site. Início, pausa, extensão e encerramento a validar."
+        "observacao": "Hipóteses privadas de vigência/cadência, não aprovadas e não prazos oficiais. A antiga hipótese de 30 dias/três sessões foi superada nos comentários do PR."
+      },
+      "responsavel_operacional": {
+        "referencia_principal": "Jennifer",
+        "documentacao_atendimento": "Jennifer",
+        "suporte_digital_supervisao": "Rodrigo",
+        "segundo_revisor": null,
+        "profissional_habilitado": null,
+        "aplicacao": "papéis operacionais confirmados, sem aprovação comercial automática"
+      },
+      "modalidades_estruturadas": [
+        "Primeira emissão — preparação documental e suporte limitado ao agendamento",
+        "Renovação — preparação documental e suporte limitado ao agendamento"
+      ],
+      "despesas_externas": [
+        "Taxas oficiais cobradas pelo órgão e separadas do serviço privado, sem valores presumidos.",
+        "Certidões, traduções, apostilamentos, parceiros e logística quando necessários, discriminados e autorizados separadamente; nenhum custo incluído automaticamente."
+      ],
+      "confirmacao_operacional": {
+        "data": "2026-11-18",
+        "fonte_pr": "https://github.com/Roh-barboza/oliveira-assessoria/pull/6#issuecomment-6982074983",
+        "fonte_adicional": "Instrução anexada pelo usuário: fechamento da Etapa 2 e preparação da Etapa 3",
+        "papeis_confirmados": true,
+        "cobertura_inicial": "São Paulo",
+        "aprova_servico": false
       }
     },
     {
@@ -81,12 +105,13 @@
         "Atividades não confirmadas no escopo, como tradução, apostilamento ou representação especializada.",
         "Emissão de documentos, decisões e resultados que cabem às autoridades públicas."
       ],
-      "responsavel_execucao": "A confirmar por Jennifer e Rodrigo: nome, função e responsabilidade.",
-      "regiao_consulado": "Piloto proposto, não aprovado: residentes em SP ligados ao Consulado Geral da Itália em São Paulo. MT, MS, RO, AC e demais sedes dependem de mapeamento e aceitação expressa.",
+      "responsavel_execucao": "Jennifer — atendimento, triagem, conferência/organização documental, pendências, comunicação e acompanhamento documental; Rodrigo — suporte operacional, plataformas digitais e supervisão do acompanhamento. Divisão confirmada; execução comercial depende das pendências da linha.",
+      "regiao_consulado": "Cobertura inicial confirmada: São Paulo. Para o piloto consular, residentes em SP com competência do Consulado Geral da Itália em São Paulo; outros estados/sedes e localidades exigem avaliação específica antes da aceitação.",
       "habilitacao_parceiro": "Confirmar tarefas administrativas e autorizações admitidas no órgão; questões jurídicas e serviços de terceiros não são assumidos.",
       "pendencias": [
-        "Diferenciar primeira inscrição, mudança de endereço e mudança de jurisdição; confirmar serviços efetivamente executados.",
-        "Confirmar responsável, cobertura, tarefas e eventuais terceiros."
+        "Fechar checklist, entregas/revisões e exceções por modalidade; Registro Civil usa subfluxo e validação próprios.",
+        "Decidir duração da preparação e acompanhamento; hipóteses anteriores de 30/180 dias não aprovadas.",
+        "Nomear revisor e parceiros de formalidades/questões especializadas, validar permissões e condições finais."
       ],
       "status": "pendente",
       "prioridade": "prioritário para estruturação",
@@ -103,8 +128,33 @@
         "Registro de andamento fornecido pelo cliente, dentro do acompanhamento definido."
       ],
       "limites_operacionais": "AIRE é o cadastro; FAST IT é um canal operacional. Casamento, divórcio, nascimento e óbito seguem o setor de Registro Civil e formalidades próprias. Em São Paulo, estado civil não é atualizado pelo FAST IT. Sua organização pode integrar a proposta de regularidade cadastral, mas precisa de atividades discriminadas e avaliação específica.",
-      "papeis_sugeridos": "Jennifer: referência de triagem/documentação; Rodrigo: referência operacional digital e supervisão de automação. Sugestões sem aceitação formal; executor, revisor e parceiros a confirmar.",
-      "responsabilidades": "Oliveira: organização/conferência material conforme escopo; cliente: veracidade, validação, contas, assinaturas e atos pessoais; órgão: vagas, análise, decisão, registro e emissão. Profissionais habilitados: atos especializados próprios."
+      "responsabilidades": "Oliveira: organização/conferência material conforme escopo; cliente: veracidade, validação, contas, assinaturas e atos pessoais; órgão: vagas, análise, decisão, registro e emissão. Profissionais habilitados: atos especializados próprios.",
+      "responsavel_operacional": {
+        "referencia_principal": "Jennifer",
+        "documentacao_atendimento": "Jennifer",
+        "suporte_digital_supervisao": "Rodrigo",
+        "segundo_revisor": null,
+        "profissional_habilitado": null,
+        "aplicacao": "papéis operacionais confirmados, sem aprovação comercial automática"
+      },
+      "modalidades_estruturadas": [
+        "Primeira inscrição",
+        "Atualização de endereço/residência",
+        "Mudança de circunscrição",
+        "Outras atualizações cadastrais admitidas; eventos de estado civil em subfluxo separado de Registro Civil"
+      ],
+      "despesas_externas": [
+        "Taxas oficiais cobradas pelo órgão e separadas do serviço privado, sem valores presumidos.",
+        "Certidões, traduções, apostilamentos, parceiros e logística quando necessários, discriminados e autorizados separadamente; nenhum custo incluído automaticamente."
+      ],
+      "confirmacao_operacional": {
+        "data": "2026-11-18",
+        "fonte_pr": "https://github.com/Roh-barboza/oliveira-assessoria/pull/6#issuecomment-6982074983",
+        "fonte_adicional": "Instrução anexada pelo usuário: fechamento da Etapa 2 e preparação da Etapa 3",
+        "papeis_confirmados": true,
+        "cobertura_inicial": "São Paulo",
+        "aprova_servico": false
+      }
     },
     {
       "id": "IT-03",
@@ -121,12 +171,12 @@
         "Atividades não confirmadas no escopo, como tradução, apostilamento ou representação especializada.",
         "Emissão de documentos, decisões e resultados que cabem às autoridades públicas."
       ],
-      "responsavel_execucao": "A confirmar por Jennifer e Rodrigo: nome, função e responsabilidade.",
-      "regiao_consulado": "Piloto proposto, não aprovado: residentes em SP ligados ao Consulado Geral da Itália em São Paulo. MT, MS, RO, AC e demais sedes dependem de mapeamento e aceitação expressa.",
+      "responsavel_execucao": "Jennifer — atendimento, triagem, conferência/organização documental, pendências, comunicação e acompanhamento documental; Rodrigo — suporte operacional, plataformas digitais e supervisão do acompanhamento. Divisão confirmada; execução comercial depende das pendências da linha.",
+      "regiao_consulado": "Cobertura inicial confirmada: São Paulo. Para o piloto consular, residentes em SP com competência do Consulado Geral da Itália em São Paulo; outros estados/sedes e localidades exigem avaliação específica antes da aceitação.",
       "habilitacao_parceiro": "Definir orientação de uso e controle de acesso pelo cliente; confirmar autorizações para qualquer atuação em nome de terceiros.",
       "pendencias": [
-        "Definir como suporte de canal se diferencia de AIRE e de outros serviços, evitando escopos sobrepostos.",
-        "Confirmar responsável, cobertura, tarefas e eventuais terceiros."
+        "Definir duração/número de sessões, dúvidas e encerramento; delimitar associação conforme permissões do portal.",
+        "Identificar segundo revisor aplicável e condições de suporte, sem duplicar orientação já incluída em AIRE."
       ],
       "status": "pendente",
       "prioridade": "prioritário para estruturação",
@@ -142,8 +192,31 @@
         "Sessão orientativa, roteiro de uso e checklist de pendências técnicas."
       ],
       "limites_operacionais": "FAST IT é uma plataforma, não um processo consular autônomo. Cliente controla login, autenticação, assinaturas e envios. O mesmo suporte já incluído em AIRE ou outra assessoria não será tratado como atendimento avulso duplicado. Sessões e limites dependem da definição do escopo.",
-      "papeis_sugeridos": "Jennifer: referência de triagem/documentação; Rodrigo: referência operacional digital e supervisão de automação. Sugestões sem aceitação formal; executor, revisor e parceiros a confirmar.",
-      "responsabilidades": "Oliveira: organização/conferência material conforme escopo; cliente: veracidade, validação, contas, assinaturas e atos pessoais; órgão: vagas, análise, decisão, registro e emissão. Profissionais habilitados: atos especializados próprios."
+      "responsabilidades": "Oliveira: organização/conferência material conforme escopo; cliente: veracidade, validação, contas, assinaturas e atos pessoais; órgão: vagas, análise, decisão, registro e emissão. Profissionais habilitados: atos especializados próprios.",
+      "responsavel_operacional": {
+        "referencia_principal": "Rodrigo",
+        "documentacao_atendimento": "Jennifer",
+        "suporte_digital_supervisao": "Rodrigo",
+        "segundo_revisor": null,
+        "profissional_habilitado": null,
+        "aplicacao": "papéis operacionais confirmados, sem aprovação comercial automática"
+      },
+      "modalidades_estruturadas": [
+        "Suporte avulso para criação e associação de conta quando permitida",
+        "Suporte operacional de navegação, anexos e mensagens técnicas"
+      ],
+      "despesas_externas": [
+        "Taxas oficiais cobradas pelo órgão e separadas do serviço privado, sem valores presumidos.",
+        "Certidões, traduções, apostilamentos, parceiros e logística quando necessários, discriminados e autorizados separadamente; nenhum custo incluído automaticamente."
+      ],
+      "confirmacao_operacional": {
+        "data": "2026-11-18",
+        "fonte_pr": "https://github.com/Roh-barboza/oliveira-assessoria/pull/6#issuecomment-6982074983",
+        "fonte_adicional": "Instrução anexada pelo usuário: fechamento da Etapa 2 e preparação da Etapa 3",
+        "papeis_confirmados": true,
+        "cobertura_inicial": "São Paulo",
+        "aprova_servico": false
+      }
     },
     {
       "id": "IT-04",
@@ -160,12 +233,12 @@
         "Atividades não confirmadas no escopo, como tradução, apostilamento ou representação especializada.",
         "Emissão de documentos, decisões e resultados que cabem às autoridades públicas."
       ],
-      "responsavel_execucao": "A confirmar por Jennifer e Rodrigo: nome, função e responsabilidade.",
-      "regiao_consulado": "Piloto proposto, não aprovado: residentes em SP ligados ao Consulado Geral da Itália em São Paulo. MT, MS, RO, AC e demais sedes dependem de mapeamento e aceitação expressa.",
+      "responsavel_execucao": "Jennifer — atendimento, triagem, conferência/organização documental, pendências, comunicação e acompanhamento documental; Rodrigo — suporte operacional, plataformas digitais e supervisão do acompanhamento. Divisão confirmada; execução comercial depende das pendências da linha.",
+      "regiao_consulado": "Cobertura inicial confirmada: São Paulo. Para o piloto consular, residentes em SP com competência do Consulado Geral da Itália em São Paulo; outros estados/sedes e localidades exigem avaliação específica antes da aceitação.",
       "habilitacao_parceiro": "Identificar necessidade de tradução juramentada ou outro prestador; questões e pareceres jurídicos exigem avaliação profissional própria.",
       "pendencias": [
-        "Confirmar eventos atendidos e fronteira com Registro de filhos; traduções e apostilas dependem de definição operacional.",
-        "Confirmar responsável, cobertura, tarefas e eventuais terceiros."
+        "Selecionar eventos, formalidades e competências atendidas; definir fronteira com filhos/AIRE.",
+        "Nomear revisor/parceiros para tradução, apostila e questões jurídicas; aprovar acompanhamento e escopo final."
       ],
       "status": "pendente",
       "prioridade": "preservado para decisão posterior",
@@ -181,8 +254,30 @@
         "Dossiê organizado por evento, checklist de formalidades e pendências documentais."
       ],
       "limites_operacionais": "Formalidades, tradução, apostilamento e canal de apresentação devem ser confirmados para o evento e a jurisdição. Situações que exijam atuação jurídica precisam de avaliação profissional própria. A preparação pode se relacionar à regularidade cadastral, mas Registro Civil tem canal próprio; em São Paulo não é atualização pelo FAST IT. Registro de filhos exige avaliação específica do procedimento e da situação familiar.",
-      "papeis_sugeridos": "Jennifer: referência de triagem/documentação; Rodrigo: referência operacional digital e supervisão de automação. Sugestões sem aceitação formal; executor, revisor e parceiros a confirmar.",
-      "responsabilidades": "Oliveira: organização/conferência material conforme escopo; cliente: veracidade, validação, contas, assinaturas e atos pessoais; órgão: vagas, análise, decisão, registro e emissão. Profissionais habilitados: atos especializados próprios."
+      "responsabilidades": "Oliveira: organização/conferência material conforme escopo; cliente: veracidade, validação, contas, assinaturas e atos pessoais; órgão: vagas, análise, decisão, registro e emissão. Profissionais habilitados: atos especializados próprios.",
+      "responsavel_operacional": {
+        "referencia_principal": "Jennifer",
+        "documentacao_atendimento": "Jennifer",
+        "suporte_digital_supervisao": "Rodrigo",
+        "segundo_revisor": null,
+        "profissional_habilitado": null,
+        "aplicacao": "papéis operacionais confirmados, sem aprovação comercial automática"
+      },
+      "modalidades_estruturadas": [
+        "Eventos de Registro Civil a selecionar por situação e competência"
+      ],
+      "despesas_externas": [
+        "Taxas oficiais cobradas pelo órgão e separadas do serviço privado, sem valores presumidos.",
+        "Certidões, traduções, apostilamentos, parceiros e logística quando necessários, discriminados e autorizados separadamente; nenhum custo incluído automaticamente."
+      ],
+      "confirmacao_operacional": {
+        "data": "2026-11-18",
+        "fonte_pr": "https://github.com/Roh-barboza/oliveira-assessoria/pull/6#issuecomment-6982074983",
+        "fonte_adicional": "Instrução anexada pelo usuário: fechamento da Etapa 2 e preparação da Etapa 3",
+        "papeis_confirmados": true,
+        "cobertura_inicial": "São Paulo",
+        "aprova_servico": false
+      }
     },
     {
       "id": "IT-05",
@@ -200,12 +295,13 @@
         "Emissão de documentos, decisões e resultados que cabem às autoridades públicas.",
         "Conclusão automática de cidadania ou aconselhamento jurídico pela assessoria administrativa."
       ],
-      "responsavel_execucao": "A confirmar por Jennifer e Rodrigo: nome, função e responsabilidade.",
-      "regiao_consulado": "Piloto proposto, não aprovado: residentes em SP ligados ao Consulado Geral da Itália em São Paulo. MT, MS, RO, AC e demais sedes dependem de mapeamento e aceitação expressa.",
+      "responsavel_execucao": "Jennifer — atendimento, triagem, conferência/organização documental, pendências, comunicação e acompanhamento documental; Rodrigo — suporte operacional, plataformas digitais e supervisão do acompanhamento. Divisão confirmada; execução comercial depende das pendências da linha.",
+      "regiao_consulado": "Cobertura inicial confirmada: São Paulo. Para o piloto consular, residentes em SP com competência do Consulado Geral da Itália em São Paulo; outros estados/sedes e localidades exigem avaliação específica antes da aceitação.",
       "habilitacao_parceiro": "Validar enquadramento com profissional adequado quando houver questão jurídica; traduções/formalidades são externas ao escopo não confirmado.",
       "pendencias": [
-        "Separar registro/transcrição de eventual aquisição de cidadania; revisão técnica das regras de menores antes de publicar requisitos.",
-        "Confirmar responsável, cobertura, tarefas e eventuais terceiros."
+        "Validar procedimento, situação familiar, datas, regras e prazos legais realmente aplicáveis, sem cidadania automática.",
+        "Designar revisor técnico e profissional habilitado quando necessário; definir limite documental e atos dos responsáveis.",
+        "Aprovar acompanhamento, revisões, despesas, proteção de dados de menores e condições finais."
       ],
       "status": "pendente",
       "prioridade": "prioritário para estruturação",
@@ -222,8 +318,30 @@
         "Histórico documental e encaminhamentos à revisão especializada quando necessários."
       ],
       "limites_operacionais": "Registro de nascimento, transcrição e aquisição de cidadania por benefício de lei não são equivalentes. As regras vigentes, datas e situação familiar precisam de revisão técnica antes da execução. Elegibilidade, declaração de vontade e dúvidas jurídicas exigem profissional habilitado para o caso e a jurisdição; os pais cumprem os atos pessoais.",
-      "papeis_sugeridos": "Jennifer: referência de triagem/documentação; Rodrigo: referência operacional digital e supervisão de automação. Sugestões sem aceitação formal; executor, revisor e parceiros a confirmar.",
-      "responsabilidades": "Oliveira: organização/conferência material conforme escopo; cliente: veracidade, validação, contas, assinaturas e atos pessoais; órgão: vagas, análise, decisão, registro e emissão. Profissionais habilitados: atos especializados próprios."
+      "responsabilidades": "Oliveira: organização/conferência material conforme escopo; cliente: veracidade, validação, contas, assinaturas e atos pessoais; órgão: vagas, análise, decisão, registro e emissão. Profissionais habilitados: atos especializados próprios.",
+      "responsavel_operacional": {
+        "referencia_principal": "Jennifer",
+        "documentacao_atendimento": "Jennifer",
+        "suporte_digital_supervisao": "Rodrigo",
+        "segundo_revisor": null,
+        "profissional_habilitado": null,
+        "aplicacao": "papéis operacionais confirmados, sem aprovação comercial automática"
+      },
+      "modalidades_estruturadas": [
+        "Preparação documental por procedimento e complexidade definidos após revisão técnica; registro/transcrição e aquisição de cidadania não equivalentes"
+      ],
+      "despesas_externas": [
+        "Taxas oficiais cobradas pelo órgão e separadas do serviço privado, sem valores presumidos.",
+        "Certidões, traduções, apostilamentos, parceiros e logística quando necessários, discriminados e autorizados separadamente; nenhum custo incluído automaticamente."
+      ],
+      "confirmacao_operacional": {
+        "data": "2026-11-18",
+        "fonte_pr": "https://github.com/Roh-barboza/oliveira-assessoria/pull/6#issuecomment-6982074983",
+        "fonte_adicional": "Instrução anexada pelo usuário: fechamento da Etapa 2 e preparação da Etapa 3",
+        "papeis_confirmados": true,
+        "cobertura_inicial": "São Paulo",
+        "aprova_servico": false
+      }
     },
     {
       "id": "IT-06",
@@ -240,12 +358,12 @@
         "Atividades não confirmadas no escopo, como tradução, apostilamento ou representação especializada.",
         "Emissão de documentos, decisões e resultados que cabem às autoridades públicas."
       ],
-      "responsavel_execucao": "A confirmar por Jennifer e Rodrigo: nome, função e responsabilidade.",
-      "regiao_consulado": "Piloto proposto, não aprovado: residentes em SP ligados ao Consulado Geral da Itália em São Paulo. MT, MS, RO, AC e demais sedes dependem de mapeamento e aceitação expressa.",
+      "responsavel_execucao": "Jennifer — atendimento, triagem, conferência/organização documental, pendências, comunicação e acompanhamento documental; Rodrigo — suporte operacional, plataformas digitais e supervisão do acompanhamento. Divisão confirmada; execução comercial depende das pendências da linha.",
+      "regiao_consulado": "Cobertura inicial confirmada: São Paulo. Para o piloto consular, residentes em SP com competência do Consulado Geral da Itália em São Paulo; outros estados/sedes e localidades exigem avaliação específica antes da aceitação.",
       "habilitacao_parceiro": "Confirmar regras de solicitação por terceiros, pesquisa e entrega; avaliar parceiro local e tradução conforme a finalidade.",
       "pendencias": [
-        "Confirmar se há busca documental, limites dessa busca, representação e formato de entrega; não prometer localização/emissão.",
-        "Confirmar responsável, cobertura, tarefas e eventuais terceiros."
+        "Definir solicitação, pesquisa, limites da busca, formato de entrega e permissões de terceiros por Comune/arquivo.",
+        "Nomear revisor/parceiro local quando necessário; validar despesas e acompanhamento sem promessa de localização."
       ],
       "status": "pendente",
       "prioridade": "preservado para decisão posterior",
@@ -262,8 +380,30 @@
         "Histórico dos pedidos permitidos e documentos recebidos, se houver e conforme o escopo."
       ],
       "limites_operacionais": "A localização e emissão dependem da existência do registro e do órgão responsável. Formato, taxas, envio e eventual pesquisa adicional precisam ser confirmados; não há garantia de localização.",
-      "papeis_sugeridos": "Jennifer: referência de triagem/documentação; Rodrigo: referência operacional digital e supervisão de automação. Sugestões sem aceitação formal; executor, revisor e parceiros a confirmar.",
-      "responsabilidades": "Oliveira: organização/conferência material conforme escopo; cliente: veracidade, validação, contas, assinaturas e atos pessoais; órgão: vagas, análise, decisão, registro e emissão. Profissionais habilitados: atos especializados próprios."
+      "responsabilidades": "Oliveira: organização/conferência material conforme escopo; cliente: veracidade, validação, contas, assinaturas e atos pessoais; órgão: vagas, análise, decisão, registro e emissão. Profissionais habilitados: atos especializados próprios.",
+      "responsavel_operacional": {
+        "referencia_principal": "Jennifer",
+        "documentacao_atendimento": "Jennifer",
+        "suporte_digital_supervisao": "Rodrigo",
+        "segundo_revisor": null,
+        "profissional_habilitado": null,
+        "aplicacao": "papéis operacionais confirmados, sem aprovação comercial automática"
+      },
+      "modalidades_estruturadas": [
+        "Solicitação de registro identificado; pesquisa e representação a delimitar"
+      ],
+      "despesas_externas": [
+        "Taxas oficiais cobradas pelo órgão e separadas do serviço privado, sem valores presumidos.",
+        "Certidões, traduções, apostilamentos, parceiros e logística quando necessários, discriminados e autorizados separadamente; nenhum custo incluído automaticamente."
+      ],
+      "confirmacao_operacional": {
+        "data": "2026-11-18",
+        "fonte_pr": "https://github.com/Roh-barboza/oliveira-assessoria/pull/6#issuecomment-6982074983",
+        "fonte_adicional": "Instrução anexada pelo usuário: fechamento da Etapa 2 e preparação da Etapa 3",
+        "papeis_confirmados": true,
+        "cobertura_inicial": "São Paulo",
+        "aprova_servico": false
+      }
     },
     {
       "id": "IT-07",
@@ -280,12 +420,12 @@
         "Atividades não confirmadas no escopo, como tradução, apostilamento ou representação especializada.",
         "Emissão de documentos, decisões e resultados que cabem às autoridades públicas."
       ],
-      "responsavel_execucao": "A confirmar por Jennifer e Rodrigo: nome, função e responsabilidade.",
-      "regiao_consulado": "Piloto proposto, não aprovado: residentes em SP ligados ao Consulado Geral da Itália em São Paulo. MT, MS, RO, AC e demais sedes dependem de mapeamento e aceitação expressa.",
+      "responsavel_execucao": "Jennifer — atendimento, triagem, conferência/organização documental, pendências, comunicação e acompanhamento documental; Rodrigo — suporte operacional, plataformas digitais e supervisão do acompanhamento. Divisão confirmada; execução comercial depende das pendências da linha.",
+      "regiao_consulado": "Cobertura inicial confirmada: São Paulo. Para o piloto consular, residentes em SP com competência do Consulado Geral da Itália em São Paulo; outros estados/sedes e localidades exigem avaliação específica antes da aceitação.",
       "habilitacao_parceiro": "Confirmar atos que exigem presença do interessado e limites da orientação; emissão é atribuição da autoridade.",
       "pendencias": [
-        "Confirmar atendimento por jurisdição e modalidade do documento; não divulgar disponibilidade universal.",
-        "Confirmar responsável, cobertura, tarefas e eventuais terceiros."
+        "Confirmar disponibilidade, requisitos e atendimento na sede competente; atos pessoais do cliente.",
+        "Nomear revisor e validar checklist, modalidades, entregas e limites finais."
       ],
       "status": "pendente",
       "prioridade": "preservado para decisão posterior",
@@ -301,8 +441,30 @@
         "Checklist preparatório, relação de pendências e roteiro do atendimento oficial aplicável."
       ],
       "limites_operacionais": "Disponibilidade, modalidade e exigências variam conforme a situação e o órgão. O catálogo não anuncia emissão universal nem substitui o atendimento exigido pela autoridade.",
-      "papeis_sugeridos": "Jennifer: referência de triagem/documentação; Rodrigo: referência operacional digital e supervisão de automação. Sugestões sem aceitação formal; executor, revisor e parceiros a confirmar.",
-      "responsabilidades": "Oliveira: organização/conferência material conforme escopo; cliente: veracidade, validação, contas, assinaturas e atos pessoais; órgão: vagas, análise, decisão, registro e emissão. Profissionais habilitados: atos especializados próprios."
+      "responsabilidades": "Oliveira: organização/conferência material conforme escopo; cliente: veracidade, validação, contas, assinaturas e atos pessoais; órgão: vagas, análise, decisão, registro e emissão. Profissionais habilitados: atos especializados próprios.",
+      "responsavel_operacional": {
+        "referencia_principal": "Jennifer",
+        "documentacao_atendimento": "Jennifer",
+        "suporte_digital_supervisao": "Rodrigo",
+        "segundo_revisor": null,
+        "profissional_habilitado": null,
+        "aplicacao": "papéis operacionais confirmados, sem aprovação comercial automática"
+      },
+      "modalidades_estruturadas": [
+        "Preparação documental de CIE por sede e situação admitida"
+      ],
+      "despesas_externas": [
+        "Taxas oficiais cobradas pelo órgão e separadas do serviço privado, sem valores presumidos.",
+        "Certidões, traduções, apostilamentos, parceiros e logística quando necessários, discriminados e autorizados separadamente; nenhum custo incluído automaticamente."
+      ],
+      "confirmacao_operacional": {
+        "data": "2026-11-18",
+        "fonte_pr": "https://github.com/Roh-barboza/oliveira-assessoria/pull/6#issuecomment-6982074983",
+        "fonte_adicional": "Instrução anexada pelo usuário: fechamento da Etapa 2 e preparação da Etapa 3",
+        "papeis_confirmados": true,
+        "cobertura_inicial": "São Paulo",
+        "aprova_servico": false
+      }
     },
     {
       "id": "IT-08",
@@ -319,12 +481,12 @@
         "Atividades não confirmadas no escopo, como tradução, apostilamento ou representação especializada.",
         "Emissão de documentos, decisões e resultados que cabem às autoridades públicas."
       ],
-      "responsavel_execucao": "A confirmar por Jennifer e Rodrigo: nome, função e responsabilidade.",
-      "regiao_consulado": "Piloto proposto, não aprovado: residentes em SP ligados ao Consulado Geral da Itália em São Paulo. MT, MS, RO, AC e demais sedes dependem de mapeamento e aceitação expressa.",
+      "responsavel_execucao": "Jennifer — atendimento, triagem, conferência/organização documental, pendências, comunicação e acompanhamento documental; Rodrigo — suporte operacional, plataformas digitais e supervisão do acompanhamento. Divisão confirmada; execução comercial depende das pendências da linha.",
+      "regiao_consulado": "Cobertura inicial confirmada: São Paulo. Para o piloto consular, residentes em SP com competência do Consulado Geral da Itália em São Paulo; outros estados/sedes e localidades exigem avaliação específica antes da aceitação.",
       "habilitacao_parceiro": "Delimitar triagem documental; encaminhar necessidades jurídicas, traduções ou outros atos especializados para avaliação apropriada.",
       "pendencias": [
-        "Usar como entrada de triagem; definir quando encaminhar a serviço específico e como evitar duplicidade de cobrança futura.",
-        "Confirmar responsável, cobertura, tarefas e eventuais terceiros."
+        "Definir critérios de complexidade, aceitação/recusa e limite da triagem; discriminar execução adicional sem sobreposição.",
+        "Nomear revisor/parceiro para necessidades especializadas e validar condições de acompanhamento e encerramento."
       ],
       "status": "pendente",
       "prioridade": "prioritário para estruturação",
@@ -341,8 +503,30 @@
         "Relação de procedimentos e encaminhamentos, distinguindo triagem de execução adicional."
       ],
       "limites_operacionais": "A triagem não é um pacote ilimitado. Execução de AIRE, Estado Civil, Certidões ou outro procedimento exige atividades discriminadas no escopo próprio, sem duplicidade de atendimento. Questões jurídicas são encaminhadas a profissional habilitado.",
-      "papeis_sugeridos": "Jennifer: referência de triagem/documentação; Rodrigo: referência operacional digital e supervisão de automação. Sugestões sem aceitação formal; executor, revisor e parceiros a confirmar.",
-      "responsabilidades": "Oliveira: organização/conferência material conforme escopo; cliente: veracidade, validação, contas, assinaturas e atos pessoais; órgão: vagas, análise, decisão, registro e emissão. Profissionais habilitados: atos especializados próprios."
+      "responsabilidades": "Oliveira: organização/conferência material conforme escopo; cliente: veracidade, validação, contas, assinaturas e atos pessoais; órgão: vagas, análise, decisão, registro e emissão. Profissionais habilitados: atos especializados próprios.",
+      "responsavel_operacional": {
+        "referencia_principal": "Jennifer",
+        "documentacao_atendimento": "Jennifer",
+        "suporte_digital_supervisao": "Rodrigo",
+        "segundo_revisor": null,
+        "profissional_habilitado": null,
+        "aplicacao": "papéis operacionais confirmados, sem aprovação comercial automática"
+      },
+      "modalidades_estruturadas": [
+        "Triagem personalizada e mapa de pendências; execução adicional discriminada separadamente"
+      ],
+      "despesas_externas": [
+        "Taxas oficiais cobradas pelo órgão e separadas do serviço privado, sem valores presumidos.",
+        "Certidões, traduções, apostilamentos, parceiros e logística quando necessários, discriminados e autorizados separadamente; nenhum custo incluído automaticamente."
+      ],
+      "confirmacao_operacional": {
+        "data": "2026-11-18",
+        "fonte_pr": "https://github.com/Roh-barboza/oliveira-assessoria/pull/6#issuecomment-6982074983",
+        "fonte_adicional": "Instrução anexada pelo usuário: fechamento da Etapa 2 e preparação da Etapa 3",
+        "papeis_confirmados": true,
+        "cobertura_inicial": "São Paulo",
+        "aprova_servico": false
+      }
     },
     {
       "id": "BR-01",
@@ -358,12 +542,13 @@
         "Taxas, impostos e despesas de terceiros.",
         "Atividades não acordadas, atos privativos não validados e garantia de resultado."
       ],
-      "responsavel_execucao": "A confirmar por Jennifer e Rodrigo: nome, função e responsabilidade.",
-      "regiao_consulado": "A confirmar; não foi presumida cobertura territorial. Cobertura digital/presencial brasileira ainda a validar.",
+      "responsavel_execucao": "Jennifer — atendimento, triagem, conferência/organização documental, pendências, comunicação e acompanhamento documental; Rodrigo — suporte operacional, plataformas digitais e supervisão do acompanhamento. Divisão confirmada; execução comercial depende das pendências da linha.",
+      "regiao_consulado": "Cobertura inicial confirmada: São Paulo. Órgão/unidade e logística remota/presencial por modalidade ainda precisam de validação; outras localidades exigem avaliação antes da aceitação.",
       "habilitacao_parceiro": "Confirmar responsável e habilitação aplicável às tarefas fiscais/contábeis; não presumir autorização para atos privativos.",
       "pendencias": [
-        "Confirmar exercícios atendidos e responsabilidades de preparação/transmissão; o checklist atual é local e não envia dados.",
-        "Confirmar responsável, cobertura, tarefas e eventuais terceiros."
+        "Nomear responsável profissional e habilitação conforme tarefa; definir exercícios, perfis e complexidades aceitos.",
+        "Validar preparação/transmissão e autorização oficial de acesso; cliente confirma os dados.",
+        "Definir revisões, acompanhamento, despesas e exclusões de casos complexos antes da aprovação comercial."
       ],
       "status": "pendente",
       "prioridade": "prioritário para estruturação",
@@ -375,12 +560,35 @@
         "data": null,
         "condicoes": []
       },
-      "papeis_sugeridos": "Jennifer: referência de triagem/documentação; Rodrigo: referência operacional digital e supervisão de automação. Sugestões sem aceitação formal; executor, revisor e parceiros a confirmar.",
       "responsabilidades": "Oliveira: organização/conferência material conforme escopo; cliente: veracidade, validação, contas, assinaturas e atos pessoais; órgão: vagas, análise, decisão, registro e emissão. Profissionais habilitados: atos especializados próprios.",
       "entregas_propostas": [
         "Inventário e dados organizados; pendências.",
         "Arquivo final e recibo apenas se transmissão expressamente definida e validada."
-      ]
+      ],
+      "responsavel_operacional": {
+        "referencia_principal": "Jennifer",
+        "documentacao_atendimento": "Jennifer",
+        "suporte_digital_supervisao": "Rodrigo",
+        "segundo_revisor": null,
+        "profissional_habilitado": null,
+        "aplicacao": "papéis operacionais confirmados, sem aprovação comercial automática"
+      },
+      "modalidades_estruturadas": [
+        "Organização documental e preparação de dados por perfil/exercício aceito",
+        "Preenchimento assistido e eventual transmissão somente após validar responsável e permissões"
+      ],
+      "despesas_externas": [
+        "Taxas oficiais cobradas pelo órgão e separadas do serviço privado, sem valores presumidos.",
+        "Certidões, traduções, apostilamentos, parceiros e logística quando necessários, discriminados e autorizados separadamente; nenhum custo incluído automaticamente."
+      ],
+      "confirmacao_operacional": {
+        "data": "2026-11-18",
+        "fonte_pr": "https://github.com/Roh-barboza/oliveira-assessoria/pull/6#issuecomment-6982074983",
+        "fonte_adicional": "Instrução anexada pelo usuário: fechamento da Etapa 2 e preparação da Etapa 3",
+        "papeis_confirmados": true,
+        "cobertura_inicial": "São Paulo",
+        "aprova_servico": false
+      }
     },
     {
       "id": "BR-02",
@@ -395,12 +603,12 @@
         "Taxas, impostos e despesas de terceiros.",
         "Atividades não acordadas, atos privativos não validados e garantia de resultado."
       ],
-      "responsavel_execucao": "A confirmar por Jennifer e Rodrigo: nome, função e responsabilidade.",
-      "regiao_consulado": "A confirmar; não foi presumida cobertura territorial. Cobertura digital/presencial brasileira ainda a validar.",
+      "responsavel_execucao": "Jennifer — atendimento, triagem, conferência/organização documental, pendências, comunicação e acompanhamento documental; Rodrigo — suporte operacional, plataformas digitais e supervisão do acompanhamento. Divisão confirmada; execução comercial depende das pendências da linha.",
+      "regiao_consulado": "Cobertura inicial confirmada: São Paulo. Órgão/unidade e logística remota/presencial por modalidade ainda precisam de validação; outras localidades exigem avaliação antes da aceitação.",
       "habilitacao_parceiro": "Validar tarefas, eventual representação e autorizações; não incluir análise jurídica ou defesa por inferência.",
       "pendencias": [
-        "Definir benefícios e tarefas atendidas, limites de acompanhamento e separação de atuação jurídica. Página individual ainda não existe.",
-        "Confirmar responsável, cobertura, tarefas e eventuais terceiros."
+        "Selecionar benefícios, tarefas, canal e autorizações; delimitar apoio material e representação admitida.",
+        "Nomear revisor e profissionais habilitados para atos especializados; validar escopo e condições antes de oferta."
       ],
       "status": "pendente",
       "prioridade": "preservado para decisão posterior",
@@ -412,8 +620,30 @@
         "data": null,
         "condicoes": []
       },
-      "papeis_sugeridos": "Jennifer: referência de triagem/documentação; Rodrigo: referência operacional digital e supervisão de automação. Sugestões sem aceitação formal; executor, revisor e parceiros a confirmar.",
-      "responsabilidades": "Oliveira: organização/conferência material conforme escopo; cliente: veracidade, validação, contas, assinaturas e atos pessoais; órgão: vagas, análise, decisão, registro e emissão. Profissionais habilitados: atos especializados próprios."
+      "responsabilidades": "Oliveira: organização/conferência material conforme escopo; cliente: veracidade, validação, contas, assinaturas e atos pessoais; órgão: vagas, análise, decisão, registro e emissão. Profissionais habilitados: atos especializados próprios.",
+      "responsavel_operacional": {
+        "referencia_principal": "Jennifer",
+        "documentacao_atendimento": "Jennifer",
+        "suporte_digital_supervisao": "Rodrigo",
+        "segundo_revisor": null,
+        "profissional_habilitado": null,
+        "aplicacao": "papéis operacionais confirmados, sem aprovação comercial automática"
+      },
+      "modalidades_estruturadas": [
+        "Benefícios e procedimentos ainda a selecionar"
+      ],
+      "despesas_externas": [
+        "Taxas oficiais cobradas pelo órgão e separadas do serviço privado, sem valores presumidos.",
+        "Certidões, traduções, apostilamentos, parceiros e logística quando necessários, discriminados e autorizados separadamente; nenhum custo incluído automaticamente."
+      ],
+      "confirmacao_operacional": {
+        "data": "2026-11-18",
+        "fonte_pr": "https://github.com/Roh-barboza/oliveira-assessoria/pull/6#issuecomment-6982074983",
+        "fonte_adicional": "Instrução anexada pelo usuário: fechamento da Etapa 2 e preparação da Etapa 3",
+        "papeis_confirmados": true,
+        "cobertura_inicial": "São Paulo",
+        "aprova_servico": false
+      }
     },
     {
       "id": "BR-03",
@@ -428,12 +658,12 @@
         "Taxas, impostos e despesas de terceiros.",
         "Atividades não acordadas, atos privativos não validados e garantia de resultado."
       ],
-      "responsavel_execucao": "A confirmar por Jennifer e Rodrigo: nome, função e responsabilidade.",
-      "regiao_consulado": "A confirmar; não foi presumida cobertura territorial. Cobertura digital/presencial brasileira ainda a validar.",
+      "responsavel_execucao": "Jennifer — atendimento, triagem, conferência/organização documental, pendências, comunicação e acompanhamento documental; Rodrigo — suporte operacional, plataformas digitais e supervisão do acompanhamento. Divisão confirmada; execução comercial depende das pendências da linha.",
+      "regiao_consulado": "Cobertura inicial confirmada: São Paulo. Órgão/unidade e logística remota/presencial por modalidade ainda precisam de validação; outras localidades exigem avaliação antes da aceitação.",
       "habilitacao_parceiro": "Identificar órgão, permissões de atuação por terceiros e atividades que exijam profissional habilitado.",
       "pendencias": [
-        "Definir órgãos e procedimentos realmente atendidos; o rótulo atual é abrangente. Página individual ainda não existe.",
-        "Confirmar responsável, cobertura, tarefas e eventuais terceiros."
+        "Escolher órgãos, procedimentos, canais e permissões/credenciamentos por tarefa.",
+        "Definir entrega, acompanhamento, revisor e habilitação/parceiro aplicáveis; o rótulo amplo não libera execução."
       ],
       "status": "pendente",
       "prioridade": "preservado para decisão posterior",
@@ -445,8 +675,30 @@
         "data": null,
         "condicoes": []
       },
-      "papeis_sugeridos": "Jennifer: referência de triagem/documentação; Rodrigo: referência operacional digital e supervisão de automação. Sugestões sem aceitação formal; executor, revisor e parceiros a confirmar.",
-      "responsabilidades": "Oliveira: organização/conferência material conforme escopo; cliente: veracidade, validação, contas, assinaturas e atos pessoais; órgão: vagas, análise, decisão, registro e emissão. Profissionais habilitados: atos especializados próprios."
+      "responsabilidades": "Oliveira: organização/conferência material conforme escopo; cliente: veracidade, validação, contas, assinaturas e atos pessoais; órgão: vagas, análise, decisão, registro e emissão. Profissionais habilitados: atos especializados próprios.",
+      "responsavel_operacional": {
+        "referencia_principal": "Jennifer",
+        "documentacao_atendimento": "Jennifer",
+        "suporte_digital_supervisao": "Rodrigo",
+        "segundo_revisor": null,
+        "profissional_habilitado": null,
+        "aplicacao": "papéis operacionais confirmados, sem aprovação comercial automática"
+      },
+      "modalidades_estruturadas": [
+        "Órgãos e procedimentos ainda a selecionar"
+      ],
+      "despesas_externas": [
+        "Taxas oficiais cobradas pelo órgão e separadas do serviço privado, sem valores presumidos.",
+        "Certidões, traduções, apostilamentos, parceiros e logística quando necessários, discriminados e autorizados separadamente; nenhum custo incluído automaticamente."
+      ],
+      "confirmacao_operacional": {
+        "data": "2026-11-18",
+        "fonte_pr": "https://github.com/Roh-barboza/oliveira-assessoria/pull/6#issuecomment-6982074983",
+        "fonte_adicional": "Instrução anexada pelo usuário: fechamento da Etapa 2 e preparação da Etapa 3",
+        "papeis_confirmados": true,
+        "cobertura_inicial": "São Paulo",
+        "aprova_servico": false
+      }
     },
     {
       "id": "BR-04",
@@ -467,14 +719,13 @@
         "Emissão própria de certidões e execução de tradução ou apostilamento sem prestador competente.",
         "Garantia de localização de registros ou resultado dos órgãos."
       ],
-      "responsavel_execucao": "A confirmar por Jennifer e Rodrigo: nome, função e responsabilidade.",
-      "regiao_consulado": "A confirmar; não foi presumida cobertura territorial. Cobertura digital/presencial brasileira ainda a validar.",
+      "responsavel_execucao": "Jennifer — atendimento, triagem, conferência/organização documental, pendências, comunicação e acompanhamento documental; Rodrigo — suporte operacional, plataformas digitais e supervisão do acompanhamento. Divisão confirmada; execução comercial depende das pendências da linha.",
+      "regiao_consulado": "Cobertura inicial confirmada: São Paulo. Órgão/unidade e logística remota/presencial por modalidade ainda precisam de validação; outras localidades exigem avaliação antes da aceitação.",
       "habilitacao_parceiro": "Organização material de documentos proposta; avaliação jurídica, contábil ou técnica não é presumida.",
       "pendencias": [
-        "Confirmar cobertura e finalidade; formatos, quantidades e revisões.",
-        "Definir canal seguro, guarda, devolução, acesso e descarte; logística de originais.",
-        "Validar solicitação por terceiros, autorizações e parceiros de cartório/tradução/apostilamento.",
-        "Confirmar executor e revisor; a nova ficha não aprova comercialmente o serviço."
+        "Definir formatos, quantidades, revisões, logística de originais e modalidade remota/presencial dentro de SP.",
+        "Definir canal seguro, guarda, devolução, acesso, descarte e autorizações de solicitação por terceiros.",
+        "Validar prestadores, despesas externas e revisão; não certificar autenticidade ou validade jurídica."
       ],
       "status": "pendente",
       "prioridade": "prioritário para estruturação",
@@ -491,8 +742,32 @@
         "Relação dos pedidos a órgãos, documentos recebidos e despesas externas, quando aplicáveis."
       ],
       "limites_operacionais": "Formato, quantidades, revisões, cobertura remota/presencial e logística de originais ainda dependem de validação. Antes de receber documentos, serão definidos canal seguro, acesso, guarda, devolução e descarte. Documentos pessoais não devem ser compartilhados em grupos ou enviados desnecessariamente a ferramentas de IA.",
-      "papeis_sugeridos": "Jennifer: referência de triagem/documentação; Rodrigo: referência operacional digital e supervisão de automação. Sugestões sem aceitação formal; executor, revisor e parceiros a confirmar.",
-      "responsabilidades": "Oliveira: organização/conferência material conforme escopo; cliente: veracidade, validação, contas, assinaturas e atos pessoais; órgão: vagas, análise, decisão, registro e emissão. Profissionais habilitados: atos especializados próprios."
+      "responsabilidades": "Oliveira: organização/conferência material conforme escopo; cliente: veracidade, validação, contas, assinaturas e atos pessoais; órgão: vagas, análise, decisão, registro e emissão. Profissionais habilitados: atos especializados próprios.",
+      "responsavel_operacional": {
+        "referencia_principal": "Jennifer",
+        "documentacao_atendimento": "Jennifer",
+        "suporte_digital_supervisao": "Rodrigo",
+        "segundo_revisor": null,
+        "profissional_habilitado": null,
+        "aplicacao": "papéis operacionais confirmados, sem aprovação comercial automática"
+      },
+      "modalidades_estruturadas": [
+        "Organização, inventário, conferência material e digitalização",
+        "Pedidos e acompanhamento de certidões quando permitidos e autorizados",
+        "Dossiês brasileiros/italianos; orientação e coordenação de tradução/apostilamento por prestadores competentes"
+      ],
+      "despesas_externas": [
+        "Taxas oficiais cobradas pelo órgão e separadas do serviço privado, sem valores presumidos.",
+        "Certidões, traduções, apostilamentos, parceiros e logística quando necessários, discriminados e autorizados separadamente; nenhum custo incluído automaticamente."
+      ],
+      "confirmacao_operacional": {
+        "data": "2026-11-18",
+        "fonte_pr": "https://github.com/Roh-barboza/oliveira-assessoria/pull/6#issuecomment-6982074983",
+        "fonte_adicional": "Instrução anexada pelo usuário: fechamento da Etapa 2 e preparação da Etapa 3",
+        "papeis_confirmados": true,
+        "cobertura_inicial": "São Paulo",
+        "aprova_servico": false
+      }
     },
     {
       "id": "C-01",
@@ -507,12 +782,13 @@
         "Publicação como oferta, contratação e execução antes da validação específica.",
         "Atos privativos, representação e resultados garantidos não presumidos."
       ],
-      "responsavel_execucao": "A confirmar; nenhum executor foi nomeado.",
-      "regiao_consulado": "A confirmar: público/local de atendimento e autoridade competente da PF. Cobertura digital/presencial brasileira ainda a validar.",
+      "responsavel_execucao": "Jennifer — atendimento, triagem, conferência/organização documental, pendências, comunicação e acompanhamento documental; Rodrigo — suporte operacional, plataformas digitais e supervisão do acompanhamento. Divisão confirmada; execução comercial depende das pendências da linha.",
+      "regiao_consulado": "Cobertura inicial confirmada: São Paulo. Órgão/unidade e logística remota/presencial por modalidade ainda precisam de validação; outras localidades exigem avaliação antes da aceitação.",
       "habilitacao_parceiro": "Avaliar requisitos profissionais, autorizações e eventual parceiro conforme a atividade; não atribuir habilitação à empresa por este documento.",
       "pendencias": [
-        "Avaliar primeiro o modelo de apoio privado opcional, privacidade, limites e instruções da PF. O procedimento oficial e suas orientações são acessíveis diretamente pelo cidadão.",
-        "Decisão expressa sobre inclusão, público, executor e limites."
+        "Validar utilidade do apoio diante do canal gratuito, privacidade, permissões e enquadramento profissional.",
+        "Definir executor efetivo e revisão especializada conforme tarefa, unidade PF e modalidades aceitas dentro de SP.",
+        "Decisão específica de inclusão; sem anúncio, preço público, opção comercial ou execução enquanto candidato."
       ],
       "status": "candidato",
       "prioridade": "candidato prioritário — avaliar antes de anunciar",
@@ -524,12 +800,34 @@
         "data": null,
         "condicoes": []
       },
-      "papeis_sugeridos": "Jennifer: referência de triagem/documentação; Rodrigo: referência operacional digital e supervisão de automação. Sugestões sem aceitação formal; executor, revisor e parceiros a confirmar.",
       "responsabilidades": "Oliveira: organização/conferência material conforme escopo; cliente: veracidade, validação, contas, assinaturas e atos pessoais; órgão: vagas, análise, decisão, registro e emissão. Profissionais habilitados: atos especializados próprios.",
       "entregas_propostas": [
         "Checklist indicativo e roteiro para o interessado usar o site oficial da PF."
       ],
-      "material_interno": "PASSAPORTE-BRASILEIRO-CANDIDATO.md"
+      "material_interno": "PASSAPORTE-BRASILEIRO-CANDIDATO.md",
+      "responsavel_operacional": {
+        "referencia_principal": "Jennifer",
+        "documentacao_atendimento": "Jennifer",
+        "suporte_digital_supervisao": "Rodrigo",
+        "segundo_revisor": null,
+        "profissional_habilitado": null,
+        "aplicacao": "avaliação interna apenas; candidato não liberado"
+      },
+      "modalidades_estruturadas": [
+        "Candidato: avaliação interna de checklist e roteiro do canal oficial da PF"
+      ],
+      "despesas_externas": [
+        "Taxas oficiais cobradas pelo órgão e separadas do serviço privado, sem valores presumidos.",
+        "Certidões, traduções, apostilamentos, parceiros e logística quando necessários, discriminados e autorizados separadamente; nenhum custo incluído automaticamente."
+      ],
+      "confirmacao_operacional": {
+        "data": "2026-11-18",
+        "fonte_pr": "https://github.com/Roh-barboza/oliveira-assessoria/pull/6#issuecomment-6982074983",
+        "fonte_adicional": "Instrução anexada pelo usuário: fechamento da Etapa 2 e preparação da Etapa 3",
+        "papeis_confirmados": true,
+        "cobertura_inicial": "São Paulo",
+        "aprova_servico": false
+      }
     },
     {
       "id": "C-02",
@@ -543,12 +841,12 @@
         "Publicação como oferta, contratação e execução antes da validação específica.",
         "Atos privativos, representação e resultados garantidos não presumidos."
       ],
-      "responsavel_execucao": "A confirmar; nenhum executor foi nomeado.",
-      "regiao_consulado": "A confirmar: regiões e órgãos relacionados ao eventual escopo aprovado. Cobertura digital/presencial brasileira ainda a validar.",
+      "responsavel_execucao": "Jennifer — atendimento, triagem, conferência/organização documental, pendências, comunicação e acompanhamento documental; Rodrigo — suporte operacional, plataformas digitais e supervisão do acompanhamento. Divisão confirmada; execução comercial depende das pendências da linha.",
+      "regiao_consulado": "Cobertura inicial confirmada: São Paulo. Órgão/unidade e logística remota/presencial por modalidade ainda precisam de validação; outras localidades exigem avaliação antes da aceitação.",
       "habilitacao_parceiro": "Avaliar requisitos profissionais, autorizações e eventual parceiro conforme a atividade; não atribuir habilitação à empresa por este documento.",
       "pendencias": [
-        "Confirmar continuidade e tarefas; não presumir negociação, mandato, análise jurídica ou intermediação.",
-        "Decisão expressa sobre inclusão, público, executor e limites."
+        "Decidir continuidade e eventual escopo, credores, autorizações, limites de intermediação e parceiros.",
+        "Permanecer fora das ofertas até validação específica; divisão operacional não autoriza negociação."
       ],
       "status": "candidato",
       "prioridade": "preservado para decisão posterior",
@@ -560,8 +858,30 @@
         "data": null,
         "condicoes": []
       },
-      "papeis_sugeridos": "Jennifer: referência de triagem/documentação; Rodrigo: referência operacional digital e supervisão de automação. Sugestões sem aceitação formal; executor, revisor e parceiros a confirmar.",
-      "responsabilidades": "Oliveira: organização/conferência material conforme escopo; cliente: veracidade, validação, contas, assinaturas e atos pessoais; órgão: vagas, análise, decisão, registro e emissão. Profissionais habilitados: atos especializados próprios."
+      "responsabilidades": "Oliveira: organização/conferência material conforme escopo; cliente: veracidade, validação, contas, assinaturas e atos pessoais; órgão: vagas, análise, decisão, registro e emissão. Profissionais habilitados: atos especializados próprios.",
+      "responsavel_operacional": {
+        "referencia_principal": "Jennifer",
+        "documentacao_atendimento": "Jennifer",
+        "suporte_digital_supervisao": "Rodrigo",
+        "segundo_revisor": null,
+        "profissional_habilitado": null,
+        "aplicacao": "avaliação interna apenas; candidato não liberado"
+      },
+      "modalidades_estruturadas": [
+        "Hipótese de apoio material/documental a avaliar; negociação não autorizada"
+      ],
+      "despesas_externas": [
+        "Taxas oficiais cobradas pelo órgão e separadas do serviço privado, sem valores presumidos.",
+        "Certidões, traduções, apostilamentos, parceiros e logística quando necessários, discriminados e autorizados separadamente; nenhum custo incluído automaticamente."
+      ],
+      "confirmacao_operacional": {
+        "data": "2026-11-18",
+        "fonte_pr": "https://github.com/Roh-barboza/oliveira-assessoria/pull/6#issuecomment-6982074983",
+        "fonte_adicional": "Instrução anexada pelo usuário: fechamento da Etapa 2 e preparação da Etapa 3",
+        "papeis_confirmados": true,
+        "cobertura_inicial": "São Paulo",
+        "aprova_servico": false
+      }
     },
     {
       "id": "C-03",
@@ -575,12 +895,12 @@
         "Publicação como oferta, contratação e execução antes da validação específica.",
         "Atos privativos, representação e resultados garantidos não presumidos."
       ],
-      "responsavel_execucao": "A confirmar; nenhum executor foi nomeado.",
-      "regiao_consulado": "A confirmar: regiões e órgãos relacionados ao eventual escopo aprovado. Cobertura digital/presencial brasileira ainda a validar.",
+      "responsavel_execucao": "Jennifer — atendimento, triagem, conferência/organização documental, pendências, comunicação e acompanhamento documental; Rodrigo — suporte operacional, plataformas digitais e supervisão do acompanhamento. Divisão confirmada; execução comercial depende das pendências da linha.",
+      "regiao_consulado": "Cobertura inicial confirmada: São Paulo. Órgão/unidade e logística remota/presencial por modalidade ainda precisam de validação; outras localidades exigem avaliação antes da aceitação.",
       "habilitacao_parceiro": "Avaliar requisitos profissionais, autorizações e eventual parceiro conforme a atividade; não atribuir habilitação à empresa por este documento.",
       "pendencias": [
-        "Definir se existe atividade administrativa viável, seus limites e responsáveis; não presumir atuação jurídica, cessão ou intermediação.",
-        "Decisão expressa sobre inclusão, público, executor e limites."
+        "Decidir se há escopo documental viável, tribunal/ente e parceiro habilitado.",
+        "Manter fora das ofertas; sem análise jurídica, cessão, compra, atuação processual ou intermediação por inferência."
       ],
       "status": "candidato",
       "prioridade": "preservado para decisão posterior",
@@ -592,8 +912,30 @@
         "data": null,
         "condicoes": []
       },
-      "papeis_sugeridos": "Jennifer: referência de triagem/documentação; Rodrigo: referência operacional digital e supervisão de automação. Sugestões sem aceitação formal; executor, revisor e parceiros a confirmar.",
-      "responsabilidades": "Oliveira: organização/conferência material conforme escopo; cliente: veracidade, validação, contas, assinaturas e atos pessoais; órgão: vagas, análise, decisão, registro e emissão. Profissionais habilitados: atos especializados próprios."
+      "responsabilidades": "Oliveira: organização/conferência material conforme escopo; cliente: veracidade, validação, contas, assinaturas e atos pessoais; órgão: vagas, análise, decisão, registro e emissão. Profissionais habilitados: atos especializados próprios.",
+      "responsavel_operacional": {
+        "referencia_principal": "Jennifer",
+        "documentacao_atendimento": "Jennifer",
+        "suporte_digital_supervisao": "Rodrigo",
+        "segundo_revisor": null,
+        "profissional_habilitado": null,
+        "aplicacao": "avaliação interna apenas; candidato não liberado"
+      },
+      "modalidades_estruturadas": [
+        "Hipótese de organização documental a avaliar; sem atuação processual ou intermediação"
+      ],
+      "despesas_externas": [
+        "Taxas oficiais cobradas pelo órgão e separadas do serviço privado, sem valores presumidos.",
+        "Certidões, traduções, apostilamentos, parceiros e logística quando necessários, discriminados e autorizados separadamente; nenhum custo incluído automaticamente."
+      ],
+      "confirmacao_operacional": {
+        "data": "2026-11-18",
+        "fonte_pr": "https://github.com/Roh-barboza/oliveira-assessoria/pull/6#issuecomment-6982074983",
+        "fonte_adicional": "Instrução anexada pelo usuário: fechamento da Etapa 2 e preparação da Etapa 3",
+        "papeis_confirmados": true,
+        "cobertura_inicial": "São Paulo",
+        "aprova_servico": false
+      }
     },
     {
       "id": "C-04",
@@ -607,12 +949,12 @@
         "Publicação como oferta, contratação e execução antes da validação específica.",
         "Atos privativos, representação e resultados garantidos não presumidos."
       ],
-      "responsavel_execucao": "A confirmar; nenhum executor foi nomeado.",
-      "regiao_consulado": "A confirmar: regiões e órgãos relacionados ao eventual escopo aprovado. Cobertura digital/presencial brasileira ainda a validar.",
+      "responsavel_execucao": "Jennifer — atendimento, triagem, conferência/organização documental, pendências, comunicação e acompanhamento documental; Rodrigo — suporte operacional, plataformas digitais e supervisão do acompanhamento. Divisão confirmada; execução comercial depende das pendências da linha.",
+      "regiao_consulado": "Cobertura inicial confirmada: São Paulo. Órgão/unidade e logística remota/presencial por modalidade ainda precisam de validação; outras localidades exigem avaliação antes da aceitação.",
       "habilitacao_parceiro": "Avaliar requisitos profissionais, autorizações e eventual parceiro conforme a atividade; não atribuir habilitação à empresa por este documento.",
       "pendencias": [
-        "Distinguir organização de arquivos de consultoria, parecer ou elaboração jurídica; validar escopo antes de qualquer oferta.",
-        "Decisão expressa sobre inclusão, público, executor e limites."
+        "Distinguir arquivo material de elaboração, revisão ou parecer jurídico; decidir eventual continuidade.",
+        "Manter fora das ofertas; nomear profissional habilitado para qualquer ato especializado antes de inclusão."
       ],
       "status": "candidato",
       "prioridade": "preservado para decisão posterior",
@@ -624,9 +966,32 @@
         "data": null,
         "condicoes": []
       },
-      "papeis_sugeridos": "Jennifer: referência de triagem/documentação; Rodrigo: referência operacional digital e supervisão de automação. Sugestões sem aceitação formal; executor, revisor e parceiros a confirmar.",
-      "responsabilidades": "Oliveira: organização/conferência material conforme escopo; cliente: veracidade, validação, contas, assinaturas e atos pessoais; órgão: vagas, análise, decisão, registro e emissão. Profissionais habilitados: atos especializados próprios."
+      "responsabilidades": "Oliveira: organização/conferência material conforme escopo; cliente: veracidade, validação, contas, assinaturas e atos pessoais; órgão: vagas, análise, decisão, registro e emissão. Profissionais habilitados: atos especializados próprios.",
+      "responsavel_operacional": {
+        "referencia_principal": "Jennifer",
+        "documentacao_atendimento": "Jennifer",
+        "suporte_digital_supervisao": "Rodrigo",
+        "segundo_revisor": null,
+        "profissional_habilitado": null,
+        "aplicacao": "avaliação interna apenas; candidato não liberado"
+      },
+      "modalidades_estruturadas": [
+        "Hipótese de organização de arquivos a avaliar; sem elaboração/revisão jurídica"
+      ],
+      "despesas_externas": [
+        "Taxas oficiais cobradas pelo órgão e separadas do serviço privado, sem valores presumidos.",
+        "Certidões, traduções, apostilamentos, parceiros e logística quando necessários, discriminados e autorizados separadamente; nenhum custo incluído automaticamente."
+      ],
+      "confirmacao_operacional": {
+        "data": "2026-11-18",
+        "fonte_pr": "https://github.com/Roh-barboza/oliveira-assessoria/pull/6#issuecomment-6982074983",
+        "fonte_adicional": "Instrução anexada pelo usuário: fechamento da Etapa 2 e preparação da Etapa 3",
+        "papeis_confirmados": true,
+        "cobertura_inicial": "São Paulo",
+        "aprova_servico": false
+      }
     }
   ],
-  "fonte": "../decisoes/2026-11-18-proposta-consolidada-8-servicos.md"
+  "fonte": "../decisoes/2026-11-18-proposta-consolidada-8-servicos.md",
+  "fonte_decisao_operacional": "https://github.com/Roh-barboza/oliveira-assessoria/pull/6#issuecomment-6982074983"
 }

@@ -1,0 +1,38 @@
+# Fechamento documental da Etapa 2 e preparação interna da Etapa 3
+
+Atualização: 18/11/2026. Base desta revisão documental: `26d9977`. [PR #6](https://github.com/Roh-barboza/oliveira-assessoria/pull/6).
+
+## Entregue
+
+- [Decisão operacional rastreável](../decisoes/2026-11-18-responsaveis-cobertura-e-preparacao-comercial.md): Jennifer no atendimento/documentação, Rodrigo no suporte operacional/digital e supervisão, cobertura inicial SP. Os comentários do PR foram conciliados; propostas superadas não viraram condições contratuais.
+- [Matriz comercial](MATRIZ-CONSOLIDADA.md) e [JSON](MATRIZ-CONSOLIDADA.json): 16 registros preservados, oito prioridades, modalidades, atividades, entregas, limites, despesas, responsabilidades e pendências reais. Segundo revisor/profissional continuam separados do responsável operacional. Status: **12 pendentes, quatro candidatos, zero aprovados**.
+- [Modelo interno de precificação](../etapa-3-preparacao/MODELO-PRECIFICACAO.md), em [CSV](../etapa-3-preparacao/MODELO-PRECIFICACAO.csv) e [JSON](../etapa-3-preparacao/MODELO-PRECIFICACAO.json): vinte linhas por modalidade/hipótese, com preço, custos, taxas, horas, vigência, margem e parcelamento vazios. Sem tratar ausência como zero ou gratuidade.
+- [Hipóteses de composição](../etapa-3-preparacao/PACOTES.md): primeira emissão/renovação de passaporte, inscrição/atualizações AIRE, FAST IT avulso, regularização personalizada, três níveis documentais e filhos/IR conforme modalidade/complexidade e validação profissional. Candidatos sem pacote comercial liberado.
+- [Apresentação futura premium](../etapa-3-preparacao/APRESENTACAO-COMERCIAL.md): comparação por entregas, limites, acompanhamento e despesas, sem implementar componentes ou expor custos/margens internos.
+- [Arquitetura operacional](ATENDIMENTO-ARQUITETURA.md) e [lista de decisões restantes](PENDENCIAS-APROVACAO.md) atualizadas com papéis/cobertura confirmados, sem repetir esses pontos como sugestões.
+
+## Verificação desta atualização
+
+[Evidência de consistência e preservação](evidence/verificacao-fechamento.json): inventário/status, oito prioridades, vinte linhas, campos financeiros vazios, referências válidas e ausência de alterações em site, dependências, scripts/testes ou integrações.
+
+Não foram repetidos testes de navegador ou Lighthouse: esta tarefa altera somente documentação interna e a matriz, sem modificar arquivos servidos. Os [testes anteriores](TESTES.md), [24 capturas](VISUAL.md) e [30 medições Lighthouse](PERFORMANCE.md) continuam vinculados à implementação `5d40796`, não são medições novas desta revisão. Performance medida 99–100, Acessibilidade e Boas Práticas 100; SEO 63 pelo noindex. Limites de CA, medição de laboratório e acessibilidade automatizada continuam registrados nos relatórios originais.
+
+[Preview técnico anteriormente verificado, sem alterações visuais desta tarefa](https://oliveira-assessoria-90onhrh0b-barbozaa-s-projects.vercel.app/). Nenhum deploy manual foi solicitado; esta entrega não altera o conteúdo do site ou autoriza publicação. Documentos de precificação ficam fora de `landing/`, diretório servido.
+
+## Situação de encerramento
+
+| Frente | Situação |
+| --- | --- |
+| Apresentação técnica do catálogo | Entregue e validada na revisão anterior; preservada |
+| Divisão operacional e princípio de cobertura SP | Confirmados nesta decisão |
+| Estrutura interna de precificação/pacotes | Preparada, sem valores nem liberação comercial |
+| Aprovação comercial final por serviço/modalidade | Pendente |
+| Profissionais habilitados, revisão, limites e instrumentos | Pendentes conforme a modalidade |
+| Encerramento formal da Etapa 2 | Ainda impedido pelas decisões comerciais/profissionais/operacionais remanescentes |
+| Implementação comercial, pagamentos, automação e publicação | Não autorizados |
+
+Jennifer e Rodrigo precisam escolher modalidades de lançamento/adiamento, designar revisores e parceiros habilitados, definir entregas/quantidades/vigências/continuidade e proteção documental, levantar custos e deliberar posteriormente sobre valores/parcelamento. Filhos e IR exigem validações específicas; passaporte brasileiro segue candidato até decisão própria. Não é necessário aprovar todos os serviços para encerrar a etapa, mas o conjunto liberado e os itens adiados precisam de registro expresso.
+
+A preparação interna da Etapa 3 está expressamente autorizada em paralelo; não resolve os impedimentos nem libera venda. Sem valores inventados, merge, publicação de alteração visual/funcional, contratações, mensagens, automações ou pagamentos. Clicksign e webhook n8n preservados. WhatsApp ainda aguarda número empresarial.
+
+Não é necessário preencher preços, custos ou margens para declarar a Etapa 2 encerrada quando seus próprios bloqueios forem resolvidos. Esses dados continuam necessários à decisão de valores na Etapa 3, e não devem ser inventados para fechar a etapa anterior.

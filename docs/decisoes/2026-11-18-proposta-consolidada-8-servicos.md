@@ -1,3 +1,5 @@
+> **Atualização posterior no mesmo dia:** divisão operacional Jennifer/Rodrigo e cobertura inicial SP confirmadas na [decisão vigente](2026-11-18-responsaveis-cobertura-e-preparacao-comercial.md). O texto abaixo preserva o rascunho original; escopos, vigências e aprovação comercial não foram presumidos.
+
 # Oliveira Assessoria — proposta consolidada dos oito serviços prioritários
 **Data:** 18/11/2026  
 **Situação:** rascunho operacional para revisão; não é aprovação comercial, autorização de cobrança, publicação ou execução.  

@@ -17,8 +17,8 @@
 
 1. Qual dificuldade concreta não é resolvida pelas orientações gratuitas da PF e justifica o apoio opcional?
 2. Quais tarefas são permitidas e quais exigem autorização, enquadramento profissional ou parceiro?
-3. Qual unidade/região, público e modalidade serão aceitos?
-4. Quem executa, revisa e responde pelo atendimento?
+3. Qual unidade da PF, público e modalidade serão aceitos dentro da cobertura inicial SP? Outras localidades exigem avaliação.
+4. Papéis administrativos já confirmados: Jennifer no atendimento/documentação e Rodrigo no suporte operacional. Quem será o segundo revisor e qual profissional habilitado será necessário conforme a tarefa?
 5. Como evitar confusão com portal governamental e coleta de dados em canais próprios?
 6. Jennifer e Rodrigo autorizam a inclusão após essas validações? Até lá, manter candidato.
 
@@ -31,3 +31,5 @@
 **Já é possível contratar?** Não. O material é interno e ainda depende de aprovação específica.
 
 Fonte oficial: [PF — dúvidas por etapa e alerta sobre assessorias](https://www.gov.br/pf/pt-br/assuntos/passaporte/suporte/duvidas_). Rever instruções e permissões vigentes antes de decidir. Nenhum requisito, taxa ou prazo universal novo é fixado nesta ficha.
+
+Divisão operacional e cobertura SP confirmadas não autorizam executar o candidato. Ver [decisão atual](../decisoes/2026-11-18-responsaveis-cobertura-e-preparacao-comercial.md).
