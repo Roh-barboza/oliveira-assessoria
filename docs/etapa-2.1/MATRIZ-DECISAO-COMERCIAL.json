@@ -1,0 +1,409 @@
+{
+  "etapa": "2.1",
+  "data_registro": "2026-11-17",
+  "status_permitidos": [
+    "aprovado",
+    "pendente",
+    "candidato"
+  ],
+  "criterio": "Nenhuma aprovação comercial recebida ou presumida nesta revisão.",
+  "servicos": [
+    {
+      "id": "IT-01",
+      "nome": "Passaporte italiano",
+      "categoria": "Itália",
+      "publico": "Cidadãos italianos que precisam verificar o cadastro e organizar a documentação antes do atendimento consular.",
+      "atividades_propostas": [
+        "Conferência das informações cadastrais e das pendências apresentadas.",
+        "Organização do checklist e preparação documental para o procedimento.",
+        "Orientação sobre os canais de agendamento e o atendimento indicado pelo consulado."
+      ],
+      "atividades_excluidas": [
+        "Taxas oficiais e despesas de terceiros, incluindo serviços externos que forem necessários.",
+        "Atividades não confirmadas no escopo, como tradução, apostilamento ou representação especializada.",
+        "Emissão de documentos, decisões e resultados que cabem às autoridades públicas."
+      ],
+      "responsavel_execucao": "A confirmar por Jennifer e Rodrigo: nome, função e responsabilidade.",
+      "regiao_consulado": "A confirmar; não foi presumida cobertura territorial.",
+      "habilitacao_parceiro": "Confirmar limites do suporte a agendamento e atos pessoais; identificar terceiros para tradução/formalidades quando necessários.",
+      "pendencias": [
+        "Definir se haverá apenas orientação ou também acompanhamento de agendamento, sem garantia de vaga.",
+        "Confirmar responsável, cobertura, tarefas e eventuais terceiros."
+      ],
+      "status": "pendente",
+      "prioridade": "a definir",
+      "pagina_existente": "servicos/passaporte-italiano.html"
+    },
+    {
+      "id": "IT-02",
+      "nome": "AIRE",
+      "categoria": "Itália",
+      "publico": "Cidadãos italianos residentes no exterior que precisam conferir ou atualizar a situação cadastral.",
+      "atividades_propostas": [
+        "Identificação da atualização necessária e do consulado responsável.",
+        "Conferência dos dados e comprovantes informados.",
+        "Orientação para preparação do pedido e acompanhamento das pendências administrativas."
+      ],
+      "atividades_excluidas": [
+        "Taxas oficiais e despesas de terceiros, incluindo serviços externos que forem necessários.",
+        "Atividades não confirmadas no escopo, como tradução, apostilamento ou representação especializada.",
+        "Emissão de documentos, decisões e resultados que cabem às autoridades públicas."
+      ],
+      "responsavel_execucao": "A confirmar por Jennifer e Rodrigo: nome, função e responsabilidade.",
+      "regiao_consulado": "A confirmar; não foi presumida cobertura territorial.",
+      "habilitacao_parceiro": "Confirmar tarefas administrativas e autorizações admitidas no órgão; questões jurídicas e serviços de terceiros não são assumidos.",
+      "pendencias": [
+        "Diferenciar primeira inscrição, mudança de endereço e mudança de jurisdição; confirmar serviços efetivamente executados.",
+        "Confirmar responsável, cobertura, tarefas e eventuais terceiros."
+      ],
+      "status": "pendente",
+      "prioridade": "a definir",
+      "pagina_existente": "servicos/aire.html"
+    },
+    {
+      "id": "IT-03",
+      "nome": "Fast It",
+      "categoria": "Itália",
+      "publico": "Pessoas que precisam entender o uso do portal e identificar o caminho da sua solicitação consular.",
+      "atividades_propostas": [
+        "Levantamento da dificuldade de cadastro ou da solicitação pretendida.",
+        "Conferência das informações que precisam ser organizadas.",
+        "Orientação sobre os recursos do portal aplicáveis ao procedimento."
+      ],
+      "atividades_excluidas": [
+        "Taxas oficiais e despesas de terceiros, incluindo serviços externos que forem necessários.",
+        "Atividades não confirmadas no escopo, como tradução, apostilamento ou representação especializada.",
+        "Emissão de documentos, decisões e resultados que cabem às autoridades públicas."
+      ],
+      "responsavel_execucao": "A confirmar por Jennifer e Rodrigo: nome, função e responsabilidade.",
+      "regiao_consulado": "A confirmar; não foi presumida cobertura territorial.",
+      "habilitacao_parceiro": "Definir orientação de uso e controle de acesso pelo cliente; confirmar autorizações para qualquer atuação em nome de terceiros.",
+      "pendencias": [
+        "Definir como suporte de canal se diferencia de AIRE e de outros serviços, evitando escopos sobrepostos.",
+        "Confirmar responsável, cobertura, tarefas e eventuais terceiros."
+      ],
+      "status": "pendente",
+      "prioridade": "a definir",
+      "pagina_existente": "servicos/fast-it.html"
+    },
+    {
+      "id": "IT-04",
+      "nome": "Estado civil",
+      "categoria": "Itália",
+      "publico": "Cidadãos que precisam verificar como comunicar um evento de estado civil aos órgãos italianos.",
+      "atividades_propostas": [
+        "Identificação do evento e dos registros disponíveis.",
+        "Conferência e organização da documentação para análise.",
+        "Orientação das etapas administrativas e das pendências do procedimento aplicável."
+      ],
+      "atividades_excluidas": [
+        "Taxas oficiais e despesas de terceiros, incluindo serviços externos que forem necessários.",
+        "Atividades não confirmadas no escopo, como tradução, apostilamento ou representação especializada.",
+        "Emissão de documentos, decisões e resultados que cabem às autoridades públicas."
+      ],
+      "responsavel_execucao": "A confirmar por Jennifer e Rodrigo: nome, função e responsabilidade.",
+      "regiao_consulado": "A confirmar; não foi presumida cobertura territorial.",
+      "habilitacao_parceiro": "Identificar necessidade de tradução juramentada ou outro prestador; questões e pareceres jurídicos exigem avaliação profissional própria.",
+      "pendencias": [
+        "Confirmar eventos atendidos e fronteira com Registro de filhos; traduções e apostilas dependem de definição operacional.",
+        "Confirmar responsável, cobertura, tarefas e eventuais terceiros."
+      ],
+      "status": "pendente",
+      "prioridade": "a definir",
+      "pagina_existente": "servicos/estado-civil.html"
+    },
+    {
+      "id": "IT-05",
+      "nome": "Registro de filhos",
+      "categoria": "Itália",
+      "publico": "Famílias que precisam conferir o enquadramento do caso e os registros disponíveis antes de apresentar um pedido.",
+      "atividades_propostas": [
+        "Levantamento da situação familiar e cadastral informada.",
+        "Organização dos registros e identificação das informações que faltam.",
+        "Orientação administrativa sobre o procedimento a verificar junto ao órgão competente."
+      ],
+      "atividades_excluidas": [
+        "Taxas oficiais e despesas de terceiros, incluindo serviços externos que forem necessários.",
+        "Atividades não confirmadas no escopo, como tradução, apostilamento ou representação especializada.",
+        "Emissão de documentos, decisões e resultados que cabem às autoridades públicas."
+      ],
+      "responsavel_execucao": "A confirmar por Jennifer e Rodrigo: nome, função e responsabilidade.",
+      "regiao_consulado": "A confirmar; não foi presumida cobertura territorial.",
+      "habilitacao_parceiro": "Validar enquadramento com profissional adequado quando houver questão jurídica; traduções/formalidades são externas ao escopo não confirmado.",
+      "pendencias": [
+        "Separar registro/transcrição de eventual aquisição de cidadania; revisão técnica das regras de menores antes de publicar requisitos.",
+        "Confirmar responsável, cobertura, tarefas e eventuais terceiros."
+      ],
+      "status": "pendente",
+      "prioridade": "a definir",
+      "pagina_existente": "servicos/registro-filhos.html"
+    },
+    {
+      "id": "IT-06",
+      "nome": "Certidões italianas",
+      "categoria": "Itália",
+      "publico": "Pessoas que precisam identificar um registro italiano e o documento adequado à finalidade pretendida.",
+      "atividades_propostas": [
+        "Levantamento dos dados conhecidos e da finalidade da certidão.",
+        "Organização das informações para identificar o órgão custodiante.",
+        "Orientação sobre a solicitação documental e as pendências informadas."
+      ],
+      "atividades_excluidas": [
+        "Taxas oficiais e despesas de terceiros, incluindo serviços externos que forem necessários.",
+        "Atividades não confirmadas no escopo, como tradução, apostilamento ou representação especializada.",
+        "Emissão de documentos, decisões e resultados que cabem às autoridades públicas."
+      ],
+      "responsavel_execucao": "A confirmar por Jennifer e Rodrigo: nome, função e responsabilidade.",
+      "regiao_consulado": "A confirmar; não foi presumida cobertura territorial.",
+      "habilitacao_parceiro": "Confirmar regras de solicitação por terceiros, pesquisa e entrega; avaliar parceiro local e tradução conforme a finalidade.",
+      "pendencias": [
+        "Confirmar se há busca documental, limites dessa busca, representação e formato de entrega; não prometer localização/emissão.",
+        "Confirmar responsável, cobertura, tarefas e eventuais terceiros."
+      ],
+      "status": "pendente",
+      "prioridade": "a definir",
+      "pagina_existente": "servicos/certidoes-italianas.html"
+    },
+    {
+      "id": "IT-07",
+      "nome": "Carta d’identità",
+      "categoria": "Itália",
+      "publico": "Cidadãos italianos que precisam verificar a disponibilidade e o procedimento de emissão do documento no órgão competente.",
+      "atividades_propostas": [
+        "Conferência das informações de residência e situação cadastral.",
+        "Identificação das instruções e da disponibilidade do atendimento.",
+        "Organização do checklist e orientação para preparação do pedido."
+      ],
+      "atividades_excluidas": [
+        "Taxas oficiais e despesas de terceiros, incluindo serviços externos que forem necessários.",
+        "Atividades não confirmadas no escopo, como tradução, apostilamento ou representação especializada.",
+        "Emissão de documentos, decisões e resultados que cabem às autoridades públicas."
+      ],
+      "responsavel_execucao": "A confirmar por Jennifer e Rodrigo: nome, função e responsabilidade.",
+      "regiao_consulado": "A confirmar; não foi presumida cobertura territorial.",
+      "habilitacao_parceiro": "Confirmar atos que exigem presença do interessado e limites da orientação; emissão é atribuição da autoridade.",
+      "pendencias": [
+        "Confirmar atendimento por jurisdição e modalidade do documento; não divulgar disponibilidade universal.",
+        "Confirmar responsável, cobertura, tarefas e eventuais terceiros."
+      ],
+      "status": "pendente",
+      "prioridade": "a definir",
+      "pagina_existente": "servicos/carta-identita.html"
+    },
+    {
+      "id": "IT-08",
+      "nome": "Regularização consular",
+      "categoria": "Itália",
+      "publico": "Pessoas com divergências de cadastro, solicitações anteriores ou múltiplas pendências que ainda não sabem por onde começar.",
+      "atividades_propostas": [
+        "Levantamento das pendências e dos procedimentos já iniciados.",
+        "Organização dos documentos e informações disponíveis.",
+        "Identificação da sequência de providências a analisar e dos serviços específicos relacionados."
+      ],
+      "atividades_excluidas": [
+        "Taxas oficiais e despesas de terceiros, incluindo serviços externos que forem necessários.",
+        "Atividades não confirmadas no escopo, como tradução, apostilamento ou representação especializada.",
+        "Emissão de documentos, decisões e resultados que cabem às autoridades públicas."
+      ],
+      "responsavel_execucao": "A confirmar por Jennifer e Rodrigo: nome, função e responsabilidade.",
+      "regiao_consulado": "A confirmar; não foi presumida cobertura territorial.",
+      "habilitacao_parceiro": "Delimitar triagem documental; encaminhar necessidades jurídicas, traduções ou outros atos especializados para avaliação apropriada.",
+      "pendencias": [
+        "Usar como entrada de triagem; definir quando encaminhar a serviço específico e como evitar duplicidade de cobrança futura.",
+        "Confirmar responsável, cobertura, tarefas e eventuais terceiros."
+      ],
+      "status": "pendente",
+      "prioridade": "a definir",
+      "pagina_existente": "servicos/regularizacao-consular.html"
+    },
+    {
+      "id": "BR-01",
+      "nome": "Imposto de Renda",
+      "categoria": "Brasil",
+      "publico": "Contribuintes que precisam organizar a declaração e conferir informações.",
+      "atividades_propostas": [
+        "Organização de dados e comprovantes, conferência e preenchimento assistido conforme análise.",
+        "Revisão humana; checklist local permanece separado da solicitação de atendimento."
+      ],
+      "atividades_excluidas": [
+        "Taxas, impostos e despesas de terceiros.",
+        "Atividades não acordadas, atos privativos não validados e garantia de resultado."
+      ],
+      "responsavel_execucao": "A confirmar por Jennifer e Rodrigo: nome, função e responsabilidade.",
+      "regiao_consulado": "A confirmar; não foi presumida cobertura territorial.",
+      "habilitacao_parceiro": "Confirmar responsável e habilitação aplicável às tarefas fiscais/contábeis; não presumir autorização para atos privativos.",
+      "pendencias": [
+        "Confirmar exercícios atendidos e responsabilidades de preparação/transmissão; o checklist atual é local e não envia dados.",
+        "Confirmar responsável, cobertura, tarefas e eventuais terceiros."
+      ],
+      "status": "pendente",
+      "prioridade": "a definir",
+      "pagina_existente": "imposto-de-renda.html"
+    },
+    {
+      "id": "BR-02",
+      "nome": "INSS e benefícios",
+      "categoria": "Brasil",
+      "publico": "Pessoas com necessidade documental relacionada ao INSS; benefícios atendidos a definir.",
+      "atividades_propostas": [
+        "Avaliar a viabilidade de apoio documental em requerimentos.",
+        "Definir benefícios, tarefas e limites antes de assumir atendimento."
+      ],
+      "atividades_excluidas": [
+        "Taxas, impostos e despesas de terceiros.",
+        "Atividades não acordadas, atos privativos não validados e garantia de resultado."
+      ],
+      "responsavel_execucao": "A confirmar por Jennifer e Rodrigo: nome, função e responsabilidade.",
+      "regiao_consulado": "A confirmar; não foi presumida cobertura territorial.",
+      "habilitacao_parceiro": "Validar tarefas, eventual representação e autorizações; não incluir análise jurídica ou defesa por inferência.",
+      "pendencias": [
+        "Definir benefícios e tarefas atendidas, limites de acompanhamento e separação de atuação jurídica. Página individual ainda não existe.",
+        "Confirmar responsável, cobertura, tarefas e eventuais terceiros."
+      ],
+      "status": "pendente",
+      "prioridade": "a definir",
+      "pagina_existente": null
+    },
+    {
+      "id": "BR-03",
+      "nome": "Processos administrativos",
+      "categoria": "Brasil",
+      "publico": "Pessoas com solicitação perante órgão público; procedimentos atendidos a definir.",
+      "atividades_propostas": [
+        "Avaliar organização documental para uma solicitação identificada.",
+        "Definir órgão, procedimento e limites antes da oferta."
+      ],
+      "atividades_excluidas": [
+        "Taxas, impostos e despesas de terceiros.",
+        "Atividades não acordadas, atos privativos não validados e garantia de resultado."
+      ],
+      "responsavel_execucao": "A confirmar por Jennifer e Rodrigo: nome, função e responsabilidade.",
+      "regiao_consulado": "A confirmar; não foi presumida cobertura territorial.",
+      "habilitacao_parceiro": "Identificar órgão, permissões de atuação por terceiros e atividades que exijam profissional habilitado.",
+      "pendencias": [
+        "Definir órgãos e procedimentos realmente atendidos; o rótulo atual é abrangente. Página individual ainda não existe.",
+        "Confirmar responsável, cobertura, tarefas e eventuais terceiros."
+      ],
+      "status": "pendente",
+      "prioridade": "a definir",
+      "pagina_existente": null
+    },
+    {
+      "id": "BR-04",
+      "nome": "Organização documental",
+      "categoria": "Brasil",
+      "publico": "Pessoas/famílias com finalidade documental identificada; entregáveis a definir.",
+      "atividades_propostas": [
+        "Avaliar triagem, estruturação e organização documental.",
+        "Definir formatos, entregáveis e limites antes da oferta."
+      ],
+      "atividades_excluidas": [
+        "Taxas, impostos e despesas de terceiros.",
+        "Atividades não acordadas, atos privativos não validados e garantia de resultado."
+      ],
+      "responsavel_execucao": "A confirmar por Jennifer e Rodrigo: nome, função e responsabilidade.",
+      "regiao_consulado": "A confirmar; não foi presumida cobertura territorial.",
+      "habilitacao_parceiro": "Organização material de documentos proposta; avaliação jurídica, contábil ou técnica não é presumida.",
+      "pendencias": [
+        "Definir entregável, formatos e limites da conferência; não incluir emissão, tradução ou apostilamento automaticamente. Página individual ainda não existe.",
+        "Confirmar responsável, cobertura, tarefas e eventuais terceiros."
+      ],
+      "status": "pendente",
+      "prioridade": "a definir",
+      "pagina_existente": null
+    },
+    {
+      "id": "C-01",
+      "nome": "Passaporte brasileiro",
+      "categoria": "Brasil — candidato interno",
+      "publico": "Brasileiros que precisam compreender a solicitação de passaporte; público e local de atendimento a confirmar.",
+      "atividades_propostas": [
+        "Avaliar apoio à organização do checklist e compreensão das etapas oficiais da PF.",
+        "Execução, limites, privacidade e modelo do apoio privado dependem de autorização; nenhuma oferta publicada."
+      ],
+      "atividades_excluidas": [
+        "Publicação como oferta, contratação e execução antes da validação específica.",
+        "Atos privativos, representação e resultados garantidos não presumidos."
+      ],
+      "responsavel_execucao": "A confirmar; nenhum executor foi nomeado.",
+      "regiao_consulado": "A confirmar: público/local de atendimento e autoridade competente da PF.",
+      "habilitacao_parceiro": "Avaliar requisitos profissionais, autorizações e eventual parceiro conforme a atividade; não atribuir habilitação à empresa por este documento.",
+      "pendencias": [
+        "Avaliar primeiro o modelo de apoio privado opcional, privacidade, limites e instruções da PF. O procedimento oficial e suas orientações são acessíveis diretamente pelo cidadão.",
+        "Decisão expressa sobre inclusão, público, executor e limites."
+      ],
+      "status": "candidato",
+      "prioridade": "alta — candidato prioritário",
+      "pagina_existente": null
+    },
+    {
+      "id": "C-02",
+      "nome": "Negociação de Dívidas",
+      "categoria": "Brasil — candidato interno",
+      "publico": "Pessoas que buscam organizar documentação de dívidas; finalidade e público final a confirmar.",
+      "atividades_propostas": [
+        "Avaliação de viabilidade de apoio administrativo/documental; nenhuma nova execução ofertada."
+      ],
+      "atividades_excluidas": [
+        "Publicação como oferta, contratação e execução antes da validação específica.",
+        "Atos privativos, representação e resultados garantidos não presumidos."
+      ],
+      "responsavel_execucao": "A confirmar; nenhum executor foi nomeado.",
+      "regiao_consulado": "A confirmar: regiões e órgãos relacionados ao eventual escopo aprovado.",
+      "habilitacao_parceiro": "Avaliar requisitos profissionais, autorizações e eventual parceiro conforme a atividade; não atribuir habilitação à empresa por este documento.",
+      "pendencias": [
+        "Confirmar continuidade e tarefas; não presumir negociação, mandato, análise jurídica ou intermediação.",
+        "Decisão expressa sobre inclusão, público, executor e limites."
+      ],
+      "status": "candidato",
+      "prioridade": "a definir",
+      "pagina_existente": null
+    },
+    {
+      "id": "C-03",
+      "nome": "Precatórios",
+      "categoria": "Brasil — candidato interno",
+      "publico": "Pessoas com documentos relativos a precatórios; necessidade e finalidade a confirmar.",
+      "atividades_propostas": [
+        "Avaliação de viabilidade de apoio administrativo/documental; nenhuma nova execução ofertada."
+      ],
+      "atividades_excluidas": [
+        "Publicação como oferta, contratação e execução antes da validação específica.",
+        "Atos privativos, representação e resultados garantidos não presumidos."
+      ],
+      "responsavel_execucao": "A confirmar; nenhum executor foi nomeado.",
+      "regiao_consulado": "A confirmar: regiões e órgãos relacionados ao eventual escopo aprovado.",
+      "habilitacao_parceiro": "Avaliar requisitos profissionais, autorizações e eventual parceiro conforme a atividade; não atribuir habilitação à empresa por este documento.",
+      "pendencias": [
+        "Definir se existe atividade administrativa viável, seus limites e responsáveis; não presumir atuação jurídica, cessão ou intermediação.",
+        "Decisão expressa sobre inclusão, público, executor e limites."
+      ],
+      "status": "candidato",
+      "prioridade": "a definir",
+      "pagina_existente": null
+    },
+    {
+      "id": "C-04",
+      "nome": "Contratos",
+      "categoria": "Brasil — candidato interno",
+      "publico": "Pessoas com documentos contratuais para organização; finalidade a confirmar, sem presumir análise jurídica.",
+      "atividades_propostas": [
+        "Avaliação de viabilidade de apoio administrativo/documental; nenhuma nova execução ofertada."
+      ],
+      "atividades_excluidas": [
+        "Publicação como oferta, contratação e execução antes da validação específica.",
+        "Atos privativos, representação e resultados garantidos não presumidos."
+      ],
+      "responsavel_execucao": "A confirmar; nenhum executor foi nomeado.",
+      "regiao_consulado": "A confirmar: regiões e órgãos relacionados ao eventual escopo aprovado.",
+      "habilitacao_parceiro": "Avaliar requisitos profissionais, autorizações e eventual parceiro conforme a atividade; não atribuir habilitação à empresa por este documento.",
+      "pendencias": [
+        "Distinguir organização de arquivos de consultoria, parecer ou elaboração jurídica; validar escopo antes de qualquer oferta.",
+        "Decisão expressa sobre inclusão, público, executor e limites."
+      ],
+      "status": "candidato",
+      "prioridade": "a definir",
+      "pagina_existente": null
+    }
+  ]
+}

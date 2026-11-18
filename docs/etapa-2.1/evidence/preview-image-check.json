@@ -1,0 +1,7 @@
+{
+  "initial_failure": "One logo image reported unloaded on 404.html at width 1366 in the initial full Preview run.",
+  "asset_check": "HTTP 200, image/svg+xml, 1653 bytes, identical to landing/assets/logo-oliveira.svg.",
+  "focused_rechecks": "Two new browser contexts at 1366x900 loaded both logos at naturalWidth 380 without failed requests.",
+  "final_full_run": "18 pages x 7 widths passed; failures empty.",
+  "cause": "Not determined; not reproduced in focused checks or final complete run. No application or asset change between runs."
+}

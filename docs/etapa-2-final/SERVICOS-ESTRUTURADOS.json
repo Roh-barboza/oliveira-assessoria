@@ -1,0 +1,446 @@
+{
+  "fonte": "../decisoes/2026-11-18-proposta-consolidada-8-servicos.md",
+  "data": "2026-11-18",
+  "aprovacao_comercial": false,
+  "fichas": {
+    "IT-01": {
+      "nome": "Passaporte italiano",
+      "pagina": "servicos/passaporte-italiano.html",
+      "desc": "Preparação documental para primeira emissão ou renovação, com orientação ao titular e suporte limitado ao agendamento.",
+      "who": "Cidadãos italianos que precisam verificar o cadastro e organizar a documentação antes do atendimento consular.",
+      "activities": [
+        "Triagem de cidadania já reconhecida, residência, circunscrição e situação cadastral/AIRE informadas pelo cliente.",
+        "Checklist por modalidade, conferência material e organização dos documentos e complementos.",
+        "Orientação guiada para uso do Prenot@mi e preparação para o comparecimento.",
+        "Registro de tentativas e andamento informados pelo cliente, sem acesso à sua conta ou automação de vagas."
+      ],
+      "docs": [
+        "Documento de identificação e passaporte anterior, se houver.",
+        "Informações de residência, cadastro consular e AIRE.",
+        "Registros de alterações pessoais ou familiares relevantes ao caso."
+      ],
+      "lim": "Primeira emissão e renovação têm percursos próprios. Menores e urgências exigem avaliação específica. Modalidade, revisões e período de acompanhamento serão definidos antes do atendimento; não representam prazo do consulado.",
+      "faq": [
+        [
+          "É preciso já ter cidadania italiana?",
+          "A página trata da preparação para emissão ou renovação de passaporte de cidadão italiano. Reconhecimento de cidadania é outro procedimento e não está incluído automaticamente."
+        ],
+        [
+          "O agendamento é garantido?",
+          "Não. A disponibilidade e as regras de agendamento são definidas pela autoridade responsável."
+        ],
+        [
+          "Posso iniciar com cadastro desatualizado?",
+          "A triagem identifica as pendências e a ordem das providências. O consulado determina quais atualizações precisam estar concluídas antes do atendimento."
+        ],
+        [
+          "Preciso comparecer ao consulado?",
+          "Siga as instruções do órgão para o atendimento exigido. A assessoria não substitui atos pessoais que a autoridade solicite."
+        ]
+      ],
+      "sources": [
+        "passaporte"
+      ],
+      "deliveries": [
+        "Checklist individual, pasta digital organizada e relação de documentos pendentes.",
+        "Histórico dos contatos e do andamento informado pelo cliente, com instruções finais."
+      ],
+      "extra_exclusions": [
+        "Correções de AIRE ou estado civil não discriminadas no escopo; reconhecimento de cidadania.",
+        "Busca automatizada de vagas, acesso à conta do cliente pela assessoria ou promessa de agendamento."
+      ],
+      "status": "pendente"
+    },
+    "IT-02": {
+      "nome": "AIRE",
+      "pagina": "servicos/aire.html",
+      "desc": "Preparação para primeira inscrição, atualização de endereço, mudança de circunscrição e demais atualizações cadastrais admitidas.",
+      "who": "Cidadãos italianos residentes no exterior que precisam conferir ou atualizar a situação cadastral.",
+      "activities": [
+        "Identificação da modalidade, do cadastro existente e do consulado competente.",
+        "Conferência material de dados e comprovantes; checklist e preparação de anexos conforme a modalidade.",
+        "Orientação para apresentação pelo titular e registro de protocolos e pendências que ele informar."
+      ],
+      "docs": [
+        "Documento de identificação disponível.",
+        "Informações e comprovantes de residência pertinentes ao pedido.",
+        "Dados do cadastro atual e eventuais protocolos anteriores."
+      ],
+      "lim": "AIRE é o cadastro; FAST IT é um canal operacional. Casamento, divórcio, nascimento e óbito seguem o setor de Registro Civil e formalidades próprias. Em São Paulo, estado civil não é atualizado pelo FAST IT. Sua organização pode integrar a proposta de regularidade cadastral, mas precisa de atividades discriminadas e avaliação específica.",
+      "faq": [
+        [
+          "AIRE e Fast It são a mesma coisa?",
+          "Não. AIRE é o cadastro; Fast It é um portal utilizado em procedimentos consulares. O suporte ao portal deve ser delimitado para não duplicar o serviço cadastral."
+        ],
+        [
+          "Mudei de endereço. Por onde começo?",
+          "Informe a residência atual e a situação do cadastro na análise. As instruções do consulado competente indicam como comunicar a alteração."
+        ],
+        [
+          "Atualizar AIRE também atualiza meu estado civil?",
+          "Não presuma que uma solicitação cadastral resolve outros registros. Consulte o canal específico do evento de estado civil no consulado responsável."
+        ],
+        [
+          "A assessoria é obrigatória?",
+          "Não. É um apoio privado opcional. O cidadão pode consultar as instruções oficiais e realizar os procedimentos pelos canais disponibilizados pelo órgão."
+        ]
+      ],
+      "sources": [
+        "aire"
+      ],
+      "deliveries": [
+        "Dossiê documental, lista de pendências e roteiro específico da atualização.",
+        "Registro de andamento fornecido pelo cliente, dentro do acompanhamento definido."
+      ],
+      "related": [
+        [
+          "/servicos/fast-it.html",
+          "Entenda o suporte FAST IT"
+        ],
+        [
+          "/servicos/estado-civil.html",
+          "Consulte a ficha de Estado civil"
+        ]
+      ],
+      "extra_exclusions": [],
+      "status": "pendente"
+    },
+    "IT-03": {
+      "nome": "FAST IT",
+      "pagina": "servicos/fast-it.html",
+      "desc": "Suporte operacional para criar conta, associar cadastro quando permitido e utilizar as funcionalidades do FAST IT.",
+      "who": "Pessoas que precisam entender o uso do portal e identificar o caminho da sua solicitação consular.",
+      "activities": [
+        "Orientação ao titular para criação de conta e associação cadastral, quando permitidas.",
+        "Apoio de navegação, organização de anexos e compreensão de mensagens técnicas.",
+        "Identificação de dificuldades e orientação sobre os canais oficiais de suporte, sem contornar restrições."
+      ],
+      "docs": [
+        "Descrição da dificuldade, sem senha ou código de acesso.",
+        "Informações do cadastro e do consulado de referência.",
+        "Número de protocolo ou mensagem de pendência, quando houver."
+      ],
+      "lim": "FAST IT é uma plataforma, não um processo consular autônomo. Cliente controla login, autenticação, assinaturas e envios. O mesmo suporte já incluído em AIRE ou outra assessoria não será tratado como atendimento avulso duplicado. Sessões e limites dependem da definição do escopo.",
+      "faq": [
+        [
+          "Posso enviar minha senha para a análise?",
+          "Não. Não informe senha, código de autenticação ou credenciais no formulário de contato."
+        ],
+        [
+          "O suporte ao portal inclui meu pedido AIRE?",
+          "O escopo precisa ser confirmado na triagem. AIRE e suporte ao portal são apresentados separadamente para esclarecer o que será atendido."
+        ],
+        [
+          "Todo serviço consular é feito pelo Fast It?",
+          "Não presuma isso. Confira o canal indicado pela autoridade para o procedimento desejado; podem existir instruções próprias fora do portal."
+        ],
+        [
+          "Vocês alteram a decisão do consulado?",
+          "Não. O apoio organiza informações e orienta o uso do canal; a análise e a decisão cabem ao órgão competente."
+        ]
+      ],
+      "sources": [
+        "aire"
+      ],
+      "deliveries": [
+        "Sessão orientativa, roteiro de uso e checklist de pendências técnicas."
+      ],
+      "related": [
+        [
+          "/servicos/aire.html",
+          "Conheça as modalidades de AIRE"
+        ],
+        [
+          "/servicos/estado-civil.html",
+          "Estado civil usa procedimento próprio"
+        ]
+      ],
+      "extra_exclusions": [],
+      "status": "pendente"
+    },
+    "IT-04": {
+      "nome": "Estado civil",
+      "pagina": "servicos/estado-civil.html",
+      "desc": "Organização de registros de casamento, divórcio e outras alterações do estado civil.",
+      "who": "Cidadãos que precisam verificar como comunicar um evento de estado civil aos órgãos italianos.",
+      "activities": [
+        "Identificação do evento e dos registros disponíveis.",
+        "Conferência e organização da documentação para análise.",
+        "Orientação das etapas administrativas e das pendências do procedimento aplicável."
+      ],
+      "docs": [
+        "Identificação das pessoas relacionadas ao evento.",
+        "Certidão ou registro do evento, se disponível.",
+        "Informações do cadastro consular e de registros anteriores relacionados."
+      ],
+      "lim": "Formalidades, tradução, apostilamento e canal de apresentação devem ser confirmados para o evento e a jurisdição. Situações que exijam atuação jurídica precisam de avaliação profissional própria. A preparação pode se relacionar à regularidade cadastral, mas Registro Civil tem canal próprio; em São Paulo não é atualização pelo FAST IT. Registro de filhos exige avaliação específica do procedimento e da situação familiar.",
+      "faq": [
+        [
+          "Casamento e divórcio seguem o mesmo procedimento?",
+          "Não necessariamente. O evento e os documentos disponíveis determinam quais instruções oficiais devem ser consultadas."
+        ],
+        [
+          "Tradução e apostilamento estão incluídos?",
+          "Não automaticamente. São atividades e despesas de terceiros que precisam ser identificadas e tratadas separadamente."
+        ],
+        [
+          "Posso resolver tudo pelo Fast It?",
+          "Consulte o canal específico de estado civil indicado pelo consulado. O suporte ao portal não substitui as formalidades exigidas para o evento."
+        ],
+        [
+          "Registro de filhos entra nesta página?",
+          "O catálogo possui uma página própria para a triagem de registro de filhos. A análise define o enquadramento e evita sobreposição de escopo."
+        ]
+      ],
+      "sources": [
+        "estado-civil"
+      ],
+      "deliveries": [
+        "Dossiê organizado por evento, checklist de formalidades e pendências documentais."
+      ],
+      "related": [
+        [
+          "/servicos/aire.html",
+          "AIRE e atualizações cadastrais"
+        ],
+        [
+          "/servicos/registro-filhos.html",
+          "Registro de filhos e situações de menores"
+        ]
+      ],
+      "extra_exclusions": [],
+      "status": "pendente"
+    },
+    "IT-05": {
+      "nome": "Registro de filhos",
+      "pagina": "servicos/registro-filhos.html",
+      "desc": "Preparação do dossiê familiar e organização documental do procedimento, com revisão especializada quando necessária.",
+      "who": "Famílias que precisam conferir o enquadramento do caso e os registros disponíveis antes de apresentar um pedido.",
+      "activities": [
+        "Triagem factual da cidadania informada dos responsáveis, vínculo familiar, idade, datas, residência e registros existentes.",
+        "Checklist indicativo e organização das certidões e formulários oficiais pertinentes.",
+        "Encaminhamento do procedimento específico após revisão técnica do enquadramento e acompanhamento documental conforme escopo."
+      ],
+      "docs": [
+        "Informações sobre a situação do genitor italiano.",
+        "Registro de nascimento do filho, se disponível, e identificação.",
+        "Informações sobre residência, idade e estado civil dos pais."
+      ],
+      "lim": "Registro de nascimento, transcrição e aquisição de cidadania por benefício de lei não são equivalentes. As regras vigentes, datas e situação familiar precisam de revisão técnica antes da execução. Elegibilidade, declaração de vontade e dúvidas jurídicas exigem profissional habilitado para o caso e a jurisdição; os pais cumprem os atos pessoais.",
+      "faq": [
+        [
+          "Todo filho de cidadão italiano segue o mesmo fluxo?",
+          "Não. A autoridade distingue situações familiares e hipóteses normativas. O enquadramento deve ser verificado antes de definir o procedimento."
+        ],
+        [
+          "O serviço garante cidadania ao filho?",
+          "Não. A assessoria documental não concede cidadania nem garante decisão favorável."
+        ],
+        [
+          "Quais certidões precisam de tradução?",
+          "As formalidades serão conferidas nas instruções oficiais do caso. Não providencie despesas de terceiros com base apenas neste checklist inicial."
+        ],
+        [
+          "Estado civil dos pais pode ser relevante?",
+          "Sim, é uma das informações verificadas na triagem documental. A necessidade de atualização será confirmada para o caso e o órgão responsável."
+        ]
+      ],
+      "sources": [
+        "filhos"
+      ],
+      "deliveries": [
+        "Dossiê familiar, checklist por modalidade e relação de informações faltantes.",
+        "Histórico documental e encaminhamentos à revisão especializada quando necessários."
+      ],
+      "extra_exclusions": [
+        "Conclusão automática de cidadania ou aconselhamento jurídico pela assessoria administrativa."
+      ],
+      "status": "pendente"
+    },
+    "IT-06": {
+      "nome": "Certidões italianas",
+      "pagina": "servicos/certidoes-italianas.html",
+      "desc": "Apoio na organização das informações necessárias para localizar ou solicitar certidões italianas.",
+      "who": "Pessoas que precisam identificar um registro italiano e o documento adequado à finalidade pretendida.",
+      "activities": [
+        "Levantamento dos dados conhecidos e da finalidade da certidão.",
+        "Organização das informações para identificar o órgão custodiante.",
+        "Orientação sobre a solicitação documental e as pendências informadas."
+      ],
+      "docs": [
+        "Nome e demais dados conhecidos da pessoa registrada.",
+        "Tipo de evento, local e data aproximada, se conhecidos.",
+        "Cópias ou referências de registros já disponíveis e finalidade do documento."
+      ],
+      "lim": "A localização e emissão dependem da existência do registro e do órgão responsável. Formato, taxas, envio e eventual pesquisa adicional precisam ser confirmados; não há garantia de localização.",
+      "faq": [
+        [
+          "Uma certidão serve para qualquer finalidade?",
+          "Não presuma isso. A finalidade orienta o tipo e o formato a consultar junto ao órgão emissor e ao destinatário."
+        ],
+        [
+          "E se eu não souber o comune?",
+          "Informe os dados disponíveis para avaliar o que é possível pesquisar. Uma busca extensa não está automaticamente incluída."
+        ],
+        [
+          "A emissão ou a localização é garantida?",
+          "Não. Dependem dos registros existentes e da resposta do órgão competente."
+        ],
+        [
+          "Tradução, envio e taxas fazem parte do atendimento?",
+          "Não automaticamente. Despesas e serviços externos são identificados separadamente na definição do escopo."
+        ]
+      ],
+      "sources": [
+        "certidoes"
+      ],
+      "deliveries": [
+        "Dados do registro organizados, indicação do órgão custodiante e roteiro da solicitação.",
+        "Histórico dos pedidos permitidos e documentos recebidos, se houver e conforme o escopo."
+      ],
+      "extra_exclusions": [],
+      "status": "pendente"
+    },
+    "IT-07": {
+      "nome": "Carta d’identità",
+      "pagina": "servicos/carta-identita.html",
+      "desc": "Conferência inicial de dados e preparação documental para o procedimento de Carta d’identità na sede competente.",
+      "who": "Cidadãos italianos que precisam verificar a disponibilidade e o procedimento de emissão do documento no órgão competente.",
+      "activities": [
+        "Conferência das informações de residência e situação cadastral.",
+        "Identificação das instruções e da disponibilidade do atendimento.",
+        "Organização do checklist e orientação para preparação do pedido."
+      ],
+      "docs": [
+        "Documento de identificação disponível.",
+        "Informações de residência, cadastro consular e AIRE.",
+        "Dados do codice fiscale, quando aplicáveis ao procedimento a confirmar."
+      ],
+      "lim": "Disponibilidade, modalidade e exigências variam conforme a situação e o órgão. O catálogo não anuncia emissão universal nem substitui o atendimento exigido pela autoridade.",
+      "faq": [
+        [
+          "Posso pedir em qualquer consulado?",
+          "Não presuma disponibilidade universal. Verifique o órgão de referência e as instruções de atendimento aplicáveis à sua situação."
+        ],
+        [
+          "AIRE e codice fiscale podem ser necessários?",
+          "São pontos de conferência nas instruções oficiais de CIE consultadas. A lista aplicável deve ser confirmada para o órgão responsável."
+        ],
+        [
+          "Vocês emitem a identidade?",
+          "Não. A emissão é realizada pelas autoridades italianas. A Oliveira presta apoio administrativo e documental."
+        ],
+        [
+          "Há garantia de prazo de entrega?",
+          "Não. Produção, análise e entrega do documento seguem o procedimento e os prazos do órgão responsável."
+        ]
+      ],
+      "sources": [
+        "cie"
+      ],
+      "deliveries": [
+        "Checklist preparatório, relação de pendências e roteiro do atendimento oficial aplicável."
+      ],
+      "extra_exclusions": [],
+      "status": "pendente"
+    },
+    "IT-08": {
+      "nome": "Regularização consular",
+      "pagina": "servicos/regularizacao-consular.html",
+      "desc": "Triagem personalizada para identificar pendências documentais e organizar a sequência de providências administrativas.",
+      "who": "Pessoas com divergências de cadastro, solicitações anteriores ou múltiplas pendências que ainda não sabem por onde começar.",
+      "activities": [
+        "Inventário de dados, documentos e solicitações já iniciadas.",
+        "Identificação de divergências aparentes em cadastro, AIRE, registros civis e pedidos consulares.",
+        "Organização das dependências e encaminhamento aos procedimentos específicos ou à revisão especializada."
+      ],
+      "docs": [
+        "Resumo das pendências e objetivo do atendimento.",
+        "Dados de cadastro e residência relevantes.",
+        "Referências de solicitações anteriores e documentos já disponíveis."
+      ],
+      "lim": "A triagem não é um pacote ilimitado. Execução de AIRE, Estado Civil, Certidões ou outro procedimento exige atividades discriminadas no escopo próprio, sem duplicidade de atendimento. Questões jurídicas são encaminhadas a profissional habilitado.",
+      "faq": [
+        [
+          "Não sei qual serviço selecionar. Esta é a opção adequada?",
+          "Ela permite apresentar o contexto para identificar o procedimento a analisar. O escopo será confirmado antes de qualquer atendimento específico."
+        ],
+        [
+          "Resolve todas as pendências de uma vez?",
+          "Não necessariamente. Podem existir etapas e órgãos diferentes, que precisam ser organizados separadamente."
+        ],
+        [
+          "Inclui AIRE, passaporte e estado civil?",
+          "Não automaticamente. A triagem identifica quais serviços precisam ser considerados e evita assumir um pacote indefinido."
+        ],
+        [
+          "Quem decide a regularização?",
+          "O órgão competente decide cada pedido. A assessoria organiza informações e orienta os passos administrativos cabíveis."
+        ]
+      ],
+      "sources": [
+        "aire",
+        "estado-civil"
+      ],
+      "deliveries": [
+        "Mapa de pendências e sequência factual de providências administrativas.",
+        "Relação de procedimentos e encaminhamentos, distinguindo triagem de execução adicional."
+      ],
+      "extra_exclusions": [],
+      "status": "pendente"
+    },
+    "BR-04": {
+      "nome": "Organização documental",
+      "pagina": "servicos/organizacao-documental.html",
+      "desc": "Digitalização, conferência material, solicitação permitida de certidões e preparação de dossiês pessoais e familiares.",
+      "who": "Pessoas e famílias que precisam organizar documentos para uma finalidade brasileira ou italiana identificada.",
+      "activities": [
+        "Organização, classificação, inventário e digitalização de documentos pessoais e familiares.",
+        "Solicitação e acompanhamento de certidões perante cartórios e órgãos, quando permitidos e com as autorizações necessárias.",
+        "Conferência material dos dados e identificação de divergências aparentes, sem certificar autenticidade ou validade jurídica.",
+        "Preparação de pastas e dossiês para procedimentos brasileiros e italianos.",
+        "Orientação sobre tradução e apostilamento e coordenação de prestadores externos, quando incluídas no escopo específico."
+      ],
+      "docs": [
+        "Finalidade da pasta, tipos de documentos e relação do material disponível.",
+        "Documentos pessoais ou familiares pertinentes, somente pelo canal seguro a definir após a triagem.",
+        "Referências dos registros e autorizações exigidas para eventual solicitação de certidões."
+      ],
+      "deliveries": [
+        "Pasta digital estruturada, índice/inventário, checklist e relação de pendências.",
+        "Relação dos pedidos a órgãos, documentos recebidos e despesas externas, quando aplicáveis."
+      ],
+      "extra_exclusions": [
+        "Parecer jurídico, técnico ou contábil; certificação de autenticidade ou validade jurídica.",
+        "Emissão própria de certidões e execução de tradução ou apostilamento sem prestador competente.",
+        "Garantia de localização de registros ou resultado dos órgãos."
+      ],
+      "lim": "Formato, quantidades, revisões, cobertura remota/presencial e logística de originais ainda dependem de validação. Antes de receber documentos, serão definidos canal seguro, acesso, guarda, devolução e descarte. Documentos pessoais não devem ser compartilhados em grupos ou enviados desnecessariamente a ferramentas de IA.",
+      "faq": [
+        [
+          "A conferência garante a validade do documento?",
+          "Não. É uma conferência material de dados, legibilidade e organização. Não certifica autenticidade nem substitui avaliação jurídica ou técnica."
+        ],
+        [
+          "A Oliveira emite certidões, traduções ou apostilas?",
+          "Os órgãos competentes emitem certidões; tradução e apostilamento dependem dos prestadores e formalidades aplicáveis. A proposta prevê orientação e coordenação quando definidas no escopo."
+        ],
+        [
+          "Posso enviar os documentos pelo formulário?",
+          "Não. No primeiro contato, descreva apenas a finalidade. O canal de documentos e as regras de guarda serão definidos após a triagem."
+        ]
+      ],
+      "sources": [],
+      "status": "pendente"
+    }
+  },
+  "decisao_operacional": {
+    "data": "2026-11-18",
+    "documento": "../decisoes/2026-11-18-responsaveis-cobertura-e-preparacao-comercial.md",
+    "jennifer": "Atendimento, triagem e documentação",
+    "rodrigo": "Suporte operacional/digital e supervisão",
+    "cobertura_inicial": "São Paulo",
+    "segundo_revisor": null,
+    "habilitacoes_nao_presumidas": true
+  }
+}

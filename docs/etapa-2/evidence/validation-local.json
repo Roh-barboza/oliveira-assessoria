@@ -1,0 +1,115 @@
+{
+  "base": "http://127.0.0.1:4175",
+  "pages": 18,
+  "widths": [
+    360,
+    390,
+    430,
+    768,
+    1024,
+    1366,
+    1920
+  ],
+  "checks": 126,
+  "axe": [
+    {
+      "path": "404.html",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "path": "imposto-de-renda.html",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "path": "index.html",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "path": "italia.html",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "path": "privacidade.html",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "path": "servicos-consulares.html",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "path": "servicos.html",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "path": "termos.html",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "path": "servicos/aire.html",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "path": "servicos/carta-identita.html",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "path": "servicos/certidoes-italianas.html",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "path": "servicos/estado-civil.html",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "path": "servicos/fast-it.html",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "path": "servicos/passaporte-italiano.html",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "path": "servicos/registro-filhos.html",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "path": "servicos/regularizacao-consular.html",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "path": "ir/formulario.html",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "path": "ir/laboratorio.html",
+      "width": 390,
+      "violations": []
+    }
+  ],
+  "failures": [],
+  "form": "intercepted only: valid/invalid/success/HTTP500/offline; no real lead sent",
+  "ir": "local draft persistence",
+  "serviceFlow": "all 8 consular hero CTAs via keyboard plus IR direct to central form; matching selected option; header, sidebar and contact navigation targets verified",
+  "keyboard": "skip link, focus outline, Enter, Escape and menu focus verified",
+  "missingPage": "unknown URL returns HTTP 404",
+  "catalog": "12 entries, category filter, title/description search, accent and punctuation normalization, empty state, link to detail, no-JS fallback",
+  "servicePages": "8 standardized consular pages with 4 FAQ each; IR includes documents/exclusions and no price",
+  "date": "2026-11-17T19:44:43.448Z"
+}

@@ -149,6 +149,8 @@ try {
         await page.locator("#main-nav").isVisible(),
         `${width}: desktop navigation visible`,
       );
+    await page.goto(base);
+    await page.evaluate(() => document.fonts.ready);
     await page.screenshot({
       path: `${evidence}/after-home-${width}.png`,
       fullPage: true,
@@ -227,12 +229,13 @@ try {
     "certidoes-italianas": "Certidão italiana",
     "carta-identita": "Carta d'identità",
     "regularizacao-consular": "Outra regularização consular",
+    "organizacao-documental": "Organização documental",
   };
   for (const [slug, service] of Object.entries(services)) {
     await page.goto(`${base}/servicos/${slug}.html`);
     for (const selector of [
       ".hero-actions .btn-gold",
-      ".sidebox .btn",
+      ".service-contact .btn",
       ".header-cta",
       "#main-nav a:last-child",
     ]) {
@@ -282,6 +285,178 @@ try {
   );
   assert.equal(missing.status(), 404);
   assert.match(await page.locator("h1").innerText(), /não foi encontrado/);
+  // Catalog discovery, accent/punctuation normalization and progressive enhancement.
+  await page.goto(base + "/servicos.html");
+  assert.equal(await page.locator(".catalog-card").count(), 12);
+  const search = page.locator("#catalog-search");
+  const category = page.locator("#catalog-category");
+  assert.equal(
+    await page
+      .locator(".catalog-label")
+      .filter({ hasText: "Em validação comercial" })
+      .count(),
+    12,
+  );
+  assert.equal(
+    await page
+      .locator(".catalog-action")
+      .filter({ hasText: "Consultar possibilidade de atendimento" })
+      .count(),
+    2,
+  );
+  await category.selectOption("brasil");
+  assert.equal(await page.locator(".catalog-card:visible").count(), 4);
+  await category.selectOption("italia");
+  assert.equal(await page.locator(".catalog-card:visible").count(), 8);
+  await category.selectOption("todos");
+  for (const [term, expected] of [
+    ["PASSAPORTE", 1],
+    ["certidoes", 2],
+    ["Carta d'identita", 1],
+    ["endereco", 1],
+    ["INSS", 1],
+  ]) {
+    await search.fill(term);
+    assert.equal(
+      await page.locator(".catalog-card:visible").count(),
+      expected,
+      term,
+    );
+  }
+  await search.fill("certidoes");
+  for (const selected of ["brasil", "italia"]) {
+    await category.selectOption(selected);
+    assert.equal(await page.locator(".catalog-card:visible").count(), 1);
+  }
+  await category.selectOption("todos");
+  await search.fill("zz-inexistente-zz");
+  assert.equal(await page.locator(".catalog-card:visible").count(), 0);
+  assert.equal(await page.locator("#catalog-empty").isVisible(), true);
+  await search.fill("");
+  assert.equal(await page.locator(".catalog-card:visible").count(), 12);
+  await page.locator(".catalog-card h3 a").filter({ hasText: "AIRE" }).click();
+  assert.match(new URL(page.url()).pathname, /servicos\/aire.html/);
+  for (const slug of Object.keys(services)) {
+    await page.goto(`${base}/servicos/${slug}.html`);
+    for (const id of [
+      "para-quem",
+      "incluido",
+      "excluido",
+      "documentos",
+      "como-funciona",
+      "entregas",
+      "responsabilidades",
+      "limites",
+      "duvidas",
+      "fontes",
+    ])
+      assert.equal(await page.locator("#" + id).count(), 1, slug + " " + id);
+    assert.equal(
+      await page.locator('main a[href*="?servico="]').count(),
+      2,
+      slug + " has one opening and one final analysis CTA",
+    );
+    assert.equal(
+      await page.locator('.service-index a[href*="?servico="]').count(),
+      0,
+    );
+    await page.locator(".service-index-panel > summary").focus();
+    await page.keyboard.press("Enter");
+    assert.equal(
+      await page
+        .locator('.service-index nav a[href="#documentos"]')
+        .isVisible(),
+      true,
+    );
+    await page.locator('.service-index nav a[href="#documentos"]').click();
+    assert.equal(new URL(page.url()).hash, "#documentos");
+    const questions = await page.locator(".faq details").count();
+    assert.ok(questions >= 3 && questions <= 5, slug + " useful FAQ count");
+    assert.match(
+      await page.locator(".kicker").innerText(),
+      /validação comercial/i,
+    );
+  }
+  // Priority is not commercial approval; candidates never become public offers.
+  const matrix = JSON.parse(
+    await readFile("docs/etapa-2-final/MATRIZ-CONSOLIDADA.json", "utf8"),
+  );
+  assert.equal(matrix.servicos.length, 16);
+  assert.equal(
+    matrix.servicos.filter((s) => s.status === "aprovado").length,
+    0,
+  );
+  assert.equal(
+    matrix.servicos.filter((s) => s.status === "pendente").length,
+    12,
+  );
+  assert.equal(
+    matrix.servicos.filter((s) => s.status === "candidato").length,
+    4,
+  );
+  assert.equal(
+    matrix.servicos.filter((s) => s.prioritario_estruturacao).length,
+    8,
+  );
+  for (const path of pages) {
+    const html = await readFile(resolve("landing", path), "utf8");
+    assert.doesNotMatch(
+      html,
+      /Passaporte brasileiro|Negociação de Dívidas|Precatórios|>Contratos</i,
+      path + " does not promote candidates",
+    );
+  }
+  await page.goto(base + "/servicos/organizacao-documental.html");
+  assert.match(
+    await page
+      .locator("#incluido + ul, [aria-labelledby=incluido] ul")
+      .innerText(),
+    /digitalização/,
+  );
+  await page.locator(".hero-actions .btn-gold").click();
+  await page.waitForURL((u) => u.hash === "#contato" && u.pathname === "/");
+  assert.equal(
+    await page.locator('[name="servico"]').inputValue(),
+    "Organização documental",
+  );
+  assert.equal(
+    await page
+      .locator('[name="servico"] option')
+      .filter({ hasText: "Passaporte brasileiro" })
+      .count(),
+    0,
+  );
+  await page.goto(base + "/imposto-de-renda.html");
+  assert.equal(await page.locator("#documentos").count(), 1);
+  assert.equal(await page.locator("#ir-excluido").count(), 1);
+  for (const id of ["ir-atividades", "ir-entregas", "ir-limites"])
+    assert.equal(await page.locator("#" + id).count(), 1);
+  assert.equal(await page.locator(".service-hero__actions a").count(), 2);
+  assert.equal(await page.locator('main a[href*="?servico="]').count(), 2);
+  assert.equal(
+    await page.locator('main a[href="ir/formulario.html"]').count(),
+    1,
+  );
+  await page.locator(".service-index-panel > summary").click();
+  assert.equal(
+    await page.locator('.service-index a[href="#ir-fontes"]').isVisible(),
+    true,
+  );
+
+  assert.equal(
+    await page
+      .locator("body")
+      .innerText()
+      .then((text) => /R\$\s*149/.test(text)),
+    false,
+  );
+  const nojsCatalog = await browser.newPage({
+    javaScriptEnabled: false,
+    viewport: { width: 390, height: 844 },
+  });
+  await nojsCatalog.goto(base + "/servicos.html");
+  assert.equal(await nojsCatalog.locator(".catalog-card:visible").count(), 12);
+  await nojsCatalog.close();
   // IR wizard's local persistence and conditional blocks remain operational.
   await page.goto(base + "/ir/formulario.html");
   await page.locator('[name="securityAck"]').check();
@@ -315,10 +490,16 @@ try {
         form: "intercepted only: valid/invalid/success/HTTP500/offline; no real lead sent",
         ir: "local draft persistence",
         serviceFlow:
-          "all 8 consular hero CTAs via keyboard plus IR direct to central form; matching selected option; header, sidebar and contact navigation targets verified",
+          "8 consular + organization hero CTAs via keyboard plus IR direct to central form; matching selected option; header and final navigation targets verified",
         keyboard:
           "skip link, focus outline, Enter, Escape and menu focus verified",
         missingPage: "unknown URL returns HTTP 404",
+        editorialRefinement:
+          "two analysis CTAs per detail main; accessible native section index; 12 entries pending; 8 priorities, 0 approvals; 4 candidates absent from public offers; IR local checklist retained",
+        catalog:
+          "12 entries, category filter, title/description search, accent and punctuation normalization, empty state, link to detail, no-JS fallback",
+        servicePages:
+          "8 standardized consular + organization pages with deliveries, responsibilities and FAQ; IR scoped and without price",
         date: new Date().toISOString(),
       },
       null,
