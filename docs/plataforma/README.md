@@ -43,7 +43,9 @@ O Preview usa memória cifrada por processo e pode perder a sessão/dados em rei
 
 Foi criado um store **privado e vazio** `oliveira-platform-preview` (`store_85Ar0XqTHja9xFLb`, região `gru1`), não conectado ao projeto. A criação de um projeto Vercel separado retornou 403. A revisão automática rejeitou cadastrar uma nova chave de criptografia nas variáveis protegidas do Preview do projeto existente por exigir autorização específica para enviar esse segredo ao destino externo. Nenhuma chave foi embutida, publicada ou enviada por caminho alternativo.
 
-Após autorização, configurar **somente Preview e somente esta branch**: `OLIVEIRA_PLATFORM_STORE=blob`, `BLOB_STORE_ID` e `OLIVEIRA_DATA_KEY` (64 hex aleatórios, protegida), conectar o store ao projeto de teste com permissões mínimas/OIDC e provar reinício, concorrência, ACL e recuperação. Nenhuma variável existente deve ser lida ou substituída. Alternativa futura: Postgres dedicado com `OLIVEIRA_PREVIEW_DATABASE_URL`, mesma chave protegida e migração explícita. Não habilitar ambos.
+**Atualização de 18/11/2026:** autorização específica recebida, condicionada ao isolamento por branch. A conexão foi interrompida antes de qualquer alteração porque esse isolamento das permissões Blob/OIDC não pôde ser comprovado. O bloqueio atual é técnico, e não a autorização anterior. Veja [a validação e evidências sem secrets](VALIDACAO-ISOLAMENTO-BLOB.md).
+
+Somente após comprovar o isolamento exigido, configurar **somente Preview e somente esta branch**: `OLIVEIRA_PLATFORM_STORE=blob`, `BLOB_STORE_ID` e `OLIVEIRA_DATA_KEY` (64 hex aleatórios, protegida), conectar o store ao projeto de teste com permissões mínimas/OIDC e provar reinício, concorrência, ACL e recuperação. Nenhuma variável existente deve ser lida ou substituída. Alternativa futura: Postgres dedicado com `OLIVEIRA_PREVIEW_DATABASE_URL`, mesma chave protegida e migração explícita. Não habilitar ambos.
 
 ## Evidências e próximos passos
 

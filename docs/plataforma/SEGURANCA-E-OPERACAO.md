@@ -18,7 +18,7 @@
 |---|---|---|
 | VERCEL_ENV / VERCEL_GIT_COMMIT_REF | Gate de Preview e branch exata | Injetadas pela plataforma |
 | OLIVEIRA_PLATFORM_STORE | `temporario`, `blob` ou `postgres` | Padrão temporário |
-| OLIVEIRA_DATA_KEY | Nova chave AES, 64 hex, protegida | Exportação requer autorização específica |
+| OLIVEIRA_DATA_KEY | Nova chave AES, 64 hex, protegida | Autorização recebida; aguardando comprovação de isolamento por branch |
 | BLOB_STORE_ID | Store privado de teste | Criado, vazio e não conectado |
 | OLIVEIRA_PREVIEW_DATABASE_URL | Alternativa Postgres dedicada | Não configurada; não utilizar banco de produção/n8n |
 | CLICKSIGN_* | Credencial nova e sandbox explicitamente habilitado | Adaptador isolado; runtime do painel não consome |
