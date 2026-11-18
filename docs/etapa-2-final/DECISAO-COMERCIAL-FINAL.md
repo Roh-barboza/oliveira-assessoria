@@ -1,6 +1,8 @@
 # Decisão comercial final — proposta única para Jennifer e Rodrigo
 
-> **Atualização em 18/11/2026:** recebida a **seleção comercial preliminar conjunta**: **A** para Passaporte italiano, AIRE, FAST IT, Regularização consular e Organização documental; **C** para Registro de filhos e Imposto de Renda. Passaporte brasileiro permanece **candidato**. **A não é aprovação para venda**: as condições/revisões e os requisitos G1–G3 continuam a ser concluídos. Consulte [registro da decisão](../decisoes/2026-11-18-selecao-comercial-preliminar.md).
+> **Aceite operacional em 18/11/2026:** recebida a orientação **“segue”** para adotar o modelo de prazos, revisões e segunda conferência dos cinco serviços A. Detalhes e ressalvas no [registro de aceite operacional](../decisoes/2026-11-18-aceite-operacional-cinco-servicos.md). Esse aceite **não** configura liberação para venda, assinaturas, revisão jurídica, capacidade comprovada de execução ou segurança de documentos implantada. G1 (revisão contratual), G2 (capacidade e limites de atuação) e G3 (operação segura) permanecem com pendências.
+
+> **Atualização em 18/11/2026:** recebida a **seleção comercial preliminar conjunta**: **A** para Passaporte italiano, AIRE, FAST IT, Regularização consular e Organização documental; **C** para Registro de filhos e Imposto de Renda. Passaporte brasileiro permanece **candidato**. **A não é aprovação para venda**: o modelo operacional foi aceito posteriormente, mas restam validação jurídica, capacidade de revisão e G3 antes da liberação. Consulte [registro da decisão](../decisoes/2026-11-18-selecao-comercial-preliminar.md).
 
 **18/11/2026 — versão para uma rodada de revisão, não aprovação.** Recomendo preparar o lançamento administrativo de cinco linhas e ajustar duas linhas técnicas antes de liberá-las. Passaporte brasileiro fica fora da liberação inicial. Nenhum serviço muda de status nesta proposta.
 
@@ -8,7 +10,7 @@
 
 ## 1. Decisão em uma tabela
 
-Marcar **uma opção por serviço**: **A — Aprovar após requisitos atendidos**; **B — Ajustar antes da aprovação**; **C — Adiar para uma etapa futura**. Selecionar A com requisito ainda aberto mantém o serviço pendente; não é aprovação condicional já concedida. As recomendações originais estão preservadas, e a escolha preliminar conjunta A/C foi registrada na tabela. Permanecem pendentes os aceites dos limites específicos, revisores e requisitos para liberação.
+Marcar **uma opção por serviço**: **A — Aprovar após requisitos atendidos**; **B — Ajustar antes da aprovação**; **C — Adiar para uma etapa futura**. Selecionar A com requisito ainda aberto mantém o serviço pendente; não é aprovação condicional já concedida. As recomendações originais estão preservadas, e a escolha preliminar conjunta A/C foi registrada na tabela. O modelo de limites e revisão cruzada dos cinco A foi aceito operacionalmente em 18/11/2026; permanecem pendentes revisão jurídica, comprovação de capacidade/permissões e implantação segura dos documentos.
 
 | Serviço | Recomendação | Fundamentação e bloqueio real | Escolha conjunta | Ajuste pontual |
 | --- | --- | --- | --- | --- |
@@ -66,7 +68,7 @@ As [regras gerais propostas](CONDICOES-PADRAO-ATENDIMENTO.md) integram esta roda
 
 **Por que estes limites:** 180/60 dias reaproveitam a hipótese operacional já discutida, sem tratá-la como aceite; duas rodadas consolidam complementos e tornam o esforço mensurável sem limitar a orientação a três sessões.
 
-**Aceite/ajuste dos limites acima:** ___  **Jennifer:** ___  **Rodrigo:** ___  **Data:** ___
+**Aceite operacional dos limites:** registrado em 18/11/2026 para planejamento, condicionado à redação contratual e aos requisitos G1–G3; **sem assinaturas individuais presumidas nem liberação de venda**.
 **Requisitos desta ficha:** G1, G2, G3. **Status atual:** pendente; escolha preliminar registrada na tabela. Aceite das condições específicas, comprovação dos requisitos e assinatura/registro individual ainda pendentes.
 
 <a id="it-02"></a>
@@ -93,7 +95,7 @@ As [regras gerais propostas](CONDICOES-PADRAO-ATENDIMENTO.md) integram esta roda
 
 **Por que estes limites:** 30/180 dias mantêm a separação já proposta entre preparar e acompanhar; duas rodadas evitam pedidos fragmentados. O ciclo do órgão continua independente.
 
-**Aceite/ajuste dos limites acima:** ___  **Jennifer:** ___  **Rodrigo:** ___  **Data:** ___
+**Aceite operacional dos limites:** registrado em 18/11/2026 para planejamento, condicionado à redação contratual e aos requisitos G1–G3; **sem assinaturas individuais presumidas nem liberação de venda**.
 **Requisitos desta ficha:** G1, G2, G3. **Status atual:** pendente; escolha preliminar registrada na tabela. Aceite das condições específicas, comprovação dos requisitos e assinatura/registro individual ainda pendentes.
 
 <a id="it-03"></a>
@@ -120,7 +122,7 @@ As [regras gerais propostas](CONDICOES-PADRAO-ATENDIMENTO.md) integram esta roda
 
 **Por que estes limites:** A janela de sete dias e a sessão/retorno curtos delimitam uma dificuldade técnica e permitem medir o suporte; não pretendem acompanhar um processo consular.
 
-**Aceite/ajuste dos limites acima:** ___  **Jennifer:** ___  **Rodrigo:** ___  **Data:** ___
+**Aceite operacional dos limites:** registrado em 18/11/2026 para planejamento, condicionado à redação contratual e aos requisitos G1–G3; **sem assinaturas individuais presumidas nem liberação de venda**.
 **Requisitos desta ficha:** G1, G2, G3. **Status atual:** pendente; escolha preliminar registrada na tabela. Aceite das condições específicas, comprovação dos requisitos e assinatura/registro individual ainda pendentes.
 
 <a id="it-08"></a>
@@ -147,7 +149,7 @@ As [regras gerais propostas](CONDICOES-PADRAO-ATENDIMENTO.md) integram esta roda
 
 **Por que estes limites:** Quinze dias e duas interações delimitadas são uma proposta de piloto para entregar inventário/relatório, sem embutir execução de procedimentos. Ajustar somente se a capacidade real não comportar.
 
-**Aceite/ajuste dos limites acima:** ___  **Jennifer:** ___  **Rodrigo:** ___  **Data:** ___
+**Aceite operacional dos limites:** registrado em 18/11/2026 para planejamento, condicionado à redação contratual e aos requisitos G1–G3; **sem assinaturas individuais presumidas nem liberação de venda**.
 **Requisitos desta ficha:** G1, G2, G3. **Status atual:** pendente; escolha preliminar registrada na tabela. Aceite das condições específicas, comprovação dos requisitos e assinatura/registro individual ainda pendentes.
 
 <a id="br-04"></a>
@@ -174,7 +176,7 @@ As [regras gerais propostas](CONDICOES-PADRAO-ATENDIMENTO.md) integram esta roda
 
 **Por que estes limites:** Separar 30 dias de produção e 60 de controle externo evita manter a pasta indefinidamente aberta. A lista fechada na triagem é a unidade de volume; não se inventa quantidade de documentos sem conhecer o caso.
 
-**Aceite/ajuste dos limites acima:** ___  **Jennifer:** ___  **Rodrigo:** ___  **Data:** ___
+**Aceite operacional dos limites:** registrado em 18/11/2026 para planejamento, condicionado à redação contratual e aos requisitos G1–G3; **sem assinaturas individuais presumidas nem liberação de venda**.
 **Requisitos desta ficha:** G1, G2, G3. **Status atual:** pendente; escolha preliminar registrada na tabela. Aceite das condições específicas, comprovação dos requisitos e assinatura/registro individual ainda pendentes.
 
 <a id="it-05"></a>
@@ -201,7 +203,7 @@ As [regras gerais propostas](CONDICOES-PADRAO-ATENDIMENTO.md) integram esta roda
 
 **Por que estes limites:** O ciclo documental proposto acompanha o padrão de AIRE, mas só começa após validação do procedimento; revisão especializada e prazos legais reais têm precedência.
 
-**Aceite/ajuste dos limites acima:** ___  **Jennifer:** ___  **Rodrigo:** ___  **Data:** ___
+**Aceite/ajuste dos limites acima:** não aplicável ao lançamento inicial (opção C — adiado).
 **Requisitos desta ficha:** G1, G2, G3, G4. **Status atual:** pendente; escolha preliminar registrada na tabela. Aceite das condições específicas, comprovação dos requisitos e assinatura/registro individual ainda pendentes.
 
 <a id="br-01"></a>
@@ -228,7 +230,7 @@ As [regras gerais propostas](CONDICOES-PADRAO-ATENDIMENTO.md) integram esta roda
 
 **Por que estes limites:** Trinta dias é uma janela privada máxima de trabalho do piloto, com duas rodadas de dados e revisão fiscal; não é prazo legal e o aceite depende de capacidade de cumprir a data real do exercício.
 
-**Aceite/ajuste dos limites acima:** ___  **Jennifer:** ___  **Rodrigo:** ___  **Data:** ___
+**Aceite/ajuste dos limites acima:** não aplicável ao lançamento inicial (opção C — adiado).
 **Requisitos desta ficha:** G1, G2, G3, G5. **Status atual:** pendente; escolha preliminar registrada na tabela. Aceite das condições específicas, comprovação dos requisitos e assinatura/registro individual ainda pendentes.
 
 ## 4. Regras para o ato administrativo e o ato especializado
@@ -248,7 +250,7 @@ Passaporte brasileiro permanece candidato, fora da liberação comercial inicial
 3. Registrar o conjunto efetivamente aprovado e os adiados, nomes dos revisores/profissionais aceitos e data. Até lá, os campos de aprovação da matriz continuam vazios e seus status não mudam.
 4. Com conjunto aprovado e requisitos atendidos ou linhas adiadas, registrar encerramento formal da Etapa 2. Em seguida, preencher trabalho/custos reais nas 20 linhas existentes e deliberar sobre valores e pacotes. Não há autorização de publicar ou contratar nesta rodada.
 
-**Conclusão atual:** proposta pronta para decisão conjunta; encerramento formal ainda não registrado, porque escolhas e requisitos não foram comprovados. Não há necessidade de nova rodada de redesign ou documentação genérica antes de revisar esta proposta.
+**Conclusão atual:** seleção A/C e aceite operacional dos limites/revisões registrados; encerramento formal ainda não registrado porque a revisão contratual, capacidade/limites de atuação e operação documental segura ainda não foram comprovados. Não há necessidade de nova rodada de redesign ou documentação genérica antes de revisar esta proposta.
 
 [Modelo de custos/precificação preservado](../etapa-3-preparacao/MODELO-PRECIFICACAO.md): valores financeiros e horas desconhecidos ficam vazios; a relação de atividades geradoras de custo foi preenchida, sem inventar estimativas numéricas. A margem futura usa somente receita/custos confirmados e taxas oficiais separadas.
 
@@ -257,8 +259,8 @@ Passaporte brasileiro permanece candidato, fora da liberação comercial inicial
 | Frente | Resultado e o que falta |
 | --- | --- |
 | Proposta operacional | Sete fichas completas e recomendações prontas; revisar somente a exceção ao texto, sem novo levantamento genérico |
-| Decisão formal | Escolhas, assinaturas e datas vazias; faltam manifestações expressas e comprovação dos requisitos aplicáveis |
-| Revisores | Funções recomendadas com nomes operacionais conhecidos; falta aceite/designação efetiva da revisão e profissional competente nos casos necessários |
+| Decisão formal | Seleção A/C e aceite operacional dos limites/revisões já registrados; faltam condições contratuais revistas, evidências G2/G3 e liberação explícita de cada serviço |
+| Revisores | Revisão cruzada Jennifer/Rodrigo aceita como modelo; falta testar capacidade operacional e garantir limites de atuação e profissionais competentes quando aplicável |
 | Regras de atendimento | Proposta única apresentada, sujeita à revisão jurídica aplicável; contratos existentes intactos |
 | Matriz | 16 registros preservados: 12 pendentes, quatro candidatos, zero aprovados; proposta não virou status de aprovação |
 | Precificação | Vinte linhas e IDs preservados, atividades/parceiros/bases de medição descritos; horas e despesas desconhecidas vazias, margem sem cálculo fictício |
