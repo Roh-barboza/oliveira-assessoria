@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "pdf-lib": "^1.17.1",
+    "pg": "^8.23.1"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "^0.5.16"
+  },
+  "name": "oliveira-contratacao-sandbox",
+  "private": true,
+  "engines": {
+    "node": "24.x"
+  },
+  "scripts": {
+    "test": "node --test test/*.test.mjs"
+  }
+}
