@@ -26,3 +26,5 @@ Thumbs.db
 .vercel/
 .env.*
 test-results/
+
+.local-platform/

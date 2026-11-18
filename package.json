@@ -4,11 +4,26 @@
   "scripts": {
     "test": "node tests/public-site.mjs",
     "serve": "node scripts/serve.mjs",
-    "audit": "node scripts/lighthouse.mjs"
+    "audit": "node scripts/lighthouse.mjs",
+    "dev": "node scripts/serve-platform.mjs",
+    "test:platform": "node --test tests/platform.test.mjs",
+    "test:platform-ui": "node tests/platform-ui.mjs"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.14.0",
+    "@electric-sql/pglite": "0.5.16",
     "lighthouse": "13.6.0",
     "playwright": "1.65.1"
+  },
+  "dependencies": {
+    "@vercel/blob": "2.9.0",
+    "pdf-lib": "1.17.1",
+    "pg": "8.23.1"
+  },
+  "engines": {
+    "node": "24.x"
+  },
+  "overrides": {
+    "@vercel/cli-config": "0.4.0"
   }
 }

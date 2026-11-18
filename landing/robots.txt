@@ -1,0 +1,7 @@
+# Ambiente ainda sem autorização de indexação. HTML e headers mantêm noindex.
+User-agent: *
+Disallow: /api/
+Disallow: /plataforma.html
+Disallow: /solicitar.html
+Disallow: /ir/formulario.html
+Disallow: /ir/laboratorio.html
