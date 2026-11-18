@@ -1,3 +1,5 @@
+> **Aceite operacional (18/11/2026):** o usuário autorizou seguir com os limites de duração/revisão e conferência cruzada de Jennifer/Rodrigo para os cinco serviços A, como **modelo interno**. Não é liberação de venda. [Registro](../decisoes/2026-11-18-aceite-operacional-cinco-servicos.md) · [Procedimento documental a implantar](PROCEDIMENTO-DOCUMENTAL-SEGURO.md). **Bloqueios residuais:** G1 contratual, G2 capacidade/limites de atuação, G3 configuração e testes de segurança documental.
+
 > **Rodada única vigente:** [DECISAO-COMERCIAL-FINAL](DECISAO-COMERCIAL-FINAL.md) apresenta as sete recomendações com documentos, revisões, vigência privada, encerramento e bloqueios G1–G5. Os limites são propostos, sem aprovação automática.
 
 # Fechamento documental da Etapa 2 e preparação interna da Etapa 3
@@ -31,12 +33,13 @@ Não foram repetidos testes de navegador ou Lighthouse: esta tarefa altera somen
 | Divisão operacional e princípio de cobertura SP | Confirmados nesta decisão |
 | Estrutura interna de precificação/pacotes | Preparada, sem valores nem liberação comercial |
 | Escolha preliminar de modalidades de lançamento | **Concluída: A para cinco; C para filhos e IR** |
-| Aprovação comercial final por serviço/modalidade | Pendente, exige G1–G3 para as cinco A |
+| Modelo operacional de prazos e revisão cruzada | Aceito em 18/11/2026 para os cinco A, sem assinatura ou habilitação presumida |
+| Aprovação comercial final por serviço/modalidade | Pendente, exige G1 residual, G2 residual e G3 implantado/testado para as cinco A |
 | Profissionais habilitados, revisão, limites e instrumentos | Pendentes conforme a modalidade |
 | Encerramento formal da Etapa 2 | Ainda impedido pelas decisões comerciais/profissionais/operacionais remanescentes |
 | Implementação comercial, pagamentos, automação e publicação | Não autorizados |
 
-Jennifer e Rodrigo **já escolheram as modalidades** A/C. Agora precisam aceitar ou ajustar limites propostos para os cinco serviços A, garantir os revisores/terceiros competentes e definir o procedimento documental seguro (G1–G3). Depois levantarão custos e deliberarão sobre valores/parcelamento na Etapa 3. Filhos e IR exigem validações específicas; passaporte brasileiro segue candidato até decisão própria. Não é necessário aprovar todos os serviços para encerrar a etapa, mas o conjunto liberado e os itens adiados precisam de registro expresso.
+Jennifer e Rodrigo **já escolheram as modalidades** A/C. O modelo de limites e revisão cruzada dos cinco serviços A já foi aceito operacionalmente. Agora precisam validar juridicamente os termos, comprovar a capacidade/limites de atuação e implantar/testar o procedimento documental seguro (G1–G3 residuais). Depois levantarão custos e deliberarão sobre valores/parcelamento na Etapa 3. Filhos e IR exigem validações específicas; passaporte brasileiro segue candidato até decisão própria. Não é necessário aprovar todos os serviços para encerrar a etapa, mas o conjunto liberado e os itens adiados precisam de registro expresso.
 
 A preparação interna da Etapa 3 está expressamente autorizada em paralelo; não resolve os impedimentos nem libera venda. Sem valores inventados, merge, publicação de alteração visual/funcional, contratações, mensagens, automações ou pagamentos. Clicksign e webhook n8n preservados. WhatsApp ainda aguarda número empresarial.
 
