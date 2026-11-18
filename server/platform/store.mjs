@@ -29,6 +29,7 @@ export class MemoryStore {
   async read(id) { const r = this.rows.get(id); return r ? { ...r } : null; }
   async cas(id, version, data) {
     const row = this.rows.get(id);
+    if(!row&&this.rows.size>=50)throw Object.assign(Error('Capacidade temporária atingida; aguarde reinício do ambiente.'),{status:503});
     if ((row?.version ?? null) !== version) return false;
     this.rows.set(id, { version: (version ?? 0) + 1, data }); return true;
   }

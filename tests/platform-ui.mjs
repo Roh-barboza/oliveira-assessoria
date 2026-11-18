@@ -6,7 +6,7 @@ const base=process.env.BASE_URL||'http://127.0.0.1:4176',dir=process.env.EVIDENC
 const browser=await chromium.launch({executablePath:process.env.CHROME_PATH||'/usr/bin/chromium',args:['--no-sandbox',...(process.env.IGNORE_CERT_ERRORS==='1'?['--ignore-certificate-errors']:[])]});
 const results=[],errors=[];
 try{
- const ctx=await browser.newContext({viewport:{width:1366,height:900}}),page=await ctx.newPage();page.on('pageerror',err=>errors.push(err.message));
+ const ctx=await browser.newContext({ignoreHTTPSErrors:process.env.IGNORE_CERT_ERRORS==='1',viewport:{width:1366,height:900}}),page=await ctx.newPage();page.on('pageerror',err=>errors.push(err.message));
  await page.goto(base+'/plataforma.html');await page.locator('#environment').filter({hasText:/sintétic|Demonstração/}).waitFor();
  await page.screenshot({path:dir+'/desktop-entry.png',fullPage:true});
  await page.locator('#demo input').check();const response=page.waitForResponse(r=>r.url().includes('op=demo')&&r.status()===201);await page.getByRole('button',{name:'Criar demonstração privada'}).click();const credentials=await (await response).json();await page.locator('#workspace').waitFor({state:'visible'});await page.getByRole('button',{name:'Já guardei, ocultar acessos'}).click();
