@@ -1,6 +1,6 @@
 @font-face{font-family:DM Sans;src:url('/assets/fonts/dm-sans-latin.woff2') format('woff2');font-display:swap}
 @font-face{font-family:Playfair Display;src:url('/assets/fonts/playfair-display-latin.woff2') format('woff2');font-display:swap}
-:root{--ink:#172d31;--muted:#63746f;--bg:#f6f4ef;--paper:#fff;--line:#dfe4dc;--accent:#bd945b;--forest:#264e47;--warning:#fff2db;--danger:#913f3f}
+:root{--ink:#172d31;--muted:#586b63;--bg:#f6f4ef;--paper:#fff;--line:#dfe4dc;--accent:#bd945b;--forest:#264e47;--warning:#fff2db;--danger:#913f3f}
 *{box-sizing:border-box}
 html{font-family:'DM Sans',system-ui,sans-serif;background:var(--bg);color:var(--ink);scroll-behavior:smooth}
 body{margin:0;min-height:100vh;display:flex;flex-direction:column}
@@ -20,7 +20,7 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-vis
 .environment{font-size:.75rem;border:1px solid var(--line);padding:7px 11px;border-radius:999px;color:var(--muted)}
 .shell{width:100%;max-width:1180px;margin:0 auto;padding:38px 24px 66px;flex:1}
 .intro{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:24px}
-.eyebrow{margin:0 0 10px;font-size:.7rem;font-weight:800;letter-spacing:.16em;color:#8a703f}
+.eyebrow{margin:0 0 10px;font-size:.7rem;font-weight:800;letter-spacing:.16em;color:#66532f}
 h1,h2,h3,p{margin-top:0}
 h1,h2{font-family:'Playfair Display',Georgia,serif;font-weight:600;letter-spacing:-.025em}
 h1{font-size:clamp(2.25rem,4vw,3.6rem);line-height:1.12;margin-bottom:12px}
