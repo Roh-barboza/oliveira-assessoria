@@ -1,0 +1,36 @@
+name: Oliveira Preview - checks only
+
+on:
+  push:
+    branches:
+      - feature/plataforma-operacional-preview
+  pull_request:
+    branches:
+      - feature/etapa-2-catalogo-servicos
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  backend:
+    name: Backend and dependency audit (no deploy)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    if: github.repository == 'Roh-barboza/oliveira-assessoria'
+    steps:
+      - name: Checkout branch under test
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Install Node 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Install exactly locked dependencies
+        run: npm ci
+      - name: Validate mock-only platform and security
+        run: npm run test:platform
+      - name: Audit runtime packages
+        run: npm audit --omit=dev
