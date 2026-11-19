@@ -1,12 +1,13 @@
 import assert from "node:assert/strict";
 import { mkdir, writeFile } from "node:fs/promises";
 import { chromium } from "playwright";
+import { browserExecutablePath } from "../scripts/browser-path.mjs";
 import AxeBuilder from "@axe-core/playwright";
 const base = process.env.BASE_URL || "http://127.0.0.1:4176",
   dir = process.env.EVIDENCE_DIR || "test-results/platform-ui";
 await mkdir(dir, { recursive: true });
 const browser = await chromium.launch({
-  executablePath: process.env.CHROME_PATH || "/usr/bin/chromium",
+  executablePath: browserExecutablePath(),
   args: [
     "--no-sandbox",
     ...(process.env.IGNORE_CERT_ERRORS === "1"
