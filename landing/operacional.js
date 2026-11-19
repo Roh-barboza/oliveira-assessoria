@@ -116,7 +116,7 @@
     button.type = "button";
     button.className = "button secondary small";
     button.textContent = "Detalhes";
-    button.setAttribute("aria-label", "Ver solicitação: " + String(item.title || "sem título"));
+    button.setAttribute("aria-label", "Detalhes da solicitação: " + String(item.title || "sem título"));
     button.addEventListener("click", () => selectCase(item.id));
     row.append(details, button);
     return row;
