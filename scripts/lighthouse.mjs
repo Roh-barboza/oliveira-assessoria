@@ -2,6 +2,7 @@ import { mkdir, writeFile } from "node:fs/promises";
 import lighthouse from "lighthouse";
 import desktopConfig from "lighthouse/core/config/lr-desktop-config.js";
 import { launch } from "chrome-launcher";
+import { browserExecutablePath } from "./browser-path.mjs";
 const dir = process.env.EVIDENCE_DIR || "test-results/lighthouse";
 const url = process.env.BASE_URL || "http://127.0.0.1:4175";
 await mkdir(dir, { recursive: true });
@@ -12,7 +13,7 @@ try {
   for (const mode of ["mobile", "desktop"])
     for (let run = 1; run <= Number(process.env.LIGHTHOUSE_RUNS || 3); run++) {
       const chrome = await launch({
-        chromePath: process.env.CHROME_PATH || "/usr/bin/chromium",
+        chromePath: browserExecutablePath(),
         chromeFlags: [
           "--headless",
           "--no-sandbox",
