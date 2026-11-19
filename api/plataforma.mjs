@@ -1,22 +1,25 @@
-import { randomBytes } from "node:crypto";
 import { createApp } from "../server/platform/app.mjs";
 import {
   StateRepository,
-  MemoryStore,
   BlobStore,
   PostgresStore,
 } from "../server/platform/store.mjs";
+
+// A preview deployment from the original site must never access this store.
+// The project ID is a second application-level gate, not a Blob IAM restriction.
+const PREVIEW_PROJECT_ID = "prj_IB4FPuQ8CWkSS0VjZvIQsq3kE2Ie";
+const PREVIEW_BRANCH = "feature/plataforma-operacional-preview";
 let instance;
 async function runtime() {
   if (
     process.env.VERCEL_ENV !== "preview" ||
-    process.env.VERCEL_GIT_COMMIT_REF !==
-      "feature/plataforma-operacional-preview"
+    process.env.VERCEL_PROJECT_ID !== PREVIEW_PROJECT_ID ||
+    process.env.VERCEL_GIT_COMMIT_REF !== PREVIEW_BRANCH
   )
     return createApp({ production: true });
-  const mode = process.env.OLIVEIRA_PLATFORM_STORE || "temporario";
-  let store,
-    key = process.env.OLIVEIRA_DATA_KEY;
+  const mode = process.env.OLIVEIRA_PLATFORM_STORE;
+  const key = process.env.OLIVEIRA_DATA_KEY;
+  let store;
   if (mode === "blob") {
     const { get, put } = await import("@vercel/blob");
     if (!key || !process.env.BLOB_STORE_ID)
@@ -32,10 +35,10 @@ async function runtime() {
         max: 2,
       }),
     );
-  } else if (mode === "temporario") {
-    store = new MemoryStore();
-    key = randomBytes(32).toString("hex");
-  } else throw Error("Modo indisponível");
+  } else {
+    // Never silently create ephemeral, per-instance state on a remote Preview.
+    throw Error("Persistência remota obrigatória no projeto isolado");
+  }
   return createApp({
     repository: new StateRepository(store, key),
     storageMode: store.mode,
