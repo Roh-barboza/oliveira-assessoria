@@ -14,6 +14,8 @@ param(
   [switch]$Navegador,
   [switch]$SitePublico,
   [switch]$Lighthouse,
+  [ValidateRange(1,5)]
+  [int]$LighthouseRodadas = 1,
   [switch]$Auditoria
 )
 
@@ -139,9 +141,11 @@ try {
         if ($Lighthouse) {
           $priorRuns = [Environment]::GetEnvironmentVariable("LIGHTHOUSE_RUNS", "Process")
           try {
-            $env:LIGHTHOUSE_RUNS = "1"
+            $env:LIGHTHOUSE_RUNS = [string]$LighthouseRodadas
             & npm.cmd run audit
-            Assert-LastCommand "one-pass Lighthouse per device"
+            Assert-LastCommand "Lighthouse local repeat audit"
+            & node scripts/diagnosticar-lighthouse.mjs
+            Assert-LastCommand "Lighthouse performance diagnosis"
           } finally {
             if ($null -ne $priorRuns) {
               $env:LIGHTHOUSE_RUNS = $priorRuns
