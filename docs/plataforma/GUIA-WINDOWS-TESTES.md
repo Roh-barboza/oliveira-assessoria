@@ -1,0 +1,57 @@
+# Validação local da Oliveira Assessoria no Windows (sem Work)
+
+**Atualizado em 19/11/2026.** Este procedimento testa a plataforma, mas **não** conecta o Blob, não cria deployment, não modifica produção e não utiliza dados reais.
+
+## Ambiente autorizado
+
+- Repositório: `Roh-barboza/oliveira-assessoria`
+- Branch: `feature/plataforma-operacional-preview`
+- Projeto Vercel isolado: `oliveira-plataforma-preview` (`prj_IB4FPuQ8CWkSS0VjZvIQsq3kE2Ie`)
+- Equipe: `barbozaa-s-projects` (`team_SzgCrqKBL9o0MvVqzmsA1ji0`)
+- Diretório local: `C:\Users\venda\oliveira-preview-src`
+- Node.js: `24.x`
+- A pasta foi vinculada com `npx vercel link`; `.vercel/project.json` pode ser inspecionado por ID, mas **não** publicar `.env.local`, token OIDC ou outros segredos.
+
+## Execução completa (PowerShell 5.1)
+
+Abra um PowerShell normal no computador em que o clone foi criado:
+
+```powershell
+cd C:\Users\venda\oliveira-preview-src
+git pull --ff-only
+powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\verificar-oliveira-preview.ps1 -Navegador -SitePublico -Lighthouse -Auditoria
+```
+
+O script primeiro confere a branch, URL do Git remoto, ID de projeto/equipe presentes no vínculo local e Node 24. Se algum desses campos não corresponder exatamente, **interrompe antes de executar** os testes.
+
+Em seguida:
+
+1. Executa `npm run test:platform` e interrompe se algum teste falhar.
+2. Executa `npm audit --omit=dev` se `-Auditoria` foi informado. É uma leitura da árvore de dependências, sem deploy.
+3. Com `-Navegador`, instala o Chromium gerenciado pelo Playwright se necessário, sobe temporariamente a API em `127.0.0.1:4176`, testa a jornada autenticada e encerra o processo criado pelo script. Não liga nenhuma integração externa.
+4. Com `-SitePublico`, verifica as páginas públicas em múltiplas larguras e acessibilidade.
+5. Com `-Lighthouse`, executa uma coleta por dispositivo no site local, sem substituir medições remotas anteriores.
+
+**Os testes de navegador exigem download de navegador pelo Playwright e podem demorar.** Falhas de rede, navegador ou máquina devem ser registradas como falhas/limites locais; não interpretar como funcionamento correto do ambiente remoto.
+
+### Execução mais rápida, sem abrir navegador
+
+```powershell
+cd C:\Users\venda\oliveira-preview-src
+git pull --ff-only
+powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\verificar-oliveira-preview.ps1
+```
+
+### Se `node_modules` não existir ou o pacote mudar
+
+Adicionar `-AtualizarDependencias` ao script; isso executa `npm ci` antes da suíte. O script não chama `npm install` sem solicitação explícita.
+
+## Coleta e relato de resultados
+
+Copiar apenas o resumo dos testes: quantidade de testes, falhas, erros de navegação e pontuações. Arquivos de teste são colocados em `test-results/` (ignorado pelo Git); não publicar screenshots caso tenham sido alterados para conter informações reais. Nunca enviar o conteúdo de `.env.local`, `.vercel` com tokens, cookies, tokens OIDC, ou `data.key`.
+
+**Referência validada pelo usuário (19/11):** com Node `v24.15.0`, `npm ci` reportou zero vulnerabilidades e `npm run test:platform` passou **28 de 28 testes** após a correção Blob CAS. O teste adicional do gate serverless e os testes de navegador compatíveis com Windows foram commitados **depois** dessa validação. Seus resultados ainda são pendentes.
+
+## Operação real segue bloqueada
+
+O projeto novo já foi criado e vinculado localmente, mas o Blob privado continua desconectado. Não executar `vercel deploy`, `vercel git connect`, criação de secrets, nem conectar armazenamento ao projeto original como solução improvisada. A primeira implantação de um projeto vazio pode assumir alvo Production: é necessário resolver essa limitação antes de qualquer publicação, pois a autorização recebida exclui deployment Production mesmo no projeto isolado. Contratos, cobranças, WhatsApp, n8n e atendimento com dados reais permanecem desativados.
