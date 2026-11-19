@@ -248,56 +248,82 @@ test("Production runtime refuses all API operations", async () => {
     404,
   );
 });
-test("Serverless Preview gate rejects production, wrong branch and missing Blob secrets", async () => {
+test("Serverless Preview gate checks project and branch; remote storage never falls back to memory", async () => {
+  const authorizedProject = "prj_IB4FPuQ8CWkSS0VjZvIQsq3kE2Ie";
+  const authorizedBranch = "feature/plataforma-operacional-preview";
   const envKeys = [
     "VERCEL_ENV",
+    "VERCEL_PROJECT_ID",
     "VERCEL_GIT_COMMIT_REF",
     "OLIVEIRA_PLATFORM_STORE",
     "OLIVEIRA_DATA_KEY",
     "BLOB_STORE_ID",
   ];
   const original = new Map(envKeys.map((k) => [k, process.env[k]]));
-  async function statusFor(config, nonce) {
+  let requestCount = 0;
+  async function statusFor(config) {
     Object.assign(process.env, config);
-    const handler = (await import(`../api/plataforma.mjs?gate-test-${nonce}`))
+    const handler = (await import(`../api/plataforma.mjs?preview-gate-${requestCount++}`))
       .default;
     return handler.fetch(
       new Request("https://preview.example.invalid/api/plataforma?op=config"),
     );
   }
   try {
-    const production = await statusFor(
-      {
-        VERCEL_ENV: "production",
-        VERCEL_GIT_COMMIT_REF: "feature/plataforma-operacional-preview",
-        OLIVEIRA_PLATFORM_STORE: "temporario",
-      },
-      "production",
-    );
+    const production = await statusFor({
+      VERCEL_ENV: "production",
+      VERCEL_PROJECT_ID: authorizedProject,
+      VERCEL_GIT_COMMIT_REF: authorizedBranch,
+      OLIVEIRA_PLATFORM_STORE: "blob",
+    });
     assert.equal(production.status, 404);
 
-    const wrongBranch = await statusFor(
-      {
-        VERCEL_ENV: "preview",
-        VERCEL_GIT_COMMIT_REF: "main",
-        OLIVEIRA_PLATFORM_STORE: "temporario",
-      },
-      "wrong-branch",
-    );
+    const wrongProject = await statusFor({
+      VERCEL_ENV: "preview",
+      VERCEL_PROJECT_ID: "prj_unrelated_project",
+      VERCEL_GIT_COMMIT_REF: authorizedBranch,
+      OLIVEIRA_PLATFORM_STORE: "blob",
+    });
+    assert.equal(wrongProject.status, 404);
+
+    const wrongBranch = await statusFor({
+      VERCEL_ENV: "preview",
+      VERCEL_PROJECT_ID: authorizedProject,
+      VERCEL_GIT_COMMIT_REF: "main",
+      OLIVEIRA_PLATFORM_STORE: "blob",
+    });
     assert.equal(wrongBranch.status, 404);
+
+    const missingProjectId = await statusFor({
+      VERCEL_ENV: "preview",
+      VERCEL_PROJECT_ID: "",
+      VERCEL_GIT_COMMIT_REF: authorizedBranch,
+      OLIVEIRA_PLATFORM_STORE: "blob",
+    });
+    assert.equal(missingProjectId.status, 404);
 
     delete process.env.OLIVEIRA_DATA_KEY;
     delete process.env.BLOB_STORE_ID;
-    const missingCredentials = await statusFor(
-      {
-        VERCEL_ENV: "preview",
-        VERCEL_GIT_COMMIT_REF: "feature/plataforma-operacional-preview",
-        OLIVEIRA_PLATFORM_STORE: "blob",
-      },
-      "missing-blob-config",
-    );
+    const missingCredentials = await statusFor({
+      VERCEL_ENV: "preview",
+      VERCEL_PROJECT_ID: authorizedProject,
+      VERCEL_GIT_COMMIT_REF: authorizedBranch,
+      OLIVEIRA_PLATFORM_STORE: "blob",
+    });
     assert.equal(missingCredentials.status, 503);
-    assert.match((await missingCredentials.json()).error, /Persistência indisponível/);
+    assert.match(
+      (await missingCredentials.json()).error,
+      /Persistência indisponível/,
+    );
+
+    const absentMode = await statusFor({
+      VERCEL_ENV: "preview",
+      VERCEL_PROJECT_ID: authorizedProject,
+      VERCEL_GIT_COMMIT_REF: authorizedBranch,
+      OLIVEIRA_PLATFORM_STORE: "temporario",
+    });
+    assert.equal(absentMode.status, 503);
+    assert.match((await absentMode.json()).error, /Persistência indisponível/);
   } finally {
     for (const [key, value] of original) {
       if (value === undefined) delete process.env[key];
