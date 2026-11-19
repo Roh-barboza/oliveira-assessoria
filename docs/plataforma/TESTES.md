@@ -53,3 +53,11 @@ Lighthouse **13.6.0**, URLs imutáveis acima, medições sequenciais sem os test
 A pontuação SEO reduzida é intencional: `noindex` no Preview; a área privada também é excluída em robots. Não removemos essa proteção para melhorar a nota. Na plataforma, boas práticas 92 decorre do **bloqueio pela CSP do script de feedback da Vercel (`vercel.live`) injetado pelo próprio Preview**. A política permanece restrita a scripts da aplicação; não foi aberta permissão para terceiro em páginas de atendimento apenas para melhorar o Lighthouse. Os fluxos de aplicação passaram e não registraram exceções JavaScript; o aviso de segurança da toolbar continua identificado.
 
 Dados de cada execução: [inicial](evidence/lighthouse-home.json), [catálogo](evidence/lighthouse-catalog.json), [plataforma](evidence/lighthouse-platform.json). Os JSON completos estão anexados em `evidence/lighthouse-*.json.gz`; incluem métricas, auditorias e URLs de cada coleta. CLS da página inicial e catálogo ficou em zero nas coletas registradas. As evidências não representam aprovação de G3 ou de integração externa.
+
+## Alterações de 19/11/2026 ainda não reexecutadas
+
+Correção no `server/platform/store.mjs`: gravação condicional do Blob exige **`allowOverwrite: true` + `ifMatch`** na atualização de um objeto existente. A criação inicial permanece com `allowOverwrite: false`. O teste `Blob adapter enforces private CAS across create, update and conflicts` foi ampliado para checar que uma segunda gravação é permitida somente com ETag válido, que versões antigas e criação duplicada retornam conflito, e que duas atualizações concorrentes preservam o estado cifrado.
+
+**Status: alteração commitada, ainda sem execução dos testes desta rodada.** Os 28 testes e os resultados Lighthouse listados acima pertencem às versões anteriores e não foram revalidados após a correção. A conexão Blob real permanece desligada; nenhuma evidência de persistência remota foi produzida.
+
+Reprodução no ambiente local adequado (Node 24.x): `npm ci` e `npm run test:platform`. Somente após obter autorização e isolamento de implantação Preview, repetir testes de navegador e cenários remotos sintéticos de reinício, concorrência, acesso e recuperação.
