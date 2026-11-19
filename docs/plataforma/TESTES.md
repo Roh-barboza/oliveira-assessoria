@@ -1,5 +1,27 @@
 # Evidências de validação
 
+## Validação completa no Windows recebida em 19/11/2026
+
+O usuário executou o script seguro `scripts/verificar-oliveira-preview.ps1 -Navegador -SitePublico -Lighthouse -Auditoria` em `C:\Users\venda\oliveira-preview-src`, vinculado ao projeto isolado (verificado pelo próprio script), na branch prevista, com Node `v24.15.0`.
+
+| Verificação | Resultado da execução local |
+| --- | --- |
+| Backend e segurança | **29/29** testes passaram, sem falhas, incluindo novo gate da API Preview |
+| Auditoria de dependências de execução | `npm audit --omit=dev`: **zero vulnerabilidades reportadas** |
+| Fluxo Playwright de plataforma | **Passou** com painel, criação de caso, fixture, minuta PDF, follow-up, precificação, Jennifer/Rodrigo, assinatura simulada e isolamento entre dois clientes |
+| Mobile/desktop do painel | 360, 390, 430, 768, 1366, 1920 px sem overflow; axe sem violações nos estados avaliados |
+| Site público | **21 páginas × 7 larguras = 147 combinações**, links internos, axe, menu, rascunho IR local, navegação sem JS: passou |
+| Lighthouse local desktop | Desempenho **100**, acessibilidade **100**, boas práticas **100**, SEO **69** |
+| Lighthouse local mobile | Desempenho **67**, acessibilidade **100**, boas práticas **100**, SEO **69** |
+| Mobile: Total Blocking Time | **3.559,5 ms** na única execução local |
+| Mobile: LCP / FCP / CLS | **2.277,4 ms / 1.455,7 ms / 0** |
+
+**Diagnóstico não concluído:** a nota mobile 67 veio de **uma única coleta Windows local**, com TBT alto. Isso não prova uma regressão do site: as coletas anteriores do Preview tinham desempenho mobile 100, e os scripts próprios da home são pequenos. Também não prova ruído local. Precisamos de três novas coletas sequenciais sem outros testes concorrentes e dos detalhes de long tasks, execução JavaScript e trabalho da thread principal. O arquivo `scripts/diagnosticar-lighthouse.mjs` permite analisar os JSON produzidos pelo Lighthouse sem enviar dados para serviços externos.
+
+Comandos de reprodução direcionada: `powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\verificar-oliveira-preview.ps1 -Lighthouse -LighthouseRodadas 3` (após `git pull --ff-only`). O comando executa os testes backend locais de pré-verificação, realiza três medições mobile e três desktop e apresenta resumo/medianas e as tarefas mais custosas. Essa bateria nova **ainda não foi executada**. Resultados salvos localmente em `test-results/lighthouse/`, que está ignorado no Git.
+
+**Infraestrutura remota:** nenhum deploy, merge, secret ou conexão Blob foi feito. O teste simulado de Blob CAS não demonstra leitura/gravação remota no store real. Os dados reais permanecem proibidos.
+
 ## Resultado local confirmado pelo usuário em 19/11/2026 (Windows)
 
 No clone vinculado ao projeto isolado, o usuário executou `git pull --ff-only`, `node -v` (`v24.15.0`), `npm ci` (**173 pacotes auditados, zero vulnerabilidades reportadas**) e `npm run test:platform` (**28 testes aprovados, zero falhas**, duração de aproximadamente 17 s). Esse resultado **inclui a correção de CAS do Blob e o teste simulado de escrita condicional**, mas **não** inclui o teste adicional de gate serverless nem as adaptações de testes de navegador para Windows commitadas posteriormente. Esses últimos ainda precisam ser executados.
