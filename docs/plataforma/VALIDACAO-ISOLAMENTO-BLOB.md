@@ -62,3 +62,27 @@ A autorização de continuidade foi registrada. A ação necessária agora é ha
 5. Executar persistência entre processos/deployments, CAS concorrente, criptografia, ACL entre clientes e identidades de ambientes, recuperação e regressão completa. Registrar resultados reais, sem substituir testes remotos por mocks.
 
 A consulta do store após a tentativa confirmou novamente acesso privado, zero objetos, tamanho zero e zero projetos conectados. Nenhuma chave, variável, permissão de armazenamento ou integração real foi criada ou alterada. Os testes remotos e o novo Preview persistente seguem bloqueados pelo pré-requisito de infraestrutura. Esta continuação alterou apenas documentação; não representa uma nova rodada de testes funcionais.
+
+## Situação atualizada — 19/11/2026 (CLI do proprietário)
+
+O erro HTTP 403 de criação pelo conector documentado acima é histórico: o proprietário criou com sucesso o projeto isolado pela sua Vercel CLI autenticada. Isso não implica permissão adicional para o conector.
+
+| Item | Estado confirmado |
+| --- | --- |
+| Projeto independente | `oliveira-plataforma-preview` (`prj_IB4FPuQ8CWkSS0VjZvIQsq3kE2Ie`) |
+| Equipe | `barbozaa-s-projects` |
+| Node / framework / output | `24.x` / Other / `landing` |
+| Git no projeto novo | Não conectado na inspeção pelo CLI |
+| Deployment Production do projeto novo | Nenhuma URL de Production apresentada pelo CLI |
+| Diretório local | `C:\Users\venda\oliveira-preview-src` clonado na branch de teste e vinculado com `npx vercel link` |
+| Blob de teste | `oliveira-platform-preview`, sem projetos conectados na última consulta |
+| Nova chave / variáveis / integração | Ainda não cadastradas/conectadas |
+| Testes remotos de persistência | Ainda não executados |
+
+A conexão Vercel do ChatGPT continua retornando 404 para o ID do projeto novo, apesar do CLI do proprietário confirmá-lo. Não recriar o projeto; não reutilizar o projeto original para contornar o problema.
+
+**Atenção ao primeiro deployment:** há evidência de que a primeira implantação de um projeto Vercel novo pode ser classificada como Production até quando solicitada como Preview. Como a autorização exclui qualquer deploy Production, não executar `vercel deploy` nem conectar Git com build automático antes de comprovar um fluxo suportado exclusivamente Preview.
+
+**Preparação de código, sem publicação:** a rotina `BlobStore.cas` agora usa `allowOverwrite: true` junto de `ifMatch` em atualizações condicionais, como exige o SDK. Foi ampliado o teste simulado para criação, atualização, conflito e concorrência. A suíte não foi executada após a alteração nesta rodada; não é prova remota da integração.
+
+**Próxima execução autorizada:** validar pelo CLI/painel o projeto isolado e seu escopo, comprovar permissões exclusivas de Preview, esclarecer a implantação inicial sem Production e só então conectar Blob/credenciais protegidas e executar testes com dados sintéticos. Sem merge, alteração na produção original, nem integração real com clientes.
