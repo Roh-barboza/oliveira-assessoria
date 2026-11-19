@@ -1,5 +1,14 @@
 # Evidências de validação
 
+## CI: GitHub Actions com backend e navegador aprovado — 19/11/2026
+
+Com o commit `60dfc6e3c581965887828e99ac1380f06f0fd915` da branch de teste, o [workflow GitHub Actions `44551515107`](https://github.com/Roh-barboza/oliveira-assessoria/actions/runs/44551515107) concluiu **success** em ambos os jobs, verificados pelas etapas da execução:
+
+- **Backend and dependency audit (no deploy):** checkout, Node 24, `npm ci`, `npm run test:platform`, `npm audit --omit=dev` concluíram com sucesso.
+- **Synthetic browser journeys (no deploy):** checkout, Node 24, `npm ci`, instalação Chromium, validação das 21 páginas em sete larguras, subida de servidor local com dados sintéticos, jornada autenticada de equipe/clientes e encerramento do servidor concluíram com sucesso.
+
+Esse CI não conecta o Blob real, não valida persistência entre instâncias e não faz deploy. Não utiliza dados pessoais ou transações reais. O usuário também confirmou `git pull --ff-only` até o commit `60dfc6e` no Windows, sem conflitos.
+
 ## Repetição diagnóstica no Windows — 19/11/2026
 
 Execução local em `C:\Users\venda\oliveira-preview-src` após `git pull --ff-only`, com Node `v24.15.0`: `verificar-oliveira-preview.ps1 -Lighthouse -LighthouseRodadas 3`. O script confirmou a branch, o ID do projeto de teste e a equipe. Os **29/29 testes de backend passaram novamente**.
