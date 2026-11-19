@@ -248,6 +248,64 @@ test("Production runtime refuses all API operations", async () => {
     404,
   );
 });
+test("Serverless Preview gate rejects production, wrong branch and missing Blob secrets", async () => {
+  const envKeys = [
+    "VERCEL_ENV",
+    "VERCEL_GIT_COMMIT_REF",
+    "OLIVEIRA_PLATFORM_STORE",
+    "OLIVEIRA_DATA_KEY",
+    "BLOB_STORE_ID",
+  ];
+  const original = new Map(envKeys.map((k) => [k, process.env[k]]));
+  async function statusFor(config, nonce) {
+    Object.assign(process.env, config);
+    const handler = (await import(`../api/plataforma.mjs?gate-test-${nonce}`))
+      .default;
+    return handler.fetch(
+      new Request("https://preview.example.invalid/api/plataforma?op=config"),
+    );
+  }
+  try {
+    const production = await statusFor(
+      {
+        VERCEL_ENV: "production",
+        VERCEL_GIT_COMMIT_REF: "feature/plataforma-operacional-preview",
+        OLIVEIRA_PLATFORM_STORE: "temporario",
+      },
+      "production",
+    );
+    assert.equal(production.status, 404);
+
+    const wrongBranch = await statusFor(
+      {
+        VERCEL_ENV: "preview",
+        VERCEL_GIT_COMMIT_REF: "main",
+        OLIVEIRA_PLATFORM_STORE: "temporario",
+      },
+      "wrong-branch",
+    );
+    assert.equal(wrongBranch.status, 404);
+
+    delete process.env.OLIVEIRA_DATA_KEY;
+    delete process.env.BLOB_STORE_ID;
+    const missingCredentials = await statusFor(
+      {
+        VERCEL_ENV: "preview",
+        VERCEL_GIT_COMMIT_REF: "feature/plataforma-operacional-preview",
+        OLIVEIRA_PLATFORM_STORE: "blob",
+      },
+      "missing-blob-config",
+    );
+    assert.equal(missingCredentials.status, 503);
+    assert.match((await missingCredentials.json()).error, /Persistência indisponível/);
+  } finally {
+    for (const [key, value] of original) {
+      if (value === undefined) delete process.env[key];
+      else process.env[key] = value;
+    }
+  }
+});
+
 test("Authentication, CSRF, cross-origin and mass-assignment guards", async () => {
   const x = await environment(),
     anon = await x.app(new Request("http://local/api/plataforma?op=state"));
