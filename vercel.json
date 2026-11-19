@@ -62,6 +62,10 @@
     "api/plataforma.mjs": {
       "includeFiles": "{server/platform/**,docs/etapa-3-preparacao/MODELO-PRECIFICACAO.json,docs/etapa-2-final/MATRIZ-CONSOLIDADA.json}",
       "maxDuration": 30
+    },
+    "api/operacional.mjs": {
+      "includeFiles": "server/platform/**",
+      "maxDuration": 30
     }
   },
   "regions": [
