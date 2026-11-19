@@ -51,6 +51,8 @@ Somente após comprovar o isolamento exigido, configurar **somente Preview e som
 
 **Correção técnica adicional nesta branch (19/11/2026):** o adaptador Blob agora configura `allowOverwrite: true` ao enviar uma versão ETag com `ifMatch`, conforme exige o SDK para atualização condicional. O teste de regressão foi ampliado para criação, atualização, conflito e gravações concorrentes. **A correção CAS foi validada pelo usuário em Windows (28/28 testes com Node 24.15.0); um teste adicional do gate serverless e as adaptações cross-platform dos testes de navegador aguardam reexecução.** Não houve publicação; ver [TESTES.md](TESTES.md) e [guia de execução Windows](GUIA-WINDOWS-TESTES.md).
 
+**Validação Windows de 19/11/2026:** a nova bateria local passou **29/29 testes de backend**, auditoria de runtime sem vulnerabilidades reportadas, jornada autenticada Playwright (sem violações axe nos estados inspecionados), e **21 páginas × 7 larguras** no site público. Lighthouse local: desktop 100, mobile **67** por TBT 3559,5 ms em uma única coleta. Esse alerta será investigado com repetições e inspeção das long tasks, sem otimização especulativa. Ver [evidências](TESTES.md) e [guia Windows atualizado](GUIA-WINDOWS-TESTES.md). A branch também inclui CI de backend **sem deploy**, cujo resultado ainda deve ser conferido.
+
 ## Evidências e próximos passos
 
 Veja [TESTES.md](TESTES.md), [SEGURANCA-E-OPERACAO.md](SEGURANCA-E-OPERACAO.md) e [MATRIZ-ENTREGA.md](MATRIZ-ENTREGA.md). Capturas contêm apenas casos sintéticos e não incluem senhas ou cookies. A implementação não deve ser descrita como pronta para clientes reais enquanto os bloqueios de persistência, identidade, LGPD, minutas e operação externa permanecerem.
