@@ -1,5 +1,26 @@
 # Evidências de validação
 
+## Repetição diagnóstica no Windows — 19/11/2026
+
+Execução local em `C:\Users\venda\oliveira-preview-src` após `git pull --ff-only`, com Node `v24.15.0`: `verificar-oliveira-preview.ps1 -Lighthouse -LighthouseRodadas 3`. O script confirmou a branch, o ID do projeto de teste e a equipe. Os **29/29 testes de backend passaram novamente**.
+
+| Lighthouse da página inicial local | 1ª execução | 2ª execução | 3ª execução | Mediana |
+| --- | ---: | ---: | ---: | ---: |
+| Desempenho mobile | 83 | 98 | 94 | **94** |
+| TBT mobile (ms) | 595,81 | 80 | 232 | **232** |
+| LCP mobile (ms) | 2.274,39 | 2.310 | 2.257 | **2.274,39** |
+| Desempenho desktop | 100 | 100 | 100 | **100** |
+| TBT desktop (ms) | 0 | 0 | 0 | **0** |
+| LCP desktop (ms) | 485,51 | 580 | 513,61 | **513,61** |
+
+Acessibilidade e boas práticas: **100 em todas as seis medições**. SEO: **69** em mobile e desktop, compatível com a política `noindex` de Preview. CLS: **0** em todas. A medição mobile anterior de **67/100 com TBT 3.559,5 ms** foi **isolada** e não se repetiu nessas três rodadas. Isso indica variabilidade importante no ambiente de execução; não permite atribuir o evento a um componente específico nem garantir desempenho idêntico em produção.
+
+O diagnóstico listou tarefas longas de 601/204/181 ms atribuídas como `Unattributable` e de até 226 ms associadas ao recurso `site.js`, sem estabelecer causa raiz de processamento JavaScript. O trabalho `Style & Layout` também é relevante nos relatórios. Não foi alterado o layout nem removidos scripts com base em atribuições inconclusivas. O arquivo detalhado `test-results/lighthouse/diagnostico.json` permaneceu local e ignorado pelo Git.
+
+**Automação expandida, ainda não validada nesta nova versão:** o workflow GitHub Actions também verifica agora a jornada Playwright com dados sintéticos e as 147 combinações do site público. Não realiza deploy nem usa secrets. A execução da atualização ainda precisa ser observada antes de ser considerada aprovada.
+
+**Persistência real segue bloqueada:** nenhum Blob conectado, nenhuma chave cadastrada e nenhum novo deployment. Os testes são locais e não validam continuidade entre instâncias Vercel.
+
 ## Validação completa no Windows recebida em 19/11/2026
 
 O usuário executou o script seguro `scripts/verificar-oliveira-preview.ps1 -Navegador -SitePublico -Lighthouse -Auditoria` em `C:\Users\venda\oliveira-preview-src`, vinculado ao projeto isolado (verificado pelo próprio script), na branch prevista, com Node `v24.15.0`.
