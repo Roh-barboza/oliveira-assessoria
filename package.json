@@ -7,7 +7,8 @@
     "audit": "node scripts/lighthouse.mjs",
     "dev": "node scripts/serve-platform.mjs",
     "test:platform": "node --test tests/platform.test.mjs",
-    "test:platform-ui": "node tests/platform-ui.mjs"
+    "test:platform-ui": "node tests/platform-ui.mjs",
+    "check:go-live": "node scripts/platform-go-live-check.mjs"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.14.0",
