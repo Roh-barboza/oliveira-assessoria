@@ -53,6 +53,8 @@ Somente após comprovar o isolamento exigido, configurar **somente Preview e som
 
 **Validação Windows de 19/11/2026:** a nova bateria local passou **29/29 testes de backend**, auditoria de runtime sem vulnerabilidades reportadas, jornada autenticada Playwright (sem violações axe nos estados inspecionados), e **21 páginas × 7 larguras** no site público. Lighthouse local: desktop 100, mobile **67** por TBT 3559,5 ms em uma única coleta. Esse alerta será investigado com repetições e inspeção das long tasks, sem otimização especulativa. Ver [evidências](TESTES.md) e [guia Windows atualizado](GUIA-WINDOWS-TESTES.md). A branch também inclui CI de backend **sem deploy**, cujo resultado ainda deve ser conferido.
 
+**Repetição Lighthouse Windows (19/11/2026):** três medições mobile 83/98/94 (mediana **94**), desktop 100/100/100 (mediana **100**). TBT mobile mediano **232 ms**, versus a medição isolada anterior 3.559,5 ms. A oscilação reforça investigar variabilidade antes de mexer no layout. 29/29 testes de backend passaram novamente. Ver [TESTES.md](TESTES.md). CI sem deploy ampliado para navegador; ainda requer verificação da primeira execução do novo job.
+
 ## Evidências e próximos passos
 
 Veja [TESTES.md](TESTES.md), [SEGURANCA-E-OPERACAO.md](SEGURANCA-E-OPERACAO.md) e [MATRIZ-ENTREGA.md](MATRIZ-ENTREGA.md). Capturas contêm apenas casos sintéticos e não incluem senhas ou cookies. A implementação não deve ser descrita como pronta para clientes reais enquanto os bloqueios de persistência, identidade, LGPD, minutas e operação externa permanecerem.
