@@ -13,6 +13,7 @@ param(
   [switch]$AtualizarDependencias,
   [switch]$Navegador,
   [switch]$SitePublico,
+  [switch]$Lighthouse,
   [switch]$Auditoria
 )
 
@@ -77,7 +78,7 @@ try {
     Assert-LastCommand "npm audit --omit=dev"
   }
 
-  if ($Navegador -or $SitePublico) {
+  if ($Navegador -or $SitePublico -or $Lighthouse) {
     & npx.cmd playwright install chromium
     Assert-LastCommand "install Playwright Chromium"
 
@@ -127,12 +128,28 @@ try {
       }
     }
 
-    if ($SitePublico) {
+    if ($SitePublico -or $Lighthouse) {
       $priorBase = [Environment]::GetEnvironmentVariable("BASE_URL", "Process")
       try {
         Remove-Item Env:\BASE_URL -ErrorAction SilentlyContinue
-        & npm.cmd test
-        Assert-LastCommand "public-site browser regression"
+        if ($SitePublico) {
+          & npm.cmd test
+          Assert-LastCommand "public-site browser regression"
+        }
+        if ($Lighthouse) {
+          $priorRuns = [Environment]::GetEnvironmentVariable("LIGHTHOUSE_RUNS", "Process")
+          try {
+            $env:LIGHTHOUSE_RUNS = "1"
+            & npm.cmd run audit
+            Assert-LastCommand "one-pass Lighthouse per device"
+          } finally {
+            if ($null -ne $priorRuns) {
+              $env:LIGHTHOUSE_RUNS = $priorRuns
+            } else {
+              Remove-Item Env:\LIGHTHOUSE_RUNS -ErrorAction SilentlyContinue
+            }
+          }
+        }
       } finally {
         if ($null -ne $priorBase) {
           $env:BASE_URL = $priorBase
