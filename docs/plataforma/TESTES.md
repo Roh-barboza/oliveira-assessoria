@@ -20,6 +20,8 @@ O usuário executou o script seguro `scripts/verificar-oliveira-preview.ps1 -Nav
 
 Comandos de reprodução direcionada: `powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\verificar-oliveira-preview.ps1 -Lighthouse -LighthouseRodadas 3` (após `git pull --ff-only`). O comando executa os testes backend locais de pré-verificação, realiza três medições mobile e três desktop e apresenta resumo/medianas e as tarefas mais custosas. Essa bateria nova **ainda não foi executada**. Resultados salvos localmente em `test-results/lighthouse/`, que está ignorado no Git.
 
+**CI independente no GitHub:** o workflow `Oliveira Preview - checks only` executou o job `Backend and dependency audit (no deploy)` no runner Linux com Node 24 e concluiu **success** em todos os passos, incluindo `npm ci`, `npm run test:platform` e `npm audit --omit=dev` (run ID `44544162550`). Essa evidência não valida a execução remota da plataforma, navegador ou Blob.
+
 **Infraestrutura remota:** nenhum deploy, merge, secret ou conexão Blob foi feito. O teste simulado de Blob CAS não demonstra leitura/gravação remota no store real. Os dados reais permanecem proibidos.
 
 ## Resultado local confirmado pelo usuário em 19/11/2026 (Windows)
