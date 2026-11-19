@@ -51,3 +51,26 @@ O transporte `createOperationalHttp` aceita opcionalmente `cases` e passa a expo
 Requerem cookie seguro emitido pelo login operacional e consulta de sessão no Postgres a cada chamada. Sem `cases`, retornam **503**; sem sessão, **401**; origem inválida, **403**; conflitos de versão, **409**. Não são endpoints da versão de demonstração e **não estão publicados**. A API original `api/plataforma.mjs` continua a simulação intacta.
 
 A interface operacional e o adaptador de rede confiável ainda não foram conectados. Antes de habilitar dados reais, adicionar trilha de auditoria permanente, mitigação de CSRF para contexto autenticado, proteção contra abuso, política de dados e fluxo de provisionamento de usuários.
+
+## Interface de operação interna (19/11/2026)
+
+Foi criada uma interface **independente da demonstração** em `landing/operacional.html`, com estilos locais e JavaScript próprio:
+
+- Entrada por e-mail profissional, senha e código TOTP, **sem salvar esses dados em storage do navegador**.
+- Lista de casos permitidos à sessão, consulta de um caso, abertura de solicitação e alteração de etapa com controle de versão.
+- Ocultação de opções não autorizadas conforme papel, com a validação definitiva sempre no servidor.
+- Renderização dos dados dos casos usando `textContent` e elementos DOM, sem inserir HTML retornado pelo usuário.
+- Quando `/api/operacional?op=session` não está conectado ou não responde JSON válido, a tela exibe **Acesso operacional ainda não habilitado** e não solicita credenciais.
+- A página não aparece no menu público e permanece com `noindex`, `no-store` e CSP restritiva.
+
+### Verificação de interface em navegador
+
+```powershell
+npm run test:operational-ui
+```
+
+Esse script sobe um servidor estático **local**, usa casos e credenciais inteiramente sintéticos interceptados no navegador, testa login, sessão, criação, atualização, logout, acessibilidade e larguras diferentes. **Ele não cria usuários reais, não conecta um banco e não realiza deploy**. O teste exige um navegador Chromium disponível ao Playwright.
+
+### Pendências que impedem uso real
+
+A página está ligada ao **contrato HTTP do código**, mas `/api/operacional` ainda **não foi montado** em uma função Vercel. Faltam origem/identidade de rede validada, banco Postgres dedicado, chave de cifragem, fluxo restrito de convite e recuperação, auditoria permanente dos casos, backups, consentimento e políticas documentais. Não usar informações de clientes enquanto esses itens permanecerem pendentes.
