@@ -6,7 +6,7 @@
     "serve": "node scripts/serve.mjs",
     "audit": "node scripts/lighthouse.mjs",
     "dev": "node scripts/serve-platform.mjs",
-    "test:platform": "node --test tests/platform.test.mjs tests/platform-operational-identity.test.mjs tests/platform-operational-accounts.test.mjs tests/platform-totp.test.mjs",
+    "test:platform": "node --test tests/platform.test.mjs tests/platform-operational-identity.test.mjs tests/platform-operational-accounts.test.mjs tests/platform-totp.test.mjs tests/platform-operational-mfa.test.mjs",
     "test:platform-ui": "node tests/platform-ui.mjs",
     "check:go-live": "node scripts/platform-go-live-check.mjs"
   },
