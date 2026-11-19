@@ -65,6 +65,12 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\verificar-oliveira
 O script agora executa três coletas sequenciais em mobile e desktop, calcula medianas e lista as tarefas longas, scripts e categorias da thread principal que o Lighthouse registrar. Os relatórios individuais e o diagnóstico ficam em `test-results/lighthouse/` (ignorado pelo Git). O resumo exibido no PowerShell é suficiente para compartilhar, sem enviar segredos locais.
 
 Também foi adicionado o workflow `.github/workflows/oliveira-preview-checks.yml`, limitado a `npm ci`, `npm run test:platform` e `npm audit --omit=dev`. Ele não faz deploy, não usa credenciais e não substitui testes de navegador Windows. A primeira execução de CI precisa ser observada antes de alegar aprovação.
+## Resultado da repetição registrada em 19/11/2026
+
+O usuário executou três medições sequenciais no Windows e concluiu todos os 29 testes de backend. A mediana mobile foi **94/100** (rodadas 83, 98 e 94), a mediana desktop **100/100** (100, 100 e 100). O TBT mobile mediano foi **232 ms**, consideravelmente abaixo do resultado isolado anterior de 3.559,5 ms. O diagnóstico registrou algumas tarefas `Unattributable` e trabalho de layout, sem causa raiz identificada. Não otimizar/remover recursos da página apenas com base em um score isolado.
+
+O CI em GitHub Actions também tem um job de navegador para o site público e o fluxo autenticado sintético. A execução dessa ampliação precisa ser conferida. Os testes locais não autorizam deploy nem conexão de dados reais.
+
 ## Operação real segue bloqueada
 
 O projeto novo já foi criado e vinculado localmente, mas o Blob privado continua desconectado. Não executar `vercel deploy`, `vercel git connect`, criação de secrets, nem conectar armazenamento ao projeto original como solução improvisada. A primeira implantação de um projeto vazio pode assumir alvo Production: é necessário resolver essa limitação antes de qualquer publicação, pois a autorização recebida exclui deployment Production mesmo no projeto isolado. Contratos, cobranças, WhatsApp, n8n e atendimento com dados reais permanecem desativados.
