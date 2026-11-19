@@ -34,3 +34,47 @@ jobs:
         run: npm run test:platform
       - name: Audit runtime packages
         run: npm audit --omit=dev
+
+  browser:
+    name: Synthetic browser journeys (no deploy)
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    if: github.repository == 'Roh-barboza/oliveira-assessoria'
+    steps:
+      - name: Checkout branch under test
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Install Node 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Install exactly locked dependencies
+        run: npm ci
+      - name: Install sandboxed browser prerequisites
+        run: npx playwright install --with-deps chromium
+      - name: Validate all 21 public pages on seven widths
+        run: npm test
+      - name: Launch isolated synthetic-only local platform
+        run: |
+          set -euo pipefail
+          node scripts/serve-platform.mjs > /tmp/oliveira-preview-server.log 2>&1 &
+          echo $! > /tmp/oliveira-preview-server.pid
+          for i in $(seq 1 30); do
+            if curl --fail --silent --output /dev/null "http://127.0.0.1:4176/api/plataforma?op=config"; then
+              break
+            fi
+            sleep 1
+          done
+          curl --fail --silent --show-error "http://127.0.0.1:4176/api/plataforma?op=config" | grep -q '"mode":"synthetic-only"'
+      - name: Validate authenticated synthetic customer/staff journey
+        env:
+          BASE_URL: http://127.0.0.1:4176
+        run: npm run test:platform-ui
+      - name: Stop local test server
+        if: always()
+        run: |
+          if test -f /tmp/oliveira-preview-server.pid; then
+            kill "$(cat /tmp/oliveira-preview-server.pid)" || true
+          fi
