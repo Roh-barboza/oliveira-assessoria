@@ -36,7 +36,9 @@ export class OperationalAccounts {
   }
   async setup() {
     // Intended for a dedicated database. Never run this against n8n or another app's schema.
-    await this.database.query(operationalSchema);
+    for (const statement of operationalSchema.split(";").map((part) => part.trim()).filter(Boolean)) {
+      await this.database.query(statement);
+    }
   }
   async createPrepared(account) {
     if (!account?.id || !account?.password ||
