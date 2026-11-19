@@ -49,7 +49,7 @@ async function readBody(req) {
   }
 }
 
-export function createOperationalHttp({ authentication, accounts, allowedOrigin, networkIdentity }) {
+export function createOperationalHttp({ authentication, accounts, cases = null, allowedOrigin, networkIdentity }) {
   if (!authentication?.login || !accounts?.getSession || !accounts?.revoke ||
       typeof networkIdentity !== "function" ||
       typeof allowedOrigin !== "string" ||
@@ -103,9 +103,55 @@ export function createOperationalHttp({ authentication, accounts, allowedOrigin,
         if (validCookie(token)) await accounts.revoke(token);
         return response({ authenticated: false }, 200, { "Set-Cookie": clearCookie() });
       }
+      if (["case-list", "case-get", "case-create", "case-status"].includes(op)) {
+        // Case endpoints are opt-in and unavailable until attached to the dedicated
+        // production database. No synthetic account or anonymous access is accepted.
+        if (!cases?.list || !cases?.get || !cases?.create || !cases?.changeStatus)
+          return response({ error: "Atendimentos indisponíveis." }, 503);
+        const token = cookieFrom(request);
+        const account = validCookie(token) ? await accounts.getSession(token) : null;
+        if (!account) return response({ error: "Autenticação necessária." }, 401);
+        if (op === "case-list" && request.method === "GET") {
+          const limitValue = url.searchParams.get("limit");
+          if (limitValue !== null && !/^[1-9][0-9]{0,2}$/.test(limitValue))
+            return response({ error: "Limite inválido." }, 422);
+          const limit = limitValue === null ? 50 : Number(limitValue);
+          if (limit > 100) return response({ error: "Limite inválido." }, 422);
+          return response({ cases: await cases.list(account.id, { limit }) });
+        }
+        if (op === "case-get" && request.method === "GET") {
+          const id = url.searchParams.get("id");
+          const item = await cases.get(account.id, id);
+          return item ? response({ case: item }) :
+            response({ error: "Solicitação não encontrada." }, 404);
+        }
+        if (op === "case-create" && request.method === "POST") {
+          const body = await readBody(request);
+          if (!body || Object.keys(body).some((key) =>
+            !["title","service","notes","assignedTo"].includes(key)))
+            return response({ error: "Campos inválidos." }, 422);
+          const item = await cases.create(account.id, body);
+          return response({ case: item }, 201);
+        }
+        if (op === "case-status" && request.method === "POST") {
+          const body = await readBody(request);
+          if (!body || Object.keys(body).some((key) =>
+            !["id","nextStatus","expectedVersion"].includes(key)) ||
+            typeof body.id !== "string")
+            return response({ error: "Campos inválidos." }, 422);
+          const item = await cases.changeStatus(account.id, body.id, body);
+          return response({ case: item });
+        }
+        return response({ error: "Método não permitido." }, 405);
+      }
       return response({ error: "Operação não encontrada." }, 404);
-    } catch {
-      return response({ error: "Operação indisponível." }, 503);
+    } catch (error) {
+      // Do not disclose database or cryptographic details in HTTP responses.
+      const status = [403, 404, 409, 422].includes(error?.status) ? error.status : 503;
+      return response({ error: status === 503 ? "Operação indisponível." :
+        status === 403 ? "Acesso negado." :
+        status === 404 ? "Solicitação não encontrada." :
+        status === 409 ? "Conflito de atualização." : "Dados inválidos." }, status);
     }
   };
 }
