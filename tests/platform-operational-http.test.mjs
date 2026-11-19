@@ -50,7 +50,7 @@ test("real staff session requires MFA gateway and sets secure cookies", async ()
 });
 test("request restrictions refuse cross-site, unknown origin, malformed login and hidden data", async () => {
   const { call, counters } = harness();
-  assert.equal((await call("session").json()).authenticated, false);
+  assert.equal((await (await call("session")).json()).authenticated, false);
   assert.equal((await call("login", {
     method: "POST", body: { email: "staff@example.test", password: "x", code: "123456" },
     headers: { origin: "https://attacker.example.test" },
