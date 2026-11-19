@@ -97,7 +97,9 @@ export class BlobStore {
         storeId: this.storeId,
         addRandomSuffix: false,
         contentType: "application/octet-stream",
-        ...(version ? { ifMatch: version } : { allowOverwrite: false }),
+        ...(version
+          ? { allowOverwrite: true, ifMatch: version }
+          : { allowOverwrite: false }),
       });
       return true;
     } catch (e) {
