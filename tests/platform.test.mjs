@@ -186,26 +186,61 @@ test("Postgres migration and CAS execute on real SQL engine (PGlite)", async () 
     await db.close();
   }
 });
-test("Blob adapter uses private reads and conditional writes", async () => {
-  const calls = [];
-  const s = new BlobStore({
-    storeId: "test",
+test("Blob adapter enforces private CAS across create, update and conflicts", async () => {
+  const objects = new Map();
+  let etagNumber = 0;
+  const error = (name) => Object.assign(new Error(name), { name });
+  const store = new BlobStore({
+    storeId: "test-private",
     get: async (path, options) => {
-      calls.push(options);
-      return {
-        statusCode: 200,
-        blob: { etag: "etag" },
-        stream: new Response("cipher").body,
-      };
+      assert.equal(options.storeId, "test-private");
+      assert.equal(options.access, "private");
+      assert.equal(options.useCache, false);
+      const row = objects.get(path);
+      return row
+        ? {
+            statusCode: 200,
+            blob: { etag: row.etag },
+            stream: new Response(row.data).body,
+          }
+        : null;
     },
-    put: async (path, bytes, options) => calls.push(options),
+    put: async (path, data, options) => {
+      assert.equal(options.storeId, "test-private");
+      assert.equal(options.access, "private");
+      assert.equal(options.addRandomSuffix, false);
+      assert.equal(options.contentType, "application/octet-stream");
+      const current = objects.get(path);
+      if (current && !options.allowOverwrite)
+        throw error("BlobAlreadyExistsError");
+      if (current && options.ifMatch !== current.etag)
+        throw error("BlobPreconditionFailedError");
+      if (!current && (options.ifMatch || options.allowOverwrite))
+        throw error("BlobPreconditionFailedError");
+      objects.set(path, {
+        etag: `"etag-${++etagNumber}"`,
+        data: Buffer.from(data),
+      });
+    },
   });
-  assert.equal((await s.read("id")).version, "etag");
-  await s.cas("id", "etag", Buffer.from("new"));
-  assert.equal(calls[0].access, "private");
-  assert.equal(calls[0].useCache, false);
-  assert.equal(calls[1].ifMatch, "etag");
+  const repository = new StateRepository(store, key());
+  await repository.create("test-id", { n: 1 });
+  const initialVersion = (await store.read("test-id")).version;
+  assert.equal((await repository.read("test-id")).value.n, 1);
+
+  await repository.change("test-id", (value) => value.n++);
+  assert.equal((await repository.read("test-id")).value.n, 2);
+  assert.equal(await store.cas("test-id", initialVersion, Buffer.from("old")), false);
+  assert.equal(await store.cas("test-id", null, Buffer.from("duplicate")), false);
+
+  await Promise.all([
+    repository.change("test-id", (value) => value.n++),
+    repository.change("test-id", (value) => value.n++),
+  ]);
+  assert.equal((await repository.read("test-id")).value.n, 4);
+  assert.deepEqual([...objects.keys()], ["oliveira-preview-v1/test-id.enc"]);
 });
+
 test("Production runtime refuses all API operations", async () => {
   const app = createApp({ production: true });
   assert.equal(
