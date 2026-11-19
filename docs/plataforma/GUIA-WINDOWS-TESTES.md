@@ -52,6 +52,19 @@ Copiar apenas o resumo dos testes: quantidade de testes, falhas, erros de navega
 
 **Referência validada pelo usuário (19/11):** com Node `v24.15.0`, `npm ci` reportou zero vulnerabilidades e `npm run test:platform` passou **28 de 28 testes** após a correção Blob CAS. O teste adicional do gate serverless e os testes de navegador compatíveis com Windows foram commitados **depois** dessa validação. Seus resultados ainda são pendentes.
 
+## Diagnóstico dedicado de desempenho mobile (Lighthouse)
+
+A última bateria local registrou mobile **67/100**, desktop **100/100**, com TBT mobile **3559,5 ms** em uma única coleta; por isso a próxima etapa é **diagnosticar variabilidade**, não alterar UI sem evidência. Execute após `git pull --ff-only`, preferencialmente sem testes ou downloads concorrentes:
+
+```powershell
+cd C:\Users\venda\oliveira-preview-src
+git pull --ff-only
+powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\verificar-oliveira-preview.ps1 -Lighthouse -LighthouseRodadas 3
+```
+
+O script agora executa três coletas sequenciais em mobile e desktop, calcula medianas e lista as tarefas longas, scripts e categorias da thread principal que o Lighthouse registrar. Os relatórios individuais e o diagnóstico ficam em `test-results/lighthouse/` (ignorado pelo Git). O resumo exibido no PowerShell é suficiente para compartilhar, sem enviar segredos locais.
+
+Também foi adicionado o workflow `.github/workflows/oliveira-preview-checks.yml`, limitado a `npm ci`, `npm run test:platform` e `npm audit --omit=dev`. Ele não faz deploy, não usa credenciais e não substitui testes de navegador Windows. A primeira execução de CI precisa ser observada antes de alegar aprovação.
 ## Operação real segue bloqueada
 
 O projeto novo já foi criado e vinculado localmente, mas o Blob privado continua desconectado. Não executar `vercel deploy`, `vercel git connect`, criação de secrets, nem conectar armazenamento ao projeto original como solução improvisada. A primeira implantação de um projeto vazio pode assumir alvo Production: é necessário resolver essa limitação antes de qualquer publicação, pois a autorização recebida exclui deployment Production mesmo no projeto isolado. Contratos, cobranças, WhatsApp, n8n e atendimento com dados reais permanecem desativados.
