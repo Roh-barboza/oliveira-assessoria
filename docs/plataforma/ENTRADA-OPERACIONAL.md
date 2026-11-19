@@ -38,3 +38,16 @@ git status --short
 ```
 
 O verificador de go-live deve continuar falhando enquanto o fluxo real não tiver sido conectado e auditado.
+
+## Rotas internas para solicitações (código, ainda sem deployment)
+
+O transporte `createOperationalHttp` aceita opcionalmente `cases` e passa a expor operações **apenas quando o aplicativo for composto por um integrador autorizado**:
+
+- `GET ?op=case-list&limit=50`: consulta paginada por limite (máximo 100), filtrada por identidade da equipe.
+- `GET ?op=case-get&id=<uuid>`: recupera uma solicitação visível ao funcionário.
+- `POST ?op=case-create`: cadastra solicitação com `title`, `service`, `notes` e, para administradores, `assignedTo`.
+- `POST ?op=case-status`: altera `nextStatus` de `id` com `expectedVersion`, impedindo sobrescrever atualizações concorrentes.
+
+Requerem cookie seguro emitido pelo login operacional e consulta de sessão no Postgres a cada chamada. Sem `cases`, retornam **503**; sem sessão, **401**; origem inválida, **403**; conflitos de versão, **409**. Não são endpoints da versão de demonstração e **não estão publicados**. A API original `api/plataforma.mjs` continua a simulação intacta.
+
+A interface operacional e o adaptador de rede confiável ainda não foram conectados. Antes de habilitar dados reais, adicionar trilha de auditoria permanente, mitigação de CSRF para contexto autenticado, proteção contra abuso, política de dados e fluxo de provisionamento de usuários.
