@@ -86,3 +86,19 @@ A conexão Vercel do ChatGPT continua retornando 404 para o ID do projeto novo, 
 **Preparação de código, sem publicação:** a rotina `BlobStore.cas` agora usa `allowOverwrite: true` junto de `ifMatch` em atualizações condicionais, como exige o SDK. Foi ampliado o teste simulado para criação, atualização, conflito e concorrência. A suíte não foi executada após a alteração nesta rodada; não é prova remota da integração.
 
 **Próxima execução autorizada:** validar pelo CLI/painel o projeto isolado e seu escopo, comprovar permissões exclusivas de Preview, esclarecer a implantação inicial sem Production e só então conectar Blob/credenciais protegidas e executar testes com dados sintéticos. Sem merge, alteração na produção original, nem integração real com clientes.
+
+## Conexão ao projeto isolado concluída — 19/11/2026
+
+O proprietário executou a Vercel CLI 66.2.0 para conectar, **após dry-run**, o store privado existente `oliveira-platform-preview` (`store_85Ar0XqTHja9xFLb`) ao projeto dedicado `oliveira-plataforma-preview` (`prj_IB4FPuQ8CWkSS0VjZvIQsq3kE2Ie`).
+
+- Comando aplicado: `npx vercel storage connect store_85Ar0XqTHja9xFLb --project oliveira-plataforma-preview --environment preview --auth oidc --scope barbozaa-s-projects --yes`.
+- Resultado confirmado pelo CLI: **Success! Connected**; única conexão relatada: projeto novo no ambiente `preview`, autenticação **OIDC sem credencial estática**.
+- Variáveis gerenciadas criadas pela conexão: `BLOB_STORE_ID` e `BLOB_WEBHOOK_PUBLIC_KEY`. A última é uma chave pública de verificação; não foi gerado token estático `BLOB_READ_WRITE_TOKEN`.
+- Inspeção do store: acesso `private`, região `gru1`, estado `available`, **0 objetos e 0 bytes** após a conexão. A integração Vercel também retornou `totalConnectedProjects=1`.
+- `OLIVEIRA_PLATFORM_STORE`, `OLIVEIRA_DATA_KEY` e eventual banco alternativo **não foram cadastrados**; nenhum deployment nem teste remoto de escrita foi realizado.
+
+**Restrição residual importante:** a conexão limita o acesso ao **ambiente Preview do projeto**, mas a autorização de acesso ao store via OIDC não tem prova de restrição por branch nesse vínculo. Uma futura implantação de outra branch no mesmo projeto poderia ter a mesma identidade Preview. O controle `VERCEL_GIT_COMMIT_REF` por código não substitui IAM nem impede um deployment malicioso de usar as permissões do projeto. Não classificar o requisito original de isolamento por branch como completamente satisfeito. Git e deployments continuam desligados no projeto dedicado até nova inspeção.
+
+**Proteção adicional implementada no PR #7, ainda pendente de execução de CI nesta revisão:** a API remota passou a exigir o ID explícito `VERCEL_PROJECT_ID=prj_IB4FPuQ8CWkSS0VjZvIQsq3kE2Ie`, `VERCEL_ENV=preview` e `VERCEL_GIT_COMMIT_REF=feature/plataforma-operacional-preview` simultaneamente; fora dessas condições retorna 404. No projeto correto, sem `OLIVEIRA_PLATFORM_STORE=blob` e chave válida, retorna 503, sem fallback para memória. Trata-se de proteção da aplicação, **não de permissão do storage**. O servidor local com SQLite permanece independente.
+
+**Próximo passo seguro:** confirmar que a CLI lista variáveis para a branch pretendida e que o novo projeto continua sem Git/deployments, sem listar os valores das variáveis. Só depois decidir quando cadastrar chave protegida e publicar, respeitando a proibição expressa de qualquer deployment Production no projeto novo.
