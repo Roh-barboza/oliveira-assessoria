@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import { spawn } from "node:child_process";
+import { mkdir } from "node:fs/promises";
 import net from "node:net";
 import { chromium } from "playwright";
 import AxeBuilder from "@axe-core/playwright";
@@ -14,6 +15,8 @@ async function freePort() {
 }
 const port = await freePort();
 const base = `http://127.0.0.1:${port}`;
+const evidenceDir = "test-results/operational-ui";
+await mkdir(evidenceDir, { recursive: true });
 const server = spawn(process.execPath, ["scripts/serve.mjs"], {
   cwd: process.cwd(),
   env: { ...process.env, PORT: String(port) },
@@ -51,6 +54,7 @@ try {
   // When the backend has not been mounted, the page must not solicit credentials.
   await page.goto(base + "/operacional.html");
   await page.locator("#unavailable").waitFor({ state: "visible" });
+  await page.screenshot({ path: evidenceDir + "/ambiente-indisponivel.png", fullPage: true });
   assert.equal(await page.locator("#login-area").isVisible(), false);
   assert.equal(await page.locator("#dashboard").isVisible(), false);
   await checkA11y(page);
@@ -113,6 +117,7 @@ try {
   await page.locator("#status-form button").click();
   await page.getByText("Etapa atualizada.").waitFor();
   assert.equal(cases[0].status, "conferencia");
+  await page.screenshot({ path: evidenceDir + "/painel-sintetico.png", fullPage: true });
 
   await checkA11y(page);
   await page.locator("#logout").click();
