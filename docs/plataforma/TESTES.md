@@ -1,5 +1,13 @@
 # Evidências de validação
 
+## Resultado local confirmado pelo usuário em 19/11/2026 (Windows)
+
+No clone vinculado ao projeto isolado, o usuário executou `git pull --ff-only`, `node -v` (`v24.15.0`), `npm ci` (**173 pacotes auditados, zero vulnerabilidades reportadas**) e `npm run test:platform` (**28 testes aprovados, zero falhas**, duração de aproximadamente 17 s). Esse resultado **inclui a correção de CAS do Blob e o teste simulado de escrita condicional**, mas **não** inclui o teste adicional de gate serverless nem as adaptações de testes de navegador para Windows commitadas posteriormente. Esses últimos ainda precisam ser executados.
+
+O código de browser agora seleciona Chromium via Playwright em Windows/macOS, preservando o caminho conhecido de execução em Linux. O script Windows de verificação de branch, projeto, Node e testes foi adicionado, mas **não executado pelo assistente**, pois este ambiente não possui PowerShell Windows nem acesso ao clone local. [Guia Windows](GUIA-WINDOWS-TESTES.md).
+
+**Teste remoto com Blob real:** não executado, store ainda não conectado. Os resultados abaixo de Lighthouse/Preview pertencem à implementação anterior e não devem ser tratados como revalidação da nova branch.
+
 ## Backend, finanças e segurança
 
 `npm run test:platform`: **28 testes passaram, zero falhas** na execução local de 18/11/2026. Inclui isolamento de dois clientes, RBAC, origem/CSRF, mass assignment, criptografia/tamper, CAS concorrente, persistência SQLite/reabertura, SQL Postgres em PGlite, Blob privado simulado, primeira/segunda revisão, FAST IT invertido, T0 e marcos, revisões, rascunho, autorização, opt-in/deduplicação/pausa/encerramento, PDF/hash/assinatura, pagamentos idempotentes, webhook HMAC, descarte, falha Clicksign mockada, Drive privado mockado, regras WhatsApp e falha segura do adaptador de modelo. Backup/restauração SQLite consistente também executados.
