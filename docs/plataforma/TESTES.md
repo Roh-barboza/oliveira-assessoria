@@ -123,3 +123,7 @@ Correção no `server/platform/store.mjs`: gravação condicional do Blob exige 
 **Status: alteração commitada, ainda sem execução dos testes desta rodada.** Os 28 testes e os resultados Lighthouse listados acima pertencem às versões anteriores e não foram revalidados após a correção. A conexão Blob real permanece desligada; nenhuma evidência de persistência remota foi produzida.
 
 Reprodução no ambiente local adequado (Node 24.x): `npm ci` e `npm run test:platform`. Somente após obter autorização e isolamento de implantação Preview, repetir testes de navegador e cenários remotos sintéticos de reinício, concorrência, acesso e recuperação.
+
+## Nova proteção de isolamento por projeto — pendente de validação (19/11/2026)
+
+A API Vercel `api/plataforma.mjs` passou a exigir simultaneamente ambiente Preview, o ID do projeto isolado e a branch autorizada. O fallback remoto `temporario` foi removido: uma configuração persistente ausente gera erro 503. O teste serverless foi ampliado para cenário Production, projeto errado, branch errada, ID ausente, credenciais Blob ausentes e armazenamento temporário proibido. **Nenhum resultado dessa nova versão foi afirmado antes da execução do CI/PowerShell.** O teste local SQLite e o adaptador MemoryStore de testes continuam disponíveis; somente a função Vercel remota não permite memória. A conexão privada OIDC foi feita, mas o teste remoto de leitura/gravação entre instâncias permanece indisponível sem a implantação autorizada.
