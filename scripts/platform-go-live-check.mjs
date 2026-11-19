@@ -1,4 +1,4 @@
-import { readFileSync, existsSync } from "node:fs";
+import { readFileSync } from "node:fs";
 import { join } from "node:path";
 
 const root = process.cwd();
@@ -6,9 +6,6 @@ const read = (name) => readFileSync(join(root, name), "utf8");
 const findings = [];
 function check(name, pass, explanation) {
   findings.push({ name, pass: Boolean(pass), explanation });
-}
-function contains(path, pattern) {
-  return existsSync(join(root, path)) && pattern.test(read(path));
 }
 
 const ignore = read(".vercelignore");
