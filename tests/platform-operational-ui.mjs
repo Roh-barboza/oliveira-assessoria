@@ -36,7 +36,9 @@ async function awaitServer() {
 }
 async function checkA11y(page) {
   const results = await new AxeBuilder({ page }).analyze();
-  assert.deepEqual(results.violations.map(({ id }) => id), []);
+  assert.deepEqual(results.violations.map(({ id, nodes }) => ({
+    id, elements: nodes.map(({ target, failureSummary }) => ({ target, failureSummary })),
+  })), []);
   for (const width of [390, 768, 1366]) {
     await page.setViewportSize({ width, height: 820 });
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), true,
@@ -109,6 +111,7 @@ try {
   await page.locator("#case-service").fill("Documentação sintética");
   await page.locator("#case-form button").click();
   await page.locator("#cases-list .case-item").waitFor();
+  assert.match(await page.locator("#cases-list button").getAttribute("aria-label"), /^Detalhes da solicitação:/);
   assert.equal(await page.locator("#cases-list img").count(), 0);
   assert.match(await page.locator("#cases-list .case-item").textContent(), /img src=x/);
   await page.locator("#cases-list button").click();
