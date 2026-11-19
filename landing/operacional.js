@@ -147,6 +147,7 @@
       $("selected-case").textContent = [selected.title, selected.service, "Versão " + selected.version].join(" · ");
       $("next-status").value = selected.status;
       setVisible("selected-panel", true);
+      $("status-form").hidden = activeUser?.role === "reviewer" || selected.status === "encerrado";
       $("selected-panel").scrollIntoView({ behavior: "smooth", block: "nearest" });
       feedback("");
     } catch (error) {
@@ -224,8 +225,11 @@
       selected = data.case;
       feedback("Etapa atualizada.");
       await refreshCases();
-      if (selected) $("selected-case").textContent =
-        [selected.title, selected.service, "Versão " + selected.version].join(" · ");
+      if (selected) {
+        $("selected-case").textContent =
+          [selected.title, selected.service, "Versão " + selected.version].join(" · ");
+        $("status-form").hidden = activeUser?.role === "reviewer" || selected.status === "encerrado";
+      }
     } catch (error) {
       if (error.status === 401) return loadSession();
       feedback(error.status === 409 ? "Esse atendimento foi alterado. Atualize os dados antes de salvar." :
