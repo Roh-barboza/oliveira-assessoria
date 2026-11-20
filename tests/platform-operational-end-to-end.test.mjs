@@ -11,13 +11,14 @@ import { totpForCounter } from "../server/platform/totp.mjs";
 import { composeOperationalApp } from "../server/platform/operational-runtime.mjs";
 import { operationalRuntimeAllowed } from "../api/operacional.mjs";
 
-test("serverless gate requires separate project, explicit secrets and preview branch", () => {
+test("single-project operational API stays Preview-only with explicit secrets and branch", () => {
   const ready = {
     VERCEL: "1",
     VERCEL_ENV: "preview",
     VERCEL_GIT_COMMIT_REF: "feature/plataforma-operacional-preview",
-    VERCEL_PROJECT_ID: "prj_TESTOPS",
-    OLIVEIRA_OPS_ALLOWED_PROJECT_ID: "prj_TESTOPS",
+    VERCEL_PROJECT_ID: "prj_M19hHqI7fq25KgKnXWIqUYRXmxhq",
+    OLIVEIRA_OPS_ALLOWED_PROJECT_ID: "prj_M19hHqI7fq25KgKnXWIqUYRXmxhq",
+    OLIVEIRA_OPS_PREVIEW_ACK: "shared-project-preview-only",
     OLIVEIRA_OPS_ENABLED: "1",
     OLIVEIRA_OPS_ORIGIN: "https://ops.example.test",
     OLIVEIRA_OPS_STORE: "postgres",
@@ -28,12 +29,14 @@ test("serverless gate requires separate project, explicit secrets and preview br
   assert.equal(operationalRuntimeAllowed(ready), true);
   for (const changed of [
     { VERCEL_ENV: "production" },
-    { VERCEL_PROJECT_ID: "prj_M19hHqI7fq25KgKnXWIqUYRXmxhq",
-      OLIVEIRA_OPS_ALLOWED_PROJECT_ID: "prj_M19hHqI7fq25KgKnXWIqUYRXmxhq" },
+    { VERCEL_PROJECT_ID: "prj_unrelated_other_project" },
+    { OLIVEIRA_OPS_PREVIEW_ACK: "" },
+    { OLIVEIRA_OPS_ORIGIN: "https://oliveira-assessoria.vercel.app" },
     { VERCEL_GIT_COMMIT_REF: "main" },
     { OLIVEIRA_OPS_ENABLED: "0" },
     { OLIVEIRA_OPS_DATABASE_URL: "" },
     { OLIVEIRA_OPS_ORIGIN: "http://ops.example.test" },
+    { OLIVEIRA_OPS_ORIGIN: "https://example.test" },
     { OLIVEIRA_OPS_ALLOWED_PROJECT_ID: "prj_other" },
   ]) {
     assert.equal(operationalRuntimeAllowed({ ...ready, ...changed }), false);
