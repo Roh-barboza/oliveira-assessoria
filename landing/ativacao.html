@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="referrer" content="no-referrer">
+  <title>Primeiro acesso | Oliveira Assessoria</title>
+  <link rel="icon" href="/assets/logo-mark-oliveira.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/operacional.css">
+  <link rel="stylesheet" href="/ativacao.css">
+  <script defer src="/ativacao.js"></script>
+</head>
+<body>
+  <a class="skip" href="#conteudo">Pular para o conteúdo</a>
+  <header class="topbar">
+    <div class="topbar__inner">
+      <img src="/assets/logo-oliveira.svg" width="168" height="43" alt="Oliveira Assessoria">
+      <div class="topbar__right">
+        <span class="topbar__tag">ACESSO ADMINISTRATIVO</span>
+        <span id="environment" role="status" class="environment" aria-live="polite">Verificando segurança...</span>
+      </div>
+    </div>
+  </header>
+  <main id="conteudo" class="shell activation-shell">
+    <p class="eyebrow">ATIVAÇÃO INICIAL</p>
+    <h1>Configure o primeiro acesso.</h1>
+    <p class="intro__text">Ativação única da equipe Oliveira Assessoria. Disponível apenas no Preview protegido da Vercel.</p>
+
+    <p class="safety">Use somente o código de ativação fornecido no painel privado da Vercel. Não compartilhe senhas, códigos ou a chave do autenticador por mensagens.</p>
+    <p id="feedback" class="feedback" role="status" aria-live="polite" hidden></p>
+
+    <section id="unavailable" class="notice" hidden aria-labelledby="unavailable-heading">
+      <h2 id="unavailable-heading">Ativação não habilitada</h2>
+      <p>O ambiente não está pronto para criar um administrador. Nenhum usuário foi criado e nenhum dado foi alterado.</p>
+      <button id="retry" type="button" class="button secondary">Verificar novamente</button>
+    </section>
+
+    <section id="start-panel" class="activation-card card" hidden aria-labelledby="start-heading">
+      <h2 id="start-heading">1. Identificação do administrador</h2>
+      <p class="muted">O primeiro administrador é criado uma única vez. A confirmação por aplicativo autenticador será obrigatória.</p>
+      <form id="start-form" class="form">
+        <label for="setup-code">Código de ativação privado</label>
+        <input id="setup-code" type="password" required minlength="48" maxlength="256"
+          autocomplete="off" spellcheck="false" autocapitalize="off">
+        <small>O código fica apenas neste navegador durante a ativação.</small>
+        <label for="name">Nome do administrador</label>
+        <input id="name" type="text" required maxlength="120" autocomplete="name">
+        <label for="email">E-mail profissional</label>
+        <input id="email" type="email" required maxlength="254" autocomplete="email">
+        <label for="password">Senha individual</label>
+        <input id="password" type="password" required minlength="14" maxlength="1024"
+          autocomplete="new-password">
+        <small>Escolha uma senha exclusiva de pelo menos 14 caracteres.</small>
+        <button class="button primary" type="submit">Criar administrador e configurar MFA</button>
+      </form>
+    </section>
+
+    <section id="verify-panel" class="activation-card card" hidden aria-labelledby="verify-heading">
+      <h2 id="verify-heading">2. Vincular aplicativo autenticador</h2>
+      <p class="muted">Cadastre a chave abaixo no seu aplicativo autenticador. Não feche ou atualize a página antes de concluir.</p>
+      <div class="activation-secret">
+        <span>Chave para autenticação</span>
+        <code id="totp-secret"></code>
+        <button id="copy-secret" class="button secondary small" type="button">Copiar chave</button>
+      </div>
+      <form id="verify-form" class="form">
+        <label for="otp-code">Código de 6 dígitos do aplicativo</label>
+        <input id="otp-code" type="text" inputmode="numeric" pattern="[0-9]{6}"
+          maxlength="6" minlength="6" autocomplete="one-time-code" required>
+        <button class="button primary" type="submit">Confirmar autenticação</button>
+      </form>
+    </section>
+
+    <section id="done-panel" class="notice" hidden aria-labelledby="done-heading">
+      <h2 id="done-heading">Administrador ativado</h2>
+      <p>Seu acesso está protegido por senha e autenticação de dois fatores. O painel somente será liberado após a conclusão das verificações do ambiente Preview.</p>
+      <a href="/operacional.html" class="button secondary activation-link">Acessar painel interno</a>
+    </section>
+  </main>
+  <footer class="footer">Oliveira Assessoria · Uso interno restrito</footer>
+</body>
+</html>

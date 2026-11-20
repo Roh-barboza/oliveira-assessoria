@@ -1,0 +1,40 @@
+
+> test:platform
+> node --test tests/platform.test.mjs
+
+✔ AES-GCM isolates workspaces and rejects tampering (2.087839ms)
+✔ Unknown costs never become zero; all 20 rows unapproved (0.678804ms)
+✔ Contribution, reverse margin, installments and external fees (1.122773ms)
+✔ CAS refuses stale writes; concurrent updates preserve audit (1.4591ms)
+✔ SQLite survives reopening; disk does not contain cleartext (17.600682ms)
+✔ Postgres migration and CAS execute on real SQL engine (PGlite) (3257.737907ms)
+✔ Blob adapter uses private reads and conditional writes (17.481303ms)
+✔ Production runtime refuses all API operations (2.583456ms)
+✔ Authentication, CSRF, cross-origin and mass-assignment guards (290.170815ms)
+✔ Two clients cannot see each other’s cases or documents (212.393355ms)
+✔ Uploads reject real files; reviews require two distinct assigned roles (175.829285ms)
+✔ FAST IT reverses execution/review roles; deferred services rejected (174.554442ms)
+✔ T0 requires both gates; AIRE protocol sets 180-day window; revisions capped (142.443719ms)
+✔ Draft resumes after login; authorization never asserts official permission (201.832318ms)
+✔ Follow-ups deduplicate, honor opt-out and stop when paused/closed (139.764258ms)
+✔ Versioned PDF, simulator invitation/signature, signed terminal and ownership (207.507046ms)
+✔ Payments use idempotency, reject cross-amount reuse and terminal transitions (139.612163ms)
+✔ Signed simulated webhook validates HMAC and rejects duplicate/replayed cancel (149.325813ms)
+✔ Closed case can dispose content under policy; only admin, tombstone retained (279.052609ms)
+✔ Clicksign adapter fixed sandbox with mocked network; failure sanitized by caller (2.435283ms)
+✔ Drive refuses public roots; private provisioning mocked with no sharing (2.471788ms)
+✔ WhatsApp never sends, checks opt-in/human approval/24-hour template rule (0.654978ms)
+✔ Optional AI adapter minimizes input, validates output and fails to human review (0.992046ms)
+✔ Encrypted SQLite backup/restore-copy recovers state without exporting key (120.609226ms)
+✔ Recent client response pauses follow-up and opens human task without outgoing message (187.385823ms)
+✔ Document organization variants distinguish scope and complete alone tracks external batch (138.58541ms)
+✔ Card failures remain terminal; new idempotency key creates safe new simulation (134.395692ms)
+✔ Anonymous/stale-session probe returns no private data without console-producing 401 (130.535501ms)
+ℹ tests 28
+ℹ suites 0
+ℹ pass 28
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6318.088594

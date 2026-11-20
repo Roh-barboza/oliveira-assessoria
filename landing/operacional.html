@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="referrer" content="no-referrer">
+  <title>Painel interno | Oliveira Assessoria</title>
+  <link rel="icon" href="/assets/logo-mark-oliveira.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/operacional.css">
+  <script defer src="/operacional.js"></script>
+</head>
+<body>
+  <a class="skip" href="#conteudo">Pular para o conteúdo</a>
+  <header class="topbar">
+    <div class="topbar__inner">
+      <img src="/assets/logo-oliveira.svg" width="168" height="43" alt="Oliveira Assessoria">
+      <div class="topbar__right">
+        <span class="topbar__tag">PAINEL INTERNO</span>
+        <span id="environment" class="environment" role="status" aria-live="polite">Verificando ambiente...</span>
+      </div>
+    </div>
+  </header>
+  <main id="conteudo" class="shell">
+    <div class="intro">
+      <div>
+        <p class="eyebrow">GESTÃO DE SOLICITAÇÕES</p>
+        <h1>Organização em cada etapa.</h1>
+        <p class="intro__text">Acompanhamento interno de atendimentos, responsáveis e próximos passos.</p>
+      </div>
+    </div>
+    <p class="safety" role="note">Ambiente operacional em preparação. Não insira dados pessoais nem documentos reais enquanto a liberação não estiver confirmada.</p>
+    <p id="feedback" class="feedback" role="status" aria-live="polite" hidden></p>
+
+    <section id="unavailable" class="notice" hidden aria-labelledby="unavailable-title">
+      <h2 id="unavailable-title">Acesso operacional ainda não habilitado</h2>
+      <p>O serviço de autenticação e o banco dedicado ainda precisam ser conectados. Esta tela não é o ambiente de demonstração e não cria contas fictícias.</p>
+      <button id="retry" type="button" class="button secondary">Verificar novamente</button>
+    </section>
+
+    <section id="login-area" class="login-layout" hidden aria-labelledby="login-title">
+      <div class="login-copy">
+        <p class="eyebrow">ACESSO RESTRITO</p>
+        <h2>Entrar no painel</h2>
+        <p>Identifique-se com a conta da equipe e o código do seu aplicativo autenticador.</p>
+        <div class="privacy-note"><strong>Proteção de acesso</strong><p>Sessão protegida e temporária. As credenciais não são armazenadas neste navegador.</p></div>
+      </div>
+      <form id="login-form" class="card form" autocomplete="on">
+        <h3 id="login-title">Acesso da equipe</h3>
+        <label for="email">E-mail profissional</label>
+        <input id="email" name="email" type="email" autocomplete="username" maxlength="254" required>
+        <label for="password">Senha</label>
+        <input id="password" name="password" type="password" autocomplete="current-password" minlength="14" maxlength="1024" required>
+        <label for="code">Código de autenticação</label>
+        <input id="code" name="code" inputmode="numeric" pattern="[0-9]{6}" autocomplete="one-time-code" maxlength="6" required aria-describedby="code-help">
+        <small id="code-help">Código de 6 dígitos do autenticador.</small>
+        <button type="submit" class="button primary">Acessar painel</button>
+      </form>
+    </section>
+
+    <section id="dashboard" hidden aria-labelledby="dashboard-title">
+      <div class="dashboard-top">
+        <div>
+          <p class="eyebrow">ÁREA DE TRABALHO</p>
+          <h2 id="dashboard-title">Solicitações da equipe</h2>
+          <p id="account-details" class="muted"></p>
+        </div>
+        <button id="logout" type="button" class="button secondary">Encerrar sessão</button>
+      </div>
+      <div class="metrics" aria-label="Resumo de solicitações">
+        <div class="metric"><span>Total visível</span><strong id="count-total">0</strong></div>
+        <div class="metric"><span>Em triagem</span><strong id="count-triagem">0</strong></div>
+        <div class="metric"><span>Em acompanhamento</span><strong id="count-acompanhamento">0</strong></div>
+      </div>
+      <div class="dashboard-grid">
+        <section class="card cases" aria-labelledby="cases-title">
+          <div class="section-head">
+            <div><h3 id="cases-title">Atendimentos</h3><p class="muted">Somente os registros autorizados para sua conta.</p></div>
+            <button id="refresh" type="button" class="button secondary small">Atualizar</button>
+          </div>
+          <div id="cases-list" class="cases-list"><p class="muted">Carregando...</p></div>
+        </section>
+        <aside class="side-panel">
+          <section class="card" aria-labelledby="create-title">
+            <h3 id="create-title">Nova solicitação</h3>
+            <form id="case-form" class="form">
+              <label for="case-title">Identificação interna</label>
+              <input id="case-title" name="title" maxlength="150" required placeholder="Ex.: Acompanhamento documental">
+              <label for="case-service">Serviço</label>
+              <input id="case-service" name="service" maxlength="100" required placeholder="Ex.: AIRE, passaporte">
+              <label for="case-notes">Observações internas</label>
+              <textarea id="case-notes" name="notes" maxlength="3000" rows="4" placeholder="Pendências, etapa e próximos passos"></textarea>
+              <button type="submit" class="button primary">Registrar solicitação</button>
+            </form>
+          </section>
+          <section id="selected-panel" class="card" hidden aria-labelledby="selected-title">
+            <h3 id="selected-title">Atualizar etapa</h3>
+            <p id="selected-case" class="muted"></p>
+            <form id="status-form" class="form">
+              <label for="next-status">Próxima etapa</label>
+              <select id="next-status" name="nextStatus" required>
+                <option value="triagem">Triagem</option>
+                <option value="aguardando_documentos">Aguardando documentos</option>
+                <option value="conferencia">Conferência</option>
+                <option value="pendencias">Pendências</option>
+                <option value="preparado">Preparado</option>
+                <option value="acompanhamento">Acompanhamento</option>
+                <option value="pausado">Pausado</option>
+                <option value="encerrado">Encerrado</option>
+              </select>
+              <button type="submit" class="button primary">Salvar etapa</button>
+            </form>
+          </section>
+        </aside>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">Oliveira Assessoria · Área interna, sem acesso público a registros. <a href="/privacidade.html">Privacidade</a></footer>
+</body>
+</html>
