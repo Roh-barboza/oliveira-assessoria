@@ -29,7 +29,8 @@ A API operacional exige **todas** estas condições:
 - `OLIVEIRA_OPS_ENABLED=1`.
 - `OLIVEIRA_OPS_ORIGIN`: URL HTTPS **exata da implantação Preview**, com domínio `*.vercel.app` e sem barra final. Os domínios principais da produção são proibidos.
 - `OLIVEIRA_OPS_STORE=postgres`.
-- `OLIVEIRA_OPS_DATABASE_URL`: Postgres **dedicado**, não o banco do site, do n8n ou do simulador.
+- `OLIVEIRA_OPS_DATABASE_SOURCE=neon-vercel` (configurado no Preview da branch). O endereço do PostgreSQL é fornecido **automaticamente pelo Neon**, nas variáveis sensíveis `DATABASE_URL` e `NEON_PROJECT_ID`, sem copiar nem recriar credenciais. Para um banco externo, a opção alternativa é `dedicated-url` acompanhada de `OLIVEIRA_OPS_DATABASE_URL`.
+- O PostgreSQL é **dedicado** à Oliveira, não é o banco do n8n ou de outro sistema.
 - `OLIVEIRA_OPS_DATA_KEY`: chave AES de 32 bytes aleatórios, representada como 64 hexadecimais.
 - `OLIVEIRA_OPS_RATE_SECRET`: segredo HMAC aleatório com 32+ bytes.
 
@@ -43,9 +44,19 @@ Ausência de qualquer requisito responde **503**, nunca cria armazenamento provi
 
 Além das verificações de Preview, branch e projeto, o simulador exige `OLIVEIRA_PLATFORM_PREVIEW_ACK=synthetic-shared-preview`; `OLIVEIRA_PLATFORM_STORE=postgres` ou `blob`; `OLIVEIRA_DATA_KEY`; e a configuração própria de armazenamento. O simulador não é uma rota para dados reais. Nenhuma configuração do simulador é necessária para liberar apenas a API operacional.
 
+## Neon vinculado à Vercel em 20/11/2026
+
+A integração `neon-almond-paddle` foi encontrada no projeto Vercel `oliveira-assessoria`, com variáveis de conexão `DATABASE_URL` e `NEON_PROJECT_ID`. A API agora utiliza essas variáveis **somente quando** `OLIVEIRA_OPS_DATABASE_SOURCE=neon-vercel` e todas as demais travas do Preview são atendidas. Nenhum valor sensível é salvo no repositório.
+
+Foram criadas, **somente no Preview da branch operacional**, as variáveis `OLIVEIRA_OPS_DATABASE_SOURCE`, `OLIVEIRA_OPS_STORE`, `OLIVEIRA_OPS_ALLOWED_PROJECT_ID`, `OLIVEIRA_OPS_PREVIEW_ACK` e `OLIVEIRA_OPS_ENABLED=0`. O serviço continuará bloqueado até homologação da migração, primeiro funcionário, MFA e chaves de criptografia.
+
+**A integração Neon instalou variáveis de banco para Preview e Produção na Vercel.** Isso não ativa nenhuma operação real na produção (a função está travada por ambiente e branch), mas exige uma revisão posterior da exposição de credenciais e segregação dos acessos no provedor antes do go-live.
+
 ## Preparar o banco
 
-Após provisionar um PostgreSQL exclusivo, restringir credenciais, revisar SSL, configurar backups e um ambiente de manutenção:
+Antes de aplicar a migração, **confirmar se o Neon está vazio e dedicado à operação** e criar backup/snapshot da instância ou branch. O arquivo `db/operacional-neon-preview.sql` permite aplicar a estrutura no Neon SQL Editor sem enviar credenciais pelo ChatGPT. O arquivo cria apenas as tabelas; não cria nenhuma conta nem dados de cliente.
+
+Alternativamente, após configurar um ambiente de manutenção seguro, usar o script da aplicação:
 
 ```powershell
 # Executar em estação de administração autorizada, com secrets fora do Git
@@ -67,7 +78,9 @@ Remove-Item Env:OLIVEIRA_OPS_ADMIN_CODE -ErrorAction SilentlyContinue
 Remove-Item Env:OLIVEIRA_OPS_ADMIN_PASSWORD -ErrorAction SilentlyContinue
 ```
 
-O bootstrap do administrador só pode ser executado quando não houver contas existentes no banco. Não existe acesso público de cadastro de contas.
+O bootstrap do administrador só pode ser executado quando não houver contas existentes no banco. Não existe acesso público de cadastro de contas. O usuário do Neon pode ser configurado por `DATABASE_URL`/`NEON_PROJECT_ID` e `OLIVEIRA_OPS_DATABASE_SOURCE=neon-vercel` ou por uma conexão dedicada.
+
+**Pendente no ambiente real:** verificar a existência das tabelas no Neon, configurar `OLIVEIRA_OPS_DATA_KEY` e `OLIVEIRA_OPS_RATE_SECRET` como variáveis sensíveis exclusivas do Preview, ativar um administrador com MFA e somente depois revisar `OLIVEIRA_OPS_ENABLED=1`. A conexão Neon por si só não conclui essas etapas.
 
 ## Validação
 
