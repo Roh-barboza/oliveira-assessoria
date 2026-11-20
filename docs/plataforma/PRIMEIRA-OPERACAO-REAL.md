@@ -91,3 +91,32 @@ Os testes de backend usam PostgreSQL local (PGlite), verifica TOTP, sessão, cad
 Antes de aceitar dados reais: comprovar banco PostgreSQL persistente e backups restauráveis, autenticação e MFA reais, proteção do Preview, migrações, revogação, auditoria de alterações, política LGPD e minimização de dados. Fluxos de anexos, Clicksign, pagamentos e WhatsApp continuam bloqueados.
 
 **Não confundir uma interface publicada no Preview com autorização para processar dados reais.**
+
+## Ativação guiada pelo celular (Preview protegido)
+
+O projeto já possui autenticação da Vercel ligada **somente para Preview**. O primeiro administrador pode ser criado pela página `/ativacao.html`, sem notebook e sem publicar segredos em mensagens.
+
+### Pré-requisitos e travas
+
+- A Vercel precisa apresentar o login da conta autorizada para abrir qualquer Preview.
+- A integração Neon precisa apontar para o banco dedicado desta plataforma, sem dados reais de clientes durante a homologação.
+- `OLIVEIRA_OPS_SETUP_TOKEN`: código aleatório longo, **criptografado e restrito à branch Preview**, armazenado no painel privado da Vercel. Não é uma senha do banco.
+- `OLIVEIRA_OPS_SETUP_ENABLED=1`: habilita exclusivamente o fluxo de primeiro administrador. Não habilita o painel operacional.
+- `OLIVEIRA_OPS_ENABLED=0`: mantém o painel desativado durante a criação da conta e o cadastro MFA.
+- `OLIVEIRA_OPS_DATA_KEY` e `OLIVEIRA_OPS_RATE_SECRET`: chaves geradas separadamente, armazenadas como variáveis sensíveis e restritas à branch. Não podem ser perdidas ou trocadas sem plano de rotação e recuperação.
+
+### Como ativar a primeira conta
+
+1. Entrar na Vercel como proprietário da equipe e localizar a variável `OLIVEIRA_OPS_SETUP_TOKEN` em **Settings → Environment Variables**. Copiar seu valor **somente para o próprio dispositivo**; nunca enviá-lo no chat ou por e-mail.
+2. Abrir a página de ativação **no URL exato do deployment Preview**, terminando em `/ativacao.html`. O navegador deverá exigir autenticação da Vercel.
+3. Preencher o código de ativação, nome, e-mail e senha única de no mínimo 14 caracteres.
+4. O backend só nesse momento aplica, **dentro de uma transação PostgreSQL protegida**, as migrações de contas, sessões, MFA, limite de login e atendimentos. Se já houver um funcionário cadastrado, a criação do primeiro admin será recusada.
+5. Copiar a chave TOTP mostrada uma única vez para um aplicativo autenticador e enviar o código temporário de seis dígitos pelo formulário. **Não fechar a página antes de confirmar.**
+6. A conta passa ao estado ativo. Depois de validar a conta, desabilitar `OLIVEIRA_OPS_SETUP_ENABLED=0` e habilitar `OLIVEIRA_OPS_ENABLED=1` somente no Preview da branch.
+7. Criar um novo Preview para aplicar as alterações de ambiente e validar login real, consulta, cadastro e atualização com **dados sintéticos** antes de qualquer uso com clientes.
+
+### Segurança do endpoint `/api/operacional-bootstrap`
+
+A função aceita GET apenas para informar disponibilidade. Qualquer criação ou confirmação exige POST JSON de mesma origem, código de ativação longo verificado com hash constante, a branch e o projeto exatos, chaves de segurança e o Preview da Vercel. A criação é serializada no banco e é impossível com contas existentes. Os códigos TOTP têm limite de tentativas persistente. O segredo TOTP é retornado apenas na resposta HTTPS à pessoa que apresentou o código de ativação. Não há senha de administrador padrão, credencial de demonstração, redirecionamento a serviços externos ou execução no ambiente de produção.
+
+**Importante:** sem confirmação de login real e do backup restaurável do Neon, a plataforma permanece em homologação. O endpoint não deve ser mantido habilitado após a ativação inicial.
