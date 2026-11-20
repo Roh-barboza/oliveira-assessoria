@@ -45,7 +45,7 @@
       ]
     },
     {
-      "source": "/(plataforma|solicitar|operacional).html",
+      "source": "/(plataforma|solicitar|operacional|ativacao).html",
       "headers": [
         {
           "key": "Cache-Control",
@@ -64,6 +64,10 @@
       "maxDuration": 30
     },
     "api/operacional.mjs": {
+      "includeFiles": "server/platform/**",
+      "maxDuration": 30
+    },
+    "api/operacional-bootstrap.mjs": {
       "includeFiles": "server/platform/**",
       "maxDuration": 30
     }
