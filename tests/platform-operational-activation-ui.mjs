@@ -30,7 +30,8 @@ try {
     await new Promise(resolve=>setTimeout(resolve,100));
   }
   browser=await chromium.launch({executablePath:browserExecutablePath(),args:["--no-sandbox"]});
-  const page=await browser.newPage({viewport:{width:390,height:850}});
+  const context=await browser.newContext({viewport:{width:390,height:850}});
+  const page=await context.newPage();
   const errors=[];
   page.on("pageerror",e=>errors.push(e.message));
 
