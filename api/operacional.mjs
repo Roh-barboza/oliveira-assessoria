@@ -5,10 +5,22 @@ const SITE_PROJECT_ID = "prj_M19hHqI7fq25KgKnXWIqUYRXmxhq";
 const REQUIRED_BRANCH = "feature/plataforma-operacional-preview";
 let instance;
 
+// Derive the exact Preview deployment origin from a Vercel-controlled system
+// variable, avoiding manual edits every time a new Preview URL is deployed.
+export function operationalOrigin(env) {
+  const origin = env.OLIVEIRA_OPS_ORIGIN ||
+    (env.VERCEL_URL ? `https://${env.VERCEL_URL}` : null);
+  if (typeof origin !== "string" ||
+      !/^https:\/\/[a-z0-9-]+(?:\.[a-z0-9-]+)*\.vercel\.app$/i.test(origin)) return null;
+  if (["https://oliveira-assessoria.vercel.app",
+       "https://oliveira-assessoria-barbozaa-s-projects.vercel.app"].includes(origin)) return null;
+  return origin;
+}
+
 // Single Vercel project with a strictly gated Preview-only operational API.
 export function operationalRuntimeAllowed(env) {
   const id = env.VERCEL_PROJECT_ID;
-  const exactOrigin = env.OLIVEIRA_OPS_ORIGIN;
+  const exactOrigin = operationalOrigin(env);
   return env.VERCEL === "1" &&
     env.VERCEL_ENV === "preview" &&
     env.VERCEL_GIT_COMMIT_REF === REQUIRED_BRANCH &&
@@ -16,9 +28,7 @@ export function operationalRuntimeAllowed(env) {
     env.OLIVEIRA_OPS_ALLOWED_PROJECT_ID === SITE_PROJECT_ID &&
     env.OLIVEIRA_OPS_PREVIEW_ACK === "shared-project-preview-only" &&
     env.OLIVEIRA_OPS_ENABLED === "1" &&
-    /^https:\/\/[a-z0-9-]+(?:\.[a-z0-9-]+)*\.vercel\.app$/i.test(exactOrigin || "") &&
-    !["https://oliveira-assessoria.vercel.app",
-      "https://oliveira-assessoria-barbozaa-s-projects.vercel.app"].includes(exactOrigin) &&
+    Boolean(exactOrigin) &&
     env.OLIVEIRA_OPS_STORE === "postgres" &&
     Boolean(operationalDatabaseUrl(env)) &&
     /^[a-f0-9]{64}$/.test(env.OLIVEIRA_OPS_DATA_KEY || "") &&
@@ -56,7 +66,7 @@ async function runtime() {
     database: pool,
     encryptionKey: env.OLIVEIRA_OPS_DATA_KEY,
     rateLimitSecret: env.OLIVEIRA_OPS_RATE_SECRET,
-    allowedOrigin: env.OLIVEIRA_OPS_ORIGIN,
+    allowedOrigin: operationalOrigin(env),
     networkIdentity: trustedVercelNetworkIdentity,
   });
 }
