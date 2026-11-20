@@ -1,4 +1,5 @@
 import { composeOperationalApp } from "../server/platform/operational-runtime.mjs";
+import { operationalDatabaseUrl } from "../server/platform/operational-db-env.mjs";
 
 const SITE_PROJECT_ID = "prj_M19hHqI7fq25KgKnXWIqUYRXmxhq";
 const REQUIRED_BRANCH = "feature/plataforma-operacional-preview";
@@ -19,8 +20,7 @@ export function operationalRuntimeAllowed(env) {
     !["https://oliveira-assessoria.vercel.app",
       "https://oliveira-assessoria-barbozaa-s-projects.vercel.app"].includes(exactOrigin) &&
     env.OLIVEIRA_OPS_STORE === "postgres" &&
-    typeof env.OLIVEIRA_OPS_DATABASE_URL === "string" &&
-    env.OLIVEIRA_OPS_DATABASE_URL.startsWith("postgres") &&
+    Boolean(operationalDatabaseUrl(env)) &&
     /^[a-f0-9]{64}$/.test(env.OLIVEIRA_OPS_DATA_KEY || "") &&
     typeof env.OLIVEIRA_OPS_RATE_SECRET === "string" &&
     Buffer.byteLength(env.OLIVEIRA_OPS_RATE_SECRET) >= 32;
@@ -39,7 +39,7 @@ async function runtime() {
     Response.json({ error: "Ambiente operacional não configurado." },
       { status: 503, headers: { "Cache-Control": "no-store", "X-Robots-Tag": "noindex" } });
   const { Pool } = await import("pg");
-  const pool = new Pool({ connectionString: env.OLIVEIRA_OPS_DATABASE_URL,
+  const pool = new Pool({ connectionString: operationalDatabaseUrl(env),
     max: 2, connectionTimeoutMillis: 5000, idleTimeoutMillis: 30000 });
   // The migration must already be applied. Never auto-migrate at request time.
   try {
