@@ -1,4 +1,5 @@
 import { Pool } from "pg";
+import { operationalDatabaseUrl } from "../server/platform/operational-db-env.mjs";
 import { OperationalAccounts } from "../server/platform/operational-accounts.mjs";
 import { OperationalMfa } from "../server/platform/operational-mfa.mjs";
 import { OperationalLoginLimiter } from "../server/platform/operational-login-limiter.mjs";
@@ -17,14 +18,14 @@ if (env.OLIVEIRA_OPS_SETUP_ACK !== "dedicated-postgres-reviewed") {
   console.error("Confirme que o banco PostgreSQL é exclusivo deste sistema.");
   process.exit(2);
 }
-if (!/^postgres(?:ql)?:\/\//.test(env.OLIVEIRA_OPS_DATABASE_URL || "") ||
+if (!operationalDatabaseUrl(env) ||
     !/^[a-f0-9]{64}$/.test(env.OLIVEIRA_OPS_DATA_KEY || "") ||
     (env.OLIVEIRA_OPS_RATE_SECRET || "").length < 32) {
   console.error("Configure conexão e segredos do sistema operacional fora do Git.");
   process.exit(2);
 }
 const pool = new Pool({
-  connectionString: env.OLIVEIRA_OPS_DATABASE_URL,
+  connectionString: operationalDatabaseUrl(env),
   max: 2, connectionTimeoutMillis: 8000,
 });
 try {
