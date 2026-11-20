@@ -5,20 +5,25 @@ import {
   PostgresStore,
 } from "../server/platform/store.mjs";
 
-// A preview deployment from the original site must never access this store.
-// The project ID is a second application-level gate, not a Blob IAM restriction.
-const PREVIEW_PROJECT_ID = "prj_IB4FPuQ8CWkSS0VjZvIQsq3kE2Ie";
+// Synthetic simulator is isolated by Preview environment and branch even
+// when hosted in the existing Vercel project. Never enable it in production.
+const SITE_PROJECT_ID = "prj_M19hHqI7fq25KgKnXWIqUYRXmxhq";
 const PREVIEW_BRANCH = "feature/plataforma-operacional-preview";
 let instance;
 async function runtime() {
   if (
     process.env.VERCEL_ENV !== "preview" ||
-    process.env.VERCEL_PROJECT_ID !== PREVIEW_PROJECT_ID ||
-    process.env.VERCEL_GIT_COMMIT_REF !== PREVIEW_BRANCH
+    process.env.VERCEL_PROJECT_ID !== SITE_PROJECT_ID ||
+    process.env.VERCEL_GIT_COMMIT_REF !== PREVIEW_BRANCH ||
+    process.env.OLIVEIRA_PLATFORM_PREVIEW_ACK !== "synthetic-shared-preview"
   )
     return createApp({ production: true });
   const mode = process.env.OLIVEIRA_PLATFORM_STORE;
   const key = process.env.OLIVEIRA_DATA_KEY;
+  // Simulator and operational database must not share credentials.
+  if (process.env.OLIVEIRA_PREVIEW_DATABASE_URL &&
+      process.env.OLIVEIRA_PREVIEW_DATABASE_URL === process.env.OLIVEIRA_OPS_DATABASE_URL)
+    throw Error("Bancos operacionais e sintéticos não podem compartilhar credenciais.");
   let store;
   if (mode === "blob") {
     const { get, put } = await import("@vercel/blob");
@@ -37,7 +42,7 @@ async function runtime() {
     );
   } else {
     // Never silently create ephemeral, per-instance state on a remote Preview.
-    throw Error("Persistência remota obrigatória no projeto isolado");
+    throw Error("Persistência remota obrigatória no Preview");
   }
   return createApp({
     repository: new StateRepository(store, key),
