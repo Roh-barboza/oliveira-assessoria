@@ -10,6 +10,7 @@ import { prepareStaffAccount } from "../server/platform/operational-identity.mjs
 import { totpForCounter } from "../server/platform/totp.mjs";
 import { composeOperationalApp } from "../server/platform/operational-runtime.mjs";
 import { operationalRuntimeAllowed } from "../api/operacional.mjs";
+import { operationalDatabaseUrl } from "../server/platform/operational-db-env.mjs";
 
 test("single-project operational API stays Preview-only with explicit secrets and branch", () => {
   const ready = {
@@ -22,7 +23,9 @@ test("single-project operational API stays Preview-only with explicit secrets an
     OLIVEIRA_OPS_ENABLED: "1",
     OLIVEIRA_OPS_ORIGIN: "https://oliveira-test-2026.vercel.app",
     OLIVEIRA_OPS_STORE: "postgres",
-    OLIVEIRA_OPS_DATABASE_URL: "postgresql://example.invalid/db",
+    OLIVEIRA_OPS_DATABASE_SOURCE: "neon-vercel",
+    DATABASE_URL: "postgresql://example.invalid/db",
+    NEON_PROJECT_ID: "neon-test-project",
     OLIVEIRA_OPS_DATA_KEY: "a".repeat(64),
     OLIVEIRA_OPS_RATE_SECRET: "secret-key-with-more-than-32-character-data",
   };
@@ -34,13 +37,33 @@ test("single-project operational API stays Preview-only with explicit secrets an
     { OLIVEIRA_OPS_ORIGIN: "https://oliveira-assessoria.vercel.app" },
     { VERCEL_GIT_COMMIT_REF: "main" },
     { OLIVEIRA_OPS_ENABLED: "0" },
-    { OLIVEIRA_OPS_DATABASE_URL: "" },
+    { DATABASE_URL: "" },
+    { NEON_PROJECT_ID: "" },
+    { OLIVEIRA_OPS_DATABASE_SOURCE: "" },
     { OLIVEIRA_OPS_ORIGIN: "http://ops.example.test" },
     { OLIVEIRA_OPS_ORIGIN: "https://example.test" },
     { OLIVEIRA_OPS_ALLOWED_PROJECT_ID: "prj_other" },
   ]) {
     assert.equal(operationalRuntimeAllowed({ ...ready, ...changed }), false);
   }
+});
+
+test("Neon integration URL is selected only with explicit source and project identity", () => {
+  const integrated = {
+    OLIVEIRA_OPS_DATABASE_SOURCE: "neon-vercel",
+    NEON_PROJECT_ID: "neon-project",
+    DATABASE_URL: "postgresql://example.invalid/neon",
+  };
+  assert.equal(operationalDatabaseUrl(integrated), integrated.DATABASE_URL);
+  assert.equal(operationalDatabaseUrl({ ...integrated, NEON_PROJECT_ID: "" }), null);
+  assert.equal(operationalDatabaseUrl({ ...integrated, OLIVEIRA_OPS_DATABASE_SOURCE: "" }), null);
+  assert.equal(operationalDatabaseUrl({ ...integrated, DATABASE_URL: "http://example.invalid" }), null);
+  const dedicated = {
+    OLIVEIRA_OPS_DATABASE_SOURCE: "dedicated-url",
+    OLIVEIRA_OPS_DATABASE_URL: "postgres://example.invalid/dedicated",
+    DATABASE_URL: integrated.DATABASE_URL,
+  };
+  assert.equal(operationalDatabaseUrl(dedicated), dedicated.OLIVEIRA_OPS_DATABASE_URL);
 });
 
 test("staff logs in with MFA and manages encrypted cases across a full HTTP journey", async () => {
