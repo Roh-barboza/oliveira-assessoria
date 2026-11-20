@@ -27,7 +27,7 @@ A API operacional exige **todas** estas condições:
 - `OLIVEIRA_OPS_ALLOWED_PROJECT_ID=prj_M19hHqI7fq25KgKnXWIqUYRXmxhq`.
 - `OLIVEIRA_OPS_PREVIEW_ACK=shared-project-preview-only`.
 - `OLIVEIRA_OPS_ENABLED=1`.
-- `OLIVEIRA_OPS_ORIGIN`: URL HTTPS **exata da implantação Preview**, com domínio `*.vercel.app` e sem barra final. Os domínios principais da produção são proibidos.
+- A origem HTTPS é derivada automaticamente de `VERCEL_URL` (URL do deployment Preview, sem necessidade de variável manual). Opcionalmente, `OLIVEIRA_OPS_ORIGIN` permite fixar uma origem `*.vercel.app` exata. Os domínios principais da produção são proibidos.
 - `OLIVEIRA_OPS_STORE=postgres`.
 - `OLIVEIRA_OPS_DATABASE_SOURCE=neon-vercel` (configurado no Preview da branch). O endereço do PostgreSQL é fornecido **automaticamente pelo Neon**, nas variáveis sensíveis `DATABASE_URL` e `NEON_PROJECT_ID`, sem copiar nem recriar credenciais. Para um banco externo, a opção alternativa é `dedicated-url` acompanhada de `OLIVEIRA_OPS_DATABASE_URL`.
 - O PostgreSQL é **dedicado** à Oliveira, não é o banco do n8n ou de outro sistema.
@@ -48,7 +48,7 @@ Além das verificações de Preview, branch e projeto, o simulador exige `OLIVEI
 
 A integração `neon-almond-paddle` foi encontrada no projeto Vercel `oliveira-assessoria`, com variáveis de conexão `DATABASE_URL` e `NEON_PROJECT_ID`. A API agora utiliza essas variáveis **somente quando** `OLIVEIRA_OPS_DATABASE_SOURCE=neon-vercel` e todas as demais travas do Preview são atendidas. Nenhum valor sensível é salvo no repositório.
 
-Foram criadas, **somente no Preview da branch operacional**, as variáveis `OLIVEIRA_OPS_DATABASE_SOURCE`, `OLIVEIRA_OPS_STORE`, `OLIVEIRA_OPS_ALLOWED_PROJECT_ID`, `OLIVEIRA_OPS_PREVIEW_ACK` e `OLIVEIRA_OPS_ENABLED=0`. O serviço continuará bloqueado até homologação da migração, primeiro funcionário, MFA e chaves de criptografia.
+Foram criadas, **somente no Preview da branch operacional**, as variáveis `OLIVEIRA_OPS_DATABASE_SOURCE`, `OLIVEIRA_OPS_STORE`, `OLIVEIRA_OPS_ALLOWED_PROJECT_ID`, `OLIVEIRA_OPS_PREVIEW_ACK` e `OLIVEIRA_OPS_ENABLED=0`. O serviço continuará bloqueado até homologação da migração, primeiro funcionário, MFA e chaves de criptografia. Para configurar essas chaves com segurança, não as imprima no chat nem as salve no repositório.
 
 **A integração Neon instalou variáveis de banco para Preview e Produção na Vercel.** Isso não ativa nenhuma operação real na produção (a função está travada por ambiente e branch), mas exige uma revisão posterior da exposição de credenciais e segregação dos acessos no provedor antes do go-live.
 
