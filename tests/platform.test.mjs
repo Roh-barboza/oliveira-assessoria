@@ -249,13 +249,14 @@ test("Production runtime refuses all API operations", async () => {
   );
 });
 test("Serverless Preview gate checks project and branch; remote storage never falls back to memory", async () => {
-  const authorizedProject = "prj_IB4FPuQ8CWkSS0VjZvIQsq3kE2Ie";
+  const authorizedProject = "prj_M19hHqI7fq25KgKnXWIqUYRXmxhq";
   const authorizedBranch = "feature/plataforma-operacional-preview";
   const envKeys = [
     "VERCEL_ENV",
     "VERCEL_PROJECT_ID",
     "VERCEL_GIT_COMMIT_REF",
     "OLIVEIRA_PLATFORM_STORE",
+    "OLIVEIRA_PLATFORM_PREVIEW_ACK",
     "OLIVEIRA_DATA_KEY",
     "BLOB_STORE_ID",
   ];
@@ -270,6 +271,7 @@ test("Serverless Preview gate checks project and branch; remote storage never fa
     );
   }
   try {
+    process.env.OLIVEIRA_PLATFORM_PREVIEW_ACK = "synthetic-shared-preview";
     const production = await statusFor({
       VERCEL_ENV: "production",
       VERCEL_PROJECT_ID: authorizedProject,
@@ -301,6 +303,16 @@ test("Serverless Preview gate checks project and branch; remote storage never fa
       OLIVEIRA_PLATFORM_STORE: "blob",
     });
     assert.equal(missingProjectId.status, 404);
+
+    const missingConsent = await statusFor({
+      VERCEL_ENV: "preview",
+      VERCEL_PROJECT_ID: authorizedProject,
+      VERCEL_GIT_COMMIT_REF: authorizedBranch,
+      OLIVEIRA_PLATFORM_STORE: "blob",
+      OLIVEIRA_PLATFORM_PREVIEW_ACK: "",
+    });
+    assert.equal(missingConsent.status, 404);
+    process.env.OLIVEIRA_PLATFORM_PREVIEW_ACK = "synthetic-shared-preview";
 
     delete process.env.OLIVEIRA_DATA_KEY;
     delete process.env.BLOB_STORE_ID;
