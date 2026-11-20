@@ -1,0 +1,16 @@
+.activation-shell{max-width:800px}
+.activation-shell h1{margin-bottom:13px}
+.activation-shell>.intro__text{line-height:1.65;margin-bottom:26px}
+.activation-shell .safety{margin-top:23px}
+.activation-shell .feedback{margin-bottom:18px}
+.activation-card{max-width:650px}
+.activation-card h2{font-size:1.85rem}
+.activation-card .muted{line-height:1.55}
+.activation-card .form{margin-top:22px}
+.activation-card .form button{margin-top:15px}
+.activation-secret{border:1px solid #cad6c9;background:#f0f4ee;padding:18px;border-radius:10px;display:grid;gap:11px}
+.activation-secret span{font-size:.78rem;font-weight:800;letter-spacing:.08em;color:var(--forest);text-transform:uppercase}
+.activation-secret code{font:700 1rem ui-monospace,Consolas,monospace;line-height:1.8;overflow-wrap:anywhere;user-select:all}
+.activation-secret button{justify-self:start;margin-top:6px}
+.activation-link{display:inline-block;text-decoration:none;margin-top:14px}
+@media(max-width:560px){.activation-card h2{font-size:1.55rem}.activation-card{padding:21px}}
