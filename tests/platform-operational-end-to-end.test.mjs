@@ -20,7 +20,7 @@ test("single-project operational API stays Preview-only with explicit secrets an
     OLIVEIRA_OPS_ALLOWED_PROJECT_ID: "prj_M19hHqI7fq25KgKnXWIqUYRXmxhq",
     OLIVEIRA_OPS_PREVIEW_ACK: "shared-project-preview-only",
     OLIVEIRA_OPS_ENABLED: "1",
-    OLIVEIRA_OPS_ORIGIN: "https://ops.example.test",
+    OLIVEIRA_OPS_ORIGIN: "https://oliveira-test-2026.vercel.app",
     OLIVEIRA_OPS_STORE: "postgres",
     OLIVEIRA_OPS_DATABASE_URL: "postgresql://example.invalid/db",
     OLIVEIRA_OPS_DATA_KEY: "a".repeat(64),
