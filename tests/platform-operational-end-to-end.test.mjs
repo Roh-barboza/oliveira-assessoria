@@ -9,7 +9,7 @@ import { OperationalCases } from "../server/platform/operational-cases.mjs";
 import { prepareStaffAccount } from "../server/platform/operational-identity.mjs";
 import { totpForCounter } from "../server/platform/totp.mjs";
 import { composeOperationalApp } from "../server/platform/operational-runtime.mjs";
-import { operationalRuntimeAllowed } from "../api/operacional.mjs";
+import { operationalRuntimeAllowed, operationalOrigin } from "../api/operacional.mjs";
 import { operationalDatabaseUrl } from "../server/platform/operational-db-env.mjs";
 
 test("single-project operational API stays Preview-only with explicit secrets and branch", () => {
@@ -30,6 +30,13 @@ test("single-project operational API stays Preview-only with explicit secrets an
     OLIVEIRA_OPS_RATE_SECRET: "secret-key-with-more-than-32-character-data",
   };
   assert.equal(operationalRuntimeAllowed(ready), true);
+  const autoOrigin = { ...ready, OLIVEIRA_OPS_ORIGIN: undefined,
+    VERCEL_URL: "oliveira-test-2026.vercel.app" };
+  assert.equal(operationalRuntimeAllowed(autoOrigin), true);
+  assert.equal(operationalOrigin(autoOrigin), "https://oliveira-test-2026.vercel.app");
+  assert.equal(operationalRuntimeAllowed({ ...autoOrigin, VERCEL_URL: "" }), false);
+  assert.equal(operationalRuntimeAllowed({ ...autoOrigin,
+    VERCEL_URL: "oliveira-assessoria.vercel.app" }), false);
   for (const changed of [
     { VERCEL_ENV: "production" },
     { VERCEL_PROJECT_ID: "prj_unrelated_other_project" },
