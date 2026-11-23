@@ -72,6 +72,12 @@ h3{font-size:1.1rem}
 .case-item button{white-space:nowrap}
 .case-status{display:inline-block;background:#edf2ec;color:#28544a;border-radius:999px;font-size:.68rem;font-weight:800;padding:5px 9px;margin-bottom:7px}
 .side-panel{display:grid;gap:20px}
+#selected-panel{min-width:0}
+#selected-panel .form{margin:0}
+#selected-panel .form button{display:block;width:100%;min-height:48px}
+#selected-panel .contract-entry-link{display:flex;align-items:center;justify-content:center;gap:10px;min-height:50px;width:100%;margin-top:20px;padding:12px 18px;line-height:1.35;text-align:center;text-decoration:none;overflow-wrap:break-word;position:relative;clear:both}
+#selected-panel .contract-entry-link span{font-size:1.12rem;flex:none}
+
 #selected-case{overflow-wrap:anywhere;font-size:.84rem}
 .footer{border-top:1px solid var(--line);padding:20px 24px;text-align:center;color:var(--muted);font-size:.8rem}
 .footer a{margin-left:8px}
