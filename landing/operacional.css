@@ -73,6 +73,10 @@ h3{font-size:1.1rem}
 .case-status{display:inline-block;background:#edf2ec;color:#28544a;border-radius:999px;font-size:.68rem;font-weight:800;padding:5px 9px;margin-bottom:7px}
 .side-panel{display:grid;gap:20px}
 #selected-panel{min-width:0}
+#selected-panel .case-action-stack{display:grid;grid-template-columns:minmax(0,1fr);row-gap:20px;align-items:stretch}
+#selected-panel .case-action-stack>.form,#selected-panel .case-action-stack>.contract-entry-link{min-width:0;margin:0}
+#selected-panel .case-action-stack>.contract-entry-link{grid-column:1;grid-row:auto}
+
 #selected-panel .form{margin:0}
 #selected-panel .form button{display:block;width:100%;min-height:48px}
 #selected-panel .contract-entry-link{display:flex;align-items:center;justify-content:center;gap:10px;min-height:50px;width:100%;margin-top:20px;padding:12px 18px;line-height:1.35;text-align:center;text-decoration:none;overflow-wrap:break-word;position:relative;clear:both}
