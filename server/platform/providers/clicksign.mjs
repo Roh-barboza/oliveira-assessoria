@@ -1,4 +1,5 @@
-import { error, testClient } from "../catalog.mjs";
+const error = (status, message) => Object.assign(new Error(message), { status });
+const SANDBOX_SIGNER_NAME = "Cliente Demonstração";
 import { uuid } from "../security.mjs";
 
 const origin = "https://sandbox.clicksign.com";
@@ -85,7 +86,7 @@ export function clicksign(env, fetcher = fetch) {
       });
       await checkpoint("criar_signatario", { document });
       const signer = await create(`${base}/signers`, "signers", {
-        name: testClient.name,
+        name: SANDBOX_SIGNER_NAME,
         email: env.CLICKSIGN_TEST_EMAIL,
         has_documentation: false,
         communicate_events: {
