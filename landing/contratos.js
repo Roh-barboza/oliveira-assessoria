@@ -124,13 +124,13 @@
     $("sandbox-status").textContent=!config.installed ?
       "Estrutura de contratos de demonstração ainda não preparada." :
       config.sandboxConnected ?
-      "Configuração Sandbox encontrada. Verifique a conexão antes de tentar o convite para "+config.testRecipient+"." :
+      "Credencial cadastrada na Vercel. A autenticação ainda precisa ser confirmada na Clicksign." :
       "Minutas e revisões liberadas. A assinatura por e-mail aguarda conexão com a conta Sandbox.";
     updateControls();
   }
   const connectionMessages = Object.freeze({
     authenticated:"Token aceito pela Clicksign. Isso NÃO confirma liberação de notificações por e-mail.",
-    http_401:"Token não aceito pela Clicksign Sandbox. Confira se é um token da conta Sandbox.",
+    http_401:"Falha de autenticação (401). A Clicksign recusou a credencial atual. Nenhum convite foi enviado por esta verificação.",
     http_403:"Clicksign recusou a consulta. Verifique as permissões e o e-mail associado ao token.",
     http_404:"API de consulta não encontrada. Verifique a versão da integração com a Clicksign.",
     http_422:"Clicksign recusou os parâmetros da consulta. A autenticação ainda não foi confirmada.",
@@ -143,8 +143,16 @@
   async function checkConnection() {
     const {check}=await request("contract-connection");
     connectionOk=Boolean(check?.reachable);
-    $("connection-result").textContent=connectionMessages[check?.code] ||
-      "Conexão Clicksign não confirmada. Código: "+String(check?.code||"desconhecido");
+    const code=String(check?.code||"desconhecido");
+    const indicator=$("connection-indicator");
+    const result=$("connection-result");
+    indicator.dataset.state=connectionOk?"success":"error";
+    indicator.textContent=connectionOk?"Conexão validada":"Conexão não validada";
+    result.textContent=connectionMessages[code] ||
+      "Conexão Clicksign não confirmada. Código: "+code;
+    result.dataset.state=connectionOk?"success":"error";
+    result.hidden=false;
+    $("connection-help").hidden=code!=="http_401";
     updateControls();
   }
   async function perform(fn,success) {
