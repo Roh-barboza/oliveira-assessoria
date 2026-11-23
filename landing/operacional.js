@@ -144,6 +144,9 @@
       const data = await request("case-get", { params: { id } });
       if (!data.case || data.case.id !== id) throw new Error("Solicitação não encontrada.");
       selected = data.case;
+      const contractLink = $("contracts-case-link");
+      contractLink.hidden = activeUser?.role !== "admin";
+      contractLink.href = "/contratos.html?caseId=" + encodeURIComponent(selected.id);
       $("selected-case").textContent = [selected.title, selected.service, "Versão " + selected.version].join(" · ");
       $("next-status").value = selected.status;
       setVisible("selected-panel", true);
