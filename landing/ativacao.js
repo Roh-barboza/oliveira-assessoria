@@ -9,7 +9,7 @@
   let busy = false;
 
   function show(name) {
-    for (const key of ["unavailable", "start-panel", "verify-panel", "done-panel"])
+    for (const key of ["unavailable", "start-panel", "recover-panel", "verify-panel", "done-panel"])
       $(key).hidden = key !== name;
   }
   function feedback(message, isError = false) {
@@ -46,9 +46,16 @@
     $("environment").textContent = "Verificando ambiente...";
     try {
       const status = await call(null);
-      if (status.available !== true) throw new Error("Ativação indisponível.");
-      $("environment").textContent = "Preview protegido";
-      show("start-panel");
+      if (status.completed === true) {
+        $("environment").textContent = "Administrador já ativado";
+        show("done-panel");
+      } else if (status.pending === true) {
+        $("environment").textContent = "MFA pendente";
+        show("recover-panel");
+      } else if (status.available === true) {
+        $("environment").textContent = "Preview protegido";
+        show("start-panel");
+      } else throw new Error("Ativação indisponível.");
     } catch {
       $("environment").textContent = "Ativação bloqueada";
       show("unavailable");
@@ -81,6 +88,37 @@
     } finally {
       data.password = "";
       data.setupCode = "";
+      setBusy(false);
+    }
+  });
+  $("recover-form").addEventListener("submit", async (event) => {
+    event.preventDefault();
+    if (busy || !$("recover-form").reportValidity()) return;
+    const data = {
+      setupCode: $("recover-setup-code").value,
+      email: $("recover-email").value.trim(),
+      password: $("recover-password").value,
+    };
+    setBusy(true);
+    feedback("");
+    try {
+      const recovered = await call("recover", data);
+      if (typeof recovered.email !== "string" ||
+          !/^[A-Z2-7]{20,}$/.test(recovered.totpSecret || ""))
+        throw new Error("Resposta inesperada do servidor.");
+      $("setup-code").value = data.setupCode;
+      $("recover-setup-code").value = "";
+      $("recover-password").value = "";
+      activeEmail = recovered.email;
+      $("totp-secret").textContent = recovered.totpSecret;
+      $("environment").textContent = "Confirme o novo MFA";
+      show("verify-panel");
+      $("otp-code").focus();
+    } catch (error) {
+      feedback(error.message || "Não foi possível retomar a ativação.", true);
+    } finally {
+      data.setupCode = "";
+      data.password = "";
       setBusy(false);
     }
   });
