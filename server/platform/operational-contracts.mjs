@@ -203,7 +203,7 @@ export class OperationalContracts {
     } catch (remoteError) {
       // Remote partial success may exist. NEVER automatically resend.
       // Retain only the public HTTP status code, never remote response bodies or secrets.
-      const statusMatch = /^Clicksign HTTP (\\d{3})$/.exec(remoteError?.message || "");
+      const statusMatch = /^Clicksign HTTP (\d{3})$/.exec(remoteError?.message || "");
       const code = statusMatch ? statusMatch[1] : "unknown";
       await this.database.query(
         "UPDATE oliveira_operational_contracts SET status='manual_review', " +
