@@ -45,6 +45,7 @@ try {
     else if(op==="contract-ready")result={contracts:{
       installed,sandboxConnected,testRecipient:"rodrigo.barboza1994@gmail.com",realContracts:false,
     }};
+    else if(op==="contract-connection")result={check:{reachable:sandboxConnected,code:sandboxConnected?"authenticated":"not_configured"}};
     else if(op==="contract-install"){
       assert.equal(body.acknowledge,"SANDBOX_SOMENTE");
       installed=true;result={contracts:{installed,sandboxConnected}};
@@ -95,6 +96,9 @@ try {
   sandboxConnected=true;
   await page.reload();
   await page.locator("#contract-selected").waitFor({state:"visible"});
+  assert.equal(await page.locator("#send").isDisabled(),true);
+  await page.locator("#check-connection").click();
+  await page.getByText(/Token aceito pela Clicksign/).waitFor();
   await page.locator("#send").click();
   await page.getByText("Convite enviado no Sandbox; aguardando assinatura",{exact:true}).waitFor();
   await page.locator("#refresh").click();
