@@ -162,6 +162,9 @@ test("Contract HTTP requires admin session, origin and explicit sandbox acknowle
   }));
   try{
     assert.equal((await req("contract-ready")).status,200);
+    assert.equal((await req("contract-connection")).status,200);
+    assert.deepEqual((await (await req("contract-connection")).json()).check,
+      {reachable:false,code:"not_supported"});
     assert.equal((await req("contract-install",{acknowledge:"WRONG"})).status,422);
     assert.equal((await req("contract-install",{acknowledge:"SANDBOX_SOMENTE"},
       {origin:"https://evil.example.test"})).status,403);
@@ -175,6 +178,37 @@ test("Contract HTTP requires admin session, origin and explicit sandbox acknowle
     assert.equal(list.status,422);
     identity.role="operator";
     assert.equal((await req("contract-ready")).status,403);
+    assert.equal((await req("contract-connection")).status,403);
     assert.equal((await req("contract-approve",{id:doc.id,version:1})).status,403);
   }finally{await a.db.close();}
+});
+
+test("Failed Clicksign notification records sanitized HTTP code and stage for manual review", async () => {
+  const a=await fixture({
+    available:true,
+    submit:async(_row,_pdf,checkpoint)=>{
+      await checkpoint("enviar_documento",{envelope:"00000000-0000-4000-8000-000000000010"});
+      await checkpoint("notificar_signatario",{signer:"00000000-0000-4000-8000-000000000030"});
+      throw Error("Clicksign HTTP 503");
+    },
+    probe:async()=>({reachable:true,code:"authenticated"}),
+  });
+  try {
+    await a.contracts.setup(a.users.admin.id);
+    const created=await a.contracts.create(a.users.admin.id,a.c.id);
+    const approved=await a.contracts.approve(a.users.admin.id,created.id,created.version);
+    await assert.rejects(
+      a.contracts.send(a.users.admin.id,approved.id,approved.version,"ENVIAR_TESTE_SANDBOX"),
+      {status:503});
+    const row=(await a.contracts.list(a.users.admin.id,a.c.id))[0];
+    assert.equal(row.status,"manual_review");
+    assert.equal(row.stage,"notificar_signatario:http_503");
+    assert.equal(row.envelopeId,"00000000-0000-4000-8000-000000000010");
+    assert.deepEqual(await a.contracts.connection(a.users.admin.id),
+      {reachable:true,code:"authenticated"});
+    await assert.rejects(a.contracts.connection(a.users.operator.id),{status:403});
+    await assert.rejects(
+      a.contracts.send(a.users.admin.id,approved.id,approved.version,"ENVIAR_TESTE_SANDBOX"),
+      {status:409});
+  } finally { await a.db.close(); }
 });
