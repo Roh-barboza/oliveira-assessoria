@@ -159,3 +159,73 @@ test("Clicksign blocks untrusted signed-file hosts and invalid PDF bytes", async
   await assert.rejects(a.current(row),/Arquivo assinado inválido/);
   assert.equal(downloadCalls,1);
 });
+
+
+test("Clicksign sends email invitation only after activation and explicit sandbox opt-in", async () => {
+  const env = { ...authEnv, CLICKSIGN_SANDBOX_EMAIL_EXPLICIT_TEST: "1" };
+  const steps = [];
+  const calls = [];
+  let running = false;
+  const fetcher = async (url, options = {}) => {
+    const path = new URL(String(url)).pathname;
+    const method = options.method || "GET";
+    calls.push({ path, method, body: options.body ? JSON.parse(options.body) : null });
+    if (path === "/api/v3/envelopes" && method === "POST")
+      return Response.json({ data: { id: envelopeId } });
+    if (path === `/api/v3/envelopes/${envelopeId}/documents` && method === "POST")
+      return Response.json({ data: { id: documentId } });
+    if (path === `/api/v3/envelopes/${envelopeId}/signers` && method === "POST") {
+      const signer = JSON.parse(options.body).data.attributes;
+      assert.equal(signer.email, "assinatura@example.invalid");
+      assert.equal(signer.communicate_events.signature_request, "email");
+      return Response.json({ data: { id: signerId } });
+    }
+    if (path === `/api/v3/envelopes/${envelopeId}/requirements` && method === "POST") {
+      const n = calls.filter(x => x.path.endsWith("/requirements")).length;
+      const attributes = JSON.parse(options.body).data.attributes;
+      if (n === 2) assert.equal(attributes.auth, "email");
+      return Response.json({ data: { id: n === 1 ? reqId1 : reqId2 } });
+    }
+    if (path === `/api/v3/envelopes/${envelopeId}` && method === "PATCH") {
+      running = true;
+      return Response.json({ data: { id: envelopeId, attributes: { status: "running" } } });
+    }
+    if (path === `/api/v3/envelopes/${envelopeId}/signers/${signerId}/notifications` && method === "POST") {
+      assert.equal(running, true);
+      assert.deepEqual(JSON.parse(options.body), { data: { type: "notifications", attributes: {} } });
+      return new Response(null, { status: 204 });
+    }
+    if (path === `/api/v3/envelopes/${envelopeId}` && method === "GET")
+      return Response.json({ data: { id: envelopeId, attributes: { status: "running" } } });
+    assert.fail(`Unmocked API call: ${method} ${path}`);
+  };
+  const adapter = clicksign(env, fetcher);
+  await adapter.submit({
+    id: randomUUID(), signature_mode: "email"
+  }, Buffer.from("%PDF-1.4 synthetic"), async (step, details) => steps.push({ step, details }));
+  assert.deepEqual(steps.map(x => x.step), [
+    "criar_envelope", "enviar_documento", "criar_signatario",
+    "qualificar_signatario", "configurar_autenticacao",
+    "ativar_envelope", "notificar_signatario", "enviado"
+  ]);
+  const inviteIndex = calls.findIndex(x => x.path.endsWith("/notifications"));
+  const activateIndex = calls.findIndex(x => x.method === "PATCH");
+  assert.ok(inviteIndex > activateIndex);
+  assert.equal(calls.filter(x => x.path.endsWith("/notifications")).length, 1);
+  assert.deepEqual(await adapter.current({
+    envelope_id: envelopeId, document_id: documentId,
+    signer_id: signerId, signature_mode: "email"
+  }), { status: "aguardando_assinatura" });
+});
+
+test("Clicksign prevents Sandbox e-mail if notification opt-in is missing", async () => {
+  let sent = false;
+  const env = { ...authEnv, CLICKSIGN_SANDBOX_EMAIL_EXPLICIT_TEST: "0" };
+  const api = clicksign(env, async () => { sent = true; throw Error("Must never reach API"); });
+  await assert.rejects(
+    api.submit({ id: randomUUID(), signature_mode: "email" },
+      Buffer.from("%PDF-synthetic"), async () => {}),
+    /notificações não autorizadas/
+  );
+  assert.equal(sent, false);
+});
