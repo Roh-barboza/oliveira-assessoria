@@ -130,17 +130,17 @@
   }
   async function download(signed) {
     if (!selected)return;
-    const {document}=await request("contract-preview",{params:{
+    const {document:pdfDocument}=await request("contract-preview",{params:{
       id:selected.id,signed:signed?"1":"0",
     }});
-    if (!document?.pdfBase64 || document.synthetic!==true)
+    if (!pdfDocument?.pdfBase64 || pdfDocument.synthetic!==true)
       throw Error("Documento de teste indisponível.");
-    const binary=atob(document.pdfBase64);
+    const binary=atob(pdfDocument.pdfBase64);
     if (binary.length>3*1024*1024)throw Error("PDF acima do tamanho autorizado.");
     const bytes=Uint8Array.from(binary,c=>c.charCodeAt(0));
     const url=URL.createObjectURL(new Blob([bytes],{type:"application/pdf"}));
     const a=document.createElement("a");
-    a.href=url;a.download=document.filename||"oliveira-minuta-teste.pdf";
+    a.href=url;a.download=pdfDocument.filename||"oliveira-minuta-teste.pdf";
     document.body.append(a);a.click();a.remove();
     setTimeout(()=>URL.revokeObjectURL(url),1200);
   }
