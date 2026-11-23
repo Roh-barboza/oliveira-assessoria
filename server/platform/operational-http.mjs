@@ -49,7 +49,7 @@ async function readBody(req) {
   }
 }
 
-export function createOperationalHttp({ authentication, accounts, cases = null, allowedOrigin, networkIdentity }) {
+export function createOperationalHttp({ authentication, accounts, cases = null, contracts = null, allowedOrigin, networkIdentity }) {
   if (!authentication?.login || !accounts?.getSession || !accounts?.revoke ||
       typeof networkIdentity !== "function" ||
       typeof allowedOrigin !== "string" ||
@@ -102,6 +102,56 @@ export function createOperationalHttp({ authentication, accounts, cases = null, 
         const token = cookieFrom(request);
         if (validCookie(token)) await accounts.revoke(token);
         return response({ authenticated: false }, 200, { "Set-Cookie": clearCookie() });
+      }
+      if (["contract-ready", "contract-install", "contract-list",
+           "contract-create", "contract-preview", "contract-approve",
+           "contract-send", "contract-refresh"].includes(op)) {
+        if (!contracts?.ready || !contracts?.setup || !contracts?.create ||
+            !contracts?.approve || !contracts?.send || !contracts?.refresh)
+          return response({ error: "Contratos indisponíveis." }, 503);
+        const token = cookieFrom(request);
+        const account = validCookie(token) ? await accounts.getSession(token) : null;
+        if (!account) return response({ error: "Autenticação necessária." }, 401);
+        if (account.role !== "admin")
+          return response({ error: "Acesso negado." }, 403);
+        if (op === "contract-ready" && request.method === "GET")
+          return response({ contracts: await contracts.ready(account.id) });
+        if (op === "contract-install" && request.method === "POST") {
+          const body = await readBody(request);
+          if (body?.acknowledge !== "SANDBOX_SOMENTE" ||
+              Object.keys(body).length !== 1)
+            return response({ error: "Confirmação de ambiente necessária." }, 422);
+          return response({ contracts: await contracts.setup(account.id) });
+        }
+        if (op === "contract-list" && request.method === "GET")
+          return response({ contracts: await contracts.list(
+            account.id, url.searchParams.get("caseId")) });
+        if (op === "contract-preview" && request.method === "GET")
+          return response({ document: await contracts.pdf(
+            account.id,url.searchParams.get("id"),url.searchParams.get("signed")==="1") });
+        if (request.method !== "POST")
+          return response({ error: "Método não permitido." }, 405);
+        const body = await readBody(request);
+        if (!body || typeof body !== "object")
+          return response({ error: "Campos inválidos." }, 422);
+        const expectedFields = {
+          "contract-create":["caseId"],
+          "contract-approve":["id","version"],
+          "contract-send":["id","version","confirm"],
+          "contract-refresh":["id"],
+        }[op];
+        if (!expectedFields || Object.keys(body).some(k=>!expectedFields.includes(k)) ||
+            expectedFields.some(k=>!(k in body)))
+          return response({ error: "Campos inválidos." }, 422);
+        if (op === "contract-create")
+          return response({ contract: await contracts.create(account.id,body.caseId) }, 201);
+        if (op === "contract-approve")
+          return response({ contract: await contracts.approve(
+            account.id,body.id,body.version) });
+        if (op === "contract-send")
+          return response({ contract: await contracts.send(
+            account.id,body.id,body.version,body.confirm) });
+        return response({ contract: await contracts.refresh(account.id,body.id) });
       }
       if (["case-list", "case-get", "case-create", "case-status"].includes(op)) {
         // Case endpoints are opt-in and unavailable until attached to the dedicated
