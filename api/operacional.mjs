@@ -27,7 +27,11 @@ export function operationalRuntimeAllowed(env) {
     id === SITE_PROJECT_ID &&
     env.OLIVEIRA_OPS_ALLOWED_PROJECT_ID === SITE_PROJECT_ID &&
     env.OLIVEIRA_OPS_PREVIEW_ACK === "shared-project-preview-only" &&
-    env.OLIVEIRA_OPS_ENABLED === "1" &&
+    (env.OLIVEIRA_OPS_ENABLED === "1" ||
+      (env.OLIVEIRA_OPS_ENABLED === "auto" &&
+       env.OLIVEIRA_OPS_SETUP_ENABLED === "1" &&
+       typeof env.OLIVEIRA_OPS_SETUP_TOKEN === "string" &&
+       env.OLIVEIRA_OPS_SETUP_TOKEN.length >= 48)) &&
     Boolean(exactOrigin) &&
     env.OLIVEIRA_OPS_STORE === "postgres" &&
     Boolean(operationalDatabaseUrl(env)) &&
@@ -58,6 +62,12 @@ async function runtime() {
     await pool.query("SELECT 1 FROM oliveira_staff_sessions LIMIT 0");
     await pool.query("SELECT 1 FROM oliveira_login_limits LIMIT 0");
     await pool.query("SELECT 1 FROM oliveira_operational_cases LIMIT 0");
+    // Never expose a login form as ready until a real administrator
+    // completed TOTP enrollment. Bootstrap alone must not unlock operations.
+    const { rows: activeAdmin } = await pool.query(
+      "SELECT id FROM oliveira_staff_accounts WHERE role='admin' AND status='active' LIMIT 1"
+    );
+    if (!activeAdmin.length) throw new Error("Administrador ainda não ativado.");
   } catch (error) {
     await pool.end();
     throw error;
