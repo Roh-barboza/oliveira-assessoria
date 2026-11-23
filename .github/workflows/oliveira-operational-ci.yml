@@ -8,6 +8,10 @@ on:
     paths:
       - 'server/platform/**'
       - 'api/operacional.mjs'
+      - 'api/operacional-*.mjs'
+      - 'landing/ativacao.*'
+      - 'landing/premium-consular.js'
+      - 'tests/lead-webhook-contract.mjs'
       - 'landing/operacional.*'
       - 'tests/platform-operational-*'
       - 'tests/platform.test.mjs'
