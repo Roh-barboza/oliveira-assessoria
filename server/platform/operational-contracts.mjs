@@ -91,6 +91,9 @@ export class OperationalContracts {
     if (!rows[0]) throw fail(404, "Minuta não encontrada.");
     return rows[0];
   }
+  async read(actorId, contractId) {
+    return summary(await this.record(actorId, contractId));
+  }
   async log(actorId, id, name) {
     await this.database.query(
       "INSERT INTO oliveira_operational_contract_events(id,contract_id,actor_id,event) VALUES($1,$2,$3,$4)",
