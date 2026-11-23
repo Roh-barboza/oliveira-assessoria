@@ -73,8 +73,13 @@ export default {
       const origin = operationalOrigin(env);
       if (new URL(request.url).origin !== origin)
         return json({ error: "Origem não autorizada." }, 403);
-      if (request.method === "GET")
-        return json({ available: true });
+      if (request.method === "GET") {
+        app ??= bootstrapService(env).catch((error) => {
+          app = null;
+          throw error;
+        });
+        return json(await (await app).readiness());
+      }
       if (request.method !== "POST")
         return json({ error: "Método não permitido." }, 405);
       if (request.headers.get("origin") !== origin ||
