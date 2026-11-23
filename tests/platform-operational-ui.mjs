@@ -122,6 +122,27 @@ try {
   assert.equal(cases[0].status, "conferencia");
   await page.screenshot({ path: evidenceDir + "/painel-sintetico.png", fullPage: true });
 
+  // The contract link must be a separate, nonoverlapping action below Save.
+  // Exercise the problematic mobile widths with an admin account.
+  user.role = "admin";
+  await page.reload();
+  await page.locator("#dashboard").waitFor({ state: "visible" });
+  await page.locator("#cases-list button").click();
+  await page.locator("#contracts-case-link").waitFor({ state: "visible" });
+  assert.match(await page.locator("#contracts-case-link").getAttribute("href"),
+    /contratos\.html\?caseId=/);
+  for (const width of [390, 560, 665, 768, 1366]) {
+    await page.setViewportSize({ width, height: 820 });
+    const save=await page.locator("#status-form button").boundingBox();
+    const link=await page.locator("#contracts-case-link").boundingBox();
+    assert.ok(save && link && link.y >= save.y + save.height + 12,
+      "Contract action overlaps status button at " + width + "px");
+    assert.ok(link.width >= save.width * 0.94,
+      "Contract action is not full width at " + width + "px");
+    assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1),true,
+      "Horizontal scroll at " + width + "px");
+  }
+
   await checkA11y(page);
   await page.locator("#logout").click();
   await page.locator("#login-area").waitFor({ state: "visible" });
