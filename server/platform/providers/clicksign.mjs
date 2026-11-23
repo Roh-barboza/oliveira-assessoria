@@ -56,6 +56,24 @@ export function clicksign(env, fetcher = fetch) {
       ),
     ),
     embedded: env.CLICKSIGN_EMBEDDED_SANDBOX === "1",
+    async probe() {
+      // Read-only test: no envelope, signer, document or e-mail is created.
+      if (env.CLICKSIGN_SANDBOX_EXPLICIT_TEST !== "1" ||
+          !env.CLICKSIGN_ACCESS_TOKEN)
+        return { reachable: false, code: "not_configured" };
+      try {
+        const response = await fetcher(origin + "/api/v3/envelopes?page%5Bsize%5D=1", {
+          method: "GET", redirect: "error", signal: AbortSignal.timeout(7500),
+          headers: { Authorization: env.CLICKSIGN_ACCESS_TOKEN, Accept: jsonApi },
+        });
+        if (response.ok) return { reachable: true, code: "authenticated" };
+        return { reachable: false, code:
+          [401,403,404,422,429,500,503].includes(response.status)
+            ? "http_" + response.status : "http_other" };
+      } catch {
+        return { reachable: false, code: "network_error" };
+      }
+    },
     async submit(row, pdf, checkpoint) {
       if (
         env.CLICKSIGN_SANDBOX_EXPLICIT_TEST !== "1" ||
