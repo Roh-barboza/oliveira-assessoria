@@ -139,8 +139,9 @@ test("Clicksign blocks untrusted signed-file hosts and invalid PDF bytes", async
     signer_id:signerId,signature_mode:"embedded"};
   let downloadCalls=0;
   const fetcher=async(url)=>{
-    const pathname=new URL(url).pathname;
-    if(url.startsWith("https://example.com")){downloadCalls++;return new Response("%PDF-invalid");}
+    const address=String(url);
+    const pathname=new URL(address).pathname;
+    if(address.startsWith("https://example.com")){downloadCalls++;return new Response("%PDF-invalid");}
     if(pathname===`/api/v3/envelopes/${envelopeId}`)
       return Response.json({data:{id:envelopeId,attributes:{status:"closed"}}});
     if(pathname===`/api/v3/envelopes/${envelopeId}/documents`)
@@ -148,7 +149,7 @@ test("Clicksign blocks untrusted signed-file hosts and invalid PDF bytes", async
         links:{files:{signed:docHost}}}]});
     if(pathname.includes("/events"))
       return Response.json({data:[{attributes:{name:"sign"}}]});
-    if(url===docHost) {downloadCalls++;return new Response("not-a-pdf");}
+    if(address===docHost) {downloadCalls++;return new Response("not-a-pdf");}
     assert.fail("Unexpected request");
   };
   const a=clicksign(authEnv,fetcher);
