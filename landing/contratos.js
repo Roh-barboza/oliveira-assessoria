@@ -181,7 +181,17 @@
       if (validCaseId(params.get("caseId")||""))
         $("case-id").value=params.get("caseId");
       await updateConfig();
-      if (config.installed && validCaseId(caseId()))await reloadContracts();
+      const contractId=params.get("contractId")||"";
+      if (config.installed && validCaseId(contractId)) {
+        const {contract}=await request("contract-get",{params:{id:contractId}});
+        if (!contract || !validCaseId(contract.caseId))
+          throw Error("Minuta não encontrada.");
+        $("case-id").value=contract.caseId;
+        selected=contract;
+        await reloadContracts(contract.id);
+      } else if (config.installed && validCaseId(caseId())) {
+        await reloadContracts();
+      }
     } catch {
       toggle("blocked",true);toggle("workspace",false);
       $("environment").textContent="Serviço indisponível";
