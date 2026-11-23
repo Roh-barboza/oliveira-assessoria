@@ -39,6 +39,9 @@ test("first-admin bootstrap is blocked outside exact Preview or without setup ke
     OLIVEIRA_OPS_RATE_SECRET: "secret-with-more-than-32-characters-value",
   };
   assert.equal(firstAdminSetupAllowed(ok), true);
+  assert.equal(firstAdminSetupAllowed({ ...ok, OLIVEIRA_OPS_ENABLED: "auto" }), true);
+  assert.equal(firstAdminSetupAllowed({ ...ok, OLIVEIRA_OPS_ENABLED: "auto",
+    OLIVEIRA_OPS_SETUP_ENABLED: "0" }), false);
   for (const changed of [
     { VERCEL_ENV: "production" },
     { VERCEL_GIT_COMMIT_REF: "main" },
@@ -80,10 +83,17 @@ test("first admin can be enrolled exactly once, MFA confirmed and used to log in
       { status: 409 }
     );
     await assert.rejects(
+      bootstrap.recover({ email, password: "completely-wrong-password" }),
+      { status: 403 }
+    );
+    const recovered = await bootstrap.recover({ email, password });
+    assert.match(recovered.secret, /^[A-Z2-7]{20,}$/);
+    assert.notEqual(recovered.secret, started.secret);
+    await assert.rejects(
       bootstrap.confirm({ email, code: "000000" }),
       { status: 422 }
     );
-    const code = totpForCounter(started.secret, Math.floor(Date.now() / 30000));
+    const code = totpForCounter(recovered.secret, Math.floor(Date.now() / 30000));
     assert.deepEqual(await bootstrap.confirm({ email, code }), { activated: true });
     assert.deepEqual(await bootstrap.readiness(), { available: false, completed: true });
 
