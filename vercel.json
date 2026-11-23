@@ -45,7 +45,7 @@
       ]
     },
     {
-      "source": "/(plataforma|solicitar|operacional|ativacao).html",
+      "source": "/(plataforma|solicitar|operacional|ativacao|contratos).html",
       "headers": [
         {
           "key": "Cache-Control",
