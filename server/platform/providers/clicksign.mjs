@@ -6,6 +6,12 @@ const origin = "https://sandbox.clicksign.com";
 const jsonApi = "application/vnd.api+json";
 export const maxPdfBytes = 3 * 1024 * 1024;
 
+// API v3 Access Tokens are UUIDs. Reject wrong secret types before any network call.
+export const validClicksignAccessToken = (token) =>
+  typeof token === "string" &&
+  /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(token);
+
+
 export async function readBytes(stream, maximum) {
   const chunks = [];
   let size = 0;
@@ -18,13 +24,15 @@ export async function readBytes(stream, maximum) {
 }
 
 export function clicksign(env, fetcher = fetch) {
+  const token = typeof env.CLICKSIGN_ACCESS_TOKEN === "string"
+    ? env.CLICKSIGN_ACCESS_TOKEN.trim() : "";
   async function request(method, path, data) {
     const response = await fetcher(`${origin}/api/v3${path}`, {
       method,
       redirect: "error",
       signal: AbortSignal.timeout(7500),
       headers: {
-        Authorization: env.CLICKSIGN_ACCESS_TOKEN,
+        Authorization: token,
         Accept: jsonApi,
         "Content-Type": jsonApi,
       },
@@ -50,7 +58,7 @@ export function clicksign(env, fetcher = fetch) {
   return {
     available: Boolean(
       env.CLICKSIGN_SANDBOX_EXPLICIT_TEST === "1" &&
-      env.CLICKSIGN_ACCESS_TOKEN &&
+      validClicksignAccessToken(token) &&
       /^[a-z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-z0-9.-]+\.[a-z]{2,}$/i.test(
         env.CLICKSIGN_TEST_EMAIL ?? "",
       ),
@@ -58,13 +66,14 @@ export function clicksign(env, fetcher = fetch) {
     embedded: env.CLICKSIGN_EMBEDDED_SANDBOX === "1",
     async probe() {
       // Read-only test: no envelope, signer, document or e-mail is created.
-      if (env.CLICKSIGN_SANDBOX_EXPLICIT_TEST !== "1" ||
-          !env.CLICKSIGN_ACCESS_TOKEN)
+      if (env.CLICKSIGN_SANDBOX_EXPLICIT_TEST !== "1" || !token)
         return { reachable: false, code: "not_configured" };
+      if (!validClicksignAccessToken(token))
+        return { reachable: false, code: "invalid_token_format" };
       try {
         const response = await fetcher(origin + "/api/v3/envelopes?page%5Bsize%5D=1", {
           method: "GET", redirect: "error", signal: AbortSignal.timeout(7500),
-          headers: { Authorization: env.CLICKSIGN_ACCESS_TOKEN, Accept: jsonApi },
+          headers: { Authorization: token, Accept: jsonApi },
         });
         if (response.ok) return { reachable: true, code: "authenticated" };
         return { reachable: false, code:
@@ -85,6 +94,8 @@ export function clicksign(env, fetcher = fetch) {
           503,
           "Sandbox externo desativado; notificações não autorizadas.",
         );
+      if (!validClicksignAccessToken(token))
+        throw error(503, "Credencial Clicksign com formato inválido para a API v3.");
       const embedded = row.signature_mode === "embedded";
       await checkpoint("criar_envelope");
       const envelope = await create("/envelopes", "envelopes", {
