@@ -9,7 +9,7 @@ Estado: implementação de **homologação no Preview**, sem contratação real.
 3. **Gerar minuta fictícia** produz PDF com carimbo de Sandbox, sem dados pessoais, valores ou cláusulas jurídicas. O arquivo é criptografado por AES-GCM e identificado por SHA-256.
 4. O administrador baixa o PDF, confere e aprova. Os estados persistidos evitam aprovações repetidas.
 5. O envio só é autorizado no Preview, por administrador autenticado, com confirmação adicional, flags e credenciais da **Clicksign Sandbox**, e somente ao e-mail `rodrigo.barboza1994@gmail.com`. Sem credenciais, o botão fica bloqueado.
-6. A aplicação cria o envelope, anexa o PDF, adiciona signatário, requisitos, ativa o envelope e solicita a notificação por e-mail. O ID de cada etapa é registrado antes da seguinte.
+6. A aplicação cria o envelope, anexa o PDF, adiciona signatário, requisitos, ativa o envelope e, depois da ativação, solicita explicitamente a notificação por e-mail. O ID de cada etapa é registrado antes da seguinte.
 7. Após o convite, **Consultar assinatura** verifica o estado na API. Quando o provedor comprova conclusão e disponibiliza o PDF assinado, ele é salvo criptografado e pode ser baixado pelo administrador.
 8. Se ocorrer falha durante envio, o contrato passa a `manual_review`. Não existe reenvio automático que poderia duplicar envelopes.
 
@@ -29,7 +29,7 @@ No portal privado da Vercel, projeto `oliveira-assessoria`, variáveis de ambien
 |---|---|
 | `CLICKSIGN_TEST_EMAIL` | Destinatário já autorizado: `rodrigo.barboza1994@gmail.com` |
 | `CLICKSIGN_ACCESS_TOKEN` | Token real gerado dentro de https://sandbox.clicksign.com/settings/api (consulte o endereço em sua conta; nunca mande o token por chat ou GitHub) |
-| `CLICKSIGN_WEBHOOK_SECRET` | Segredo independente e aleatório de ao menos 32 bytes, guardado na Vercel; não configurar endpoint webhook externo sem assinatura validada |
+| `CLICKSIGN_WEBHOOK_SECRET` | Não necessário para o teste com consulta autenticada; reservado para futura integração de webhooks, apenas após validar a assinatura real do provedor |
 | `CLICKSIGN_SANDBOX_EXPLICIT_TEST` | `1` somente após configurar e validar Sandbox; manter em `0` até lá |
 | `CLICKSIGN_SANDBOX_EMAIL_EXPLICIT_TEST` | `1` somente ao autorizar o envio do convite fictício; manter em `0` até lá |
 
