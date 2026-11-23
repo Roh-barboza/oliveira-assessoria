@@ -13,7 +13,7 @@ const json = (body, status = 200) =>
 let app;
 
 export function firstAdminSetupAllowed(env) {
-  return env?.OLIVEIRA_OPS_ENABLED === "0" &&
+  return ["0", "auto"].includes(env?.OLIVEIRA_OPS_ENABLED) &&
     env.OLIVEIRA_OPS_SETUP_ENABLED === "1" &&
     typeof env.OLIVEIRA_OPS_SETUP_TOKEN === "string" &&
     env.OLIVEIRA_OPS_SETUP_TOKEN.length >= 48 &&
