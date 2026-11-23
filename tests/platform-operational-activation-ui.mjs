@@ -40,14 +40,19 @@ try {
   assert.equal(await page.locator("#start-panel").isVisible(),false);
 
   const calls=[];
+  let activationState="new";
   const otpSecret="JBSWY3DPEHPK3PXPJBSWY3DP";
   await page.route("**/api/operacional-bootstrap**",async(route)=>{
     const req=route.request();
     const op=new URL(req.url()).searchParams.get("op");
     const body=req.method()==="POST"?req.postDataJSON():null;
     calls.push({op,body});
-    const payload=op==="start"?{email:"owner@example.test",totpSecret:otpSecret}:
-      op==="confirm"?{activated:true}:{available:true};
+    const payload=op==="start"||op==="recover"
+      ? {email:"owner@example.test",totpSecret:otpSecret} :
+      op==="confirm" ? {activated:true} :
+      activationState==="pending" ? {available:false,pending:true} :
+      activationState==="completed" ? {available:false,completed:true} :
+      {available:true};
     await route.fulfill({status:op==="start"?201:200,
       contentType:"application/json",body:JSON.stringify(payload)});
   });
@@ -69,6 +74,26 @@ try {
   assert.equal(calls.filter(x=>x.op==="start").length,1);
   assert.equal(calls.filter(x=>x.op==="confirm").length,1);
   assert.equal(await page.evaluate(()=>localStorage.length+sessionStorage.length),0);
+
+  activationState="pending";
+  await page.reload();
+  await page.locator("#recover-panel").waitFor({state:"visible"});
+  await page.locator("#recover-setup-code").fill("K".repeat(64));
+  await page.locator("#recover-email").fill("owner@example.test");
+  await page.locator("#recover-password").fill("A-one-time-synthetic-password-123");
+  await page.locator("#recover-form button").click();
+  await page.locator("#verify-panel").waitFor({state:"visible"});
+  assert.equal(await page.locator("#recover-password").inputValue(),"");
+  assert.equal(await page.locator("#recover-setup-code").inputValue(),"");
+  assert.equal(calls.filter(x=>x.op==="recover").length,1);
+  await page.locator("#otp-code").fill("654321");
+  await page.locator("#verify-form button").click();
+  await page.locator("#done-panel").waitFor({state:"visible"});
+
+  activationState="completed";
+  await page.reload();
+  await page.locator("#done-panel").waitFor({state:"visible"});
+  assert.equal(await page.locator("#start-panel").isVisible(),false);
 
   const accessibility=await new AxeBuilder({page}).analyze();
   assert.deepEqual(accessibility.violations.map(x=>x.id),[]);
