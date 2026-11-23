@@ -40,15 +40,27 @@
       <a href="/operacional.html" class="button primary">Acessar painel</a>
     </section>
     <section id="workspace" hidden>
-      <div class="card contract-section">
-        <h2>Configuração do Sandbox</h2>
-        <p id="sandbox-status" class="muted">Consultando integração...</p>
-        <button id="check-connection" type="button" class="button secondary">Verificar conexão Clicksign (sem enviar)</button>
-        <p id="connection-result" class="muted" role="status" aria-live="polite"></p>
+      <div class="card contract-section integration-card" aria-labelledby="sandbox-heading">
+        <div class="section-overline">
+          <span class="eyebrow">ETAPA 01 · CONEXÃO</span>
+          <span id="connection-indicator" class="integration-pill" data-state="idle">Aguardando verificação</span>
+        </div>
+        <h2 id="sandbox-heading">Integração Clicksign</h2>
+        <div class="integration-row">
+          <p id="sandbox-status" class="muted">Consultando a configuração do Sandbox...</p>
+          <button id="check-connection" type="button" class="button secondary">Verificar conexão <span aria-hidden="true">↗</span></button>
+        </div>
+        <p id="connection-result" class="connection-result" data-state="idle" role="status" aria-live="polite" hidden></p>
+        <div id="connection-help" class="connection-help" hidden>
+          <strong>Como corrigir a autenticação</strong>
+          <p>Gere um novo Access Token na <a href="https://sandbox.clicksign.com" target="_blank" rel="noopener noreferrer">Clicksign Sandbox</a>, associe seu e-mail à API e substitua a variável <code>CLICKSIGN_ACCESS_TOKEN</code> na <a href="https://vercel.com/barbozaa-s-projects/oliveira-assessoria/settings/environment-variables" target="_blank" rel="noopener noreferrer">Vercel</a>, somente no Preview. Faça um novo deployment após salvar.</p>
+          <p class="help-small">Nunca cole a credencial no chat. O envio continuará bloqueado até a API aceitar o novo token.</p>
+        </div>
         <button id="install" type="button" class="button secondary" hidden>
           Preparar estrutura de contratos no Neon</button>
       </div>
       <div class="card contract-section">
+        <p class="eyebrow section-label">ETAPA 02 · PREPARAÇÃO</p>
         <h2>Minuta e revisão</h2>
         <label for="case-id">Identificador de solicitação</label>
         <input id="case-id" class="case-input" maxlength="36"
@@ -61,6 +73,7 @@
         <div id="contract-items" class="contract-items" role="list"></div>
       </div>
       <div id="contract-selected" class="card contract-section" hidden>
+        <p class="eyebrow section-label">ETAPA 03 · ASSINATURA</p>
         <h2>Conferência e assinatura</h2>
         <p id="contract-identification" class="muted"></p>
         <p><strong id="contract-status">Preparando...</strong></p>
