@@ -36,6 +36,24 @@
       <button id="retry" type="button" class="button secondary">Verificar novamente</button>
     </section>
 
+    <section id="recover-panel" class="activation-card card" hidden aria-labelledby="recover-heading">
+      <h2 id="recover-heading">Retomar configuração interrompida</h2>
+      <p class="muted">Já existe um administrador aguardando a confirmação no autenticador.
+        Para recuperar o cadastro, informe o mesmo e-mail e senha usados anteriormente.
+        Uma nova chave MFA será emitida e a antiga deixará de funcionar.</p>
+      <form id="recover-form" class="form">
+        <label for="recover-setup-code">Código de ativação privado</label>
+        <input id="recover-setup-code" type="password" required minlength="48" maxlength="256"
+          autocomplete="off" spellcheck="false" autocapitalize="off">
+        <label for="recover-email">E-mail profissional já cadastrado</label>
+        <input id="recover-email" type="email" required maxlength="254" autocomplete="email">
+        <label for="recover-password">Senha usada na primeira tentativa</label>
+        <input id="recover-password" type="password" required minlength="14" maxlength="1024"
+          autocomplete="current-password">
+        <button class="button primary" type="submit">Recuperar configuração MFA</button>
+      </form>
+    </section>
+
     <section id="start-panel" class="activation-card card" hidden aria-labelledby="start-heading">
       <h2 id="start-heading">1. Identificação do administrador</h2>
       <p class="muted">O primeiro administrador é criado uma única vez. A confirmação por aplicativo autenticador será obrigatória.</p>
