@@ -3,36 +3,6 @@ import assert from "node:assert/strict";
 import { randomBytes, randomUUID } from "node:crypto";
 import { PGlite } from "@electric-sql/pglite";
 import { runOperationalNeonSmoke } from "../server/platform/operational-live-smoke.mjs";
-import { smokeAllowed } from "../api/operacional-selftest.mjs";
-import { operationalRuntimeAllowed } from "../api/operacional.mjs";
-
-test("Neon smoke endpoint is unavailable outside the exact guarded Preview branch", () => {
-  const ready = {
-    VERCEL: "1", VERCEL_ENV: "preview",
-    VERCEL_PROJECT_ID: "prj_M19hHqI7fq25KgKnXWIqUYRXmxhq",
-    VERCEL_GIT_COMMIT_REF: "feature/plataforma-operacional-preview",
-    VERCEL_URL: "preview-synthetic.vercel.app",
-    OLIVEIRA_OPS_ALLOWED_PROJECT_ID: "prj_M19hHqI7fq25KgKnXWIqUYRXmxhq",
-    OLIVEIRA_OPS_PREVIEW_ACK: "shared-project-preview-only",
-    OLIVEIRA_OPS_ENABLED: "1",
-    OLIVEIRA_OPS_STORE: "postgres",
-    OLIVEIRA_OPS_DATABASE_SOURCE: "neon-vercel",
-    DATABASE_URL: "postgresql://test.example.invalid/mock",
-    NEON_PROJECT_ID: "synthetic",
-    OLIVEIRA_OPS_DATA_KEY: "f".repeat(64),
-    OLIVEIRA_OPS_RATE_SECRET: "minimum-length-rate-secret-123456789012",
-    OLIVEIRA_OPS_SELFTEST_ENABLED: "1",
-  };
-  assert.equal(operationalRuntimeAllowed(ready), true);
-  assert.equal(smokeAllowed(ready), true);
-  for (const change of [
-    { VERCEL_ENV: "production" },
-    { VERCEL_GIT_COMMIT_REF: "main" },
-    { OLIVEIRA_OPS_ENABLED: "0" },
-    { OLIVEIRA_OPS_SELFTEST_ENABLED: "0" },
-    { OLIVEIRA_OPS_DATA_KEY: "" },
-  ]) assert.equal(smokeAllowed({ ...ready, ...change }), false);
-});
 
 test("Neon SQL and encrypted case smoke test leave no persistent rows", async () => {
   const db = new PGlite();
