@@ -738,7 +738,7 @@ test("Clicksign adapter fixed sandbox with mocked network; failure sanitized by 
   const adapter = clicksign(
     {
       CLICKSIGN_SANDBOX_EXPLICIT_TEST: "1",
-      CLICKSIGN_ACCESS_TOKEN: "mock",
+      CLICKSIGN_ACCESS_TOKEN: "00000000-0000-4000-8000-000000000098",
       CLICKSIGN_WEBHOOK_SECRET: "mock",
       CLICKSIGN_TEST_EMAIL: "test@example.invalid",
     },
