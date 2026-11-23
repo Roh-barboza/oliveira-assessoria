@@ -63,10 +63,12 @@ test("first admin can be enrolled exactly once, MFA confirmed and used to log in
     const bootstrap = createBootstrapService({
       database: db, encryptionKey, rateSecret,
     });
+    assert.deepEqual(await bootstrap.readiness(), { available: true, stage: "new" });
     const started = await bootstrap.start({
       email, name: "Admin sintético", password,
     });
     assert.equal(started.email, email);
+    assert.deepEqual(await bootstrap.readiness(), { available: false, pending: true });
     assert.match(started.secret, /^[A-Z2-7]{20,}$/);
 
     const tables = await db.query(
@@ -83,6 +85,7 @@ test("first admin can be enrolled exactly once, MFA confirmed and used to log in
     );
     const code = totpForCounter(started.secret, Math.floor(Date.now() / 30000));
     assert.deepEqual(await bootstrap.confirm({ email, code }), { activated: true });
+    assert.deepEqual(await bootstrap.readiness(), { available: false, completed: true });
 
     const accounts = new OperationalAccounts(db);
     const active = await accounts.findByEmail(email);
