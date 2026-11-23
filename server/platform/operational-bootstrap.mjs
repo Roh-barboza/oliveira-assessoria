@@ -3,7 +3,7 @@ import { OperationalAccounts } from "./operational-accounts.mjs";
 import { OperationalMfa } from "./operational-mfa.mjs";
 import { OperationalCases } from "./operational-cases.mjs";
 import { OperationalLoginLimiter } from "./operational-login-limiter.mjs";
-import { prepareStaffAccount } from "./operational-identity.mjs";
+import { prepareStaffAccount, verifyStaffPassword } from "./operational-identity.mjs";
 
 const statusError = (status, message) =>
   Object.assign(new Error(message), { status });
@@ -78,6 +78,40 @@ export function createBootstrapService({ database, encryptionKey, rateSecret }) 
         await client.query("COMMIT");
         inTransaction = false;
         return { secret, email: prepared.email };
+      } catch (error) {
+        if (inTransaction) await client.query("ROLLBACK");
+        throw error;
+      } finally {
+        if (client !== database) client.release();
+      }
+    },
+    async recover({ email, password }) {
+      // Recover an interrupted first-admin enrollment, never an active user.
+      // Require both the setup token at HTTP boundary and the same password.
+      if (typeof email !== "string" || email.length > 254 ||
+          typeof password !== "string" || password.length < 14 ||
+          password.length > 1024)
+        throw statusError(422, "Dados inválidos.");
+      const allowed = await limiter.checkLogin(email, "first-admin-recovery");
+      if (!allowed.allowed)
+        throw statusError(429, "Muitas tentativas. Tente mais tarde.");
+      const client = typeof database.connect === "function"
+        ? await database.connect() : database;
+      let inTransaction = false;
+      try {
+        await client.query("BEGIN");
+        inTransaction = true;
+        await client.query("SELECT pg_advisory_xact_lock(hashtext('oliveira-ops-first-admin'))");
+        const txAccounts = new OperationalAccounts(client);
+        const account = await txAccounts.findByEmail(email);
+        if (!account || account.role !== "admin" || account.status !== "pending-mfa" ||
+            !(await verifyStaffPassword(account, password)))
+          throw statusError(403, "Recuperação não autorizada.");
+        const txMfa = new OperationalMfa(txAccounts, encryptionKey);
+        const { secret } = await txMfa.startEnrollment(account.id);
+        await client.query("COMMIT");
+        inTransaction = false;
+        return { email: account.email, secret };
       } catch (error) {
         if (inTransaction) await client.query("ROLLBACK");
         throw error;
