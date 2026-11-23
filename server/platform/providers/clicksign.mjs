@@ -51,7 +51,6 @@ export function clicksign(env, fetcher = fetch) {
     available: Boolean(
       env.CLICKSIGN_SANDBOX_EXPLICIT_TEST === "1" &&
       env.CLICKSIGN_ACCESS_TOKEN &&
-      env.CLICKSIGN_WEBHOOK_SECRET &&
       /^[a-z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-z0-9.-]+\.[a-z]{2,}$/i.test(
         env.CLICKSIGN_TEST_EMAIL ?? "",
       ),
