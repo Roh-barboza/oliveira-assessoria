@@ -103,7 +103,7 @@ export function createOperationalHttp({ authentication, accounts, cases = null, 
         if (validCookie(token)) await accounts.revoke(token);
         return response({ authenticated: false }, 200, { "Set-Cookie": clearCookie() });
       }
-      if (["contract-ready", "contract-connection", "contract-install", "contract-list",
+      if (["contract-ready", "contract-connection", "contract-install", "contract-list", "contract-get",
            "contract-create", "contract-preview", "contract-approve",
            "contract-send", "contract-refresh"].includes(op)) {
         if (!contracts?.ready || !contracts?.setup || !contracts?.create ||
@@ -128,6 +128,9 @@ export function createOperationalHttp({ authentication, accounts, cases = null, 
         if (op === "contract-list" && request.method === "GET")
           return response({ contracts: await contracts.list(
             account.id, url.searchParams.get("caseId")) });
+        if (op === "contract-get" && request.method === "GET")
+          return response({ contract: await contracts.read(
+            account.id, url.searchParams.get("id")) });
         if (op === "contract-preview" && request.method === "GET")
           return response({ document: await contracts.pdf(
             account.id,url.searchParams.get("id"),url.searchParams.get("signed")==="1") });
