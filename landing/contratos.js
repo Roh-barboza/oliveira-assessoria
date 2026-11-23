@@ -11,7 +11,7 @@
     cancelled:"Envelope cancelado no Sandbox",
     manual_review:"Verificação manual necessária antes de qualquer novo envio",
   });
-  let config = null, selected = null, busy = false;
+  let config = null, selected = null, busy = false, connectionOk = false;
   const toggle = (id, visible) => { $(id).hidden = !visible; };
   const feedback = (message, error = false) => {
     $("feedback").textContent = message;
@@ -58,13 +58,14 @@
     toggle("contract-selected",Boolean(selected));
     if (!selected) return;
     $("contract-identification").textContent =
-      "Contrato de teste: "+selected.id+" · Versão "+selected.version;
+      "Contrato de teste: "+selected.id+" · Versão "+selected.version +
+      (selected.envelopeId ? " · Envelope Clicksign: "+selected.envelopeId : "");
     $("contract-status").textContent=STATUS[currentStatus()]||"Estado não identificado";
     $("preview-pdf").disabled=busy;
     $("approve").hidden=currentStatus()!=="draft";
     $("approve").disabled=busy;
     $("send").hidden=currentStatus()!=="approved";
-    $("send").disabled=busy || !config?.sandboxConnected;
+    $("send").disabled=busy || !config?.sandboxConnected || !connectionOk;
     $("refresh").hidden=currentStatus()!=="awaiting_signature";
     $("refresh").disabled=busy || !config?.sandboxConnected;
     $("signed-pdf").hidden=currentStatus()!=="signed";
@@ -73,7 +74,9 @@
       "A chave Clicksign Sandbox ainda não está conectada ou o envio por e-mail está desativado." :
       currentStatus()==="approved" ?
       "Envio somente para o e-mail de teste autorizado: "+config.testRecipient : "";
-    $("send-note").textContent=note;
+    $("send-note").textContent=currentStatus()==="manual_review" ?
+      "O convite NÃO foi confirmado. Última etapa: "+(selected.stage||"não informada")+
+      ". Verifique o envelope existente na Clicksign antes de qualquer novo envio." : note;
   }
   function renderList(rows) {
     $("contract-items").replaceChildren();
@@ -114,8 +117,27 @@
     $("sandbox-status").textContent=!config.installed ?
       "Estrutura de contratos de demonstração ainda não preparada." :
       config.sandboxConnected ?
-      "Sandbox vinculado. Convites permitidos somente para "+config.testRecipient+"." :
+      "Configuração Sandbox encontrada. Verifique a conexão antes de tentar o convite para "+config.testRecipient+"." :
       "Minutas e revisões liberadas. A assinatura por e-mail aguarda conexão com a conta Sandbox.";
+    updateControls();
+  }
+  const connectionMessages = Object.freeze({
+    authenticated:"Token aceito pela Clicksign. Isso NÃO confirma liberação de notificações por e-mail.",
+    http_401:"Token não aceito pela Clicksign Sandbox. Confira se é um token da conta Sandbox.",
+    http_403:"Clicksign recusou a consulta. Verifique as permissões e o e-mail associado ao token.",
+    http_404:"API de consulta não encontrada. Verifique a versão da integração com a Clicksign.",
+    http_422:"Clicksign recusou os parâmetros da consulta. A autenticação ainda não foi confirmada.",
+    http_429:"Limite de solicitações atingido na Clicksign. Não repita o envio.",
+    http_500:"A Clicksign retornou erro interno.",
+    http_503:"O serviço da Clicksign está indisponível ou sua conta não tem liberação necessária.",
+    network_error:"Não foi possível alcançar a Clicksign Sandbox.",
+    not_configured:"Token ou autorização Sandbox não configurado na Vercel.",
+  });
+  async function checkConnection() {
+    const {check}=await request("contract-connection");
+    connectionOk=Boolean(check?.reachable);
+    $("connection-result").textContent=connectionMessages[check?.code] ||
+      "Conexão Clicksign não confirmada. Código: "+String(check?.code||"desconhecido");
     updateControls();
   }
   async function perform(fn,success) {
@@ -165,6 +187,7 @@
       $("environment").textContent="Serviço indisponível";
     }
   }
+  $("check-connection").addEventListener("click",()=>perform(checkConnection));
   $("case-id").addEventListener("input",()=>{selected=null;renderList([]);updateControls();});
   $("install").addEventListener("click",()=>perform(async()=>{
     await request("contract-install",{data:{acknowledge:"SANDBOX_SOMENTE"}});
@@ -191,11 +214,20 @@
         !confirm("Enviar convite de TESTE Clicksign exclusivamente para "+
           config.testRecipient+"? O envio não pode ser desfeito automaticamente."))return;
     perform(async()=>{
-      const updated=await request("contract-send",{data:{
-        id:selected.id,version:selected.version,confirm:"ENVIAR_TESTE_SANDBOX",
-      }});
-      selected=updated.contract;await reloadContracts(selected.id);
-    },"Convite solicitado no Sandbox. Confirme o recebimento no e-mail de teste.");
+      const id=selected.id;
+      try {
+        const updated=await request("contract-send",{data:{
+          id,version:selected.version,confirm:"ENVIAR_TESTE_SANDBOX",
+        }});
+        selected=updated.contract;
+      } catch(error) {
+        // A partial remote failure transitions the row to manual_review.
+        // Fetch the current state instead of leaving a stale "Send" button.
+        try { await reloadContracts(id); } catch {}
+        throw error;
+      }
+      await reloadContracts(id);
+    },"A Clicksign aceitou a solicitação de convite. Consulte a assinatura no painel.");
   });
   $("refresh").addEventListener("click",()=>perform(async()=>{
     const updated=await request("contract-refresh",{data:{id:selected.id}});
