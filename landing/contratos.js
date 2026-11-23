@@ -79,7 +79,7 @@
     $("contract-items").replaceChildren();
     if (!Array.isArray(rows)) return;
     for (const contract of rows) {
-      const item=document.createElement("article");
+      const item=document.createElement("div");
       item.className="contract-item";
       item.setAttribute("role","listitem");
       const p=document.createElement("p");
