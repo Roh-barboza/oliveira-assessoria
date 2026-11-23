@@ -32,6 +32,22 @@ export function createBootstrapService({ database, encryptionKey, rateSecret }) 
   const limiter = new OperationalLoginLimiter(database, rateSecret);
 
   return {
+    async readiness() {
+      // Read-only Neon connectivity + first-admin status check.
+      // No GET request may create schema or change credentials.
+      await database.query("SELECT 1");
+      const table = await database.query(
+        "SELECT to_regclass('public.oliveira_staff_accounts') AS name"
+      );
+      if (!table.rows[0]?.name) return { available: true, stage: "new" };
+      const existing = await database.query(
+        "SELECT role,status FROM oliveira_staff_accounts ORDER BY created_at LIMIT 2"
+      );
+      if (!existing.rows.length) return { available: true, stage: "new" };
+      if (existing.rows.some(row => row.role === "admin" && row.status === "active"))
+        return { available: false, completed: true };
+      return { available: false, pending: true };
+    },
     async start({ email, name, password }) {
       // The first-user operation is serialized in Postgres across Vercel
       // function instances. No other accounts may already exist.
