@@ -31,7 +31,7 @@ try {
   const pageErrors=[];
   page.on("pageerror",err=>pageErrors.push(err.message));
   page.on("dialog",dialog=>dialog.accept());
-  let role="operator",installed=false,sandboxConnected=false,contract=null;
+  let role="operator",installed=false,sandboxConnected=false,probeCode="authenticated",contract=null;
   const invoked=[];
   const base64=Buffer.from("%PDF-synthetic-demo").toString("base64");
   await page.route("**/api/operacional?**",async(route)=>{
@@ -45,7 +45,7 @@ try {
     else if(op==="contract-ready")result={contracts:{
       installed,sandboxConnected,testRecipient:"rodrigo.barboza1994@gmail.com",realContracts:false,
     }};
-    else if(op==="contract-connection")result={check:{reachable:sandboxConnected,code:sandboxConnected?"authenticated":"not_configured"}};
+    else if(op==="contract-connection")result={check:{reachable:sandboxConnected&&probeCode==="authenticated",code:sandboxConnected?probeCode:"not_configured"}};
     else if(op==="contract-install"){
       assert.equal(body.acknowledge,"SANDBOX_SOMENTE");
       installed=true;result={contracts:{installed,sandboxConnected}};
@@ -96,11 +96,21 @@ try {
   assert.equal(invoked.some(x=>x.op==="contract-send"),false);
 
   sandboxConnected=true;
+  probeCode="http_401";
   await page.goto(origin+"/contratos.html?contractId="+contractId);
   await page.locator("#contract-selected").waitFor({state:"visible"});
   assert.equal(await page.locator("#send").isDisabled(),true);
   await page.locator("#check-connection").click();
+  await page.getByText(/A Clicksign recusou a credencial atual/).waitFor();
+  assert.equal(await page.locator("#connection-help").isVisible(),true);
+  assert.equal(await page.locator("#connection-indicator").getAttribute("data-state"),"error");
+  assert.equal(await page.locator("#send").isDisabled(),true);
+  assert.equal(invoked.some(x=>x.op==="contract-send"),false);
+  probeCode="authenticated";
+  await page.locator("#check-connection").click();
   await page.getByText(/Token aceito pela Clicksign/).waitFor();
+  assert.equal(await page.locator("#connection-help").isVisible(),false);
+  assert.equal(await page.locator("#connection-indicator").getAttribute("data-state"),"success");
   await page.locator("#send").click();
   await page.getByText("Convite enviado no Sandbox; aguardando assinatura",{exact:true}).waitFor();
   await page.locator("#refresh").click();
