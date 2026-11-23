@@ -6,7 +6,7 @@ import { renderPdf } from "../server/platform/pdf.mjs";
 
 const authEnv = {
   CLICKSIGN_SANDBOX_EXPLICIT_TEST: "1",
-  CLICKSIGN_ACCESS_TOKEN: "local-mocked-token-only",
+  CLICKSIGN_ACCESS_TOKEN: "00000000-0000-4000-8000-000000000099",
   CLICKSIGN_WEBHOOK_SECRET: "local-mocked-secret-only",
   CLICKSIGN_TEST_EMAIL: "assinatura@example.invalid",
 };
@@ -256,5 +256,22 @@ test("Clicksign probe reports only sanitized HTTP codes, not authorization token
   });
   const check = await connection.probe();
   assert.deepEqual(check, { reachable: false, code: "http_401" });
-  assert.doesNotMatch(JSON.stringify(check),/SENSITIVE|local-mocked-token-only/);
+  assert.doesNotMatch(JSON.stringify(check),/SENSITIVE|00000000-0000-4000-8000-000000000099/);
+});
+
+test("API v3 rejects a 32-character secret before any outbound request", async () => {
+  let requests = 0;
+  const provider = clicksign({
+    ...authEnv,
+    CLICKSIGN_ACCESS_TOKEN: "0123456789abcdef0123456789abcdef",
+    CLICKSIGN_SANDBOX_EMAIL_EXPLICIT_TEST: "1",
+  },async () => { requests++; throw Error("Network must not be used"); });
+  assert.equal(provider.available,false);
+  assert.deepEqual(await provider.probe(),{
+    reachable:false,code:"invalid_token_format",
+  });
+  await assert.rejects(provider.submit({
+    id:randomUUID(),signature_mode:"email",
+  },Buffer.from("%PDF-synthetic"),async()=>{}),/formato inválido/);
+  assert.equal(requests,0);
 });
