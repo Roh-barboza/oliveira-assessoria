@@ -70,10 +70,6 @@
     "api/operacional-bootstrap.mjs": {
       "includeFiles": "server/platform/**",
       "maxDuration": 30
-    },
-    "api/operacional-selftest.mjs": {
-      "includeFiles": "server/platform/**",
-      "maxDuration": 30
     }
   },
   "regions": [
