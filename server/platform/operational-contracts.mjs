@@ -70,6 +70,13 @@ export class OperationalContracts {
       realContracts: false,
     };
   }
+  async connection(actorId) {
+    await this.actor(actorId);
+    // A read-only call to Sandbox. Never creates an envelope or sends e-mail.
+    if (typeof this.provider.probe !== "function")
+      return { reachable: false, code: "not_supported" };
+    return this.provider.probe();
+  }
   async setup(actorId) {
     await this.actor(actorId);
     for (const sql of operationalContractSchema)
@@ -193,12 +200,16 @@ export class OperationalContracts {
       if(!finish.rows.length)throw new Error("Checkpoint remoto incompleto.");
       await this.log(actorId,row.id,"invited_sandbox");
       return summary(finish.rows[0]);
-    } catch {
+    } catch (remoteError) {
       // Remote partial success may exist. NEVER automatically resend.
+      // Retain only the public HTTP status code, never remote response bodies or secrets.
+      const statusMatch = /^Clicksign HTTP (\\d{3})$/.exec(remoteError?.message || "");
+      const code = statusMatch ? statusMatch[1] : "unknown";
       await this.database.query(
         "UPDATE oliveira_operational_contracts SET status='manual_review', " +
+        "last_stage=left(coalesce(last_stage, 'iniciado') || ':http_' || $2,100), " +
         "version=version+1,updated_at=now() WHERE id=$1 AND status='sending'",
-        [row.id]);
+        [row.id,code]);
       await this.log(actorId,row.id,"remote_error_requires_manual_review");
       throw fail(503,"Falha remota. Verifique o envelope na Clicksign antes de qualquer novo envio.");
     }
