@@ -51,6 +51,8 @@ try {
       installed=true;result={contracts:{installed,sandboxConnected}};
     } else if(op==="contract-list"){
       result={contracts:contract?[contract]:[]};
+    } else if(op==="contract-get"){
+      result={contract};
     } else if(op==="contract-create"){
       assert.equal(body.caseId,caseId);
       contract={id:contractId,caseId,status:"draft",version:1,pdfSha256:"a".repeat(64)};
@@ -94,7 +96,7 @@ try {
   assert.equal(invoked.some(x=>x.op==="contract-send"),false);
 
   sandboxConnected=true;
-  await page.reload();
+  await page.goto(origin+"/contratos.html?contractId="+contractId);
   await page.locator("#contract-selected").waitFor({state:"visible"});
   assert.equal(await page.locator("#send").isDisabled(),true);
   await page.locator("#check-connection").click();
