@@ -59,7 +59,9 @@ export function clicksign(env, fetcher = fetch) {
     async submit(row, pdf, checkpoint) {
       if (
         env.CLICKSIGN_SANDBOX_EXPLICIT_TEST !== "1" ||
-        row.signature_mode !== "embedded"
+        !["embedded", "email"].includes(row.signature_mode) ||
+        (row.signature_mode === "email" &&
+          env.CLICKSIGN_SANDBOX_EMAIL_EXPLICIT_TEST !== "1")
       )
         throw error(
           503,
@@ -124,6 +126,15 @@ export function clicksign(env, fetcher = fetch) {
         activated.attributes?.status !== "running"
       )
         throw new Error("Ativação não confirmada");
+      if (!embedded) {
+        // E-mail is never sent by just setting communicate_events.
+        // Explicitly notify the sandbox test signatory after activation.
+        await checkpoint("notificar_signatario", { envelope, signer });
+        await request("POST", `${base}/signers/${signer}/notifications`, {
+          type: "notifications",
+          attributes: {},
+        });
+      }
       await checkpoint("enviado");
     },
     async current(row) {
@@ -137,7 +148,7 @@ export function clicksign(env, fetcher = fetch) {
         return { status: "cancelado" };
       if (
         envelope.attributes?.status === "running" &&
-        row.signature_mode === "embedded"
+        ["embedded", "email"].includes(row.signature_mode)
       )
         return { status: "aguardando_assinatura" };
       if (
