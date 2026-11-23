@@ -229,3 +229,32 @@ test("Clicksign prevents Sandbox e-mail if notification opt-in is missing", asyn
   );
   assert.equal(sent, false);
 });
+
+
+test("Clicksign connection probe is read-only and never creates a signer or invitation", async () => {
+  let calls = 0;
+  const fakeFetch = async (url, options = {}) => {
+    calls++;
+    assert.equal(options.method, "GET");
+    assert.match(String(url), /^https:\/\/sandbox\.clicksign\.com\/api\/v3\/envelopes/);
+    return new Response(JSON.stringify({ data: [] }), {
+      status: 200, headers: { "Content-Type": "application/json" },
+    });
+  };
+  const connection = clicksign(authEnv, fakeFetch);
+  assert.deepEqual(await connection.probe(), { reachable: true, code: "authenticated" });
+  assert.equal(calls, 1);
+  const inactive = clicksign({},fakeFetch);
+  assert.deepEqual(await inactive.probe(), { reachable: false, code: "not_configured" });
+  assert.equal(calls, 1);
+});
+
+test("Clicksign probe reports only sanitized HTTP codes, not authorization token", async () => {
+  const connection = clicksign(authEnv, async (_url,opts) => {
+    assert.equal(opts.method,"GET");
+    return new Response(JSON.stringify({ error: "SENSITIVE remote details" }), { status: 401 });
+  });
+  const check = await connection.probe();
+  assert.deepEqual(check, { reachable: false, code: "http_401" });
+  assert.doesNotMatch(JSON.stringify(check),/SENSITIVE|local-mocked-token-only/);
+});
