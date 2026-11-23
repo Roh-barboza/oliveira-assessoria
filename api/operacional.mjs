@@ -27,9 +27,11 @@ export function operationalRuntimeAllowed(env) {
     id === SITE_PROJECT_ID &&
     env.OLIVEIRA_OPS_ALLOWED_PROJECT_ID === SITE_PROJECT_ID &&
     env.OLIVEIRA_OPS_PREVIEW_ACK === "shared-project-preview-only" &&
-    // Auto mode is independent of the one-time bootstrap switch:
-    // revoking setup credentials must never disable an existing staff login.
-    ["1", "auto"].includes(env.OLIVEIRA_OPS_ENABLED) &&
+    (env.OLIVEIRA_OPS_ENABLED === "1" ||
+      (env.OLIVEIRA_OPS_ENABLED === "auto" &&
+       env.OLIVEIRA_OPS_SETUP_ENABLED === "1" &&
+       typeof env.OLIVEIRA_OPS_SETUP_TOKEN === "string" &&
+       env.OLIVEIRA_OPS_SETUP_TOKEN.length >= 48)) &&
     Boolean(exactOrigin) &&
     env.OLIVEIRA_OPS_STORE === "postgres" &&
     Boolean(operationalDatabaseUrl(env)) &&
