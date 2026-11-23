@@ -74,9 +74,16 @@
       "A chave Clicksign Sandbox ainda não está conectada ou o envio por e-mail está desativado." :
       currentStatus()==="approved" ?
       "Envio somente para o e-mail de teste autorizado: "+config.testRecipient : "";
+    const lastStage=selected.stage||"não informada";
+    const extra=lastStage.includes("notificar_signatario:http_503") ?
+      " A API pode exigir liberação da função de notificação na conta Clicksign." :
+      lastStage.includes("http_401") ?
+      " A Clicksign não aceitou a credencial utilizada nessa etapa." :
+      lastStage.includes("http_422") ?
+      " A Clicksign recusou os dados ou o estado do envelope." : "";
     $("send-note").textContent=currentStatus()==="manual_review" ?
-      "O convite NÃO foi confirmado. Última etapa: "+(selected.stage||"não informada")+
-      ". Verifique o envelope existente na Clicksign antes de qualquer novo envio." : note;
+      "O convite NÃO foi confirmado. Última etapa: "+lastStage+"."+extra+
+      " Verifique o envelope existente na Clicksign antes de qualquer novo envio." : note;
   }
   function renderList(rows) {
     $("contract-items").replaceChildren();
