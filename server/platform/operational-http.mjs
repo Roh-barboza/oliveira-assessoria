@@ -103,7 +103,7 @@ export function createOperationalHttp({ authentication, accounts, cases = null, 
         if (validCookie(token)) await accounts.revoke(token);
         return response({ authenticated: false }, 200, { "Set-Cookie": clearCookie() });
       }
-      if (["contract-ready", "contract-install", "contract-list",
+      if (["contract-ready", "contract-connection", "contract-install", "contract-list",
            "contract-create", "contract-preview", "contract-approve",
            "contract-send", "contract-refresh"].includes(op)) {
         if (!contracts?.ready || !contracts?.setup || !contracts?.create ||
@@ -116,6 +116,8 @@ export function createOperationalHttp({ authentication, accounts, cases = null, 
           return response({ error: "Acesso negado." }, 403);
         if (op === "contract-ready" && request.method === "GET")
           return response({ contracts: await contracts.ready(account.id) });
+        if (op === "contract-connection" && request.method === "GET")
+          return response({ check: await contracts.connection(account.id) });
         if (op === "contract-install" && request.method === "POST") {
           const body = await readBody(request);
           if (body?.acknowledge !== "SANDBOX_SOMENTE" ||
