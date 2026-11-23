@@ -89,9 +89,10 @@ export default {
       if (!body || !matchesBootstrapToken(body.setupCode, env.OLIVEIRA_OPS_SETUP_TOKEN))
         return json({ error: "Código de ativação inválido." }, 403);
       const op = new URL(request.url).searchParams.get("op");
-      if (op !== "start" && op !== "confirm")
+      if (!["start", "recover", "confirm"].includes(op))
         return json({ error: "Operação inválida." }, 404);
       const keys = op === "start" ? ["setupCode", "email", "name", "password"] :
+        op === "recover" ? ["setupCode", "email", "password"] :
         ["setupCode", "email", "code"];
       if (Object.keys(body).some((key) => !keys.includes(key)))
         return json({ error: "Campos inválidos." }, 422);
@@ -103,6 +104,10 @@ export default {
       if (op === "start") {
         const created = await service.start(body);
         return json({ email: created.email, totpSecret: created.secret }, 201);
+      }
+      if (op === "recover") {
+        const recovered = await service.recover(body);
+        return json({ email: recovered.email, totpSecret: recovered.secret });
       }
       return json(await service.confirm(body));
     } catch (error) {
