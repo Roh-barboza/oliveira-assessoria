@@ -30,6 +30,13 @@ test("single-project operational API stays Preview-only with explicit secrets an
     OLIVEIRA_OPS_RATE_SECRET: "secret-key-with-more-than-32-character-data",
   };
   assert.equal(operationalRuntimeAllowed(ready), true);
+  const automatic = { ...ready, OLIVEIRA_OPS_ENABLED: "auto",
+    OLIVEIRA_OPS_SETUP_ENABLED: "1", OLIVEIRA_OPS_SETUP_TOKEN: "b".repeat(64) };
+  assert.equal(operationalRuntimeAllowed(automatic), true);
+  assert.equal(operationalRuntimeAllowed({ ...automatic,
+    OLIVEIRA_OPS_SETUP_ENABLED: "0" }), false);
+  assert.equal(operationalRuntimeAllowed({ ...automatic,
+    OLIVEIRA_OPS_SETUP_TOKEN: "" }), false);
   const autoOrigin = { ...ready, OLIVEIRA_OPS_ORIGIN: undefined,
     VERCEL_URL: "oliveira-test-2026.vercel.app" };
   assert.equal(operationalRuntimeAllowed(autoOrigin), true);
