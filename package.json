@@ -9,7 +9,7 @@
     "test:platform": "node --test tests/platform.test.mjs tests/platform-operational-identity.test.mjs tests/platform-operational-accounts.test.mjs tests/platform-totp.test.mjs tests/platform-operational-mfa.test.mjs tests/platform-operational-login-limiter.test.mjs tests/platform-operational-authentication.test.mjs tests/platform-operational-http.test.mjs tests/platform-operational-cases.test.mjs tests/platform-operational-case-http.test.mjs tests/platform-operational-end-to-end.test.mjs tests/platform-operational-bootstrap.test.mjs tests/platform-operational-live-smoke.test.mjs tests/clicksign-sandbox-flow.test.mjs tests/platform-operational-contracts.test.mjs",
     "test:platform-ui": "node tests/platform-ui.mjs",
     "check:go-live": "node scripts/platform-go-live-check.mjs",
-    "test:operational-ui": "node tests/platform-operational-ui.mjs && node tests/platform-operational-activation-ui.mjs && node tests/lead-webhook-contract.mjs",
+    "test:operational-ui": "node tests/platform-operational-ui.mjs && node tests/platform-operational-activation-ui.mjs && node tests/lead-webhook-contract.mjs && node tests/platform-operational-contracts-ui.mjs",
     "migrate:operations": "node scripts/operations-setup.mjs migrate"
   },
   "devDependencies": {
