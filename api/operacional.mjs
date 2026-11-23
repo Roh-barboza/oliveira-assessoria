@@ -78,6 +78,13 @@ async function runtime() {
     rateLimitSecret: env.OLIVEIRA_OPS_RATE_SECRET,
     allowedOrigin: operationalOrigin(env),
     networkIdentity: trustedVercelNetworkIdentity,
+    sandboxEnv: {
+      CLICKSIGN_SANDBOX_EXPLICIT_TEST: env.CLICKSIGN_SANDBOX_EXPLICIT_TEST,
+      CLICKSIGN_SANDBOX_EMAIL_EXPLICIT_TEST: env.CLICKSIGN_SANDBOX_EMAIL_EXPLICIT_TEST,
+      CLICKSIGN_ACCESS_TOKEN: env.CLICKSIGN_ACCESS_TOKEN,
+      CLICKSIGN_WEBHOOK_SECRET: env.CLICKSIGN_WEBHOOK_SECRET,
+      CLICKSIGN_TEST_EMAIL: env.CLICKSIGN_TEST_EMAIL,
+    },
   });
 }
 export default {
