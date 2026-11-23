@@ -139,6 +139,7 @@
     http_503:"O serviço da Clicksign está indisponível ou sua conta não tem liberação necessária.",
     network_error:"Não foi possível alcançar a Clicksign Sandbox.",
     not_configured:"Token ou autorização Sandbox não configurado na Vercel.",
+    invalid_token_format:"A credencial cadastrada não tem o formato de Access Token da API v3. É necessário um UUID com 36 caracteres e hífens, copiado de Configurações → API no Sandbox. Nenhum envio foi realizado.",
   });
   async function checkConnection() {
     const {check}=await request("contract-connection");
@@ -152,7 +153,7 @@
       "Conexão Clicksign não confirmada. Código: "+code;
     result.dataset.state=connectionOk?"success":"error";
     result.hidden=false;
-    $("connection-help").hidden=code!=="http_401";
+    $("connection-help").hidden=!["http_401","invalid_token_format"].includes(code);
     updateControls();
   }
   async function perform(fn,success) {
