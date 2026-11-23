@@ -88,7 +88,7 @@ try {
   const file=await download;
   assert.equal(file.suggestedFilename(),"minuta-teste.pdf");
   await page.locator("#approve").click();
-  assert.match(await page.locator("#contract-status").textContent(),/aprovada/);
+  await page.getByText("Minuta fictícia aprovada para teste",{exact:true}).waitFor();
   assert.equal(await page.locator("#send").isDisabled(),true);
   assert.equal(invoked.some(x=>x.op==="contract-send"),false);
 
@@ -96,9 +96,9 @@ try {
   await page.reload();
   await page.locator("#contract-selected").waitFor({state:"visible"});
   await page.locator("#send").click();
-  assert.match(await page.locator("#contract-status").textContent(),/aguardando assinatura/);
+  await page.getByText("Convite enviado no Sandbox; aguardando assinatura",{exact:true}).waitFor();
   await page.locator("#refresh").click();
-  assert.match(await page.locator("#contract-status").textContent(),/concluída/);
+  await page.getByText("Assinatura Sandbox concluída",{exact:true}).waitFor();
   assert.equal(await page.locator("#signed-pdf").isVisible(),true);
   const audit=await new AxeBuilder({page}).analyze();
   assert.deepEqual(audit.violations.map(x=>x.id),[]);
