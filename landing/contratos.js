@@ -104,6 +104,7 @@
       selected=response.contracts.find(c=>c.id===highlightId)||null;
     else if (selected)
       selected=response.contracts.find(c=>c.id===selected.id)||null;
+    else selected=response.contracts[0]||null;
     updateControls();
   }
   async function updateConfig() {
