@@ -90,3 +90,42 @@ test("case storage not configured fails closed and conflicts disclose no DB deta
   assert.equal(conflict.status, 409);
   assert.equal(JSON.stringify(await conflict.json()).includes("Database sensitive detail"), false);
 });
+
+
+test("staff management requires administrator session, same origin and exact payload", async () => {
+  const events = [];
+  let role = "admin";
+  const app = createOperationalHttp({
+    allowedOrigin:origin,
+    networkIdentity:()=> "synthetic",
+    authentication:{login:async()=>({authenticated:false})},
+    accounts:{
+      getSession:async candidate=>candidate === token ? {id,role,status:"active"} : null,
+      revoke:async()=>{},
+      listStaff:async actor=>{events.push(["list",actor]);return [{id,role:"admin",status:"active"}];},
+      disableStaff:async (actor,target)=>{events.push(["disable",actor,target]);return {id:target,status:"disabled"};},
+    },
+  });
+  const request = (op,{method="GET",body,authenticated=true,headers={}}={})=>
+    app(new Request(origin+"/api/operacional?op="+op,{
+      method, headers:{
+        ...(method==="POST"?{origin,"content-type":"application/json"}:{}),
+        ...(authenticated?{cookie}:{}),...headers,
+      },
+      ...(body===undefined?{}:{body:JSON.stringify(body)}),
+    }));
+  assert.equal((await request("staff-list",{authenticated:false})).status,401);
+  assert.equal((await request("staff-disable",{method:"POST",body:{id},authenticated:false})).status,401);
+  role="operator";
+  assert.equal((await request("staff-list")).status,403);
+  assert.equal((await request("staff-disable",{method:"POST",body:{id}})).status,403);
+  role="admin";
+  assert.equal((await request("staff-list")).status,200);
+  assert.equal((await request("staff-disable",{method:"POST",body:{id,role:"admin"}})).status,422);
+  assert.equal((await request("staff-disable",{method:"POST",body:{id},
+    headers:{origin:"https://attacker.example.test"}})).status,403);
+  const disabled=await request("staff-disable",{method:"POST",body:{id}});
+  assert.equal(disabled.status,200);
+  assert.equal((await disabled.json()).staff.status,"disabled");
+  assert.deepEqual(events,[["list",id],["disable",id,id]]);
+});
