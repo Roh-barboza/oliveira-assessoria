@@ -43,12 +43,12 @@ try {
       id:"11111111-1111-4111-8111-111111111111",name:"Synthetic",email:"admin@example.invalid",role,
     }};
     else if(op==="contract-ready")result={contracts:{
-      installed,sandboxConnected,testRecipient:"rodrigo.barboza1994@gmail.com",realContracts:false,
+      installed,sandboxConfigured:sandboxConnected,testRecipient:"rodrigo.barboza1994@gmail.com",realContracts:false,
     }};
     else if(op==="contract-connection")result={check:{reachable:sandboxConnected&&probeCode==="authenticated",code:sandboxConnected?probeCode:"not_configured"}};
     else if(op==="contract-install"){
       assert.equal(body.acknowledge,"SANDBOX_SOMENTE");
-      installed=true;result={contracts:{installed,sandboxConnected}};
+      installed=true;result={contracts:{installed,sandboxConfigured:sandboxConnected}};
     } else if(op==="contract-list"){
       result={contracts:contract?[contract]:[]};
     } else if(op==="contract-get"){
