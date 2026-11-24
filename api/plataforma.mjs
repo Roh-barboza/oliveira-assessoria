@@ -3,7 +3,9 @@ import {
   StateRepository,
   BlobStore,
   PostgresStore,
+  MemoryStore,
 } from "../server/platform/store.mjs";
+import { randomBytes } from "node:crypto";
 
 // Synthetic simulator is isolated by Preview environment and branch even
 // when hosted in the existing Vercel project. Never enable it in production.
@@ -11,6 +13,16 @@ const SITE_PROJECT_ID = "prj_M19hHqI7fq25KgKnXWIqUYRXmxhq";
 const PREVIEW_BRANCH = "feature/plataforma-operacional-preview";
 let instance;
 async function runtime() {
+  // Explicit, short-lived PUBLIC DEMO on the approved production release.
+  // Synthetic data only; no database, Blob, real document intake or provider calls.
+  // Every serverless instance holds independent volatile state and may reset.
+  if (process.env.VERCEL_ENV === "production" &&
+      process.env.VERCEL_PROJECT_ID === SITE_PROJECT_ID &&
+      process.env.VERCEL_GIT_COMMIT_REF === "release/site-integral-online-2026-11-24") {
+    const repository = new StateRepository(
+      new MemoryStore(), randomBytes(32).toString("hex"));
+    return createApp({ repository, storageMode: "temporario" });
+  }
   if (
     process.env.VERCEL_ENV !== "preview" ||
     process.env.VERCEL_PROJECT_ID !== SITE_PROJECT_ID ||
