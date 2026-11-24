@@ -5,6 +5,7 @@ import { OperationalAuthenticationService } from "./operational-authentication.m
 import { OperationalCases } from "./operational-cases.mjs";
 import { OperationalContracts } from "./operational-contracts.mjs";
 import { OperationalInvitations } from "./operational-invitations.mjs";
+import { OperationalDocuments } from "./operational-documents.mjs";
 import { createOperationalHttp } from "./operational-http.mjs";
 
 // This composes already-tested operational services into one HTTP application.
@@ -18,6 +19,8 @@ export function composeOperationalApp({
   networkIdentity,
   sandboxEnv = {},
   teamInvitesEnabled = false,
+  documentsPreviewEnabled = false,
+  documentScanner = null,
 }) {
   if (!database?.query || !encryptionKey || !rateLimitSecret)
     throw new Error("Banco e segredos operacionais obrigatórios.");
@@ -29,12 +32,16 @@ export function composeOperationalApp({
   const contracts = new OperationalContracts({ database, encryptionKey, cases, sandboxEnv });
   const invites = teamInvitesEnabled
     ? new OperationalInvitations(database, encryptionKey, rateLimitSecret) : null;
+  const documents = documentsPreviewEnabled ? new OperationalDocuments({
+    database, encryptionKey, cases, scanner:documentScanner,
+  }) : null;
   return createOperationalHttp({
     authentication,
     accounts,
     cases,
     contracts,
     invites,
+    documents,
     allowedOrigin,
     networkIdentity,
   });
