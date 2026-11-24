@@ -86,7 +86,7 @@ try {
     else if (op === "login") { loggedIn = true; result = { authenticated: true }; }
     else if (op === "logout") { loggedIn = false; result = { authenticated: false }; }
     else if (!loggedIn) { status = 401; result = { error: "Autenticação necessária." }; }
-    else if (op === "staff-list") result = {staff};
+    else if (op === "staff-list") result = {staff,invitesEnabled:true};
     else if (op === "staff-invite") {
       result = {invitation:{token:"a".repeat(64),expiresAt:"2026-11-25T12:00:00Z"}};
       status=201;
