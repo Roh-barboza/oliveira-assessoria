@@ -170,7 +170,8 @@ export function createOperationalHttp({ authentication, accounts, cases = null, 
         if (account.role !== "admin")
           return response({ error: "Acesso negado." }, 403);
         if (op === "staff-list" && request.method === "GET")
-          return response({ staff: await accounts.listStaff(account.id) });
+          return response({ staff: await accounts.listStaff(account.id),
+            invitesEnabled: Boolean(invites) });
         if (op === "staff-disable" && request.method === "POST") {
           const body = await readBody(request);
           if (!body || Object.keys(body).length !== 1 ||
