@@ -44,6 +44,22 @@ check("Revogação de acesso administrativo implementada",
   /disableStaff/.test(accounts) && /staff-disable/.test(transport) &&
   /role IN \('operator','reviewer'\)/.test(accounts),
   "Bloqueio dos membros não administrativos, sem autoexclusão do admin.");
+const invitations = read("server/platform/operational-invitations.mjs");
+const documents = read("server/platform/operational-documents.mjs");
+const backup = read("scripts/operations-backup.mjs");
+check("Convite e recuperação com MFA no código",
+  /async invite/.test(invitations) && /async reset/.test(invitations) &&
+  /async redeem/.test(invitations) && /async confirm/.test(invitations) &&
+  /staff-invite/.test(transport) && /invite-confirm/.test(transport),
+  "Fluxo protegido por migração e flag; ainda requer homologação no Neon.");
+check("Documentos cifrados com verificação obrigatória no código",
+  /sealed_bytes/.test(documents) && /scanner\.scan/.test(documents) &&
+  /doc-upload/.test(transport) && /OLIVEIRA_OPS_DOCUMENTS_PREVIEW/.test(api),
+  "Scanner externo e aprovação LGPD ainda ausentes; upload real bloqueado.");
+check("Backup independente criptografado preparado",
+  /pg_dump/.test(backup) && /pg_restore/.test(backup) &&
+  /OLIVEIRA_OPS_RESTORE_ACK/.test(backup),
+  "Script preparado; execução, restauração e cofre externos ainda não comprovados.");
 check("Transporte restrito a sessão, origem e método",
   /accounts.getSession/.test(transport) &&
   /sec-fetch-site/.test(transport) &&
@@ -52,11 +68,11 @@ check("Transporte restrito a sessão, origem e método",
 
 for (const [name, explanation] of [
   ["Backup independente e restauração",
-    "Exigir evidência de dump cifrado e restauração em banco separado. Não é possível inferir sucesso pelo código."],
+    "A ferramenta de backup cifrado existe, mas exige execução real, cofre privado e restauração comprovada em banco isolado."],
   ["LGPD e segurança documental",
-    "Aprovar retenção, descarte, finalidade, responsáveis e transporte de arquivos; upload real permanece bloqueado."],
-  ["Cadastro/recuperação de novos funcionários",
-    "O primeiro admin com MFA existe; faltam convites seguros, recuperação e gestão completa de credenciais."],
+    "Armazenamento cifrado preparado com scanner obrigatório; aprovar antivírus real, retenção, descarte, finalidade, responsáveis e transporte. Upload real bloqueado."],
+  ["Convites e recuperação no Neon",
+    "Fluxo no código; falta migração aditiva, flag específica, ensaio real privado, canal seguro de entrega dos tokens e política de recuperação."],
   ["Revisão jurídica e liberação comercial",
     "Aprovar individualmente as cinco ofertas, limites, termos, competências e valores reais."],
   ["Homologação externa de formulários",
