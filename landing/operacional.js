@@ -85,6 +85,7 @@
     currentCases = [];
     $("login-form").reset();
     hideInvitation();
+    setVisible("invite-form",false);
     setVisible("login-area", true);
     setVisible("unavailable", false);
     setVisible("dashboard", false);
@@ -97,6 +98,7 @@
     activeUser = null;
     selected = null;
     hideInvitation();
+    setVisible("invite-form",false);
     setVisible("unavailable", true);
     setVisible("login-area", false);
     setVisible("dashboard", false);
@@ -109,6 +111,7 @@
     activeUser = user;
     selected = null;
     hideInvitation();
+    setVisible("invite-form",false);
     setVisible("login-area", false);
     setVisible("unavailable", false);
     setVisible("dashboard", true);
@@ -127,6 +130,9 @@
     if (activeUser?.role !== "admin") return;
     const result = await request("staff-list");
     if (!Array.isArray(result.staff)) throw new Error("Lista de equipe indisponível.");
+    const enabled = result.invitesEnabled === true;
+    setVisible("invite-form",enabled);
+    setVisible("team-invites-disabled",!enabled);
     const list = $("team-list");
     list.replaceChildren();
     if (!result.staff.length) {
@@ -149,7 +155,7 @@
       details.append(name,status);
       item.append(details);
       if (account.role !== "admin" && account.status !== "disabled") {
-        if (account.status === "active") {
+        if (enabled && account.status === "active") {
           const reset = document.createElement("button");
           reset.type = "button";
           reset.className = "button secondary small";
