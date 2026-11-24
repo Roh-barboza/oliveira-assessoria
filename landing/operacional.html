@@ -123,6 +123,28 @@
             <p class="muted">Acesso administrativo. Contas desativadas perdem acesso imediatamente. Não é possível desativar administradores por esta tela.</p>
             <button id="team-refresh" type="button" class="button secondary small">Consultar equipe</button>
             <div id="team-list" class="team-list" role="list" aria-label="Contas da equipe"></div>
+            <form id="invite-form" class="form" autocomplete="off">
+              <h4>Convidar funcionário</h4>
+              <label for="invite-name">Nome profissional</label>
+              <input id="invite-name" name="name" maxlength="120" minlength="2" required>
+              <label for="invite-email">E-mail profissional</label>
+              <input id="invite-email" name="email" type="email" maxlength="254" required>
+              <label for="invite-role">Permissão</label>
+              <select id="invite-role" name="role" required>
+                <option value="operator">Atendimento</option>
+                <option value="reviewer">Revisão</option>
+              </select>
+              <button type="submit" class="button primary">Gerar convite seguro</button>
+            </form>
+            <div id="invitation-result" class="invitation-result" hidden>
+              <strong>Token temporário, exibido uma única vez</strong>
+              <p class="muted">Válido por 24 horas. Compartilhe por um canal privado autorizado, separadamente do endereço de ativação. Nunca publique em grupos.</p>
+              <label for="invitation-token">Código de convite ou recuperação</label>
+              <textarea id="invitation-token" readonly rows="2" spellcheck="false"></textarea>
+              <p id="invitation-expiry" class="muted"></p>
+              <a href="/equipe.html" class="button secondary small">Abrir página de ativação</a>
+              <button id="invitation-clear" type="button" class="button secondary small">Ocultar código</button>
+            </div>
           </section>
         </aside>
       </div>
