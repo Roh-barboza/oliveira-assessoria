@@ -65,7 +65,12 @@ export class OperationalCases {
       throw Object.assign(new Error("Responsável indisponível."), { status: 422 });
     const id = randomUUID();
     const metadata = { title: title.trim(), service: service.trim(), notes,
-      createdBy: actorId };
+      createdBy: actorId,
+      recentEvents: [{
+        action: "created", actorId, at: new Date().toISOString(), to: "triagem",
+      }],
+      previousEvents: 0,
+    };
     const sealed = this.cipher.seal(Buffer.from(JSON.stringify(metadata)), id);
     await this.database.query(
       `INSERT INTO oliveira_operational_cases
@@ -118,11 +123,27 @@ export class OperationalCases {
       throw Object.assign(new Error("Acesso negado."), { status: 403 });
     if (record.status === "encerrado" || nextStatus === "encerrado" && actor.role !== "admin")
       throw Object.assign(new Error("Encerramento exige administração."), { status: 403 });
+    // Keep a bounded, encrypted history with the case itself, avoiding a
+    // schema change in the already-active Preview database. The version CAS
+    // makes the audit update atomic with the status transition.
+    const recentEvents = Array.isArray(record.recentEvents)
+      ? record.recentEvents.slice(-99) : [];
+    const previousEvents = Number.isSafeInteger(record.previousEvents)
+      ? record.previousEvents + (Array.isArray(record.recentEvents) &&
+          record.recentEvents.length >= 100 ? 1 : 0) : 0;
+    recentEvents.push({
+      action: "status_changed", actorId, at: new Date().toISOString(),
+      from: record.status, to: nextStatus,
+    });
+    const payload = this.cipher.seal(Buffer.from(JSON.stringify({
+      title: record.title, service: record.service, notes: record.notes,
+      createdBy: record.createdBy, recentEvents, previousEvents,
+    })), caseId);
     const { rows } = await this.database.query(
-      `UPDATE oliveira_operational_cases SET status=$3,version=version+1,
-          updated_at=now()
-       WHERE id=$1 AND version=$2 RETURNING id`,
-      [caseId, expectedVersion,nextStatus]);
+      `UPDATE oliveira_operational_cases
+       SET status=$3, encrypted_payload=$4, version=version+1, updated_at=now()
+       WHERE id=$1 AND version=$2 AND status=$5 RETURNING id`,
+      [caseId, expectedVersion, nextStatus, payload, record.status]);
     if (!rows[0]) throw Object.assign(new Error("Versão desatualizada."), { status: 409 });
     return this.get(actorId,caseId);
   }
