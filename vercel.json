@@ -1,5 +1,49 @@
 {
-  "outputDirectory": "landing",
+  "buildCommand": "node scripts/build-public-release.mjs",
+  "outputDirectory": "public-release",
+  "framework": null,
+  "redirects": [
+    {
+      "source": "/api/:path*",
+      "destination": "/404.html",
+      "permanent": false
+    },
+    {
+      "source": "/operacional.html",
+      "destination": "/404.html",
+      "permanent": false
+    },
+    {
+      "source": "/equipe.html",
+      "destination": "/404.html",
+      "permanent": false
+    },
+    {
+      "source": "/ativacao.html",
+      "destination": "/404.html",
+      "permanent": false
+    },
+    {
+      "source": "/contratos.html",
+      "destination": "/404.html",
+      "permanent": false
+    },
+    {
+      "source": "/plataforma.html",
+      "destination": "/404.html",
+      "permanent": false
+    },
+    {
+      "source": "/solicitar.html",
+      "destination": "/404.html",
+      "permanent": false
+    },
+    {
+      "source": "/ir/:path*",
+      "destination": "/404.html",
+      "permanent": false
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",
@@ -10,28 +54,15 @@
         },
         {
           "key": "Referrer-Policy",
-          "value": "strict-origin-when-cross-origin"
+          "value": "no-referrer"
+        },
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
         },
         {
           "key": "Permissions-Policy",
           "value": "camera=(), microphone=(), geolocation=()"
-        },
-        {
-          "key": "X-Robots-Tag",
-          "value": "noindex, nofollow"
-        }
-      ]
-    },
-    {
-      "source": "/ir/formulario.html",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "no-store, max-age=0"
-        },
-        {
-          "key": "X-Robots-Tag",
-          "value": "noindex, nofollow"
         }
       ]
     },
@@ -40,39 +71,9 @@
       "headers": [
         {
           "key": "Cache-Control",
-          "value": "public, max-age=86400, stale-while-revalidate=604800"
-        }
-      ]
-    },
-    {
-      "source": "/(plataforma|solicitar|operacional|ativacao|contratos).html",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "no-store, private"
-        },
-        {
-          "key": "Content-Security-Policy",
-          "value": "default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self'; connect-src 'self'; form-action 'self'; frame-ancestors 'none'; object-src 'none'; base-uri 'none'"
+          "value": "public, max-age=86400"
         }
       ]
     }
-  ],
-  "functions": {
-    "api/plataforma.mjs": {
-      "includeFiles": "{server/platform/**,docs/etapa-3-preparacao/MODELO-PRECIFICACAO.json,docs/etapa-2-final/MATRIZ-CONSOLIDADA.json}",
-      "maxDuration": 30
-    },
-    "api/operacional.mjs": {
-      "includeFiles": "server/platform/**",
-      "maxDuration": 30
-    },
-    "api/operacional-bootstrap.mjs": {
-      "includeFiles": "server/platform/**",
-      "maxDuration": 30
-    }
-  },
-  "regions": [
-    "gru1"
   ]
 }
