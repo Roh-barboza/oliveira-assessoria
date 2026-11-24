@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="referrer" content="no-referrer">
+  <title>Ativação da equipe | Oliveira Assessoria</title>
+  <link rel="icon" href="/assets/logo-mark-oliveira.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/operacional.css">
+  <script defer src="/equipe.js"></script>
+</head>
+<body>
+  <a class="skip" href="#conteudo">Pular para conteúdo</a>
+  <header class="topbar">
+    <div class="topbar__inner">
+      <img src="/assets/logo-oliveira.svg" width="168" height="43" alt="Oliveira Assessoria">
+      <span class="topbar__tag">ATIVAÇÃO RESTRITA</span>
+    </div>
+  </header>
+  <main class="shell" id="conteudo">
+    <div class="intro">
+      <div>
+        <p class="eyebrow">ACESSO À EQUIPE</p>
+        <h1>Ativação segura da conta.</h1>
+        <p class="intro__text">Use o código temporário recebido do administrador por um canal privado autorizado. Cadastre sua própria senha e autenticador.</p>
+      </div>
+    </div>
+    <p class="safety" role="note">Apenas para funcionários autorizados. Não informe documentos de clientes, dados de terceiros ou tokens por mensagens públicas.</p>
+    <p id="enroll-feedback" class="feedback" role="status" aria-live="polite" hidden></p>
+    <section class="login-layout">
+      <div class="login-copy">
+        <h2>Convite ou recuperação</h2>
+        <p>O código expira em 24 horas e só pode ser usado uma vez. Senha e autenticação são individuais. O administrador não deve solicitar sua senha nem os códigos do autenticador.</p>
+        <p class="privacy-note">Se o código expirar ou você fechar a página antes de concluir, solicite ao administrador uma nova ativação. Nenhum token é enviado automaticamente por e-mail.</p>
+        <a href="/operacional.html" class="button secondary small">Voltar ao painel</a>
+      </div>
+      <div class="card">
+        <form id="enroll-form" class="form" autocomplete="off">
+          <h3>1. Configurar minha conta</h3>
+          <label for="invite-code">Código temporário</label>
+          <input id="invite-code" name="token" type="text" minlength="64" maxlength="64"
+                 pattern="[a-f0-9]{64}" spellcheck="false" autocapitalize="off" autocomplete="off" required>
+          <label for="invite-password">Criar senha (mínimo 14 caracteres)</label>
+          <input id="invite-password" name="password" type="password" minlength="14" maxlength="1024" autocomplete="new-password" required>
+          <label for="invite-password-repeat">Repetir senha</label>
+          <input id="invite-password-repeat" name="passwordRepeat" type="password" minlength="14" maxlength="1024" autocomplete="new-password" required>
+          <button type="submit" class="button primary">Continuar para o autenticador</button>
+        </form>
+        <section id="totp-panel" hidden aria-labelledby="totp-heading">
+          <h3 id="totp-heading">2. Configurar autenticação</h3>
+          <p>Copie a chave abaixo para seu aplicativo autenticador. Ela aparece somente nesta etapa. Não envie a chave ao administrador.</p>
+          <label for="totp-secret">Chave TOTP</label>
+          <textarea id="totp-secret" readonly rows="2" spellcheck="false"></textarea>
+          <form id="totp-form" class="form" autocomplete="off">
+            <label for="totp-code">Código de seis dígitos gerado no aplicativo</label>
+            <input id="totp-code" name="code" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" autocomplete="one-time-code" required>
+            <button type="submit" class="button primary">Confirmar e ativar conta</button>
+          </form>
+        </section>
+        <section id="enroll-complete" hidden aria-labelledby="complete-title">
+          <h3 id="complete-title">Conta ativada</h3>
+          <p>Sua senha e MFA foram configurados. Entre no painel usando sua conta de equipe.</p>
+          <a href="/operacional.html" class="button primary">Entrar no painel</a>
+        </section>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">Oliveira Assessoria · Acesso restrito à equipe</footer>
+</body>
+</html>
