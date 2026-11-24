@@ -100,15 +100,25 @@ export class OperationalDocuments {
     const digest=createHash("sha256").update(bytes).digest("hex");
     const nameData=this.cipher.seal(Buffer.from(name,"utf8"),id+":name");
     const sealed=this.cipher.seal(bytes,id+":content");
-    await this.db.query(
-      `INSERT INTO oliveira_operational_documents
-       (id,case_id,uploaded_by,media_type,byte_length,sha256,sealed_name,sealed_bytes)
-       VALUES($1,$2,$3,$4,$5,$6,$7,$8)`,
-      [id,caseId,actorId,mimeType,bytes.length,digest,nameData,sealed]);
-    await this.db.query(
-      `INSERT INTO oliveira_document_access_log(id,document_id,case_id,actor_id,action)
-       VALUES($1,$2,$3,$4,'uploaded')`,
-      [randomUUID(),id,caseId,actorId]);
+    const client = typeof this.db.connect === "function"
+      ? await this.db.connect() : this.db;
+    let transaction = false;
+    try {
+      await client.query("BEGIN"); transaction = true;
+      await client.query(
+        `INSERT INTO oliveira_operational_documents
+         (id,case_id,uploaded_by,media_type,byte_length,sha256,sealed_name,sealed_bytes)
+         VALUES($1,$2,$3,$4,$5,$6,$7,$8)`,
+        [id,caseId,actorId,mimeType,bytes.length,digest,nameData,sealed]);
+      await client.query(
+        `INSERT INTO oliveira_document_access_log(id,document_id,case_id,actor_id,action)
+         VALUES($1,$2,$3,$4,'uploaded')`,
+        [randomUUID(),id,caseId,actorId]);
+      await client.query("COMMIT"); transaction = false;
+    } catch(e) {
+      if(transaction) await client.query("ROLLBACK");
+      throw e;
+    } finally {if(client!==this.db)client.release();}
     return {id,caseId,name,mimeType,size:bytes.length,sha256:digest};
   }
   async list(actorId,caseId) {
@@ -145,16 +155,26 @@ export class OperationalDocuments {
       mimeType:row.media_type,sha256:row.sha256,base64:bytes.toString("base64")};
   }
   async remove(actorId,caseId,documentId) {
-    const item=await this.authorize(actorId,caseId,{write:true});
+    await this.authorize(actorId,caseId,{write:true});
     if(!uuid(documentId))throw fail(422,"Documento inválido.");
-    const {rows}=await this.db.query(
-      "DELETE FROM oliveira_operational_documents WHERE id=$1 AND case_id=$2 RETURNING id",
-      [documentId,caseId]);
-    if(!rows.length)throw fail(404,"Documento não encontrado.");
-    await this.db.query(
-      `INSERT INTO oliveira_document_access_log(id,document_id,case_id,actor_id,action)
-       VALUES($1,$2,$3,$4,'deleted')`,
-      [randomUUID(),documentId,caseId,actorId]);
+    const client=typeof this.db.connect==="function"
+      ? await this.db.connect() : this.db;
+    let transaction=false;
+    try {
+      await client.query("BEGIN"); transaction=true;
+      const {rows}=await client.query(
+        "DELETE FROM oliveira_operational_documents WHERE id=$1 AND case_id=$2 RETURNING id",
+        [documentId,caseId]);
+      if(!rows.length)throw fail(404,"Documento não encontrado.");
+      await client.query(
+        `INSERT INTO oliveira_document_access_log(id,document_id,case_id,actor_id,action)
+         VALUES($1,$2,$3,$4,'deleted')`,
+        [randomUUID(),documentId,caseId,actorId]);
+      await client.query("COMMIT");transaction=false;
+    } catch(e) {
+      if(transaction) await client.query("ROLLBACK");
+      throw e;
+    } finally {if(client!==this.db)client.release();}
     return {deleted:true};
   }
 }
