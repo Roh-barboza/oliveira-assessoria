@@ -123,7 +123,8 @@
             <p class="muted">Acesso administrativo. Contas desativadas perdem acesso imediatamente. Não é possível desativar administradores por esta tela.</p>
             <button id="team-refresh" type="button" class="button secondary small">Consultar equipe</button>
             <div id="team-list" class="team-list" role="list" aria-label="Contas da equipe"></div>
-            <form id="invite-form" class="form" autocomplete="off">
+            <p id="team-invites-disabled" class="muted">Convites e recuperação de acesso ficam disponíveis após a migração e habilitação segura do Neon no Preview.</p>
+            <form id="invite-form" class="form" autocomplete="off" hidden>
               <h4>Convidar funcionário</h4>
               <label for="invite-name">Nome profissional</label>
               <input id="invite-name" name="name" maxlength="120" minlength="2" required>
