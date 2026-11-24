@@ -155,7 +155,7 @@
       details.append(name,status);
       item.append(details);
       if (account.role !== "admin" && account.status !== "disabled") {
-        if (enabled && account.status === "active") {
+        if (enabled && ["active","pending-mfa"].includes(account.status)) {
           const reset = document.createElement("button");
           reset.type = "button";
           reset.className = "button secondary small";
