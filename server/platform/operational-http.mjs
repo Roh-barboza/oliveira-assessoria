@@ -49,7 +49,7 @@ async function readBody(req) {
   }
 }
 
-export function createOperationalHttp({ authentication, accounts, cases = null, contracts = null, allowedOrigin, networkIdentity }) {
+export function createOperationalHttp({ authentication, accounts, cases = null, contracts = null, invites = null, allowedOrigin, networkIdentity }) {
   if (!authentication?.login || !accounts?.getSession || !accounts?.revoke ||
       typeof networkIdentity !== "function" ||
       typeof allowedOrigin !== "string" ||
@@ -102,6 +102,39 @@ export function createOperationalHttp({ authentication, accounts, cases = null, 
         const token = cookieFrom(request);
         if (validCookie(token)) await accounts.revoke(token);
         return response({ authenticated: false }, 200, { "Set-Cookie": clearCookie() });
+      }
+      if (["staff-invite", "staff-reset", "invite-redeem", "invite-confirm"].includes(op)) {
+        if (!invites?.invite || !invites?.reset || !invites?.redeem || !invites?.confirm)
+          return response({ error: "Convites ainda não habilitados." }, 503);
+        if (request.method !== "POST")
+          return response({ error: "Método não permitido." }, 405);
+        const body = await readBody(request);
+        if (!body) return response({ error: "Campos inválidos." }, 422);
+        if (op === "staff-invite" || op === "staff-reset") {
+          const token = cookieFrom(request);
+          const account = validCookie(token) ? await accounts.getSession(token) : null;
+          if (!account) return response({ error: "Autenticação necessária." }, 401);
+          if (account.role !== "admin")
+            return response({ error: "Acesso negado." }, 403);
+          if (op === "staff-invite") {
+            if (Object.keys(body).length !== 3 ||
+                !["email","name","role"].every(k=>Object.hasOwn(body,k)))
+              return response({ error: "Campos inválidos." }, 422);
+            const invite = await invites.invite(account.id, body);
+            return response({ invitation:invite }, 201);
+          }
+          if (Object.keys(body).length !== 2 || typeof body.id !== "string" ||
+              body.acknowledge !== "RESETAR_ACESSO")
+            return response({ error: "Confirmação necessária." }, 422);
+          const invite = await invites.reset(account.id,body.id);
+          return response({ invitation:invite }, 201);
+        }
+        const keys = op === "invite-redeem" ? ["token","password"] : ["token","code"];
+        if (Object.keys(body).length !== 2 || !keys.every(k => Object.hasOwn(body,k)))
+          return response({ error: "Campos inválidos." }, 422);
+        if (op === "invite-redeem")
+          return response({ enrollment:await invites.redeem(body) });
+        return response(await invites.confirm(body));
       }
       if (["staff-list", "staff-disable"].includes(op)) {
         if (!accounts.listStaff || !accounts.disableStaff)
@@ -221,11 +254,12 @@ export function createOperationalHttp({ authentication, accounts, cases = null, 
       return response({ error: "Operação não encontrada." }, 404);
     } catch (error) {
       // Do not disclose database or cryptographic details in HTTP responses.
-      const status = [403, 404, 409, 422].includes(error?.status) ? error.status : 503;
+      const status = [403, 404, 409, 422, 429].includes(error?.status) ? error.status : 503;
       return response({ error: status === 503 ? "Operação indisponível." :
         status === 403 ? "Acesso negado." :
         status === 404 ? "Solicitação não encontrada." :
-        status === 409 ? "Conflito de atualização." : "Dados inválidos." }, status);
+        status === 409 ? "Convite ou atualização indisponível." :
+        status === 429 ? "Muitas tentativas. Tente mais tarde." : "Dados inválidos." }, status);
     }
   };
 }
