@@ -103,6 +103,25 @@ export function createOperationalHttp({ authentication, accounts, cases = null, 
         if (validCookie(token)) await accounts.revoke(token);
         return response({ authenticated: false }, 200, { "Set-Cookie": clearCookie() });
       }
+      if (["staff-list", "staff-disable"].includes(op)) {
+        if (!accounts.listStaff || !accounts.disableStaff)
+          return response({ error: "Gestão da equipe indisponível." }, 503);
+        const token = cookieFrom(request);
+        const account = validCookie(token) ? await accounts.getSession(token) : null;
+        if (!account) return response({ error: "Autenticação necessária." }, 401);
+        if (account.role !== "admin")
+          return response({ error: "Acesso negado." }, 403);
+        if (op === "staff-list" && request.method === "GET")
+          return response({ staff: await accounts.listStaff(account.id) });
+        if (op === "staff-disable" && request.method === "POST") {
+          const body = await readBody(request);
+          if (!body || Object.keys(body).length !== 1 ||
+              typeof body.id !== "string")
+            return response({ error: "Campos inválidos." }, 422);
+          return response({ staff: await accounts.disableStaff(account.id, body.id) });
+        }
+        return response({ error: "Método não permitido." }, 405);
+      }
       if (["contract-ready", "contract-connection", "contract-install", "contract-list", "contract-get",
            "contract-create", "contract-preview", "contract-approve",
            "contract-send", "contract-refresh"].includes(op)) {
