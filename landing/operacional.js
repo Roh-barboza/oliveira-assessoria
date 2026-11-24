@@ -192,6 +192,34 @@
       setVisible("selected-panel", false);
     }
   }
+  function renderCaseHistory(record) {
+    const list = $("case-history-list");
+    list.replaceChildren();
+    const events = Array.isArray(record?.recentEvents) ? record.recentEvents : [];
+    if (!events.length) {
+      const li = document.createElement("li");
+      li.textContent = "Histórico anterior não disponível nesta versão.";
+      list.append(li);
+      return;
+    }
+    for (const event of [...events].reverse()) {
+      const li = document.createElement("li");
+      const action = event.action === "created" ? "Solicitação criada" :
+        formatLabel(event.from) + " → " + formatLabel(event.to);
+      const instant = new Date(event.at);
+      const timestamp = Number.isNaN(instant.valueOf()) ?
+        "data indisponível" : instant.toLocaleString("pt-BR");
+      const actor = String(event.actorId || "").slice(0,8);
+      li.textContent = action + " · " + timestamp +
+        (actor ? " · Equipe: " + actor : "");
+      list.append(li);
+    }
+    if (Number.isSafeInteger(record.previousEvents) && record.previousEvents > 0) {
+      const li = document.createElement("li");
+      li.textContent = String(record.previousEvents) + " evento(s) anterior(es) fora do histórico recente.";
+      list.append(li);
+    }
+  }
   async function selectCase(id) {
     if (busy) return;
     setBusy(true);
@@ -203,6 +231,7 @@
       contractLink.hidden = activeUser?.role !== "admin";
       contractLink.href = "/contratos.html?caseId=" + encodeURIComponent(selected.id);
       $("selected-case").textContent = [selected.title, selected.service, "Versão " + selected.version].join(" · ");
+      renderCaseHistory(selected);
       $("next-status").value = selected.status;
       setVisible("selected-panel", true);
       $("status-form").hidden = activeUser?.role === "reviewer" || selected.status === "encerrado";
@@ -295,6 +324,7 @@
       if (selected) {
         $("selected-case").textContent =
           [selected.title, selected.service, "Versão " + selected.version].join(" · ");
+        renderCaseHistory(selected);
         $("status-form").hidden = activeUser?.role === "reviewer" || selected.status === "encerrado";
       }
     } catch (error) {
