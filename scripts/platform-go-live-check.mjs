@@ -4,34 +4,76 @@ import { join } from "node:path";
 const root = process.cwd();
 const read = (name) => readFileSync(join(root, name), "utf8");
 const findings = [];
-function check(name, pass, explanation) {
-  findings.push({ name, pass: Boolean(pass), explanation });
+function check(name, pass, explanation, { external = false } = {}) {
+  findings.push({ name, pass: Boolean(pass), explanation, external });
 }
 
+// The synthetic `/plataforma` app is intentionally NOT the real operational
+// backend. Assess the isolated `/api/operacional` implementation separately.
+// Static checks are presence checks, not a substitute for runtime tests.
 const ignore = read(".vercelignore");
-check("Excluir resultados de teste do upload", /^test-results\s*$/m.test(ignore), "A pasta test-results deve ficar fora do pacote.");
-check("Excluir dados locais do upload", /^\.local-platform\s*$/m.test(ignore), "Dados locais não podem ser publicados.");
-check("Excluir evidências do upload", /^docs\/\*\*\/evidence\s*$/m.test(ignore), "Relatórios e capturas não são arquivos do runtime.");
+check("Dados locais excluídos do upload",
+  /^\.local-platform\s*$/m.test(ignore) && /^test-results\s*$/m.test(ignore),
+  "Dados temporários e evidências não podem ser publicados.");
+const api = read("api/operacional.mjs");
+const accounts = read("server/platform/operational-accounts.mjs");
+const cases = read("server/platform/operational-cases.mjs");
+const transport = read("server/platform/operational-http.mjs");
+const runtime = read("server/platform/operational-runtime.mjs");
+check("API operacional isolada no Preview",
+  /VERCEL_ENV\s*===\s*"preview"/.test(api) &&
+  /VERCEL_GIT_COMMIT_REF/.test(api) &&
+  /VERCEL_PROJECT_ID/.test(api) &&
+  /OLIVEIRA_OPS_ENABLED/.test(api),
+  "A habilitação requer ambiente, projeto e branch correspondentes.");
+check("Banco dedicado sem fallback de memória",
+  /OLIVEIRA_OPS_STORE\s*===\s*"postgres"/.test(api) &&
+  /operationalDatabaseUrl/.test(api) &&
+  /Administrador ainda não ativado/.test(api),
+  "Verificação do PostgreSQL e da conta administrativa antes de atender.");
+check("MFA e sessões revogáveis",
+  /OperationalMfa/.test(runtime) &&
+  /createSession/.test(accounts) && /revokeAll/.test(accounts) &&
+  /a.status='active'/.test(accounts),
+  "Senhas/MFA e bloqueio de conta devem ser verificados nos testes.");
+check("Atendimentos criptografados e atualizações CAS",
+  /this.cipher.seal/.test(cases) && /version=version\+1/.test(cases) &&
+  /recentEvents/.test(cases),
+  "Histórico recente protegido, vinculado à versão do atendimento.");
+check("Revogação de acesso administrativo implementada",
+  /disableStaff/.test(accounts) && /staff-disable/.test(transport) &&
+  /role IN \('operator','reviewer'\)/.test(accounts),
+  "Bloqueio dos membros não administrativos, sem autoexclusão do admin.");
+check("Transporte restrito a sessão, origem e método",
+  /accounts.getSession/.test(transport) &&
+  /sec-fetch-site/.test(transport) &&
+  /SameSite=Strict/.test(transport),
+  "Revalidar controles em CI, testes de navegador e testes reais.");
 
-const app = read("server/platform/app.mjs");
-const api = read("api/plataforma.mjs");
-check("Autenticação real de usuários", !/op === "demo"/.test(app) && !/Cliente Demonstração/.test(app), "O aplicativo ainda cria contas e credenciais fictícias.");
-check("Operação sem expiração sintética", !/86400000/.test(app) && !/synthetic-only/.test(app), "O ambiente ainda expira logicamente após 24 horas e declara modo sintético.");
-check("Documentos reais autorizados", !/documento-sintetico-oliveira|fixture/.test(app), "O upload e a conferência dependem do documento sintético.");
-check("Contratos e pagamentos reais homologados", !/realContracts: false|realPayments: false/.test(app), "Assinatura e pagamentos reais estão desativados.");
-check("Mensagens reais homologadas", !/realMessages: false/.test(app), "Envio real ainda desativado.");
-check("Runtime sem fallback para memória", /Persistência remota obrigatória/.test(api), "Persistência remota deve falhar de forma segura.");
-check("API permitida fora de Preview", !/VERCEL_ENV !== "preview"/.test(api), "A API atual só autoriza o projeto Preview.");
-check("Chave e armazenamento de produção", false, "Credenciais e armazenamento de produção devem ser configurados e validados fora do repositório.");
-check("LGPD, minutas e escopos aprovados", false, "Aprovações documental, jurídica e comercial exigem evidência externa.");
+for (const [name, explanation] of [
+  ["Backup independente e restauração",
+    "Exigir evidência de dump cifrado e restauração em banco separado. Não é possível inferir sucesso pelo código."],
+  ["LGPD e segurança documental",
+    "Aprovar retenção, descarte, finalidade, responsáveis e transporte de arquivos; upload real permanece bloqueado."],
+  ["Cadastro/recuperação de novos funcionários",
+    "O primeiro admin com MFA existe; faltam convites seguros, recuperação e gestão completa de credenciais."],
+  ["Revisão jurídica e liberação comercial",
+    "Aprovar individualmente as cinco ofertas, limites, termos, competências e valores reais."],
+  ["Homologação externa de formulários",
+    "O teste atual de webhook n8n/Cloudfy usa mocks; comprovar recebimento e rastreabilidade reais."],
+  ["Release autorizado, domínio e recuperação",
+    "Exigir aprovação expressa, testes finais e estratégia de reversão. Manter produção inalterada."],
+]) check(name, false, explanation, { external: true });
 
-console.log("\nOLIVEIRA ASSESSORIA | AUDITORIA DE PRONTIDÃO OPERACIONAL\n");
-for (const f of findings) {
-  console.log(`${f.pass ? "OK" : "BLOQUEADO"} | ${f.name}\n  ${f.explanation}`);
+console.log("\nOLIVEIRA ASSESSORIA | PRONTIDÃO OPERACIONAL | SEM EXPOSIÇÃO DE SEGREDOS\n");
+for (const item of findings) {
+  const qualifier = item.external ? "EVIDÊNCIA PENDENTE" :
+    item.pass ? "CONTROLE NO CÓDIGO" : "FALHA NO CÓDIGO";
+  console.log(`${qualifier} | ${item.name}\n  ${item.explanation}`);
 }
-console.log(`\n${findings.filter((f) => f.pass).length}/${findings.length} verificações atendidas.`);
-console.log("Nenhuma credencial foi lida, nenhum dado foi enviado e nenhum deployment foi criado.");
-if (findings.some((f) => !f.pass)) {
-  console.error("\nRELEASE REAL BLOQUEADO: não publique dados de clientes nem cobre valores pela plataforma atual.");
-  process.exitCode = 1;
+console.log(`\n${findings.filter(x=>x.pass).length}/${findings.length} itens verificados no repositório.`);
+console.log("Os controles no código não equivalem a go-live. Não foram usadas credenciais ou dados reais.");
+if (findings.some(x=>!x.pass)) {
+  console.error("\nGO-LIVE BLOQUEADO: não aceitar dados reais ou cobrar pela plataforma antes do aceite.");
+  process.exitCode=1;
 }
