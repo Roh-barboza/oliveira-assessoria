@@ -62,3 +62,40 @@ test("staff sessions expire and require real MFA verification", async () => {
     await db.close();
   }
 });
+
+
+test("only active admins can list staff or disable non-admins with session revocation", async () => {
+  const db = new PGlite();
+  try {
+    const accounts = new OperationalAccounts(db);
+    await accounts.setup();
+    const admin = await prepareStaffAccount({
+      email:"admin@example.test", name:"Admin",role:"admin",
+      password:"A-long-admin-secret-for-test-only",
+    });
+    const worker = await prepareStaffAccount({
+      email:"worker@example.test", name:"Worker",role:"operator",
+      password:"A-long-worker-secret-for-test-only",
+    });
+    for (const account of [admin,worker]) {
+      await accounts.createPrepared(account);
+      await accounts.changeStatus(account.id,"active");
+    }
+    await assert.rejects(accounts.listStaff(worker.id),{status:403});
+    const visible=await accounts.listStaff(admin.id);
+    assert.equal(visible.length,2);
+    assert.ok(visible.every(x=>!Object.hasOwn(x,"secret_hash") && !Object.hasOwn(x,"secret_salt")));
+    const workerSession=await accounts.createSession(
+      await accounts.findByEmail(worker.email),{mfaVerified:true});
+    assert.equal((await accounts.getSession(workerSession.token)).role,"operator");
+    await assert.rejects(accounts.disableStaff(admin.id,admin.id),{status:422});
+    await assert.rejects(accounts.disableStaff(worker.id,admin.id),{status:404});
+    await assert.rejects(accounts.disableStaff(worker.id,worker.id),{status:422});
+    assert.deepEqual(await accounts.disableStaff(admin.id,worker.id),
+      {id:worker.id,status:"disabled"});
+    assert.equal(await accounts.getSession(workerSession.token),null);
+    assert.equal((await accounts.findByEmail(worker.email)).status,"disabled");
+    await assert.rejects(accounts.disableStaff(admin.id,worker.id),{status:404});
+    assert.equal((await accounts.listStaff(admin.id)).length,2);
+  } finally { await db.close(); }
+});
