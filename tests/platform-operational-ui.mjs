@@ -87,6 +87,22 @@ try {
     else if (op === "logout") { loggedIn = false; result = { authenticated: false }; }
     else if (!loggedIn) { status = 401; result = { error: "Autenticação necessária." }; }
     else if (op === "staff-list") result = {staff};
+    else if (op === "staff-invite") {
+      result = {invitation:{token:"a".repeat(64),expiresAt:"2026-11-25T12:00:00Z"}};
+      status=201;
+    }
+    else if (op === "staff-reset") {
+      const account=staff.find(x=>x.id===body.id);
+      if(account)account.status="pending-mfa";
+      result={invitation:{token:"b".repeat(64),expiresAt:"2026-11-25T12:00:00Z"}};
+      status=201;
+    }
+    else if (op === "invite-redeem") {
+      result={enrollment:{email:"worker@example.test",totpSecret:"SYNTHETIC-TOTP-SECRET-FOR-TEST"}};
+    }
+    else if (op === "invite-confirm") {
+      result={activated:true};
+    }
     else if (op === "staff-disable") {
       const item = staff.find(record => record.id === body.id);
       if (item && item.role !== "admin") {
@@ -156,13 +172,22 @@ try {
   await page.locator("#team-refresh").click();
   await page.getByText("Atendimento sintético",{exact:true}).waitFor();
   assert.equal(await page.locator("#team-list .team-member").count(),2);
-  assert.equal(await page.locator("#team-list button").count(),1);
+  assert.equal(await page.locator("#team-list button").count(),2);
   await page.getByRole("button",{name:"Revogar acesso de Atendimento sintético"}).click();
   assert.equal(staff[1].status,"disabled");
   // The network mock mutates state before the UI finishes rendering.
   await page.locator("#team-list button").waitFor({state:"detached"});
   assert.equal(await page.locator("#team-list button").count(),0);
   assert.equal(requestLog.filter(x=>x==="staff-disable").length,1);
+  await page.locator("#invite-name").fill("Novo funcionário");
+  await page.locator("#invite-email").fill("worker@example.test");
+  await page.locator("#invite-role").selectOption("reviewer");
+  await page.locator("#invite-form button").click();
+  await page.locator("#invitation-result").waitFor({state:"visible"});
+  assert.equal(await page.locator("#invitation-token").inputValue(),"a".repeat(64));
+  await page.locator("#invitation-clear").click();
+  await page.locator("#invitation-result").waitFor({state:"hidden"});
+  assert.equal(await page.locator("#invitation-token").inputValue(),"");
   for (const width of [390, 560, 665, 768, 1366]) {
     await page.setViewportSize({ width, height: 820 });
     // Measure both elements in a single browser frame. Smooth scrolling
@@ -188,6 +213,20 @@ try {
   }
 
   await checkA11y(page);
+  await page.goto(base + "/equipe.html");
+  await page.locator("#invite-code").fill("a".repeat(64));
+  await page.locator("#invite-password").fill("New-staff-long-test-password-123456");
+  await page.locator("#invite-password-repeat").fill("New-staff-long-test-password-123456");
+  await page.locator("#enroll-form button").click();
+  await page.locator("#totp-panel").waitFor({state:"visible"});
+  assert.equal(await page.locator("#totp-secret").inputValue(),"SYNTHETIC-TOTP-SECRET-FOR-TEST");
+  await page.locator("#totp-code").fill("123456");
+  await page.locator("#totp-form button").click();
+  await page.locator("#enroll-complete").waitFor({state:"visible"});
+  assert.equal(await page.locator("#totp-secret").inputValue(),"");
+  await checkA11y(page);
+  await page.goto(base + "/operacional.html");
+  await page.locator("#dashboard").waitFor({state:"visible"});
   await page.locator("#logout").click();
   await page.locator("#login-area").waitFor({ state: "visible" });
   assert.equal(await page.locator("#dashboard").isVisible(), false);
