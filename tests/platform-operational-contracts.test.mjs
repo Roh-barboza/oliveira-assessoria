@@ -34,6 +34,7 @@ async function fixture(providerOverride, sandbox = true) {
   const calls = [];
   const provider = providerOverride || {
     available: true,
+    probe: async () => ({ reachable: true, code: "authenticated" }),
     submit: async (_row,pdf,checkpoint) => {
       calls.push({event:"send",pdfBytes:pdf.length});
       assert.equal(pdf.subarray(0,5).toString(),"%PDF-");
@@ -118,10 +119,33 @@ test("Disabled Sandbox invitation cannot reach external signature provider",asyn
   } finally { await a.db.close(); }
 });
 
+test("Invalid Sandbox authentication blocks sending before any state change",async()=>{
+  let submits=0;
+  const a=await fixture({
+    available:true,
+    probe:async()=>({reachable:false,code:"http_401"}),
+    submit:async()=>{submits++;throw Error("No remote submission allowed.");},
+  });
+  try{
+    await a.contracts.setup(a.users.admin.id);
+    const d=await a.contracts.create(a.users.admin.id,a.c.id);
+    const approved=await a.contracts.approve(a.users.admin.id,d.id,d.version);
+    await assert.rejects(
+      a.contracts.send(a.users.admin.id,d.id,approved.version,"ENVIAR_TESTE_SANDBOX"),
+      {status:503,message:/http_401/});
+    const row=(await a.contracts.list(a.users.admin.id,a.c.id))[0];
+    assert.equal(row.status,"approved");
+    assert.equal(row.version,approved.version);
+    assert.equal(row.envelopeId,null);
+    assert.equal(submits,0);
+  } finally { await a.db.close(); }
+});
+
 test("Sandbox remote failure prevents automatic duplicate envelope creation",async()=>{
   let count=0;
   const a=await fixture({
     available:true,
+    probe:async()=>({reachable:true,code:"authenticated"}),
     submit:async(_row,_pdf,checkpoint)=>{
       count++;
       await checkpoint("criar_envelope",{envelope:"00000000-0000-4000-8000-000000000010"});
@@ -164,7 +188,7 @@ test("Contract HTTP requires admin session, origin and explicit sandbox acknowle
     assert.equal((await req("contract-ready")).status,200);
     assert.equal((await req("contract-connection")).status,200);
     assert.deepEqual((await (await req("contract-connection")).json()).check,
-      {reachable:false,code:"not_supported"});
+      {reachable:true,code:"authenticated"});
     assert.equal((await req("contract-install",{acknowledge:"WRONG"})).status,422);
     assert.equal((await req("contract-install",{acknowledge:"SANDBOX_SOMENTE"},
       {origin:"https://evil.example.test"})).status,403);
