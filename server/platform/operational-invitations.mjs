@@ -74,7 +74,7 @@ export class OperationalInvitations {
           throw error(422, "Funcionário inválido.");
         const { rows } = await client.query(
           `SELECT id,email,display_name AS name,role FROM oliveira_staff_accounts
-           WHERE id=$1 AND role IN ('operator','reviewer') AND status='active' FOR UPDATE`,
+           WHERE id=$1 AND role IN ('operator','reviewer') AND status IN ('active','pending-mfa') FOR UPDATE`,
           [resetStaffId]);
         const staff = rows[0];
         if (!staff || staff.email !== normalizedEmail ||
@@ -124,7 +124,7 @@ export class OperationalInvitations {
     await this.authorizedAdmin(this.db, actorId);
     const {rows} = await this.db.query(
       `SELECT email,display_name AS name,role FROM oliveira_staff_accounts
-       WHERE id=$1 AND role IN ('operator','reviewer') AND status='active'`,
+       WHERE id=$1 AND role IN ('operator','reviewer') AND status IN ('active','pending-mfa')`,
       [targetId]);
     if (!rows[0]) throw error(404, "Funcionário indisponível.");
     return this.issue(actorId, { ...rows[0], resetStaffId:targetId });
