@@ -92,6 +92,14 @@ h3{font-size:1.1rem}
 .case-history{border:1px solid var(--line);background:#fbfcfa;border-radius:10px;padding:14px;margin:12px 0 18px}
 .case-history h4{margin:0 0 10px;font-size:.86rem}
 .history-list{margin:0;padding-left:18px;display:grid;gap:8px;font-size:.8rem;color:var(--muted);overflow-wrap:anywhere}
+.invitation-result{margin-top:14px;padding:14px;border:1px solid var(--line);border-radius:10px;background:#faf8f2;display:grid;gap:10px;overflow-wrap:anywhere}
+.invitation-result textarea,.invitation-result input{width:100%;max-width:100%;font-family:ui-monospace,monospace;font-size:.83rem;overflow-wrap:anywhere}
+.invitation-result p{margin:4px 0}
+.team-member button{max-width:100%}
+.team-member{flex-wrap:wrap}
+#invite-form{margin-top:18px;padding-top:14px;border-top:1px solid var(--line)}
+#invite-form h4{font-size:.92rem;margin:0 0 8px}
+#totp-secret{width:100%;font-family:ui-monospace,monospace;overflow-wrap:anywhere}
 #selected-case{overflow-wrap:anywhere;font-size:.84rem}
 .footer{border-top:1px solid var(--line);padding:20px 24px;text-align:center;color:var(--muted);font-size:.8rem}
 .footer a{margin-left:8px}
