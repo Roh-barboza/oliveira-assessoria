@@ -65,13 +65,13 @@
     $("approve").hidden=currentStatus()!=="draft";
     $("approve").disabled=busy;
     $("send").hidden=currentStatus()!=="approved";
-    $("send").disabled=busy || !config?.sandboxConnected || !connectionOk;
+    $("send").disabled=busy || !config?.sandboxConfigured || !connectionOk;
     $("refresh").hidden=currentStatus()!=="awaiting_signature";
-    $("refresh").disabled=busy || !config?.sandboxConnected;
+    $("refresh").disabled=busy || !config?.sandboxConfigured;
     $("signed-pdf").hidden=currentStatus()!=="signed";
     $("signed-pdf").disabled=busy;
-    const note = !config?.sandboxConnected ?
-      "A chave Clicksign Sandbox ainda não está conectada ou o envio por e-mail está desativado." :
+    const note = !config?.sandboxConfigured ?
+      "O Sandbox ainda não está configurado para enviar convites de teste por e-mail." :
       currentStatus()==="approved" ?
       "Envio somente para o e-mail de teste autorizado: "+config.testRecipient : "";
     const lastStage=selected.stage||"não informada";
@@ -120,11 +120,12 @@
   async function updateConfig() {
     const data=await request("contract-ready");
     config=data.contracts;
+    connectionOk=false;
     toggle("install",!config.installed);
     $("sandbox-status").textContent=!config.installed ?
       "Estrutura de contratos de demonstração ainda não preparada." :
-      config.sandboxConnected ?
-      "Credencial cadastrada na Vercel. A autenticação ainda precisa ser confirmada na Clicksign." :
+      config.sandboxConfigured ?
+      "Sandbox configurado. Clique em Verificar conexão para confirmar o acesso à API da Clicksign." :
       "Minutas e revisões liberadas. A assinatura por e-mail aguarda conexão com a conta Sandbox.";
     updateControls();
   }
@@ -143,7 +144,7 @@
   });
   async function checkConnection() {
     const {check}=await request("contract-connection");
-    connectionOk=Boolean(check?.reachable);
+    connectionOk=check?.reachable === true && check?.code === "authenticated";
     const code=String(check?.code||"desconhecido");
     const indicator=$("connection-indicator");
     const result=$("connection-result");
@@ -236,7 +237,7 @@
     },"Minuta fictícia aprovada.");
   });
   $("send").addEventListener("click",()=>{
-    if (!selected || !config?.sandboxConnected ||
+    if (!selected || !config?.sandboxConfigured || !connectionOk ||
         !confirm("Enviar convite de TESTE Clicksign exclusivamente para "+
           config.testRecipient+"? O envio não pode ser desfeito automaticamente."))return;
     perform(async()=>{
