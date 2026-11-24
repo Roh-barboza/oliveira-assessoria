@@ -64,7 +64,7 @@ test("private invitations enroll non-admin staff with TOTP and do not reveal sec
     assert.equal(pending.status,"pending-mfa");
     await assert.rejects(invitations.redeem({token:invitation.token,
       password:"A-strong-new-employee-password-1234"}), {status:409});
-    await assert.rejects(invitations.confirm({token:invitation.token,code:"000000"}),{status:422});
+    await assert.rejects(invitations.confirm({token:invitation.token,code:"not-a-code"}),{status:422});
   } finally {await db.close();}
 });
 
@@ -101,16 +101,21 @@ test("admin reset revokes sessions, requires new password and TOTP, never permit
     await assert.rejects(invitations.reset(admin.id,admin.id),{status:404});
     await assert.rejects(invitations.reset(worker.id,worker.id),{status:403});
     const reset=await invitations.reset(admin.id,worker.id);
+    const replacement=await invitations.reset(admin.id,worker.id);
+    assert.notEqual(reset.token,replacement.token);
+    await assert.rejects(invitations.redeem({
+      token:reset.token,password:"Replacement-password-very-long-1234",
+    }),{status:409});
     assert.equal(await accounts.getSession(session.token),null);
     assert.equal((await accounts.findByEmail(worker.email)).status,"pending-mfa");
     const recovered=await invitations.redeem({
-      token:reset.token,password:"Replacement-password-very-long-1234",
+      token:replacement.token,password:"Replacement-password-very-long-1234",
     });
     const pending=await accounts.findByEmail(worker.email);
     assert.equal(await verifyStaffPassword(pending,"Old-operation-password-for-test-1234"),false);
     assert.equal(await verifyStaffPassword(pending,"Replacement-password-very-long-1234"),true);
     const code=totpForCounter(recovered.totpSecret,oneTime());
-    assert.deepEqual(await invitations.confirm({token:reset.token,code}),{activated:true});
+    assert.deepEqual(await invitations.confirm({token:replacement.token,code}),{activated:true});
     assert.equal((await accounts.findByEmail(worker.email)).status,"active");
     assert.equal(await accounts.getSession(session.token),null);
   } finally {await db.close();}
