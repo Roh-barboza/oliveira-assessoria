@@ -89,6 +89,9 @@ h3{font-size:1.1rem}
 .team-member p{margin:4px 0 0;font-size:.78rem;color:var(--muted)}
 .team-member button{flex:0 0 auto}
 @media(max-width:560px){.team-member{align-items:stretch;flex-direction:column}.team-member button{width:100%}}
+.case-history{border:1px solid var(--line);background:#fbfcfa;border-radius:10px;padding:14px;margin:12px 0 18px}
+.case-history h4{margin:0 0 10px;font-size:.86rem}
+.history-list{margin:0;padding-left:18px;display:grid;gap:8px;font-size:.8rem;color:var(--muted);overflow-wrap:anywhere}
 #selected-case{overflow-wrap:anywhere;font-size:.84rem}
 .footer{border-top:1px solid var(--line);padding:20px 24px;text-align:center;color:var(--muted);font-size:.8rem}
 .footer a{margin-left:8px}
