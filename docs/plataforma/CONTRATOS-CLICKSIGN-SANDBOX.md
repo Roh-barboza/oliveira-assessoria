@@ -8,7 +8,7 @@ Estado: implementação de **homologação no Preview**, sem contratação real.
 2. A primeira utilização habilita, com confirmação explícita, as tabelas `oliveira_operational_contracts` e `oliveira_operational_contract_events` no PostgreSQL conectado. Nenhum cadastro nem tabela preexistente é apagado.
 3. **Gerar minuta fictícia** produz PDF com carimbo de Sandbox, sem dados pessoais, valores ou cláusulas jurídicas. O arquivo é criptografado por AES-GCM e identificado por SHA-256.
 4. O administrador baixa o PDF, confere e aprova. Os estados persistidos evitam aprovações repetidas.
-5. O envio só é autorizado no Preview, por administrador autenticado, com confirmação adicional, flags e credenciais da **Clicksign Sandbox**, e somente ao e-mail `rodrigo.barboza1994@gmail.com`. Sem credenciais, o botão fica bloqueado.
+5. O envio só é autorizado no Preview, por administrador autenticado, com confirmação adicional, flags e credenciais da **Clicksign Sandbox**, e somente ao e-mail de teste previamente autorizado. A interface distingue configuração da credencial de autenticação efetivamente confirmada. Antes de cada envio, o servidor consulta a API da Clicksign em modo somente leitura e bloqueia a operação em caso de 401, 403, falha de rede ou token não validado, mantendo a minuta aprovada sem criar envelope.
 6. A aplicação cria o envelope, anexa o PDF, adiciona signatário, requisitos, ativa o envelope e, depois da ativação, solicita explicitamente a notificação por e-mail. O ID de cada etapa é registrado antes da seguinte.
 7. Após o convite, **Consultar assinatura** verifica o estado na API. Quando o provedor comprova conclusão e disponibiliza o PDF assinado, ele é salvo criptografado e pode ser baixado pelo administrador.
 8. Se ocorrer falha durante envio, o contrato passa a `manual_review`. Não existe reenvio automático que poderia duplicar envelopes.
@@ -37,7 +37,7 @@ Após alterar variáveis, criar um novo deployment **Preview** da branch. Nunca 
 
 ### Critérios de aceite do envio externo
 
-- [ ] Token e e-mail de API associados na conta Sandbox
+- [ ] Token e e-mail de API associados na conta Sandbox, com resposta `authenticated` na opção **Verificar conexão**
 - [ ] Acesso à API de notificação liberado para a conta
 - [ ] Configuração sensível na Vercel restrita ao Preview
 - [ ] Convite de teste efetivamente entregue e aberto pelo destinatário
