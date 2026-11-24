@@ -3,7 +3,7 @@ import { encryption } from "./security.mjs";
 
 const fail = (status, message) => Object.assign(new Error(message),{status});
 const uuid = x => typeof x==="string" &&
-  /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(x);
+  /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(x);
 const MAX_BYTES=1024*1024;
 const MIME=new Set(["application/pdf","image/png","image/jpeg"]);
 function decodeFile(base64) {
