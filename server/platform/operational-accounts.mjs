@@ -67,6 +67,42 @@ export class OperationalAccounts {
       password: { algorithm: "scrypt-v1", hash: row.secret_hash, salt: row.secret_salt },
     } : null;
   }
+  // Administrator-only account visibility, without password/MFA material.
+  async listStaff(actorId) {
+    const { rows: admins } = await this.database.query(
+      "SELECT id FROM oliveira_staff_accounts WHERE id=$1 AND role='admin' AND status='active'",
+      [actorId]
+    );
+    if (!admins.length)
+      throw Object.assign(new Error("Acesso negado."), { status: 403 });
+    const { rows } = await this.database.query(
+      `SELECT id, email, display_name AS name, role, status, created_at
+       FROM oliveira_staff_accounts ORDER BY created_at DESC LIMIT 100`
+    );
+    return rows;
+  }
+  // Only non-admin team members may be disabled from the panel. This refuses
+  // self-lockout and removing another administrator; sessions immediately stop
+  // authenticating because getSession requires account.status='active'.
+  async disableStaff(actorId, targetId) {
+    if (typeof targetId !== "string" ||
+        !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(targetId) ||
+        targetId === actorId)
+      throw Object.assign(new Error("Funcionário inválido."), { status: 422 });
+    const { rows } = await this.database.query(
+      `UPDATE oliveira_staff_accounts SET status='disabled', disabled_at=now()
+       WHERE id=$2 AND role IN ('operator','reviewer') AND status <> 'disabled'
+         AND EXISTS (SELECT 1 FROM oliveira_staff_accounts
+                     WHERE id=$1 AND role='admin' AND status='active')
+       RETURNING id,status`,
+      [actorId,targetId]
+    );
+    if (!rows[0])
+      throw Object.assign(new Error("Funcionário indisponível."), { status: 404 });
+    await this.revokeAll(targetId);
+    return rows[0];
+  }
+
   async changeStatus(id, status) {
     if (!permittedStatus.has(status)) throw new Error("Estado inválido.");
     const { rows } = await this.database.query(
