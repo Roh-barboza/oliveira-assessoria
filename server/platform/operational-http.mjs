@@ -28,17 +28,17 @@ function sessionCookie(token) {
 function clearCookie() {
   return `${COOKIE_NAME}=; Secure; HttpOnly; Path=/; SameSite=Strict; Max-Age=0`;
 }
-async function readBody(req) {
+async function readBody(req, maxBytes = 4096) {
   if (!req.headers.get("content-type")?.toLowerCase().startsWith("application/json"))
     return null;
   const contentLength = req.headers.get("content-length");
-  if (contentLength && (!/^\d+$/.test(contentLength) || Number(contentLength) > 4096))
+  if (contentLength && (!/^\d+$/.test(contentLength) || Number(contentLength) > maxBytes))
     return null;
   let size = 0;
   const parts = [];
   for await (const part of req.body || []) {
     size += part.length;
-    if (size > 4096) return null;
+    if (size > maxBytes) return null;
     parts.push(part);
   }
   try {
@@ -49,7 +49,7 @@ async function readBody(req) {
   }
 }
 
-export function createOperationalHttp({ authentication, accounts, cases = null, contracts = null, invites = null, allowedOrigin, networkIdentity }) {
+export function createOperationalHttp({ authentication, accounts, cases = null, contracts = null, invites = null, documents = null, allowedOrigin, networkIdentity }) {
   if (!authentication?.login || !accounts?.getSession || !accounts?.revoke ||
       typeof networkIdentity !== "function" ||
       typeof allowedOrigin !== "string" ||
@@ -102,6 +102,31 @@ export function createOperationalHttp({ authentication, accounts, cases = null, 
         const token = cookieFrom(request);
         if (validCookie(token)) await accounts.revoke(token);
         return response({ authenticated: false }, 200, { "Set-Cookie": clearCookie() });
+      }
+      if (["doc-list","doc-download","doc-upload","doc-delete"].includes(op)) {
+        if (!documents?.list || !documents?.download || !documents?.upload || !documents?.remove)
+          return response({ error:"Documentos ainda não habilitados." },503);
+        const token=cookieFrom(request);
+        const account=validCookie(token) ? await accounts.getSession(token) : null;
+        if (!account) return response({ error:"Autenticação necessária." },401);
+        if (op === "doc-list" && request.method === "GET")
+          return response({ documents: await documents.list(
+            account.id,url.searchParams.get("caseId")) });
+        if (op === "doc-download" && request.method === "GET")
+          return response({ document: await documents.download(
+            account.id,url.searchParams.get("caseId"),url.searchParams.get("id")) });
+        if (request.method !== "POST")
+          return response({ error:"Método não permitido." },405);
+        const body=await readBody(request, op==="doc-upload" ? 1450000 : 4096);
+        if (!body) return response({ error:"Campos inválidos." },422);
+        const fields=op==="doc-upload"
+          ? ["caseId","name","mimeType","base64"] : ["caseId","id"];
+        if (Object.keys(body).length!==fields.length ||
+          !fields.every(k=>Object.hasOwn(body,k)))
+          return response({ error:"Campos inválidos." },422);
+        if (op==="doc-upload")
+          return response({document:await documents.upload(account.id,body)},201);
+        return response(await documents.remove(account.id,body.caseId,body.id));
       }
       if (["staff-invite", "staff-reset", "invite-redeem", "invite-confirm"].includes(op)) {
         if (!invites?.invite || !invites?.reset || !invites?.redeem || !invites?.confirm)
