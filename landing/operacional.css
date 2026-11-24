@@ -82,6 +82,13 @@ h3{font-size:1.1rem}
 #selected-panel .contract-entry-link{display:flex;align-items:center;justify-content:center;gap:10px;min-height:50px;width:100%;margin-top:20px;padding:12px 18px;line-height:1.35;text-align:center;text-decoration:none;overflow-wrap:break-word;position:relative;clear:both}
 #selected-panel .contract-entry-link span{font-size:1.12rem;flex:none}
 
+.team-list{display:grid;gap:10px;margin-top:16px}
+.team-member{border:1px solid var(--line);border-radius:10px;padding:12px;display:flex;align-items:center;justify-content:space-between;gap:10px;min-width:0}
+.team-member>div{min-width:0;overflow-wrap:anywhere}
+.team-member strong{display:block;font-size:.88rem}
+.team-member p{margin:4px 0 0;font-size:.78rem;color:var(--muted)}
+.team-member button{flex:0 0 auto}
+@media(max-width:560px){.team-member{align-items:stretch;flex-direction:column}.team-member button{width:100%}}
 #selected-case{overflow-wrap:anywhere;font-size:.84rem}
 .footer{border-top:1px solid var(--line);padding:20px 24px;text-align:center;color:var(--muted);font-size:.8rem}
 .footer a{margin-left:8px}
