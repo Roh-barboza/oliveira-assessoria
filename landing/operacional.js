@@ -30,7 +30,7 @@
   const environment = (text) => { $("environment").textContent = text; };
   const setBusy = (value) => {
     busy = value;
-    for (const button of document.querySelectorAll("#login-form button, #case-form button, #status-form button, #refresh, #logout"))
+    for (const button of document.querySelectorAll("#login-form button, #case-form button, #status-form button, #refresh, #logout, #team-refresh, #team-list button"))
       button.disabled = value;
   };
 
@@ -72,6 +72,8 @@
     setVisible("unavailable", false);
     setVisible("dashboard", false);
     setVisible("selected-panel", false);
+    setVisible("team-panel", false);
+    $("team-list").replaceChildren();
     environment("Acesso restrito");
   }
   function unavailable() {
@@ -81,6 +83,8 @@
     setVisible("login-area", false);
     setVisible("dashboard", false);
     setVisible("selected-panel", false);
+    setVisible("team-panel", false);
+    $("team-list").replaceChildren();
     environment("Ainda não configurado");
   }
   function showDashboard(user) {
@@ -90,6 +94,8 @@
     setVisible("unavailable", false);
     setVisible("dashboard", true);
     setVisible("selected-panel", false);
+    setVisible("team-panel", user.role === "admin");
+    $("team-list").replaceChildren();
     environment("Sessão autenticada");
     $("account-details").textContent = [user.name, user.role, user.email].filter(Boolean).join(" · ");
     // An operator cannot close a case; the server also enforces the rule.
@@ -98,6 +104,55 @@
     if (user.role === "reviewer") $("case-form").hidden = true;
     else $("case-form").hidden = false;
   }
+  async function refreshStaff() {
+    if (activeUser?.role !== "admin") return;
+    const result = await request("staff-list");
+    if (!Array.isArray(result.staff)) throw new Error("Lista de equipe indisponível.");
+    const list = $("team-list");
+    list.replaceChildren();
+    if (!result.staff.length) {
+      const empty = document.createElement("p");
+      empty.className = "muted";
+      empty.textContent = "Nenhuma conta cadastrada.";
+      list.append(empty);
+      return;
+    }
+    for (const account of result.staff) {
+      const item = document.createElement("div");
+      item.className = "team-member";
+      item.setAttribute("role", "listitem");
+      const details = document.createElement("div");
+      const name = document.createElement("strong");
+      name.textContent = String(account.name || "Equipe");
+      const status = document.createElement("p");
+      status.textContent = [account.email,account.role,account.status]
+        .filter(Boolean).join(" · ");
+      details.append(name,status);
+      item.append(details);
+      if (account.role !== "admin" && account.status !== "disabled") {
+        const disable = document.createElement("button");
+        disable.type = "button";
+        disable.className = "button secondary small";
+        disable.textContent = "Revogar acesso";
+        disable.setAttribute("aria-label", "Revogar acesso de " + String(account.name || account.email));
+        disable.addEventListener("click",async()=>{
+          if (busy || !window.confirm("Desativar esta conta e encerrar todas as sessões?")) return;
+          setBusy(true);
+          try {
+            await request("staff-disable",{method:"POST",data:{id:account.id}});
+            await refreshStaff();
+            feedback("Acesso da conta revogado.");
+          } catch (error) {
+            if (error.status === 401) return loadSession();
+            feedback(error.message || "Não foi possível desativar a conta.",true);
+          } finally { setBusy(false); }
+        });
+        item.append(disable);
+      }
+      list.append(item);
+    }
+  }
+
   function caseRow(item) {
     const row = document.createElement("article");
     row.className = "case-item";
@@ -174,6 +229,15 @@
   }
 
   $("retry").addEventListener("click", loadSession);
+  $("team-refresh").addEventListener("click",async()=>{
+    if (busy || activeUser?.role !== "admin") return;
+    setBusy(true);
+    try { await refreshStaff(); feedback(""); }
+    catch (error) {
+      if (error.status === 401) return loadSession();
+      feedback(error.message || "Não foi possível consultar a equipe.",true);
+    } finally { setBusy(false); }
+  });
   $("login-form").addEventListener("submit", async (event) => {
     event.preventDefault();
     if (busy) return;
