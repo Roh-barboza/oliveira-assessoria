@@ -99,13 +99,17 @@ try {
     else if (op === "case-create") {
       const item = { id: "22222222-2222-4222-8222-222222222222",
         title: body.title, service: body.service, notes: body.notes,
-        version: 1, status: "triagem" };
+        version: 1, status: "triagem",
+        recentEvents:[{action:"created",actorId:user.id,at:"2026-11-24T12:00:00.000Z",to:"triagem"}] };
       cases.push(item);
       result = { case: item }; status = 201;
     } else if (op === "case-status") {
       const item = cases.find((c) => c.id === body.id);
+      const previous = item.status;
       item.status = body.nextStatus;
       item.version++;
+      item.recentEvents.push({action:"status_changed",actorId:user.id,
+        at:"2026-11-24T12:30:00.000Z",from:previous,to:item.status});
       result = { case: item };
     } else { status = 404; result = { error: "Não encontrado." }; }
     await route.fulfill({ status, contentType: "application/json", body: JSON.stringify(result) });
@@ -135,6 +139,8 @@ try {
   await page.locator("#status-form button").click();
   await page.getByText("Etapa atualizada.").waitFor();
   assert.equal(cases[0].status, "conferencia");
+  assert.match(await page.locator("#case-history-list").textContent(),/Triagem → Conferência/);
+  assert.equal(await page.locator("#case-history-list li").count(),2);
   await page.screenshot({ path: evidenceDir + "/painel-sintetico.png", fullPage: true });
 
   // The contract link must be a separate, nonoverlapping action below Save.
