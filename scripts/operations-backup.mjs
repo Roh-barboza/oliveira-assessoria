@@ -1,7 +1,6 @@
 import { spawn } from "node:child_process";
 import { isAbsolute } from "node:path";
-import { createHash } from "node:crypto";
-import { access, stat } from "node:fs/promises";
+ import { access, stat, rm } from "node:fs/promises";
 import { Pool } from "pg";
 import {
   backupKey, encryptStream, decryptToStream, encryptedSha256,
@@ -11,7 +10,7 @@ const action=process.argv[2];
 const file=process.argv[3];
 const env=process.env;
 const deny = message => {throw new Error(message);};
-const key=backupKey(env.OLIVEIRA_OPS_BACKUP_KEY);
+let key;
 const validFile=typeof file==="string" && isAbsolute(file) &&
   /\.oliveira-backup\.enc$/.test(file) && !file.includes("\0");
 if(!["backup","verify","restore"].includes(action) || !validFile)
@@ -48,6 +47,7 @@ async function finished(child) {
   if(result.code!==0)deny("Ferramenta PostgreSQL falhou; verifique acesso e ambiente privado.");
 }
 try {
+  key=backupKey(env.OLIVEIRA_OPS_BACKUP_KEY);
   if(env.OLIVEIRA_OPS_BACKUP_ACK!=="dedicated-neon-backup-reviewed")
     deny("Backup exige confirmação explícita do banco dedicado e destino privado.");
   if(action==="backup") {
@@ -61,6 +61,7 @@ try {
       await Promise.all([encryptStream(cmd.stdout,file,key),finished(cmd)]);
     } catch(error) {
       cmd.kill();
+      await rm(file,{force:true}).catch(()=>{});
       throw error;
     }
     const digest=await encryptedSha256(file);
