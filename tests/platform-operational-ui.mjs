@@ -159,6 +159,8 @@ try {
   assert.equal(await page.locator("#team-list button").count(),1);
   await page.getByRole("button",{name:"Revogar acesso de Atendimento sintético"}).click();
   assert.equal(staff[1].status,"disabled");
+  // The network mock mutates state before the UI finishes rendering.
+  await page.locator("#team-list button").waitFor({state:"detached"});
   assert.equal(await page.locator("#team-list button").count(),0);
   assert.equal(requestLog.filter(x=>x==="staff-disable").length,1);
   for (const width of [390, 560, 665, 768, 1366]) {
