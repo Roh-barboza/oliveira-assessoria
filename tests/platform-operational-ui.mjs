@@ -135,6 +135,27 @@ try {
     await page.setViewportSize({ width, height: 820 });
     const save=await page.locator("#status-form button").boundingBox();
     const link=await page.locator("#contracts-case-link").boundingBox();
+    if (!save || !link || link.y < save.y + save.height + 12) {
+      const diagnostic = await page.evaluate(() => {
+        const stack = document.querySelector("#selected-panel .case-action-stack");
+        const form = document.getElementById("status-form");
+        const link = document.getElementById("contracts-case-link");
+        const box = node => {
+          const r = node.getBoundingClientRect();
+          return { x:r.x,y:r.y,width:r.width,height:r.height };
+        };
+        return {
+          stack:box(stack),form:box(form),link:box(link),
+          stackDisplay:getComputedStyle(stack).display,
+          stackGap:getComputedStyle(stack).gap,
+          linkDisplay:getComputedStyle(link).display,
+          formParent:form.parentElement?.className,
+          linkParent:link.parentElement?.className,
+          cssLoaded:[...document.styleSheets].map(sheet=>sheet.href).filter(Boolean),
+        };
+      });
+      console.error("CONTRACT_LAYOUT_DIAGNOSTIC", width, JSON.stringify({ save, link, diagnostic }));
+    }
     assert.ok(save && link && link.y >= save.y + save.height + 12,
       "Contract action overlaps status button at " + width + "px");
     assert.ok(link.width >= save.width * 0.94,
