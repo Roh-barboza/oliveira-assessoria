@@ -32,6 +32,8 @@ test("operational cases encrypt their metadata and survive repository reads", as
       title: "Solicitação interna exemplo", service: "Documentação", notes: "Somente dados sintéticos",
     });
     assert.equal(item.status,"triagem");
+    assert.deepEqual(item.recentEvents.map(event=>event.action),["created"]);
+    assert.equal(item.recentEvents[0].to,"triagem");
     const { rows } = await db.query("SELECT encrypted_payload FROM oliveira_operational_cases WHERE id=$1",[item.id]);
     assert.equal(Buffer.from(rows[0].encrypted_payload).includes(Buffer.from(item.title)),false);
     assert.equal((await cases.get(users.one.id,item.id)).title,item.title);
@@ -60,6 +62,11 @@ test("operational cases prevent cross-operator updates and version conflicts", a
       nextStatus:"conferencia",expectedVersion:1,
     });
     assert.equal(next.version,2);
+    assert.equal(next.recentEvents.length,2);
+    assert.deepEqual(next.recentEvents[1], {
+      action:"status_changed", actorId:users.one.id,
+      at:next.recentEvents[1].at,from:"triagem",to:"conferencia",
+    });
     await assert.rejects(cases.changeStatus(users.one.id,item.id,{
       nextStatus:"preparado",expectedVersion:1,
     }), { status:409 });
@@ -70,6 +77,14 @@ test("operational cases prevent cross-operator updates and version conflicts", a
       nextStatus:"encerrado",expectedVersion:2,
     });
     assert.equal(closed.status,"encerrado");
+    assert.equal(closed.recentEvents.length,3);
+    assert.equal(closed.recentEvents[2].actorId,users.admin.id);
+    assert.equal(closed.recentEvents[2].to,"encerrado");
+    assert.equal(closed.previousEvents,0);
+    const {rows: raw}=await db.query(
+      "SELECT encrypted_payload FROM oliveira_operational_cases WHERE id=$1",[item.id]);
+    assert.equal(Buffer.from(raw[0].encrypted_payload).includes(
+      Buffer.from("status_changed")),false);
     await assert.rejects(cases.changeStatus(users.admin.id,item.id,{
       nextStatus:"triagem",expectedVersion:3,
     }), { status:403 });
