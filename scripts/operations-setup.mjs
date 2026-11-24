@@ -4,6 +4,7 @@ import { OperationalAccounts } from "../server/platform/operational-accounts.mjs
 import { OperationalMfa } from "../server/platform/operational-mfa.mjs";
 import { OperationalLoginLimiter } from "../server/platform/operational-login-limiter.mjs";
 import { OperationalCases } from "../server/platform/operational-cases.mjs";
+import { OperationalInvitations } from "../server/platform/operational-invitations.mjs";
 import { prepareStaffAccount } from "../server/platform/operational-identity.mjs";
 
 // Controlled one-time preparation for a separately provisioned PostgreSQL.
@@ -40,7 +41,9 @@ try {
       await mfa.setup();
       await limiter.setup();
       await cases.setup();
-      console.log("Migrações operacionais aplicadas ao banco dedicado.");
+      await new OperationalInvitations(client,
+        env.OLIVEIRA_OPS_DATA_KEY,env.OLIVEIRA_OPS_RATE_SECRET).setup();
+      console.log("Migrações operacionais e de convites aplicadas ao banco dedicado.");
     } else if (command === "admin") {
       const email = env.OLIVEIRA_OPS_ADMIN_EMAIL;
       const name = env.OLIVEIRA_OPS_ADMIN_NAME;
