@@ -64,7 +64,7 @@ export class OperationalContracts {
       "SELECT to_regclass('public.oliveira_operational_contracts') AS name");
     return {
       installed: Boolean(rows[0]?.name),
-      sandboxConnected: Boolean(this.provider.available &&
+      sandboxConfigured: Boolean(this.provider.available &&
         this.sandboxEnv.CLICKSIGN_SANDBOX_EMAIL_EXPLICIT_TEST === "1"),
       testRecipient: this.sandboxEnv.CLICKSIGN_TEST_EMAIL || null,
       realContracts: false,
@@ -171,6 +171,17 @@ export class OperationalContracts {
     const email = String(this.sandboxEnv.CLICKSIGN_TEST_EMAIL||"").toLowerCase();
     if (email !== "rodrigo.barboza1994@gmail.com")
       throw fail(503, "Destinatário de teste não autorizado.");
+    // Check the real Sandbox token before persisting 'sending'. The read-only
+    // check must never create envelopes or send invitations.
+    const check = typeof this.provider.probe === "function"
+      ? await this.provider.probe()
+      : { reachable: false, code: "not_supported" };
+    if (check?.reachable !== true || check?.code !== "authenticated") {
+      const code = String(check?.code || "indisponivel")
+        .replace(/[^a-z0-9_]/gi, "").slice(0, 32);
+      throw fail(503, "Autenticação Clicksign não validada (" + code +
+        "). Use Verificar conexão antes de enviar.");
+    }
     // Atomic claim, so double-clicks and parallel function instances cannot resend.
     const { rows } = await this.database.query(
       "UPDATE oliveira_operational_contracts SET status='sending', " +
