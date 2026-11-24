@@ -30,7 +30,7 @@
   const environment = (text) => { $("environment").textContent = text; };
   const setBusy = (value) => {
     busy = value;
-    for (const button of document.querySelectorAll("#login-form button, #case-form button, #status-form button, #refresh, #logout, #team-refresh, #team-list button"))
+    for (const button of document.querySelectorAll("#login-form button, #case-form button, #status-form button, #refresh, #logout, #team-refresh, #team-list button, #invite-form button, #invitation-clear"))
       button.disabled = value;
   };
 
@@ -63,11 +63,28 @@
     p.textContent = message;
     $("cases-list").append(p);
   }
+  function hideInvitation() {
+    $("invitation-token").value = "";
+    $("invitation-expiry").textContent = "";
+    setVisible("invitation-result", false);
+  }
+  function showInvitation(result) {
+    if (!result || typeof result.token !== "string" ||
+        !/^[a-f0-9]{64}$/.test(result.token))
+      throw new Error("Código de ativação inválido.");
+    hideInvitation();
+    $("invitation-token").value = result.token;
+    const when = new Date(result.expiresAt);
+    $("invitation-expiry").textContent = Number.isFinite(when.valueOf())
+      ? "Expira em " + when.toLocaleString("pt-BR") : "Expiração em 24 horas";
+    setVisible("invitation-result", true);
+  }
   function showLogin() {
     activeUser = null;
     selected = null;
     currentCases = [];
     $("login-form").reset();
+    hideInvitation();
     setVisible("login-area", true);
     setVisible("unavailable", false);
     setVisible("dashboard", false);
@@ -79,6 +96,7 @@
   function unavailable() {
     activeUser = null;
     selected = null;
+    hideInvitation();
     setVisible("unavailable", true);
     setVisible("login-area", false);
     setVisible("dashboard", false);
@@ -90,6 +108,7 @@
   function showDashboard(user) {
     activeUser = user;
     selected = null;
+    hideInvitation();
     setVisible("login-area", false);
     setVisible("unavailable", false);
     setVisible("dashboard", true);
@@ -130,6 +149,30 @@
       details.append(name,status);
       item.append(details);
       if (account.role !== "admin" && account.status !== "disabled") {
+        if (account.status === "active") {
+          const reset = document.createElement("button");
+          reset.type = "button";
+          reset.className = "button secondary small";
+          reset.textContent = "Recuperar acesso";
+          reset.setAttribute("aria-label","Recuperar acesso de " + String(account.name || account.email));
+          reset.addEventListener("click",async()=>{
+            if (busy || !window.confirm(
+              "Revogar todas as sessões deste funcionário e gerar um token de recuperação?")) return;
+            setBusy(true);
+            try {
+              const result = await request("staff-reset",{
+                method:"POST",data:{id:account.id,acknowledge:"RESETAR_ACESSO"},
+              });
+              showInvitation(result.invitation);
+              await refreshStaff();
+              feedback("Acesso anterior suspenso. Entregue o novo código de forma privada.");
+            } catch (error) {
+              if (error.status === 401) return loadSession();
+              feedback(error.message || "Recuperação indisponível.",true);
+            } finally { setBusy(false); }
+          });
+          item.append(reset);
+        }
         const disable = document.createElement("button");
         disable.type = "button";
         disable.className = "button secondary small";
@@ -258,6 +301,28 @@
   }
 
   $("retry").addEventListener("click", loadSession);
+  $("invitation-clear").addEventListener("click",hideInvitation);
+  $("invite-form").addEventListener("submit",async event=>{
+    event.preventDefault();
+    if (busy || activeUser?.role !== "admin") return;
+    const form = event.currentTarget;
+    const data = Object.fromEntries(new FormData(form));
+    hideInvitation();
+    setBusy(true);
+    try {
+      const result = await request("staff-invite",{method:"POST",data:{
+        name:String(data.name||"").trim(),
+        email:String(data.email||"").trim(),
+        role:String(data.role||""),
+      }});
+      showInvitation(result.invitation);
+      form.reset();
+      feedback("Convite criado. Compartilhe o código em canal privado autorizado.");
+    } catch (error) {
+      if (error.status === 401) return loadSession();
+      feedback(error.message || "Não foi possível gerar o convite.",true);
+    } finally { setBusy(false); }
+  });
   $("team-refresh").addEventListener("click",async()=>{
     if (busy || activeUser?.role !== "admin") return;
     setBusy(true);
