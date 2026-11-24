@@ -52,6 +52,7 @@ try {
   const page = await context.newPage();
   const errors = [];
   page.on("pageerror", (error) => errors.push(error.message));
+  page.on("dialog", dialog => dialog.accept());
 
   // When the backend has not been mounted, the page must not solicit credentials.
   await page.goto(base + "/operacional.html");
@@ -67,6 +68,12 @@ try {
   const user = { id: "11111111-1111-4111-8111-111111111111",
     name: "Operadora de exemplo", email: "equipe@example.test", role: "operator" };
   const cases = [];
+  const staff = [
+    {id:"11111111-1111-4111-8111-111111111111",name:"Admin sintético",
+      email:"admin@example.invalid",role:"admin",status:"active"},
+    {id:"33333333-3333-4333-8333-333333333333",name:"Atendimento sintético",
+      email:"employee@example.invalid",role:"operator",status:"active"},
+  ];
   const requestLog = [];
   await page.route("**/api/operacional?**", async (route) => {
     const req = route.request();
@@ -79,6 +86,14 @@ try {
     else if (op === "login") { loggedIn = true; result = { authenticated: true }; }
     else if (op === "logout") { loggedIn = false; result = { authenticated: false }; }
     else if (!loggedIn) { status = 401; result = { error: "Autenticação necessária." }; }
+    else if (op === "staff-list") result = {staff};
+    else if (op === "staff-disable") {
+      const item = staff.find(record => record.id === body.id);
+      if (item && item.role !== "admin") {
+        item.status = "disabled";
+        result = {staff:{id:item.id,status:item.status}};
+      } else {status=422;result={error:"Conta não pode ser desativada."};}
+    }
     else if (op === "case-list") result = { cases };
     else if (op === "case-get") result = { case: cases.find((c) => c.id === url.searchParams.get("id")) };
     else if (op === "case-create") {
@@ -131,6 +146,15 @@ try {
   await page.locator("#contracts-case-link").waitFor({ state: "visible" });
   assert.match(await page.locator("#contracts-case-link").getAttribute("href"),
     /contratos\.html\?caseId=/);
+  await page.locator("#team-panel").waitFor({state:"visible"});
+  await page.locator("#team-refresh").click();
+  await page.getByText("Atendimento sintético",{exact:true}).waitFor();
+  assert.equal(await page.locator("#team-list .team-member").count(),2);
+  assert.equal(await page.locator("#team-list button").count(),1);
+  await page.getByRole("button",{name:"Revogar acesso de Atendimento sintético"}).click();
+  assert.equal(staff[1].status,"disabled");
+  assert.equal(await page.locator("#team-list button").count(),0);
+  assert.equal(requestLog.filter(x=>x==="staff-disable").length,1);
   for (const width of [390, 560, 665, 768, 1366]) {
     await page.setViewportSize({ width, height: 820 });
     // Measure both elements in a single browser frame. Smooth scrolling
