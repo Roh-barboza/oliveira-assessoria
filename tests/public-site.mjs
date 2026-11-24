@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { readdir, readFile, mkdir, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { chromium } from "playwright";
+import { browserExecutablePath } from "../scripts/browser-path.mjs";
 import AxeBuilder from "@axe-core/playwright";
 const evidence = process.env.EVIDENCE_DIR || "test-results";
 await mkdir(evidence, { recursive: true });
@@ -9,7 +10,7 @@ const base = process.env.BASE_URL || "http://127.0.0.1:4175";
 let server;
 if (!process.env.BASE_URL) ({ server } = await import("../scripts/serve.mjs"));
 const browser = await chromium.launch({
-  executablePath: process.env.CHROME_PATH || "/usr/bin/chromium",
+  executablePath: browserExecutablePath(),
   args: [
     "--no-sandbox",
     ...(process.env.IGNORE_CERT_ERRORS === "1"

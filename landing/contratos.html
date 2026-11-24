@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="referrer" content="no-referrer">
+  <title>Contratos de demonstração | Oliveira Assessoria</title>
+  <link rel="icon" href="/assets/logo-mark-oliveira.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/operacional.css">
+  <link rel="stylesheet" href="/contratos.css">
+  <script defer src="/contratos.js"></script>
+</head>
+<body>
+  <a class="skip" href="#conteudo">Pular para o conteúdo</a>
+  <header class="topbar">
+    <div class="topbar__inner">
+      <img src="/assets/logo-oliveira.svg" width="168" height="43" alt="Oliveira Assessoria">
+      <div class="topbar__right">
+        <span class="topbar__tag">CONTRATAÇÃO DE TESTE</span>
+        <a href="/operacional.html" class="back-link">Voltar ao painel</a>
+      </div>
+    </div>
+  </header>
+  <main id="conteudo" class="shell contracts-shell">
+    <div class="intro">
+      <div>
+        <p class="eyebrow">CONTRATOS DIGITAIS · SANDBOX</p>
+        <h1>Da minuta à assinatura, com controle.</h1>
+        <p class="intro__text">Preparação, conferência e acompanhamento do teste da Clicksign.</p>
+      </div>
+    </div>
+    <p class="safety" role="note"><strong>Somente teste:</strong> não há contratação válida,
+      cliente real ou cobrança. O documento é fictício e usa um e-mail autorizado no Sandbox.</p>
+    <p id="environment" class="muted" role="status" aria-live="polite">Verificando sua sessão...</p>
+    <p id="feedback" class="feedback" role="alert" hidden></p>
+    <section id="blocked" class="card" hidden aria-labelledby="blocked-heading">
+      <h2 id="blocked-heading">Acesso indisponível</h2>
+      <p>Esta área exige administrador autenticado no Preview da Oliveira Assessoria.</p>
+      <a href="/operacional.html" class="button primary">Acessar painel</a>
+    </section>
+    <section id="workspace" hidden>
+      <div class="card contract-section integration-card" aria-labelledby="sandbox-heading">
+        <div class="section-overline">
+          <span class="eyebrow">ETAPA 01 · CONEXÃO</span>
+          <span id="connection-indicator" class="integration-pill" data-state="idle">Aguardando verificação</span>
+        </div>
+        <h2 id="sandbox-heading">Integração Clicksign</h2>
+        <div class="integration-row">
+          <p id="sandbox-status" class="muted">Consultando a configuração do Sandbox...</p>
+          <button id="check-connection" type="button" class="button secondary">Verificar conexão <span aria-hidden="true">↗</span></button>
+        </div>
+        <p id="connection-result" class="connection-result" data-state="idle" role="status" aria-live="polite" hidden></p>
+        <div id="connection-help" class="connection-help" hidden>
+          <strong>Como corrigir a autenticação</strong>
+          <p>Gere um novo Access Token na <a href="https://sandbox.clicksign.com" target="_blank" rel="noopener noreferrer">Clicksign Sandbox</a>, associe seu e-mail à API e substitua a variável <code>CLICKSIGN_ACCESS_TOKEN</code> na <a href="https://vercel.com/barbozaa-s-projects/oliveira-assessoria/settings/environment-variables" target="_blank" rel="noopener noreferrer">Vercel</a>, somente no Preview. Faça um novo deployment após salvar.</p>
+          <p class="help-small">Nunca cole a credencial no chat. O envio continuará bloqueado até a API aceitar o novo token.</p>
+        </div>
+        <button id="install" type="button" class="button secondary" hidden>
+          Preparar estrutura de contratos no Neon</button>
+      </div>
+      <div class="card contract-section">
+        <p class="eyebrow section-label">ETAPA 02 · PREPARAÇÃO</p>
+        <h2>Minuta e revisão</h2>
+        <label for="case-id">Identificador de solicitação</label>
+        <input id="case-id" class="case-input" maxlength="36"
+          placeholder="Selecione uma solicitação no painel" autocomplete="off" spellcheck="false">
+        <p class="muted">Use a solicitação sintética de demonstração. O sistema não utiliza dados reais.</p>
+        <div class="contract-actions">
+          <button id="list" type="button" class="button secondary">Consultar minutas</button>
+          <button id="prepare" type="button" class="button primary">Gerar minuta fictícia</button>
+        </div>
+        <div id="contract-items" class="contract-items" role="list"></div>
+      </div>
+      <div id="contract-selected" class="card contract-section" hidden>
+        <p class="eyebrow section-label">ETAPA 03 · ASSINATURA</p>
+        <h2>Conferência e assinatura</h2>
+        <p id="contract-identification" class="muted"></p>
+        <p><strong id="contract-status">Preparando...</strong></p>
+        <div class="contract-actions">
+          <button id="preview-pdf" type="button" class="button secondary">Baixar minuta para conferência</button>
+          <button id="approve" type="button" class="button primary">Aprovar minuta de teste</button>
+          <button id="send" type="button" class="button primary">Enviar convite de teste</button>
+          <button id="refresh" type="button" class="button secondary">Consultar assinatura</button>
+          <button id="signed-pdf" type="button" class="button secondary">Baixar PDF assinado</button>
+        </div>
+        <p id="send-note" class="muted" role="status"></p>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">Oliveira Assessoria · Ambiente interno de homologação ·
+    <a href="/privacidade.html">Privacidade</a></footer>
+</body>
+</html>
