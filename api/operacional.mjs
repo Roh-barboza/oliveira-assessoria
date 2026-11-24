@@ -64,6 +64,10 @@ async function runtime() {
     await pool.query("SELECT 1 FROM oliveira_operational_cases LIMIT 0");
     if (env.OLIVEIRA_OPS_TEAM_INVITES_ENABLED === "1")
       await pool.query("SELECT 1 FROM oliveira_staff_invitations LIMIT 0");
+    if (env.OLIVEIRA_OPS_DOCUMENTS_PREVIEW === "1") {
+      await pool.query("SELECT 1 FROM oliveira_operational_documents LIMIT 0");
+      await pool.query("SELECT 1 FROM oliveira_document_access_log LIMIT 0");
+    }
     // Never expose a login form as ready until a real administrator
     // completed TOTP enrollment. Bootstrap alone must not unlock operations.
     const { rows: activeAdmin } = await pool.query(
@@ -81,6 +85,10 @@ async function runtime() {
     allowedOrigin: operationalOrigin(env),
     networkIdentity: trustedVercelNetworkIdentity,
     teamInvitesEnabled: env.OLIVEIRA_OPS_TEAM_INVITES_ENABLED === "1",
+    documentsPreviewEnabled: env.OLIVEIRA_OPS_DOCUMENTS_PREVIEW === "1",
+    // Upload remains blocked until an approved malware-scanning adapter
+    // and document-processing agreement are configured and tested.
+    documentScanner: null,
     sandboxEnv: {
       CLICKSIGN_SANDBOX_EXPLICIT_TEST: env.CLICKSIGN_SANDBOX_EXPLICIT_TEST,
       CLICKSIGN_SANDBOX_EMAIL_EXPLICIT_TEST: env.CLICKSIGN_SANDBOX_EMAIL_EXPLICIT_TEST,
