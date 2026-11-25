@@ -74,5 +74,32 @@
   },
   "regions": [
     "gru1"
+  ],
+  "redirects": [
+    {
+      "source": "/servicos/registro-filhos.html",
+      "destination": "/servicos.html",
+      "permanent": true
+    },
+    {
+      "source": "/servicos/certidoes-italianas.html",
+      "destination": "/servicos.html",
+      "permanent": true
+    },
+    {
+      "source": "/servicos/carta-identita.html",
+      "destination": "/servicos.html",
+      "permanent": true
+    },
+    {
+      "source": "/servicos/regularizacao-consular.html",
+      "destination": "/servicos.html",
+      "permanent": true
+    },
+    {
+      "source": "/servicos/organizacao-documental.html",
+      "destination": "/servicos/montagem-pasta-processual.html",
+      "permanent": true
+    }
   ]
 }
