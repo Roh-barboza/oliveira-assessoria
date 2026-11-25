@@ -253,6 +253,22 @@ try {
     await page.waitForURL((u) => u.hash === "#contato" && u.pathname === "/");
     assert.equal(await page.locator('[name="servico"]').inputValue(), service);
   }
+  // Discontinued services must not appear as active offers.
+  const removedNames = ["Registro de filhos", "Certidão italiana", "Carta d'identità",
+    "Outra regularização consular", "INSS e benefícios", "Organização documental"];
+  await page.goto(base);
+  const publicOptions = await page.locator('#consular-form select[name="servico"] option').allTextContents();
+  const publicCards = await page.locator(".service-card, .brazil-card").allTextContents();
+  for (const name of removedNames) {
+    assert.equal(publicOptions.some(text => text.trim() === name), false, name);
+    assert.equal(publicCards.some(text => text.includes(name)), false, name);
+  }
+  await page.goto(base + "/servicos.html");
+  const publicCatalog = await page.locator(".catalog-card").allTextContents();
+  for (const name of removedNames)
+    assert.equal(publicCatalog.some(text => text.includes(name)), false, name);
+  await page.goto(base + "/servicos/passaporte-italiano.html");
+  assert.match(await page.locator("#limites").locator("..").innerText(), /agendamento somente de renovação/i);
   await page.goto(base + "/imposto-de-renda.html");
   await page.locator(".service-hero__actions .btn-primary").click();
   await page.waitForURL((u) => u.hash === "#contato");
@@ -310,7 +326,7 @@ try {
     ["montagem", 1],
     ["FAST IT", 1],
     ["endereco", 1],
-    ["Processos", 1],
+    ["Processos", 2],
   ]) {
     await search.fill(term);
     assert.equal(await page.locator(".catalog-card:visible").count(), expected, term);
