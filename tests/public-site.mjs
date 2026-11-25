@@ -214,11 +214,10 @@ try {
     }
     assert.equal(await page.locator("#consular-form button").isEnabled(), true);
   }
-  await page.goto(base);
-  await page.locator('[data-service="INSS e benefícios"]').click();
+  await page.goto(base + "/?servico=Montagem%20de%20pasta%20para%20processos#contato");
   assert.equal(
     await page.locator('[name="servico"]').inputValue(),
-    "INSS e benefícios",
+    "Montagem de pasta para processos",
   );
   // Direct service CTAs preserve context without an intermediate contact click.
   const services = {
@@ -226,11 +225,7 @@ try {
     "fast-it": "Fast It",
     "passaporte-italiano": "Passaporte italiano",
     "estado-civil": "Estado civil",
-    "registro-filhos": "Registro de filhos",
-    "certidoes-italianas": "Certidão italiana",
-    "carta-identita": "Carta d'identità",
-    "regularizacao-consular": "Outra regularização consular",
-    "organizacao-documental": "Organização documental",
+    "montagem-pasta-processual": "Montagem de pasta para processos",
   };
   for (const [slug, service] of Object.entries(services)) {
     await page.goto(`${base}/servicos/${slug}.html`);
@@ -288,7 +283,7 @@ try {
   assert.match(await page.locator("h1").innerText(), /não foi encontrado/);
   // Catalog discovery, accent/punctuation normalization and progressive enhancement.
   await page.goto(base + "/servicos.html");
-  assert.equal(await page.locator(".catalog-card").count(), 12);
+  assert.equal(await page.locator(".catalog-card").count(), 7);
   const search = page.locator("#catalog-search");
   const category = page.locator("#catalog-category");
   assert.equal(
@@ -296,45 +291,41 @@ try {
       .locator(".catalog-label")
       .filter({ hasText: "Em validação comercial" })
       .count(),
-    12,
+    7,
   );
   assert.equal(
     await page
       .locator(".catalog-action")
       .filter({ hasText: "Consultar possibilidade de atendimento" })
       .count(),
-    2,
+    1,
   );
   await category.selectOption("brasil");
-  assert.equal(await page.locator(".catalog-card:visible").count(), 4);
+  assert.equal(await page.locator(".catalog-card:visible").count(), 2);
   await category.selectOption("italia");
-  assert.equal(await page.locator(".catalog-card:visible").count(), 8);
+  assert.equal(await page.locator(".catalog-card:visible").count(), 5);
   await category.selectOption("todos");
   for (const [term, expected] of [
     ["PASSAPORTE", 1],
-    ["certidoes", 2],
-    ["Carta d'identita", 1],
+    ["montagem", 1],
+    ["FAST IT", 1],
     ["endereco", 1],
-    ["INSS", 1],
+    ["Processos", 1],
   ]) {
     await search.fill(term);
-    assert.equal(
-      await page.locator(".catalog-card:visible").count(),
-      expected,
-      term,
-    );
+    assert.equal(await page.locator(".catalog-card:visible").count(), expected, term);
   }
-  await search.fill("certidoes");
-  for (const selected of ["brasil", "italia"]) {
-    await category.selectOption(selected);
-    assert.equal(await page.locator(".catalog-card:visible").count(), 1);
-  }
+  await search.fill("montagem");
+  await category.selectOption("brasil");
+  assert.equal(await page.locator(".catalog-card:visible").count(), 0);
+  await category.selectOption("italia");
+  assert.equal(await page.locator(".catalog-card:visible").count(), 1);
   await category.selectOption("todos");
   await search.fill("zz-inexistente-zz");
   assert.equal(await page.locator(".catalog-card:visible").count(), 0);
   assert.equal(await page.locator("#catalog-empty").isVisible(), true);
   await search.fill("");
-  assert.equal(await page.locator(".catalog-card:visible").count(), 12);
+  assert.equal(await page.locator(".catalog-card:visible").count(), 7);
   await page.locator(".catalog-card h3 a").filter({ hasText: "AIRE" }).click();
   assert.match(new URL(page.url()).pathname, /servicos\/aire.html/);
   for (const slug of Object.keys(services)) {
@@ -407,18 +398,18 @@ try {
       path + " does not promote candidates",
     );
   }
-  await page.goto(base + "/servicos/organizacao-documental.html");
+  await page.goto(base + "/servicos/montagem-pasta-processual.html");
   assert.match(
     await page
       .locator("#incluido + ul, [aria-labelledby=incluido] ul")
       .innerText(),
-    /digitalização/,
+    /Montagem|montagem/,
   );
   await page.locator(".hero-actions .btn-gold").click();
   await page.waitForURL((u) => u.hash === "#contato" && u.pathname === "/");
   assert.equal(
     await page.locator('[name="servico"]').inputValue(),
-    "Organização documental",
+    "Montagem de pasta para processos",
   );
   assert.equal(
     await page
@@ -456,7 +447,7 @@ try {
     viewport: { width: 390, height: 844 },
   });
   await nojsCatalog.goto(base + "/servicos.html");
-  assert.equal(await nojsCatalog.locator(".catalog-card:visible").count(), 12);
+  assert.equal(await nojsCatalog.locator(".catalog-card:visible").count(), 7);
   await nojsCatalog.close();
   // IR wizard's local persistence and conditional blocks remain operational.
   await page.goto(base + "/ir/formulario.html");
@@ -491,16 +482,16 @@ try {
         form: "intercepted only: valid/invalid/success/HTTP500/offline; no real lead sent",
         ir: "local draft persistence",
         serviceFlow:
-          "8 consular + organization hero CTAs via keyboard plus IR direct to central form; matching selected option; header and final navigation targets verified",
+          "5 active Italian service CTAs plus IR direct to central form; selected option and navigation targets verified",
         keyboard:
           "skip link, focus outline, Enter, Escape and menu focus verified",
         missingPage: "unknown URL returns HTTP 404",
         editorialRefinement:
-          "two analysis CTAs per detail main; accessible native section index; 12 entries pending; 8 priorities, 0 approvals; 4 candidates absent from public offers; IR local checklist retained",
+          "two analysis CTAs per active detail page; 7 catalog entries; retired services removed; historical internal matrices unchanged",
         catalog:
-          "12 entries, category filter, title/description search, accent and punctuation normalization, empty state, link to detail, no-JS fallback",
+          "7 entries, category filter, title/description search, accent and punctuation normalization, empty state, link to detail, no-JS fallback",
         servicePages:
-          "8 standardized consular + organization pages with deliveries, responsibilities and FAQ; IR scoped and without price",
+          "5 active Italian services including process-folder assembly, with deliveries, limitations and FAQ; IR without price",
         date: new Date().toISOString(),
       },
       null,
