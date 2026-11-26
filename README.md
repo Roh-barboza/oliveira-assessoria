@@ -24,6 +24,8 @@ Não registrar dados pessoais ou credenciais em evidências. O checklist IR mant
 
 ## Marca, fotografia e pendências
 
+Consulte [o relatório técnico e as pendências externas](docs/pincio/RELATORIO-TECNICO-2026-11-26.md).
+
 Leia [as pendências PINCIO](docs/pincio/CODEX_PENDENCIAS.md) e [os créditos e a licença da fotografia](landing/assets/pincio-fotografia-licenca.json). O código e a marca não herdam automaticamente a licença da fotografia.
 
 Não ativar operação real, pagamentos ou mensagens; não alterar autenticação, banco, secrets, backups, domínios ou permissões como efeito colateral do rebranding. A pessoa jurídica, o CNPJ, o canal de privacidade, domínio definitivo e caixas institucionais dependem de confirmação do titular.

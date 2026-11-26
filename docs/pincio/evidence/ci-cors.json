@@ -1,0 +1,11 @@
+{
+  "at": "2026-11-26T09:23:41.162Z",
+  "source": "https://github.com/Roh-barboza/oliveira-assessoria/actions/runs/45791421092",
+  "origin": "https://pincio-assessoria.vercel.app",
+  "method": "OPTIONS",
+  "leadSubmitted": false,
+  "receiptConfirmed": false,
+  "status": "unreachable",
+  "errorType": "TypeError",
+  "transportCode": "ENOTFOUND"
+}

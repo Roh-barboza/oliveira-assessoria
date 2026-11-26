@@ -1,0 +1,23 @@
+{
+  "codeCommit": "2c16b77c1a8c8d2876b2deb1e7534f45820255cf",
+  "baseCommit": "9c9ccf5e60f48f95a32516aef42a51fe9326a78e",
+  "projectId": "prj_M19hHqI7fq25KgKnXWIqUYRXmxhq",
+  "deploymentId": "dpl_6c8v9idp5q9cBMPN3Ujc76L1eJih",
+  "preview": "https://oliveira-assessoria-izkj7vx63-barbozaa-s-projects.vercel.app",
+  "state": "READY",
+  "target": "preview",
+  "protectionPreserved": true,
+  "codeCiRuns": [
+    {
+      "id": 45792039820,
+      "conclusion": "success"
+    },
+    {
+      "id": 45792039831,
+      "conclusion": "success"
+    }
+  ],
+  "productionDomain": "https://pincio-assessoria.vercel.app",
+  "domainVerified": true,
+  "productionChanged": false
+}

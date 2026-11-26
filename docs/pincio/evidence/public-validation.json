@@ -1,0 +1,136 @@
+{
+  "base": "http://127.0.0.1:4175",
+  "pages": 22,
+  "widths": [
+    360,
+    390,
+    430,
+    768,
+    1024,
+    1366,
+    1920
+  ],
+  "checks": 154,
+  "axe": [
+    {
+      "path": "404.html",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "path": "ativacao.html",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "path": "contratos.html",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "path": "creditos.html",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "path": "equipe.html",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "path": "imposto-de-renda.html",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "path": "index.html",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "path": "italia.html",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "path": "operacional.html",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "path": "plataforma.html",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "path": "privacidade.html",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "path": "servicos-consulares.html",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "path": "servicos.html",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "path": "solicitar.html",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "path": "termos.html",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "path": "servicos/aire.html",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "path": "servicos/estado-civil.html",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "path": "servicos/fast-it.html",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "path": "servicos/montagem-pasta-processual.html",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "path": "servicos/passaporte-italiano.html",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "path": "ir/formulario.html",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "path": "ir/laboratorio.html",
+      "width": 390,
+      "violations": []
+    }
+  ],
+  "failures": [],
+  "form": "intercepted only: valid/invalid/success/HTTP500/offline; no real lead sent",
+  "ir": "local draft persistence",
+  "serviceFlow": "5 active Italian service CTAs plus IR direct to central form; selected option and navigation targets verified",
+  "keyboard": "skip link, focus outline, Enter, Escape and menu focus verified",
+  "missingPage": "unknown URL returns HTTP 404",
+  "editorialRefinement": "two analysis CTAs per active detail page; 7 catalog entries; retired services removed; historical internal matrices unchanged",
+  "catalog": "7 entries, category filter, title/description search, accent and punctuation normalization, empty state, link to detail, no-JS fallback",
+  "servicePages": "5 active Italian services including process-folder assembly, with deliveries, limitations and FAQ; IR without price",
+  "date": "2026-11-26T09:23:49.914Z"
+}
