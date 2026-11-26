@@ -27,7 +27,8 @@ test("CORS evidence requires POST/content-type and the PINCIO origin; never subm
   );
   assert.equal(invalid.status, "failed");
   const blocked = await checkLeadCors(async () => {
-    throw Error("blocked");
+    throw Object.assign(Error("blocked"), { cause: { code: "ENOTFOUND" } });
   });
   assert.equal(blocked.status, "unreachable");
+  assert.equal(blocked.transportCode, "ENOTFOUND");
 });

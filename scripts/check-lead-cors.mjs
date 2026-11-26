@@ -53,6 +53,18 @@ export async function checkLeadCors(fetcher = fetch) {
   } catch (e) {
     report.status = "unreachable";
     report.errorType = e.name || "TransportError";
+    const code = e.cause?.code;
+    const safeCodes = [
+      "ENOTFOUND",
+      "EAI_AGAIN",
+      "ECONNREFUSED",
+      "ECONNRESET",
+      "ETIMEDOUT",
+      "UND_ERR_CONNECT_TIMEOUT",
+      "CERT_HAS_EXPIRED",
+      "UNABLE_TO_VERIFY_LEAF_SIGNATURE",
+    ];
+    report.transportCode = safeCodes.includes(code) ? code : "UNCLASSIFIED";
   }
   return report;
 }

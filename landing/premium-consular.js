@@ -75,12 +75,12 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!response.ok) throw new Error("Falha no envio");
       form.reset();
       status.textContent =
-        "Recebemos seus dados. Em breve entraremos em contato.";
+        "Solicitação enviada. Aguarde a confirmação de recebimento pela equipe.";
       status.style.color = "#187045";
     } catch {
       status.textContent = controller.signal.aborted
         ? "O envio demorou mais que o esperado e não foi confirmado. Antes de reenviar, confirme com a equipe para evitar duplicação."
-        : "Não foi possível enviar agora. Tente novamente em instantes.";
+        : "Não foi possível confirmar o envio. Seus dados foram mantidos no formulário. Antes de reenviar, confirme com a equipe para evitar duplicação.";
       status.style.color = "#9a2a38";
     } finally {
       clearTimeout(timeout);

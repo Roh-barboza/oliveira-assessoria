@@ -200,7 +200,7 @@ try {
       mensagem: "[AIRE] Teste controlado, sem envio real.",
     });
     if (mode === "success") {
-      assert.match(await page.locator("#form-status").innerText(), /Recebemos/);
+      assert.match(await page.locator("#form-status").innerText(), /Solicitação enviada/);
       assert.equal(await page.locator('[name="nome"]').inputValue(), "");
     } else {
       assert.match(

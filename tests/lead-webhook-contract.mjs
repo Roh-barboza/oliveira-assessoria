@@ -71,7 +71,9 @@ try {
     .fill("Somente teste de contrato; não enviar");
   await form.locator('button[type="submit"]').click();
   await page
-    .getByText("Recebemos seus dados. Em breve entraremos em contato.")
+    .getByText(
+      "Solicitação enviada. Aguarde a confirmação de recebimento pela equipe.",
+    )
     .waitFor();
   assert.equal(requests.length, 1);
   assert.equal(requests[0].method, "POST");
@@ -89,7 +91,9 @@ try {
   await form.locator('[name="servico"]').selectOption({ label: "Fast It" });
   await form.locator('button[type="submit"]').click();
   await page
-    .getByText("Não foi possível enviar agora. Tente novamente em instantes.")
+    .getByText(
+      "Não foi possível confirmar o envio. Seus dados foram mantidos no formulário. Antes de reenviar, confirme com a equipe para evitar duplicação.",
+    )
     .waitFor();
   assert.equal(requests.length, 2);
   assert.equal(
@@ -126,7 +130,9 @@ try {
     el.dispatchEvent(new Event("submit", { bubbles: true, cancelable: true }));
   });
   await page
-    .getByText("Recebemos seus dados. Em breve entraremos em contato.")
+    .getByText(
+      "Solicitação enviada. Aguarde a confirmação de recebimento pela equipe.",
+    )
     .waitFor();
   assert.equal(
     requests.length,
