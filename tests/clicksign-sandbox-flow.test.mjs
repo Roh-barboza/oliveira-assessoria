@@ -47,7 +47,7 @@ test("Clicksign sandbox complete envelope-to-signed-PDF journey, with 100% mocke
     if(pathname==="/api/v3/envelopes"&&options.method==="POST"){
       assert.equal(options.body!==undefined,true);
       assert.equal(JSON.parse(options.body).data.type,"envelopes");
-      assert.match(JSON.parse(options.body).data.attributes.name,/SANDBOX Oliveira/);
+      assert.match(JSON.parse(options.body).data.attributes.name,/SANDBOX PINCIO/);
       return Response.json({data:{id:envelopeId,type:"envelopes",attributes:{status:"draft"}}});
     }
     if(pathname===`/api/v3/envelopes/${envelopeId}/documents`&&options.method==="POST"){

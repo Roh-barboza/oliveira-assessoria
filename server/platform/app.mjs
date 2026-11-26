@@ -256,7 +256,7 @@ export function createApp({
             ...headers,
             "Content-Type": "text/plain; charset=utf-8",
             "Content-Disposition":
-              'attachment; filename="documento-sintetico-oliveira.txt"',
+              'attachment; filename="documento-sintetico-pincio.txt"',
           },
         });
       if (op === "demo" && method === "POST") {
@@ -517,7 +517,7 @@ export function createApp({
             ],
             [
               "Partes",
-              `Oliveira Assessoria - dados empresariais pendentes de revisao. Cliente: ${record.value.users.find((x) => x.id === c.ownerId).name}. Identidade sintetica.`,
+              `PINCIO Assessoria Internacional - dados empresariais pendentes de revisao. Cliente: ${record.value.users.find((x) => x.id === c.ownerId).name}. Identidade sintetica.`,
             ],
             ["Objeto", `${service.name} - ${variant.name}`],
             ["Entregas", variant.deliveries.map(pdfSafe).join("\n")],

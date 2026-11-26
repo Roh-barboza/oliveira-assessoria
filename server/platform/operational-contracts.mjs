@@ -141,7 +141,7 @@ export class OperationalContracts {
     if (!data) throw fail(404, "Arquivo indisponível.");
     const pdf = this.cipher.open(data, signed ? row.id + ":signed" : row.id);
     return {
-      filename: "oliveira-" + (signed ? "assinada-" : "minuta-") + row.id + ".pdf",
+      filename: "pincio-" + (signed ? "assinada-" : "minuta-") + row.id + ".pdf",
       pdfBase64: pdf.toString("base64"),
       sha256: createHash("sha256").update(pdf).digest("hex"),
       synthetic: true,

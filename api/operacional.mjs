@@ -13,7 +13,8 @@ export function operationalOrigin(env) {
   if (typeof origin !== "string" ||
       !/^https:\/\/[a-z0-9-]+(?:\.[a-z0-9-]+)*\.vercel\.app$/i.test(origin)) return null;
   if (["https://oliveira-assessoria.vercel.app",
-       "https://oliveira-assessoria-barbozaa-s-projects.vercel.app"].includes(origin)) return null;
+       "https://oliveira-assessoria-barbozaa-s-projects.vercel.app",
+       "https://pincio-assessoria.vercel.app"].includes(origin)) return null;
   return origin;
 }
 

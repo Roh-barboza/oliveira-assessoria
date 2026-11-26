@@ -2,7 +2,7 @@ import { PDFDocument, StandardFonts, rgb } from "pdf-lib";
 
 export async function renderPdf(sections, createdAt) {
   const pdf = await PDFDocument.create({ updateMetadata: false });
-  pdf.setTitle("Minuta de teste | Oliveira Assessoria");
+  pdf.setTitle("Minuta de teste | PINCIO Assessoria Internacional");
   pdf.setCreationDate(createdAt);
   pdf.setModificationDate(createdAt);
   const regular = await pdf.embedFont(StandardFonts.Helvetica);
@@ -18,7 +18,7 @@ export async function renderPdf(sections, createdAt) {
 
   function newPage() {
     page = pdf.addPage([width, height]);
-    page.drawText("OLIVEIRA ASSESSORIA", {
+    page.drawText("PINCIO ASSESSORIA INTERNACIONAL", {
       x: margin,
       y: height - 52,
       font: serif,

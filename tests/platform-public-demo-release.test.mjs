@@ -8,9 +8,9 @@ test("public production release exposes full synthetic-only demo, not real data"
   try {
     process.env.VERCEL_ENV="production";
     process.env.VERCEL_PROJECT_ID="prj_M19hHqI7fq25KgKnXWIqUYRXmxhq";
-    process.env.VERCEL_GIT_COMMIT_REF="release/site-integral-online-2026-11-24";
+    process.env.VERCEL_GIT_COMMIT_REF="release/pincio-identidade-2026-11-25";
     const app=(await import("../api/plataforma.mjs?full-public-release")).default;
-    const home="https://oliveira-assessoria.vercel.app/api/plataforma?op=";
+    const home="https://pincio-assessoria.vercel.app/api/plataforma?op=";
     const config=await app.fetch(new Request(home+"config"));
     assert.equal(config.status,200);
     const configuration=await config.json();
@@ -19,7 +19,7 @@ test("public production release exposes full synthetic-only demo, not real data"
     assert.equal(configuration.realTransactions,false);
     const created=await app.fetch(new Request(home+"demo",{
       method:"POST",
-      headers:{"origin":"https://oliveira-assessoria.vercel.app",
+      headers:{"origin":"https://pincio-assessoria.vercel.app",
         "content-type":"application/json"},
       body:JSON.stringify({acknowledge:true}),
     }));
@@ -46,7 +46,7 @@ test("no synthetic simulator on unapproved production branch",async()=>{
     process.env.VERCEL_GIT_COMMIT_REF="main";
     const app=(await import("../api/plataforma.mjs?unapproved-full-release")).default;
     assert.equal((await app.fetch(new Request(
-      "https://oliveira-assessoria.vercel.app/api/plataforma?op=config"))).status,404);
+      "https://pincio-assessoria.vercel.app/api/plataforma?op=config"))).status,404);
   }finally{
     for(const [key,value] of old){if(value===undefined)delete process.env[key];
       else process.env[key]=value;}

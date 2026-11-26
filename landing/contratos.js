@@ -180,7 +180,7 @@
     const bytes=Uint8Array.from(binary,c=>c.charCodeAt(0));
     const url=URL.createObjectURL(new Blob([bytes],{type:"application/pdf"}));
     const a=document.createElement("a");
-    a.href=url;a.download=pdfDocument.filename||"oliveira-minuta-teste.pdf";
+    a.href=url;a.download=pdfDocument.filename||"pincio-minuta-teste.pdf";
     document.body.append(a);a.click();a.remove();
     setTimeout(()=>URL.revokeObjectURL(url),1200);
   }

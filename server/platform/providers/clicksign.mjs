@@ -99,7 +99,7 @@ export function clicksign(env, fetcher = fetch) {
       const embedded = row.signature_mode === "embedded";
       await checkpoint("criar_envelope");
       const envelope = await create("/envelopes", "envelopes", {
-        name: `SANDBOX Oliveira ${row.id}`,
+        name: `SANDBOX PINCIO ${row.id}`,
         locale: "pt-BR",
         auto_close: true,
         remind_interval: null,

@@ -19,7 +19,8 @@ async function runtime() {
   if (process.env.VERCEL_ENV === "production" &&
       process.env.VERCEL_PROJECT_ID === SITE_PROJECT_ID &&
       ["release/site-integral-online-2026-11-24",
-       "release/catalogo-servicos-2026-11-25"].includes(process.env.VERCEL_GIT_COMMIT_REF)) {
+       "release/catalogo-servicos-2026-11-25",
+       "release/pincio-identidade-2026-11-25"].includes(process.env.VERCEL_GIT_COMMIT_REF)) {
     const repository = new StateRepository(
       new MemoryStore(), randomBytes(32).toString("hex"));
     return createApp({ repository, storageMode: "temporario" });
