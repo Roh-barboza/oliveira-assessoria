@@ -1,0 +1,59 @@
+{
+  "title": "Piazza del Popolo in Rome 01.jpg",
+  "author": "Krzysztof Golik",
+  "photographedAt": "2018-11-18",
+  "source": "https://commons.wikimedia.org/wiki/File:Piazza_del_Popolo_in_Rome_01.jpg",
+  "license": "CC-BY-SA-4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "verifiedOn": "2026-11-26",
+  "originalDimensions": [
+    5076,
+    3384
+  ],
+  "originalSha256": "1d563be1d0898250d7ee7bf53610b493584a54fb4ce6941334ded0ca17cdc55a",
+  "changes": "Redimensionamento proporcional, conversão WebP/AVIF e remoção de metadados. Sem geração por IA, montagem ou retoque. Os derivados da fotografia seguem CC BY-SA 4.0; a licença não se estende automaticamente à marca ou ao código.",
+  "derivatives": [
+    {
+      "file": "landing/assets/pincio-roma-640.webp",
+      "width": 640,
+      "height": 427,
+      "bytes": 81072,
+      "sha256": "df5df655e1c6e0aaa6c1b14a6d031b4e818469d45f3a9f9eafac2f7fd9e65dc0"
+    },
+    {
+      "file": "landing/assets/pincio-roma-640.avif",
+      "width": 640,
+      "height": 427,
+      "bytes": 47982,
+      "sha256": "e4ca7533e90704d94ded64afdf1ee8443e6b7306d79dc8a48976c136b02da0ef"
+    },
+    {
+      "file": "landing/assets/pincio-roma-960.webp",
+      "width": 960,
+      "height": 640,
+      "bytes": 168588,
+      "sha256": "c51df41123d6932153a11a5152bb969032a8fc7bc2b19ddd46d512e29a6a4e75"
+    },
+    {
+      "file": "landing/assets/pincio-roma-960.avif",
+      "width": 960,
+      "height": 640,
+      "bytes": 96566,
+      "sha256": "3dd7749c2ef2fc16c7d4980802b4352abd015c850e928fbb279f2081f7bf0fef"
+    },
+    {
+      "file": "landing/assets/pincio-roma-1600.webp",
+      "width": 1600,
+      "height": 1067,
+      "bytes": 438004,
+      "sha256": "46987cf8e173e9c9bd58863f91e342372f95b65a74411a622b1cfb867a0ad5bc"
+    },
+    {
+      "file": "landing/assets/pincio-roma-1600.avif",
+      "width": 1600,
+      "height": 1067,
+      "bytes": 246508,
+      "sha256": "5e1907c75802f7b92048a2babb326a875c057258f2d4e9d04193c99829f6ec49"
+    }
+  ]
+}

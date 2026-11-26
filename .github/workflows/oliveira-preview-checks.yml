@@ -1,4 +1,4 @@
-name: Oliveira Preview - checks only
+name: PINCIO Preview - checks only
 
 on:
   push:

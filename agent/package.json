@@ -1,7 +1,7 @@
 {
   "name": "oliveira-assessoria-agent",
   "version": "1.0.0",
-  "description": "Agente de IA e scripts de seed para Oliveira Assessoria",
+  "description": "Ferramentas internas de conhecimento e seed — PINCIO Assessoria Internacional",
   "main": "seed-knowledge.js",
   "scripts": {
     "seed": "node seed-knowledge.js",

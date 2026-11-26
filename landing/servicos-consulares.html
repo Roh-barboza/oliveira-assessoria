@@ -3,18 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Serviços Consulares Italianos | PINCIO Assessoria Internacional</title>
+    <title>
+      Serviços Consulares Italianos | PINCIO Assessoria Internacional
+    </title>
     <meta
       name="description"
       content="Assessoria para renovação de passaporte italiano, AIRE, FAST IT, estado civil e montagem de pasta processual."
     />
     <link rel="stylesheet" href="consular.css" />
     <link rel="stylesheet" href="/site.css" />
-    <link
-      rel="icon"
-      href="/assets/logo-mark-pincio.svg"
-      type="image/svg+xml"
-    />
+    <link rel="icon" href="/assets/logo-mark-pincio.svg" type="image/svg+xml" />
     <script>
       document.documentElement.classList.add("js");
     </script>
@@ -32,15 +30,39 @@
       type="font/woff2"
       crossorigin
     />
-  <link rel="canonical" href="https://pincio-assessoria.vercel.app/servicos-consulares.html" />
-  <meta name="robots" content="noindex,nofollow" />
-  <meta property="og:title" content="Serviços Consulares Italianos | PINCIO Assessoria Internacional" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://pincio-assessoria.vercel.app/servicos-consulares.html" />
-<meta property="og:image" content="https://pincio-assessoria.vercel.app/assets/hero-consular-960.webp" />
-<meta property="og:locale" content="pt_BR" />
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Serviços Consulares Italianos | PINCIO Assessoria Internacional", "url": "https://pincio-assessoria.vercel.app/servicos-consulares.html", "isPartOf": {"@type": "WebSite", "name": "PINCIO Assessoria Internacional", "url": "https://pincio-assessoria.vercel.app/"}}</script>
-</head>
+    <link
+      rel="canonical"
+      href="https://pincio-assessoria.vercel.app/servicos-consulares.html"
+    />
+    <meta name="robots" content="noindex,nofollow" />
+    <meta
+      property="og:title"
+      content="Serviços Consulares Italianos | PINCIO Assessoria Internacional"
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://pincio-assessoria.vercel.app/servicos-consulares.html"
+    />
+    <meta
+      property="og:image"
+      content="https://pincio-assessoria.vercel.app/assets/pincio-roma-1600.webp"
+    />
+    <meta property="og:locale" content="pt_BR" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Serviços Consulares Italianos | PINCIO Assessoria Internacional",
+        "url": "https://pincio-assessoria.vercel.app/servicos-consulares.html",
+        "isPartOf": {
+          "@type": "WebSite",
+          "name": "PINCIO Assessoria Internacional",
+          "url": "https://pincio-assessoria.vercel.app/"
+        }
+      }
+    </script>
+  </head>
   <body class="consular-home">
     <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
     <header class="site-header">
@@ -171,24 +193,48 @@
             </div>
           </div>
         </div>
-        <div class="hero-media approved-photo">
-          <img
-            class="person-photo"
-            src="/assets/hero-consular-960.webp"
-            srcset="
-              /assets/hero-consular-640.webp      640w,
-              /assets/hero-consular-960.webp      960w,
-              /assets/hero-consular-premium.webp 1672w
-            "
-            sizes="(max-width: 900px) 100vw, 54vw"
-            alt="Mulher sorrindo segurando passaporte italiano em cenário italiano"
-            width="1672"
-            height="941"
-            decoding="async"
-            fetchpriority="high"
-            loading="eager"
-          />
-        </div>
+        <figure class="hero-media approved-photo pincio-photo">
+          <picture
+            ><source
+              type="image/avif"
+              srcset="
+                /assets/pincio-roma-640.avif   640w,
+                /assets/pincio-roma-960.avif   960w,
+                /assets/pincio-roma-1600.avif 1600w
+              "
+              sizes="(max-width: 900px) calc(100vw - 40px), (max-width: 1360px) 50vw, 640px" />
+            <img
+              src="/assets/pincio-roma-960.webp"
+              srcset="
+                /assets/pincio-roma-640.webp   640w,
+                /assets/pincio-roma-960.webp   960w,
+                /assets/pincio-roma-1600.webp 1600w
+              "
+              sizes="(max-width: 900px) calc(100vw - 40px), (max-width: 1360px) 50vw, 640px"
+              alt="Piazza del Popolo e a cúpula de São Pedro vistas da Terrazza del Pincio, em Roma"
+              width="1600"
+              height="1067"
+              fetchpriority="high"
+              loading="eager"
+              decoding="async"
+          /></picture>
+          <figcaption class="photo-credit">
+            Roma vista da Terrazza del Pincio. Foto:
+            <a
+              href="https://commons.wikimedia.org/wiki/File:Piazza_del_Popolo_in_Rome_01.jpg"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Krzysztof Golik / Wikimedia Commons</a
+            >
+            ·
+            <a
+              href="https://creativecommons.org/licenses/by-sa/4.0/"
+              target="_blank"
+              rel="license noopener noreferrer"
+              >CC BY-SA 4.0</a
+            >. Redimensionada e convertida para a web.
+          </figcaption>
+        </figure>
       </section>
       <section class="section services-approved" id="servicos">
         <div class="wrap">
@@ -219,7 +265,10 @@
                 </svg>
               </div>
               <h3>Passaporte Italiano</h3>
-              <p>Agendamento para renovação; primeira emissão somente com apoio documental.</p>
+              <p>
+                Agendamento para renovação; primeira emissão somente com apoio
+                documental.
+              </p>
               <span class="more">Saiba mais&nbsp; →</span></a
             ><a class="card" href="/servicos/aire.html"
               ><div class="ico">
@@ -298,7 +347,8 @@
               </div>
               <h3>Montagem de pasta para processos</h3>
               <p>
-                Conferência e montagem documental da pasta de processos de cidadania italiana.
+                Conferência e montagem documental da pasta de processos de
+                cidadania italiana.
               </p>
               <span class="more">Saiba mais&nbsp; →</span></a
             >
@@ -452,8 +502,8 @@
           </div>
           <div class="contact-panel">
             <p>
-              Para solicitar uma análise, utilize o formulário central da
-              PINCIO Assessoria Internacional.
+              Para solicitar uma análise, utilize o formulário central da PINCIO
+              Assessoria Internacional.
             </p>
             <a class="btn btn-gold" href="/#contato"
               >Solicitar análise <span aria-hidden="true">→</span></a
@@ -483,6 +533,9 @@
           ><a href="/termos.html">Termos de uso</a>
         </nav>
       </div>
+      <p class="footer-photo-credit">
+        <a href="/creditos.html">Fotografia e créditos</a>
+      </p>
     </footer>
     <script src="/site.js" defer></script>
   </body>
