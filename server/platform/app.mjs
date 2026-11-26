@@ -150,7 +150,11 @@ function publicState(w, user) {
       (t) => ids.has(t.caseId) && (staff(user) || t.customerVisible),
     ),
     audit: w.audit.filter((a) => staff(user) || ids.has(a.caseId)).slice(-150),
-    pricing: staff(user) ? w.pricing : undefined,
+    pricing: staff(user)
+      ? w.pricing.filter((row) =>
+          catalog.some((service) => service.id === row.serviceId),
+        )
+      : undefined,
     controls: {
       environment: "simulação",
       realContracts: false,

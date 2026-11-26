@@ -1,0 +1,1 @@
+LEADS: contrato JSON, serviço, sucesso, erro, validação, honeypot, duplicação acidental e ausência de tráfego real ao n8n aprovados.

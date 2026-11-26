@@ -923,29 +923,17 @@ test("Recent client response pauses follow-up and opens human task without outgo
   );
   await a.call("case-save", { caseId: id, optIn: false });
 });
-test("Document organization variants distinguish scope and complete alone tracks external batch", async () => {
-  const s = catalog.find((s) => s.id === "BR-04");
-  assert.equal(new Set(s.variants.map((v) => v.scope.join(" "))).size, 3);
-  const x = await environment(),
-    id = await x.create(x.admin, "BR-04", "documental-completo");
-  const r = await x.admin.call("operations", {
-    caseId: id,
-    scopeAccepted: true,
-    minimumReceived: true,
-    externalBatchDate: new Date(Date.now() - 60000).toISOString(),
-  });
-  assert.equal(r.status, 200);
-  assert.ok(r.data.followUntil);
-  const basic = await x.create(x.admin, "BR-04", "documental-basico");
-  assert.equal(
-    (
-      await x.admin.call("operations", {
-        caseId: basic,
-        externalBatchDate: new Date(Date.now() - 60000).toISOString(),
-      })
-    ).status,
-    422,
-  );
+test("Retired services are not offered or accepted; historical pricing remains intact", async () => {
+  const x = await environment();
+  assert.equal(pricingSeed().length, 20);
+  assert.deepEqual(catalog.map(s => s.id), ["IT-01", "IT-02", "IT-03"]);
+  for (const [serviceId,variantId] of [["BR-04","documental-completo"],["IT-08","regularizacao-personalizada"],["IT-05","registro-filhos"]]) {
+    assert.equal((await x.admin.call("case-create", {serviceId,variantId,answers:{region:"SP"}})).status,422);
+  }
+  const saved=(await x.repository.read(x.workspace)).value;
+  assert.equal(saved.pricing.length,20);
+  const visible=(await x.admin.call("state")).data.state.pricing;
+  assert.ok(visible.every(row=>catalog.some(s=>s.id===row.serviceId)));
 });
 test("Card failures remain terminal; new idempotency key creates safe new simulation", async () => {
   const x = await environment(),

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="380" height="96" viewBox="0 0 380 96" role="img" aria-labelledby="title desc">
+<title id="title">PINCIO Assessoria Internacional</title><desc id="desc">Marca PINCIO com símbolo inspirado no terraço do Pincio, em Roma</desc>
+<g transform="translate(2 0) scale(0.98)">
+  <circle cx="48" cy="48" r="43" fill="none" stroke="#FFFFFF" stroke-width="2"/>
+  <path d="M18 42A32 32 0 0 1 79 38" stroke="#FFFFFF" stroke-width="1.4" fill="none"/>
+  <!-- Pincio terrace and Rome's umbrella pine, a symbolic architectural drawing -->
+  <path d="M27 44c-2-6 1-10 7-12 2-8 15-12 23-5 9-3 18 4 17 12-5 3-12 4-19 3-10 3-19 2-28 2Z" fill="#FFFFFF"/>
+  <path d="M49 41L46 64M46 52L35 42M48 51L58 39" stroke="#FFFFFF" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <path d="M19 66H77M19 73H77" stroke="#FFFFFF" stroke-width="2.3" stroke-linecap="square"/>
+  <path d="M24 67V72M31 67V72M38 67V72M45 67V72M52 67V72M59 67V72M66 67V72M73 67V72" stroke="#FFFFFF" stroke-width="2.1"/>
+  <path d="M68 62c3-9 7-12 10 0Z" fill="#FFFFFF"/>
+  <path d="M33 82h10" stroke="#FFFFFF" stroke-width="3"/><path d="M43 82h10" stroke="#FFFFFF" stroke-width="3"/><path d="M53 82h10" stroke="#FFFFFF" stroke-width="3"/></g>
+<g transform="translate(111 15)">
+<text x="0" y="44" font-size="50" letter-spacing="1.2" font-weight="600" font-family="Georgia, 'Times New Roman',serif" fill="#FFFFFF">PINCIO</text>
+<text x="2" y="63" font-size="11.2" font-weight="600" letter-spacing="1.5" font-family="Arial,Helvetica,sans-serif" fill="#FFFFFF">ASSESSORIA INTERNACIONAL</text>
+<line x1="2" y1="73" x2="83" y2="73" stroke="#FFFFFF" stroke-width="2.5"/>
+<line x1="83" y1="73" x2="167" y2="73" stroke="#FFFFFF" stroke-width="2.5"/>
+<line x1="167" y1="73" x2="250" y2="73" stroke="#FFFFFF" stroke-width="2.5"/>
+</g></svg>

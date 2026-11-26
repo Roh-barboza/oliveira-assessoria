@@ -1,0 +1,8 @@
+
+> test:operational-ui
+> node tests/platform-operational-ui.mjs && node tests/platform-operational-activation-ui.mjs && node tests/lead-webhook-contract.mjs && node tests/platform-operational-contracts-ui.mjs
+
+PAINEL OPERACIONAL: indisponibilidade segura, login, solicitações, etapas, logout, acessibilidade e responsividade aprovados.
+ATIVAÇÃO: indisponibilidade segura, primeiro cadastro, MFA, limpeza de credenciais, responsividade e acessibilidade aprovados.
+LEADS: contrato JSON, serviço, sucesso, erro, validação, honeypot, duplicação acidental e ausência de tráfego real ao n8n aprovados.
+CONTRATOS: admin, preparação, PDF, aprovação, envio bloqueado sem credenciais, assinatura simulada, acessibilidade e responsividade OK.

@@ -1,0 +1,16 @@
+✔ every public page uses PINCIO without legacy visible branding (19.310678ms)
+✔ PINCIO canonical, Italian brand assets and safe technical continuity (2.215915ms)
+✔ documentary Pincio photograph has source, license, local derivatives and visible credits (11.553352ms)
+✔ legacy logo URLs display PINCIO; monochrome logos and generated test content have current identity (4.462804ms)
+✔ first passport emission stays documentary while appointment support is renewal-only (0.32381ms)
+✔ CORS evidence requires POST/content-type and the PINCIO origin; never submits data (22.268742ms)
+✔ public production release exposes full synthetic-only demo, not real data (387.11231ms)
+✔ no synthetic simulator on unapproved production branch (3.513817ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 605.136871

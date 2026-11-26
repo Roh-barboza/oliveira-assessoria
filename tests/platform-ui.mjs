@@ -135,7 +135,7 @@ try {
     .getByRole("button", { name: "Precificação interna", exact: true })
     .click();
   await page.locator("#price-row").waitFor();
-  assert.equal(await page.locator("#price-row option").count(), 20);
+  assert.equal(await page.locator("#price-row option").count(), 5);
   for (const [k, v] of Object.entries({
     operating: "50",
     partner: "0",

@@ -699,3 +699,12 @@
   font-size: 11px;
   font-weight: 600;
 }
+/* Five remaining Italian services fill both rows after the catalog reduction. */
+@media (min-width: 1101px) {
+  #italia .services-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  #italia .service-card { grid-column: span 2; }
+  #italia .service-card:nth-last-child(-n + 2) { grid-column: span 3; }
+}
+@media (min-width: 561px) and (max-width: 1100px) {
+  #italia .service-card:last-child:nth-child(odd) { grid-column: 1 / -1; }
+}

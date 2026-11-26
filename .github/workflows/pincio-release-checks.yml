@@ -3,6 +3,9 @@ on:
   push:
     branches:
       - release/pincio-identidade-2026-11-25
+  pull_request:
+    branches:
+      - release/pincio-identidade-2026-11-25
   workflow_dispatch:
 
 permissions:
@@ -31,7 +34,15 @@ jobs:
       - name: Testar modo sintético público sem credenciais reais
         run: node --test tests/platform-public-demo-release.test.mjs
       - name: Conferir identidade pública PINCIO
-        run: node --test tests/pincio-brand.test.mjs
+        run: node --test tests/pincio-brand.test.mjs tests/pincio-lead-cors.test.mjs
+      - name: Verificar preflight real PINCIO sem enviar leads
+        run: node scripts/check-lead-cors.mjs --output test-results/pincio-live/cors.json
+      - name: Guardar evidência técnica de CORS sem dados pessoais
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: pincio-cors-preflight
+          path: test-results/pincio-live/cors.json
+          retention-days: 7
       - name: Auditar dependências de produção
         run: npm audit --omit=dev
 
@@ -49,7 +60,7 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npx playwright install --with-deps chromium
-      - name: Testar 21 páginas públicas nas resoluções previstas
+      - name: Testar páginas públicas nas resoluções previstas
         run: npm test
       - name: Testar fluxo operacional em navegador com dados sintéticos
         run: npm run test:operational-ui

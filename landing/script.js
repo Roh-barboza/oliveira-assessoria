@@ -88,8 +88,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     throw new Error('Erro ao enviar formulário');
                 }
             } catch (error) {
-                console.error('Erro:', error);
-                formStatus.textContent = 'Ocorreu um erro ao enviar sua mensagem. Por favor, tente novamente ou use o WhatsApp.';
+                // Never log form content or transport details containing customer data.
+                formStatus.textContent = 'Ocorreu um erro ao enviar sua mensagem. Por favor, tente novamente em instantes.';
                 formStatus.style.backgroundColor = '#ffebee';
                 formStatus.style.color = '#b71c1c';
             }

@@ -430,3 +430,14 @@ button:disabled {
 .feature-card > span {
   color: #765c27;
 }
+/* Licensed documentary photography; credits remain visible on both hero themes. */
+.pincio-photo { margin: 0; min-width: 0; }
+.pincio-photo picture { display: block; }
+.pincio-photo img { width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; }
+.pincio-photo .photo-credit { position: static; padding: 12px 16px; margin: 0; color: #ecede5; background: #10392c; font-size: 12px; line-height: 1.6; }
+.pincio-photo .photo-credit a { color: #efd5a7; text-decoration: underline; text-underline-offset: 3px; }
+.hero-media.pincio-photo { overflow: hidden; }
+.hero-media.pincio-photo img { position: static; transform: none; max-height: none; filter: none; }
+.footer-photo-credit { max-width: 1240px; padding: 0 20px 20px; margin: 0 auto; font-size: 12px; }
+.site-footer .footer-photo-credit a { color: #d2dbd5; }
+.footer-photo-credit a { display: inline-flex; align-items: center; min-height: 44px; padding-block: 8px; }

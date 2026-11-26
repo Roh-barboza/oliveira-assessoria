@@ -6,7 +6,9 @@ export const testClient = {
   name: "Cliente Demonstração",
   email: "cliente@example.invalid",
 };
-export const accepted = ["IT-01", "IT-02", "IT-03", "IT-08", "BR-04"];
+// Only modalities still present in the current commercial catalog are offered in this simulator.
+// Historical pricing rows and stored cases remain untouched.
+export const accepted = ["IT-01", "IT-02", "IT-03"];
 export const catalog = accepted.map((id) => {
   const s = matrix.servicos.find((x) => x.id === id);
   const p = s.proposta_revisao_final;
@@ -22,30 +24,27 @@ export const catalog = accepted.map((id) => {
       exclusions: s.atividades_excluidas,
       external: s.despesas_externas,
     }));
-  if (id === "BR-04")
-    for (const v of variants) {
-      v.scope =
-        v.id === "documental-basico"
-          ? [
-              "Inventário dos itens apresentados, classificação e conferência de legibilidade e dados aparentes; índice e lista de lacunas.",
-            ]
-          : v.id === "documental-intermediario"
-            ? [
-                "Inventário, digitalização dos itens aceitos, classificação e preparação de pasta/dossiê para a finalidade definida.",
-              ]
-            : [
-                "Preparação de dossiê e controle de solicitações externas permitidas, expressamente autorizadas; coordenação de prestadores quando discriminada.",
-              ];
-      v.deliveries =
-        v.id === "documental-basico"
-          ? ["Índice dos itens e checklist de lacunas, sem pedidos externos."]
-          : v.id === "documental-intermediario"
-            ? [
-                "Pasta digital estruturada, índice e checklist, sem execução automática de pedidos externos.",
-              ]
-            : [
-                "Pasta digital, índice, histórico de pedidos permitidos e despesas discriminadas.",
-              ];
+  if (id === "IT-01")
+    for (const variant of variants) {
+      if (variant.id === "passaporte-primeira") {
+        variant.scope = [
+          "Suporte documental para primeira emissão: checklist, conferência material e preparação de documentos para avaliação do titular.",
+        ];
+        variant.deliveries = [
+          "Checklist documental, pendências e pasta para a primeira emissão; sem assessoria de agendamento.",
+        ];
+        variant.exclusions = [
+          ...variant.exclusions,
+          "Assessoria de agendamento para primeira emissão, busca de vagas e acesso à conta do titular.",
+        ];
+      } else {
+        variant.scope = [
+          "Preparação documental e suporte administrativo limitado ao agendamento de renovação. O titular autentica e pratica os atos pessoais exigidos.",
+        ];
+        variant.deliveries = [
+          "Checklist e pasta de renovação, pendências e orientações do agendamento, sem garantia de vaga ou emissão.",
+        ];
+      }
     }
   return {
     id,
@@ -74,7 +73,7 @@ export function serviceFor(id, variant) {
   return { service: s, variant: v };
 }
 export const fixture = Buffer.from(
-  "OLIVEIRA_TEST_DOCUMENT\nDocumento sintetico da plataforma Oliveira. Sem dados pessoais reais.\n",
+  "PINCIO_TEST_DOCUMENT\nDocumento sintetico da plataforma PINCIO Assessoria Internacional. Sem dados pessoais reais.\n",
   "utf8",
 );
 export function cleanText(value, max = 400) {
