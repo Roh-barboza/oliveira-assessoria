@@ -440,3 +440,4 @@ button:disabled {
 .hero-media.pincio-photo img { position: static; transform: none; max-height: none; filter: none; }
 .footer-photo-credit { max-width: 1240px; padding: 0 20px 20px; margin: 0 auto; font-size: 12px; }
 .site-footer .footer-photo-credit a { color: #d2dbd5; }
+.footer-photo-credit a { display: inline-flex; align-items: center; min-height: 44px; padding-block: 8px; }
