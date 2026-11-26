@@ -484,6 +484,8 @@ try {
   });
   await nojs.goto(base);
   assert.equal(await nojs.locator("#main-nav").isVisible(), true);
+  assert.equal(await nojs.locator('#consular-form').getAttribute('method'),'post','without JS, private data must not be serialized into the URL');
+  assert.equal(await nojs.locator('#consular-form button[type=submit]').isDisabled(),true,'without JS, unavailable submission must fail closed');
   await nojs.close();
   await writeFile(
     `${evidence}/validation.json`,

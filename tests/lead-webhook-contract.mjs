@@ -53,7 +53,7 @@ try {
       await route.fulfill({ status: 204, headers });
       return;
     }
-    requests.push({ method: request.method(), body: request.postDataJSON() });
+    requests.push({ method: request.method(), body: request.postDataJSON(), headers: request.headers() });
     if (delayWebhook) await new Promise((resolve) => setTimeout(resolve, 150));
     await route.fulfill({
       status: rejectWebhook ? 503 : 200,
@@ -77,6 +77,7 @@ try {
     .waitFor();
   assert.equal(requests.length, 1);
   assert.equal(requests[0].method, "POST");
+  assert.equal(requests[0].headers.referer,undefined,"referrer must not disclose page context to the external provider");
   assert.deepEqual(requests[0].body, {
     nome: "Contato sintético de teste",
     whatsapp: "(11) 90000-0000",
