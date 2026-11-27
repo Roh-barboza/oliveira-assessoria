@@ -198,6 +198,6 @@ curl -X POST https://chaoticcow-evolution.cloudfy.live/webhook/set/NOME_DA_INSTA
 
 ## 10. Próximos passos opcionais
 
-- **Seed do banco de conhecimento:** rode `npm run seed` na pasta `agent/` após configurar o `.env` com a GEMINI_API_KEY e as credenciais do banco
+- **Seed legado do bot n8n:** rode `npm run seed` na pasta `agent/` após configurar o `.env` com a GEMINI_API_KEY e as credenciais do banco. Esse seed não é o agente editorial do blog.
 - **Número de WhatsApp da landing:** substitua `55XXXXXXXXXXX` nos links da landing page pelo número real
 - **RAG vetorial real:** depois do seed, atualize a query do nó "Postgres — Buscar Conhecimento" para usar busca por embedding (`ORDER BY embedding <=> $1::vector LIMIT 3`)
