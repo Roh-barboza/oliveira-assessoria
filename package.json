@@ -10,6 +10,9 @@
     "test:platform-ui": "node tests/platform-ui.mjs",
     "check:go-live": "node scripts/platform-go-live-check.mjs",
     "test:operational-ui": "node tests/platform-operational-ui.mjs && node tests/platform-operational-activation-ui.mjs && node tests/lead-webhook-contract.mjs && node tests/platform-operational-contracts-ui.mjs",
+    "test:editorial": "node --test tests/editorial-agent.test.mjs",
+    "editorial:draft": "node scripts/editorial-agent.mjs",
+    "editorial:publish": "node scripts/publish-editorial-draft.mjs",
     "migrate:operations": "node scripts/operations-setup.mjs migrate"
   },
   "devDependencies": {

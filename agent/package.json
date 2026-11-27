@@ -1,11 +1,11 @@
 {
-  "name": "oliveira-assessoria-agent",
+  "name": "oliveira-assessoria-legacy-knowledge-seed",
   "version": "1.0.0",
-  "description": "Ferramentas internas de conhecimento e seed — PINCIO Assessoria Internacional",
+  "private": true,
+  "description": "Seed legado do banco de conhecimento do bot n8n. Não é o agente editorial do blog.",
   "main": "seed-knowledge.js",
   "scripts": {
-    "seed": "node seed-knowledge.js",
-    "start": "node seed-knowledge.js"
+    "seed": "node seed-knowledge.js"
   },
   "dependencies": {
     "@google/generative-ai": "^0.21.0",

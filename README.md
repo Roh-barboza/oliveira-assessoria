@@ -11,10 +11,12 @@ Node 24.x. `npm ci` e `npm run serve` para o site estático local. `npm run dev`
 - `npm test`: navegação, formulários interceptados, acessibilidade e responsividade.
 - `npm run test:platform`: autenticação, MFA, permissões, documentos, backups e demais testes isolados.
 - `npm run test:operational-ui`: interface operacional com APIs simuladas e contrato do webhook sem envio real.
+- `npm run test:editorial`: testes locais do agente editorial e do bloqueio de publicação.
+- `npm run editorial:draft -- --topic "..."`: prepara rascunho apenas após ativação e configuração do secret do provedor.
 - `node --test tests/platform-public-demo-release.test.mjs tests/pincio-brand.test.mjs`: limites da demonstração pública e marca.
 - `npm audit --omit=dev`: auditoria de dependências de execução.
 
-`landing/` contém o site público; `api/` e `server/platform/` contêm as APIs e controles de acesso. `db/` e `agent/` também incluem componentes históricos. Não executar migrações, seeds ou scripts de setup contra bancos reais como parte de uma alteração visual.
+`landing/` contém o site público; `api/` e `server/platform/` contêm as APIs e controles de acesso. `agent/` contém somente o seed histórico do banco de conhecimento do bot n8n. O agente editorial do blog é separado, fica em `scripts/editorial-agent.mjs` e começa desativado. Não executar migrações, seeds ou scripts de setup contra bancos reais como parte de uma alteração visual.
 
 ## Formulários e dados
 
