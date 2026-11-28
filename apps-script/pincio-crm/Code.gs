@@ -35,6 +35,7 @@ function intake_(s,p,actor,id,now){
   const recent=s.LEADS.filter(x=>x.origem==="site"&&Date.parse(x.criado_em)>=hour);
   if(recent.length>=60||recent.filter(x=>x.whatsapp===whatsapp).length>=5)fail_(429,"Limite temporário de envios.");
  }
+ if(actor!=="public"){const same=s.LEADS.find(x=>OPEN.includes(x.status)&&x.whatsapp===whatsapp&&x.servico===servico&&x.nome.toLowerCase()===nome.toLowerCase());if(same)return {id:same.id,duplicate:true};}
  const lead={id,criado_em:now,nome,whatsapp,servico,origem:actor==="public"?"site":"manual",status:"novo",responsavel:actor==="public"?"":actor,mensagem,ultimo_contato:"",proximo_followup:now,tentativas:0,atualizado_em:now};
  s.LEADS.push(lead);task_(s,id+":task",id,"","primeiro_contato","Realizar primeiro contato",now,lead.responsavel,now);audit_(s,id,now,actor,"lead.criado",id);
  return {id,duplicate:false};
@@ -45,7 +46,7 @@ function apply_(s,action,p,actor,id,now){
  if(action==="dashboard"){
   const active=s.LEADS.filter(x=>OPEN.includes(x.status)),tasks=s.TAREFAS.filter(x=>x.status==="pendente").sort((a,b)=>String(a.vencimento).localeCompare(String(b.vencimento)));
   const month=now.slice(0,7),monthSales=s.VENDAS.filter(x=>x.status==="registrada"&&String(x.data).slice(0,7)===month);
-  return {metrics:{leads:s.LEADS.length,active:active.length,overdue:tasks.filter(x=>x.vencimento<now).length,sales:monthSales.length,salesCents:monthSales.reduce((n,x)=>n+Number(x.valor_centavos),0),processes:s.PROCESSOS.filter(x=>x.status==="ativo").length},leads:s.LEADS.slice(-200).reverse(),tasks:tasks.slice(0,200),sales:s.VENDAS.slice(-100).reverse(),processes:s.PROCESSOS.slice(-200).reverse(),services:[...new Set(s.FLUXOS.map(x=>x.servico))]};
+  return {metrics:{leads:s.LEADS.length,active:active.length,overdue:tasks.filter(x=>x.vencimento<now).length,sales:monthSales.length,salesCents:monthSales.reduce((n,x)=>n+Number(x.valor_centavos),0),processes:s.PROCESSOS.filter(x=>x.status==="ativo").length},leads:s.LEADS.slice(-200).reverse(),tasks:tasks.slice(0,200),sales:s.VENDAS.slice(-100).reverse(),processes:s.PROCESSOS.slice(-200).reverse(),contacts:s.ATENDIMENTOS.slice(-500).reverse(),history:s.HISTORICO_SERVICOS.slice(-500).reverse(),clients:s.CLIENTES.slice(-300).reverse(),services:[...new Set(s.FLUXOS.map(x=>x.servico))]};
  }
  if(action==="createLead")return intake_(s,p,actor,id,now);
  if(action==="contact"){
