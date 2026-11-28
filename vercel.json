@@ -69,6 +69,23 @@
           "value": "default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self'; connect-src 'self'; form-action 'self'; frame-ancestors 'none'; object-src 'none'; base-uri 'none'"
         }
       ]
+    },
+    {
+      "source": "/crm.html",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store, private"
+        },
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src 'self'; form-action 'self'; frame-ancestors 'none'; object-src 'none'; base-uri 'none'"
+        },
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
     }
   ],
   "functions": {
@@ -86,6 +103,9 @@
     },
     "api/leads.mjs": {
       "maxDuration": 15
+    },
+    "api/crm.mjs": {
+      "maxDuration": 30
     }
   },
   "regions": [

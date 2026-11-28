@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>PINCIO | CRM privado</title><link rel="stylesheet" href="/crm.css"><script src="/crm.js" defer></script></head>
+<body><header><a href="/"><img src="/assets/logo-pincio-white.svg" alt="PINCIO Assessoria Internacional" width="190" height="48"></a><span>Central de gestão</span><button id="logout" hidden>Sair</button></header>
+<main><section id="gate"><h1>Área restrita</h1><p id="gate-text">Acesse com a conta Google autorizada.</p><a class="button" href="/api/crm?op=login">Entrar com Google</a></section><div id="app" hidden>
+<h1>Visão geral</h1><p id="notice" role="status" aria-live="polite"></p><div id="metrics" class="metrics"></div>
+<nav aria-label="CRM"><button data-tab="leads">Leads</button><button data-tab="tasks">Tarefas</button><button data-tab="sales">Vendas</button><button data-tab="processes">Serviços</button></nav>
+<section id="leads" class="pane"><h2>Novo lead</h2><form id="new-lead"><label>Nome<input name="nome" required maxlength="120"></label><label>WhatsApp<input name="whatsapp" type="tel" required maxlength="25"></label><label>Serviço<select name="servico" required id="service"></select></label><label>Observação<textarea name="mensagem" maxlength="2000"></textarea></label><button>Cadastrar lead</button></form><h2>Funil comercial</h2><label>Buscar<input id="search" placeholder="Nome, telefone ou serviço"></label><div id="lead-list"></div></section>
+<section id="tasks" class="pane" hidden><h2>Tarefas e retornos</h2><div id="task-list"></div></section>
+<section id="sales" class="pane" hidden><h2>Vendas registradas</h2><p>Valores contratados, não equivalem a recebimentos financeiros.</p><div id="sale-list"></div></section>
+<section id="processes" class="pane" hidden><h2>Fluxos de serviços</h2><div id="process-list"></div></section>
+</div></main></body></html>
