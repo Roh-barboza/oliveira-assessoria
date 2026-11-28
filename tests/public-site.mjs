@@ -487,6 +487,51 @@ try {
   assert.equal(await nojs.locator('#consular-form').getAttribute('method'),'post','without JS, private data must not be serialized into the URL');
   assert.equal(await nojs.locator('#consular-form button[type=submit]').isDisabled(),true,'without JS, unavailable submission must fail closed');
   await nojs.close();
+  if (!process.env.BASE_URL) {
+    for (const width of [390, 1366]) {
+      const crm = await browser.newPage({ viewport: { width, height: 900 } });
+      await crm.route("**/api/crm?op=dashboard", route => route.fulfill({
+        json: {
+          ok: true,
+          data: {
+            metrics: { leads: 2, converted: 1, active: 1, overdue: 0, sales: 0, salesCents: 0, processes: 1 },
+            leads: [{ id: "fixture-lead", nome: "Lívia Fictícia", servico: "AIRE", origem: "manual", status: "novo" }],
+            clients: [{ id: "fixture-client", nome: "Lívia Fictícia" }],
+            processes: [{ id: "fixture-process", cliente_id: "fixture-client", servico: "AIRE", etapa: "Triagem", status: "ativo" }],
+            tasks: [],
+            sales: [{ id: "fixture-sale", lead_id: "fixture-lead", servico: "AIRE", status: "registrada", valor_centavos: 10000 }],
+            finance: {
+              monthPaid: 1000, pending: 9000, overdue: 0,
+              plannedSales: ["fixture-old-sale"], methods: ["Pix"],
+              installments: [{ id: "fixture-installment", venda_id: "fixture-old-sale", ordem: 1, vencimento: "2026-12-01", forma_pagamento: "Pix", paid: 1000, balance: 9000 }],
+            },
+            services: ["AIRE"],
+          },
+        },
+      }));
+      await crm.goto(base + "/crm.html");
+      await crm.locator("#app").waitFor();
+      assert.equal(await crm.locator(".lane").count(), 6);
+      assert.match(await crm.locator("#metrics").innerText(), /50\s*%/);
+      assert.equal(await crm.getByRole("heading", { name: "Lívia Fictícia" }).isVisible(), true);
+      await crm.getByRole("button", { name: "Clientes" }).click();
+      assert.match(await crm.locator("#client-list").innerText(), /AIRE · Triagem/);
+      const search = crm.getByRole("searchbox", { name: "Buscar no CRM" });
+      await search.fill("livia");
+      assert.equal(await crm.getByRole("heading", { name: "Lívia Fictícia" }).isVisible(), true);
+      await search.fill("outro nome");
+      assert.equal(await crm.locator("#client-list").innerText(), "Nenhum registro.");
+      await search.clear();
+      await crm.getByRole("button", { name: "Financeiro" }).click();
+      assert.match(await crm.locator("#finance-metrics").innerText(), /Recebido no mês/);
+      await crm.locator("#payment-plans summary").click();
+      await crm.getByRole("button", { name: "Adicionar parcela" }).click();
+      assert.equal(await crm.locator(".payment-rows fieldset").count(), 2);
+      assert.equal(await crm.getByRole("button", { name: "Registrar recebimento" }).isVisible(), true);
+      assert.ok(await crm.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1));
+      await crm.close();
+    }
+  }
   await writeFile(
     `${evidence}/validation.json`,
     JSON.stringify(

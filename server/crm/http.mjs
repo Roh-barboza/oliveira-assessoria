@@ -5,7 +5,7 @@ const headers={"Cache-Control":"no-store, private","X-Robots-Tag":"noindex, nofo
 const reply=(b,status=200)=>Response.json(b,{status,headers});
 const redir=(location,cookies=[])=>{const h=new Headers({...headers,Location:location});cookies.forEach(c=>h.append("Set-Cookie",c));return new Response(null,{status:303,headers:h});};
 const SESSION="__Host-pincio-crm",STATE="__Host-pincio-oauth";
-const ACTIONS=new Set(["dashboard","createLead","contact","sale","advance"]);
+const ACTIONS=new Set(["dashboard","createLead","contact","sale","advance","paymentPlan","receivePayment","setFollowup","processNote","assignLead"]);
 export async function handleCrm(req,env){
  const url=new URL(req.url),op=url.searchParams.get("op")||"dashboard",origin=env.PINCIO_CRM_ORIGIN,key=env.PINCIO_CRM_SESSION_SECRET;
  if(env.PINCIO_CRM_ENABLED!=="1"||url.origin!==origin||!origin?.startsWith("https://")||!key||key.length<32||key===env.PINCIO_CRM_SHARED_SECRET||!env.PINCIO_CRM_ALLOWED_EMAILS?.split(",").some(email=>email.trim())||!env.PINCIO_GOOGLE_CLIENT_ID||!env.PINCIO_GOOGLE_CLIENT_SECRET||!sheetsConfigured(env))return reply({ok:false,error:"CRM aguardando configuração."},503);

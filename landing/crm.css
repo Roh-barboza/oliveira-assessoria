@@ -11,3 +11,9 @@
  .workspace nav{flex-direction:row}
  .kanban{grid-template-columns:minmax(0,1fr)}
 }
+.search{margin-top:14px;max-width:32rem}
+.payment-plan{margin-top:12px}
+.payment-rows{display:grid;gap:8px;grid-column:1/-1;min-width:0}
+.payment-rows fieldset{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;min-width:0;border:1px solid #dedfd8}
+.lead-filters{display:flex;flex-wrap:wrap;gap:12px}
+.lead-filters label{min-width:min(100%,10rem)}

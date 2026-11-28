@@ -34,3 +34,31 @@ function initializeCrmSandbox() {
   return {tabs:Object.keys(TABLES).length,mode:"homologacao"};
  }finally{lock.releaseLock();}
 }
+
+/** Add the financial ledger to an initialized private base without changing existing tabs. */
+function initializeCrmFinance() {
+ const id=PropertiesService.getScriptProperties().getProperty("PINCIO_CRM_SHEET_ID");
+ if(!id)fail_(422,"Configure o ID da base nas propriedades.");
+ const lock=LockService.getScriptLock();
+ if(!lock.tryLock(8000))fail_(503,"Tente novamente.");
+ try{
+  const spreadsheet=SpreadsheetApp.openById(id);
+  const {state}=load_(spreadsheet);
+  if(state.PARCELAS&&state.RECEBIMENTOS)return {created:false};
+  const used=new Set(spreadsheet.getSheets().map(sheet=>sheet.getSheetId()));
+  const requests=[];
+  let sheetId=1;
+  for(const [name,header] of Object.entries(FINANCE_TABLES)){
+   while(used.has(sheetId))sheetId++;
+   requests.push({addSheet:{properties:{sheetId,title:name,gridProperties:{frozenRowCount:1}}}});
+   requests.push({updateCells:{
+    start:{sheetId,rowIndex:0,columnIndex:0},
+    rows:[{values:header.split(" ").map(cell_)}],
+    fields:"userEnteredValue"
+   }});
+   sheetId++;
+  }
+  Sheets.Spreadsheets.batchUpdate({requests},id);
+  return {created:true};
+ }finally{lock.releaseLock();}
+}

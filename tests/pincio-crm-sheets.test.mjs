@@ -76,12 +76,12 @@ test("signed writes fail closed on contention and preserve one atomic commit acr
   };
   sandbox.SpreadsheetApp = {
     openById: () => ({
-      getSheetByName: name => ({
+      getSheetByName: name => rows[name] ? ({
         getLastRow: () => rows[name].length,
         getRange: () => ({ getValues: () => rows[name] }),
         getMaxRows: () => 1000,
         getSheetId: () => names.indexOf(name),
-      }),
+      }) : null,
     }),
   };
   sandbox.Sheets = {
@@ -122,4 +122,80 @@ test("signed writes fail closed on contention and preserve one atomic commit acr
   assert.equal(rows.OPERACOES.length, 2);
   assert.equal(rows.LEADS[1][8], lead.mensagem);
   assert.equal(releases, 3);
+});
+
+test("payment plans preserve the contracted total and partial receipts drive outstanding balances", () => {
+  const s = { ...state(), PARCELAS: [], RECEBIMENTOS: [] };
+  apply(s, "createLead", lead, actor, "l1", now);
+  apply(s, "sale", { lead_id: "l1", valor_centavos: 11000 }, actor, "s1", now);
+  const plan = {
+    venda_id: "s1",
+    forma_pagamento: "Pix",
+    parcelas: [
+      { vencimento: "2026-11-26", valor_centavos: 5000 },
+      { vencimento: "2026-12-27", valor_centavos: 6000 },
+    ],
+  };
+  assert.throws(() => apply(s, "paymentPlan", { ...plan, parcelas: plan.parcelas.slice(0, 1) }, actor, "p1", now), /somar/);
+  assert.equal(s.PARCELAS.length, 0);
+  apply(s, "paymentPlan", plan, actor, "p1", now);
+  assert.throws(() => apply(s, "paymentPlan", plan, actor, "p2", now), /parcelada/);
+  const receipt = { parcela_id: "p1:1", data: "2026-11-28", valor_centavos: 2000 };
+  apply(s, "receivePayment", receipt, actor, "r1", now);
+  assert.throws(() => apply(s, "receivePayment", { ...receipt, valor_centavos: 3001 }, actor, "r2", now), /saldo/);
+  assert.throws(() => apply(s, "receivePayment", { ...receipt, data: "2026-02-30" }, actor, "r2", now), /Data inválida/);
+  assert.throws(() => apply(s, "receivePayment", { ...receipt, data: "2026-11-29" }, actor, "r2", now), /inválido/);
+  const dashboard = apply(s, "dashboard", {}, actor, "d1", now);
+  assert.equal(dashboard.metrics.converted, 1);
+  assert.equal(dashboard.metrics.salesCents, 11000);
+  assert.equal(dashboard.finance.monthPaid, 2000);
+  assert.equal(dashboard.finance.pending, 9000);
+  assert.equal(dashboard.finance.overdue, 3000);
+});
+
+test("scheduled summaries include only internal counts and leave disabled automation idle", async () => {
+  const automation = await readFile("apps-script/pincio-crm-automation/Code.gs", "utf8");
+  const sandbox = vm.createContext({
+    PropertiesService: { getScriptProperties: () => ({ getProperty: () => null }) },
+    Utilities: { formatDate: date => date.toISOString().slice(0, 10) },
+  });
+  vm.runInContext(automation, sandbox);
+  assert.doesNotThrow(() => sandbox.runCrmDailyAutomation());
+  const tabs = {
+    LEADS: [["nome", "status", "ultimo_contato", "proximo_followup"], ["Nome fictício", "novo", "", "2026-11-26"]],
+    TAREFAS: [["vencimento", "status"], ["2026-11-26", "pendente"]],
+    PROCESSOS: [["atualizado_em", "status"], ["2026-11-19", "ativo"]],
+  };
+  const workbook = {
+    getSheetByName: name => tabs[name] ? ({
+      getLastRow: () => tabs[name].length,
+      getDataRange: () => ({ getValues: () => tabs[name] }),
+    }) : null,
+  };
+  const report = sandbox.summary_(workbook, new Date(now), 7);
+  assert.match(report, /Leads novos sem atendimento: 1/);
+  assert.match(report, /Retornos vencidos: 1/);
+  assert.match(report, /Tarefas vencidas: 1/);
+  assert.match(report, /Processos sem atualização há 7 dias ou mais: 1/);
+  assert.doesNotMatch(report, /Nome fictício/);
+});
+
+test("the administrator can reassign follow-ups and change cadence, and a pending document keeps the process stage", () => {
+  const s = state();
+  const operator = "operator@example.invalid";
+  s.USUARIOS.push({ email: operator, perfil: "operador", ativo: "sim" });
+  apply(s, "createLead", lead, actor, "l1", now);
+  assert.throws(() => apply(s, "assignLead", { lead_id: "l1", responsavel: operator }, operator, "a1", now), /administradores/);
+  assert.throws(() => apply(s, "setFollowup", { days: [2, 4, 8] }, operator, "f1", now), /administradores/);
+  apply(s, "assignLead", { lead_id: "l1", responsavel: operator }, actor, "a1", now);
+  assert.equal(s.TAREFAS[0].responsavel, operator);
+  apply(s, "setFollowup", { days: [2, 4, 8] }, actor, "f1", now);
+  apply(s, "contact", { lead_id: "l1", canal: "E-mail", resultado: "sem_resposta" }, actor, "c1", now);
+  assert.equal(s.TAREFAS.at(-1).vencimento, "2026-11-30T12:00:00.000Z");
+  assert.equal(s.TAREFAS.at(-1).responsavel, operator);
+  const { processo_id } = apply(s, "sale", { lead_id: "l1", valor_centavos: 10000 }, actor, "s1", now);
+  apply(s, "processNote", { processo_id, ordem_atual: 1, observacao: "Documento fictício pendente" }, operator, "n1", now);
+  assert.equal(s.HISTORICO_SERVICOS.at(-1).observacao, "Documento fictício pendente");
+  assert.equal(s.PROCESSOS[0].ordem, 1);
+  assert.equal(s.TAREFAS.at(-1).status, "pendente");
 });
