@@ -115,3 +115,8 @@ test("first passport emission stays documentary while appointment support is ren
   );
   assert.match(renewal.scope.join(" "), /agendamento de renovação/);
 });
+
+test("public synthetic catalog does not display the former brand",async()=>{
+  const {catalog}=await import("../server/platform/catalog.mjs");
+  assert.doesNotMatch(JSON.stringify(catalog),/\bOliveira\b/i);
+});

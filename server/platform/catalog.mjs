@@ -8,6 +8,8 @@ export const testClient = {
 };
 // Only modalities still present in the current commercial catalog are offered in this simulator.
 // Historical pricing rows and stored cases remain untouched.
+// Render the current brand without mutating historical planning records.
+const currentBrand = value => typeof value === "string" ? value.replace(/\bOliveira\b/g, "PINCIO") : Array.isArray(value) ? value.map(currentBrand) : value;
 export const accepted = ["IT-01", "IT-02", "IT-03"];
 export const catalog = accepted.map((id) => {
   const s = matrix.servicos.find((x) => x.id === id);
@@ -17,12 +19,12 @@ export const catalog = accepted.map((id) => {
     .map((x) => ({
       id: x.id_modelo,
       name: x.modalidade.replace(" — hipótese", ""),
-      revisions: p?.revisoes,
-      period: x.proposta_acompanhamento || p?.acompanhamento,
-      scope: p?.atividades || s.atividades_propostas,
-      deliveries: p?.entregas || s.entregas_propostas,
-      exclusions: s.atividades_excluidas,
-      external: s.despesas_externas,
+      revisions: currentBrand(p?.revisoes),
+      period: currentBrand(x.proposta_acompanhamento || p?.acompanhamento),
+      scope: currentBrand(p?.atividades || s.atividades_propostas),
+      deliveries: currentBrand(p?.entregas || s.entregas_propostas),
+      exclusions: currentBrand(s.atividades_excluidas),
+      external: currentBrand(s.despesas_externas),
     }));
   if (id === "IT-01")
     for (const variant of variants) {

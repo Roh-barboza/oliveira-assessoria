@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!response.ok || receipt.ok !== true || typeof receipt.protocol !== "string" || !/^[a-f0-9-]{36}$/i.test(receipt.protocol)) throw new Error("Falha no envio");
       form.reset();
       status.textContent =
-        "Solicitação enviada. Aguarde a confirmação de recebimento pela equipe.";
+        "Solicitação enviada. Aguarde a confirmação de recebimento pela equipe. Protocolo: " + receipt.protocol;
       status.style.color = "#187045";
     } catch {
       status.textContent = controller.signal.aborted

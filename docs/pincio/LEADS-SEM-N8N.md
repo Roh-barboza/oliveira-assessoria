@@ -9,3 +9,5 @@
 - Ensaiar restauração, definir retenção e expurgo, política de acesso e direitos LGPD, confirmar identidade jurídica e canal institucional antes de ativar. Não exportar dados para arquivos públicos.
 - Testes são sintéticos. A aprovação de CI não comprova recebimento em banco real. Confirmar com teste controlado após configuração.
 - Site continua com noindex. Clicksign, domínio, API operacional real e agente editorial não são alterados. A demonstração é volátil e apenas sintética. A hospedagem comercial gratuita requer verificar regras da Vercel Hobby ou migração separada.
+
+- A confirmação apresenta o protocolo único ao visitante. A marca antiga herdada do catálogo histórico é normalizada na saída do simulador, sem alterar o histórico de planejamento.
