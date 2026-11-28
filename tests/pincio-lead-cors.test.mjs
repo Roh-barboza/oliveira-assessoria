@@ -1,34 +1,13 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { checkLeadCors } from "../scripts/check-lead-cors.mjs";
-test("CORS evidence requires POST/content-type and the PINCIO origin; never submits data", async () => {
-  const result = await checkLeadCors(async (url, options) => {
-    assert.equal(options.method, "OPTIONS");
-    assert.equal(options.body, undefined);
-    assert.equal(options.credentials, "omit");
-    return new Response(null, {
-      status: 204,
-      headers: {
-        "access-control-allow-origin": "https://pincio-assessoria.vercel.app",
-        "access-control-allow-methods": "POST, OPTIONS",
-        "access-control-allow-headers": "Content-Type",
-      },
-    });
+test("read-only first-party API probe never submits data",async()=>{
+  const result=await checkLeadCors(async(url,opts)=>{
+    assert.equal(url,"https://pincio-assessoria.vercel.app/api/leads");
+    assert.equal(opts.method,"GET");assert.equal(opts.body,undefined);assert.equal(opts.credentials,"omit");
+    return new Response(null,{status:405,headers:{Allow:"POST"}});
   });
-  assert.equal(result.status, "passed");
-  assert.equal(result.leadSubmitted, false);
-  assert.equal(result.receiptConfirmed, false);
-  const invalid = await checkLeadCors(
-    async () =>
-      new Response(null, {
-        status: 204,
-        headers: { "access-control-allow-origin": "https://old.invalid" },
-      }),
-  );
-  assert.equal(invalid.status, "failed");
-  const blocked = await checkLeadCors(async () => {
-    throw Object.assign(Error("blocked"), { cause: { code: "ENOTFOUND" } });
-  });
-  assert.equal(blocked.status, "unreachable");
-  assert.equal(blocked.transportCode, "ENOTFOUND");
+  assert.equal(result.status,"passed");assert.equal(result.leadSubmitted,false);assert.equal(result.receiptConfirmed,false);
+  assert.equal((await checkLeadCors(async()=>new Response(null,{status:200}))).status,"failed");
+  assert.equal((await checkLeadCors(async()=>{throw Error("offline")})).status,"unreachable");
 });

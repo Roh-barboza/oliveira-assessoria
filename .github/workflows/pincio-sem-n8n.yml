@@ -20,7 +20,7 @@ jobs:
           node-version: 24
           cache: npm
       - run: npm ci
-      - run: node --test tests/pincio-lead-api.test.mjs tests/platform-public-demo-release.test.mjs tests/pincio-brand.test.mjs
+      - run: node --test tests/pincio-lead-api.test.mjs tests/platform-public-demo-release.test.mjs tests/pincio-brand.test.mjs tests/pincio-lead-cors.test.mjs
       - run: npm run test:platform
       - run: npm run test:editorial
       - run: npm audit --omit=dev

@@ -52,3 +52,16 @@ test("no synthetic simulator on unapproved production branch",async()=>{
       else process.env[key]=value;}
   }
 });
+
+test("new release preview is synthetic and isolated",async()=>{
+  const keys=["VERCEL_ENV","VERCEL_PROJECT_ID","VERCEL_GIT_COMMIT_REF"];
+  const old=new Map(keys.map(k=>[k,process.env[k]]));
+  try {
+    process.env.VERCEL_ENV="preview";
+    process.env.VERCEL_PROJECT_ID="prj_M19hHqI7fq25KgKnXWIqUYRXmxhq";
+    process.env.VERCEL_GIT_COMMIT_REF="release/pincio-sem-n8n-2026-11-28";
+    const app=(await import("../api/plataforma.mjs?release-preview")).default;
+    const res=await app.fetch(new Request("https://preview.invalid/api/plataforma?op=config"));
+    assert.equal(res.status,200);assert.equal((await res.json()).mode,"synthetic-only");
+  }finally{for(const [k,v] of old){if(v===undefined)delete process.env[k];else process.env[k]=v;}}
+});
