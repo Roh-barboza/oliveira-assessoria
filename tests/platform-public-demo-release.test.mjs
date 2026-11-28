@@ -8,7 +8,7 @@ test("public production release exposes full synthetic-only demo, not real data"
   try {
     process.env.VERCEL_ENV="production";
     process.env.VERCEL_PROJECT_ID="prj_M19hHqI7fq25KgKnXWIqUYRXmxhq";
-    process.env.VERCEL_GIT_COMMIT_REF="release/pincio-identidade-2026-11-25";
+    process.env.VERCEL_GIT_COMMIT_REF="release/pincio-sem-n8n-2026-11-28";
     const app=(await import("../api/plataforma.mjs?full-public-release")).default;
     const home="https://pincio-assessoria.vercel.app/api/plataforma?op=";
     const config=await app.fetch(new Request(home+"config"));

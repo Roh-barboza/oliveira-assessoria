@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
     status.textContent = "";
     try {
       const response = await fetch(
-        "https://chaoticcow-n8n.cloudfy.live/webhook/oliveira-leads",
+        "/api/leads",
         {
           method: "POST",
           signal: controller.signal,
@@ -72,15 +72,16 @@ document.addEventListener("DOMContentLoaded", () => {
           body: JSON.stringify(payload),
         },
       );
-      if (!response.ok) throw new Error("Falha no envio");
+      const receipt = await response.json();
+      if (!response.ok || receipt.ok !== true || typeof receipt.protocol !== "string" || !/^[a-f0-9-]{36}$/i.test(receipt.protocol)) throw new Error("Falha no envio");
       form.reset();
       status.textContent =
         "Solicitação enviada. Aguarde a confirmação de recebimento pela equipe.";
       status.style.color = "#187045";
     } catch {
       status.textContent = controller.signal.aborted
-        ? "O envio demorou mais que o esperado e não foi confirmado. Antes de reenviar, confirme com a equipe para evitar duplicação."
-        : "Não foi possível confirmar o envio. Seus dados foram mantidos no formulário. Antes de reenviar, confirme com a equipe para evitar duplicação.";
+        ? "O envio demorou mais que o esperado e não foi confirmado. Você pode tentar novamente sem alterar os dados; envios idênticos são deduplicados por 24 horas."
+        : "Não foi possível confirmar o envio. Seus dados foram mantidos no formulário. Você pode tentar novamente sem alterar os dados; envios idênticos são deduplicados por 24 horas.";
       status.style.color = "#9a2a38";
     } finally {
       clearTimeout(timeout);

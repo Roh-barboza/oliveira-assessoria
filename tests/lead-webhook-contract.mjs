@@ -40,8 +40,8 @@ try {
   let rejectWebhook = false;
   let delayWebhook = false;
 
-  // Intercept 100% of the outbound request; never contact Cloudfy/n8n.
-  await page.route("https://chaoticcow-n8n.cloudfy.live/**", async (route) => {
+  // Intercept 100% of the outbound request; never contact Cloudfy/API própria.
+  await page.route("**/api/leads", async (route) => {
     const request = route.request();
     const headers = {
       "Access-Control-Allow-Origin": origin,
@@ -58,7 +58,7 @@ try {
     await route.fulfill({
       status: rejectWebhook ? 503 : 200,
       headers,
-      body: JSON.stringify({ ok: !rejectWebhook }),
+      body: JSON.stringify({ ok: !rejectWebhook, protocol: "12345678-1234-4123-8123-123456789abc" }),
     });
   });
   await page.goto(origin + "/index.html", { waitUntil: "domcontentloaded" });
@@ -93,7 +93,7 @@ try {
   await form.locator('button[type="submit"]').click();
   await page
     .getByText(
-      "Não foi possível confirmar o envio. Seus dados foram mantidos no formulário. Antes de reenviar, confirme com a equipe para evitar duplicação.",
+      "Não foi possível confirmar o envio. Seus dados foram mantidos no formulário. Você pode tentar novamente sem alterar os dados; envios idênticos são deduplicados por 24 horas.",
     )
     .waitFor();
   assert.equal(requests.length, 2);
@@ -102,7 +102,7 @@ try {
     "Teste de erro",
   );
   assert.equal(await form.locator('button[type="submit"]').isEnabled(), true);
-  // Client defenses are UX protection, not a substitute for n8n validation/rate limits.
+  // Client defenses are UX protection, not a substitute for API própria validation/rate limits.
   const countBefore = requests.length;
   await form.locator('[name="whatsapp"]').fill("123");
   await form.locator('button[type="submit"]').click();
@@ -141,7 +141,7 @@ try {
     "parallel submissions must not duplicate a lead",
   );
   console.log(
-    "LEADS: contrato JSON, serviço, sucesso, erro, validação, honeypot, duplicação acidental e ausência de tráfego real ao n8n aprovados.",
+    "LEADS: contrato JSON, serviço, sucesso, erro, validação, honeypot, duplicação acidental e ausência de tráfego real ao API própria aprovados.",
   );
 } finally {
   if (browser) await browser.close();

@@ -159,11 +159,11 @@ try {
     await context.close();
   }
   const page = await browser.newPage({ viewport: { width: 390, height: 844 } });
-  // No request reaches n8n: verify original payload contract, 2xx, 500 and offline responses.
+  // No real lead is submitted: verify the internal API contract, 2xx, 500 and offline responses.
   let payload,
     mode = "success",
     sent = 0;
-  await page.route("**/webhook/oliveira-leads", async (route) => {
+  await page.route("**/api/leads", async (route) => {
     sent++;
     payload = route.request().postDataJSON();
     assert.equal(route.request().method(), "POST");
@@ -172,7 +172,7 @@ try {
     await route.fulfill({
       status: mode === "success" ? 200 : 500,
       contentType: "application/json",
-      body: "{}",
+      body: JSON.stringify({ok:mode==="success",protocol:"12345678-1234-4123-8123-123456789abc"}),
     });
   });
   await page.goto(base + "/?servico=AIRE#contato");

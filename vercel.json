@@ -2,6 +2,19 @@
   "outputDirectory": "landing",
   "headers": [
     {
+      "source": "/api/leads",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store, private"
+        },
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
+    },
+    {
       "source": "/(.*)",
       "headers": [
         {
@@ -70,6 +83,9 @@
     "api/operacional-bootstrap.mjs": {
       "includeFiles": "server/platform/**",
       "maxDuration": 30
+    },
+    "api/leads.mjs": {
+      "maxDuration": 15
     }
   },
   "regions": [

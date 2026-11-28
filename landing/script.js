@@ -60,8 +60,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = {
                 nome: formData.get('nome'),
                 whatsapp: formData.get('whatsapp'),
-                area: formData.get('area'),
-                mensagem: formData.get('mensagem')
+                area: 'Assessoria Brasil e Itália',
+                mensagem: '[' + (formData.get('servico') || 'Não sei qual serviço preciso') + '] ' + (formData.get('mensagem') || ''),
+                website: formData.get('website') || ''
             };
 
             // Show loading status
@@ -71,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
             formStatus.style.color = '#0d47a1';
 
             try {
-                const response = await fetch('https://chaoticcow-n8n.cloudfy.live/webhook/oliveira-leads', {
+                const response = await fetch('/api/leads', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -79,7 +80,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     body: JSON.stringify(data)
                 });
 
-                if (response.ok) {
+                const receipt = await response.json();
+                if (response.ok && receipt.ok === true && typeof receipt.protocol === 'string' && /^[a-f0-9-]{36}$/i.test(receipt.protocol)) {
                     formStatus.textContent = 'Mensagem enviada com sucesso! Entraremos em contato em breve.';
                     formStatus.style.backgroundColor = '#e8f5e9';
                     formStatus.style.color = '#1b5e20';
