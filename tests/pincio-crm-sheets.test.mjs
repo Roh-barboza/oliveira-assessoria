@@ -25,3 +25,101 @@ test("sessions are signed, expire and require exact email allowlist",()=>{const 
 test("transport only sends signed envelopes to configured Google Apps Script",async()=>{const env={PINCIO_CRM_SCRIPT_URL:"https://script.google.com/macros/s/example/exec",PINCIO_CRM_SHARED_SECRET:"x".repeat(32)};const result=await sheetsCall({actor:"public",action:"intake",data:lead,id:"l1"},env,async(url,opts)=>{assert.equal(url,env.PINCIO_CRM_SCRIPT_URL);const b=JSON.parse(opts.body);assert.equal(JSON.parse(b.payload).id,"l1");assert.match(b.sig,/^[A-Za-z0-9_-]{43}$/);return Response.json({ok:true,data:{id:"l1"}});});assert.equal(result.id,"l1");await assert.rejects(sheetsCall({actor:"public",action:"intake"}, {...env,PINCIO_CRM_SCRIPT_URL:"https://evil.invalid/exec"}),/indisponível/);});
 
 test("manual duplicate is not inserted; contact and process histories available to authorized team",()=>{const s=state();apply(s,"createLead",lead,actor,"m1",now);assert.equal(apply(s,"createLead",lead,actor,"m2",now).duplicate,true);assert.equal(s.LEADS.length,1);apply(s,"contact",{lead_id:"m1",canal:"WhatsApp",resultado:"respondeu",observacao:"Teste"},actor,"c1",now);apply(s,"sale",{lead_id:"m1",servico:"AIRE",valor_centavos:1000},actor,"s1",now);const d=apply(s,"dashboard",{},actor,"d1",now);assert.equal(d.contacts.length,1);assert.equal(d.history.length,1);assert.equal(d.clients.length,1);});
+
+test("Apps Script output follows only Google's ContentService redirect without forwarding the signed POST", async () => {
+  const scriptUrl = "https://script.google.com/macros/s/example/exec";
+  const outputUrl = "https://script.googleusercontent.com/macros/echo?mock=1";
+  const env = { PINCIO_CRM_SCRIPT_URL: scriptUrl, PINCIO_CRM_SHARED_SECRET: "x".repeat(32) };
+  const input = { actor, action: "dashboard" };
+  const calls = [];
+  await sheetsCall(input, env, async (url, options) => {
+    calls.push(url);
+    assert.equal(options.redirect, "manual");
+    if (url === scriptUrl) {
+      assert.equal(options.method, "POST");
+      return Response.redirect(outputUrl, 302);
+    }
+    assert.equal(options.body, undefined);
+    assert.equal(options.method, undefined);
+    return Response.json({ ok: true, data: {} });
+  });
+  assert.deepEqual(calls, [scriptUrl, outputUrl]);
+});
+
+test("signed writes fail closed on contention and preserve one atomic commit across retries", async () => {
+  const { createHmac } = await import("node:crypto");
+  const sandbox = vm.createContext({});
+  vm.runInContext(code, sandbox);
+  const schema = vm.runInContext("TABLES", sandbox);
+  const rows = Object.fromEntries(Object.entries(schema).map(([name, header]) => [name, [header.split(" ")]]));
+  rows.CONFIG.push(["modo", "ativo", ""]);
+  rows.FLUXOS.push(["AIRE", 1, "Triagem", 1]);
+  const names = Object.keys(rows);
+  let acquired = false;
+  let failWrite = false;
+  let commits = 0;
+  let locked = true;
+  let releases = 0;
+  const key = "test-transport".repeat(4);
+  const mac = value => createHmac("sha256", key).update(value).digest("base64url");
+  sandbox.sign_ = mac;
+  sandbox.PropertiesService = {
+    getScriptProperties: () => ({
+      getProperty: name => name.endsWith("SHARED_SECRET") ? key : "synthetic-sheet",
+    }),
+  };
+  sandbox.LockService = {
+    getScriptLock: () => ({
+      tryLock: () => (acquired = !locked),
+      releaseLock: () => { if (acquired) releases++; acquired = false; },
+    }),
+  };
+  sandbox.SpreadsheetApp = {
+    openById: () => ({
+      getSheetByName: name => ({
+        getLastRow: () => rows[name].length,
+        getRange: () => ({ getValues: () => rows[name] }),
+        getMaxRows: () => 1000,
+        getSheetId: () => names.indexOf(name),
+      }),
+    }),
+  };
+  sandbox.Sheets = {
+    Spreadsheets: {
+      batchUpdate: ({ requests }) => {
+        assert.ok(acquired);
+        if (failWrite) throw Error("Simulated Sheets write failure");
+        commits++;
+        for (const { updateCells: update } of requests) {
+          const { start, rows: [row] } = update;
+          rows[names[start.sheetId]][start.rowIndex] = row.values.map(({ userEnteredValue: value }) => {
+            assert.equal(value.formulaValue, undefined);
+            return value.stringValue ?? value.numberValue;
+          });
+        }
+      },
+    },
+  };
+  sandbox.json_ = value => value;
+  const payload = JSON.stringify({ actor: "public", action: "intake", id: "fixture", data: lead });
+  const send = (ts, sig = mac(ts + "." + payload)) =>
+    sandbox.doPost({ postData: { contents: JSON.stringify({ payload, ts, sig }) } });
+  const now = Date.now();
+  assert.equal(send(now, "invalid").status, 403);
+  assert.equal(send(now - 301000).status, 403);
+  assert.equal(send(now).status, 503);
+  locked = false;
+  failWrite = true;
+  assert.equal(send(now).status, 503);
+  assert.equal(rows.LEADS.length, 1);
+  assert.equal(rows.OPERACOES.length, 1);
+  failWrite = false;
+  assert.equal(send(now).data.id, "fixture");
+  assert.equal(send(now).data.id, "fixture");
+  assert.equal(commits, 1);
+  assert.equal(rows.TAREFAS.length, 2);
+  assert.equal(rows.AUDITORIA.length, 2);
+  assert.equal(rows.OPERACOES.length, 2);
+  assert.equal(rows.LEADS[1][8], lead.mensagem);
+  assert.equal(releases, 3);
+});

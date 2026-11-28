@@ -19,7 +19,7 @@ jobs:
           node-version: 24
           cache: npm
       - run: npm ci
-      - run: node --test tests/pincio-crm-sheets.test.mjs tests/pincio-lead-api.test.mjs tests/pincio-brand.test.mjs
+      - run: node --test tests/pincio-crm-sheets.test.mjs tests/pincio-crm-oauth.test.mjs tests/pincio-lead-api.test.mjs tests/pincio-brand.test.mjs
       - run: npm run test:platform
       - run: npm audit --omit=dev
       - run: npx playwright install --with-deps chromium

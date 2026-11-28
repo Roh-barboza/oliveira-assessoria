@@ -9,3 +9,21 @@ O código não contém o ID da planilha, credenciais ou dados de clientes. A pla
 7. Regras de acesso: o backend valida e-mail verificado pelo Google, allowlist e membros ativos da planilha. Perfis admin/operador têm acesso aos registros da equipe nesta fase; não há segregação fina por responsável. O CRM não pode ser usado para dados reais antes de revisar LGPD, retenção, permissões, backups e termos da hospedagem. Vercel Hobby destina-se a homologação não comercial. Nenhum serviço pago ou Neon/n8n é usado pelo novo adaptador.
 
 - A interface exibe histórico de contatos e etapas, cliente relacionado ao serviço, tarefas vencidas e confirmação de duplicidade manual. O dono da planilha foi cadastrado como administrador na base, mas o OAuth e a integração ainda exigem autorização.
+
+## Homologação com base privativa
+
+Na conta Google PINCIO, crie uma planilha privada vazia e um projeto Apps Script independente. Adicione também `Setup.gs`. Configure `PINCIO_CRM_ADMIN_EMAIL` ao lado das duas propriedades descritas acima. Execute `initializeCrmSandbox` no editor. A função prepara as doze abas em um único lote e recusa uma base já preenchida. Os fluxos de triagem, revisão e entrega desse inicializador são exemplos exclusivos para a base fictícia. Use os fluxos aprovados pela PINCIO na base operacional.
+
+Use a origem HTTPS estável do preview da branch para o cliente Google Web. Cadastre essa origem e o callback completo, com `/api/crm?op=callback`. Restrinja as variáveis privadas ao preview da branch e confirme a exposição da variável de sistema `VERCEL_PROJECT_ID`. O ID da planilha fica nas propriedades do Apps Script. A Vercel só precisa da URL publicada do Apps Script e de seu segredo compartilhado, além das variáveis de sessão, OAuth e origem. Gere segredos independentes e cadastre-os diretamente nos painéis.
+
+Após instalar o aplicativo web, confira que uma chamada sem assinatura é recusada. Habilite o CRM apenas no preview restrito e altere `CONFIG.modo` para `ativo` apenas na planilha fictícia usada naquele teste. Use um administrador autorizado e uma segunda conta de teste para conferir o bloqueio. Confirme a persistência e o logout antes de preparar a base operacional. O formulário público da Vercel permanece fora desse teste de escrita, pois seu adaptador só abre no ambiente de produção. Teste a entrada pública no Worker separado com uma base fictícia. Em caso de falha, desative as flags, redeploye no mesmo ambiente e restaure a versão anterior do Apps Script.
+
+## Hospedagem alternativa do CRM e formulário
+
+`wrangler.crm.jsonc` empacota o site estático e os dois endpoints do CRM em Cloudflare Workers. O adaptador não migra as APIs da plataforma legada. Para testar sem publicar, execute `npx wrangler dev --config wrangler.crm.jsonc`. Para checar o empacotamento, execute `npx wrangler deploy --config wrangler.crm.jsonc --dry-run`.
+
+Para homologação remota, use um Worker dedicado no plano gratuito, com subdomínio `workers.dev`, um cliente OAuth próprio e a planilha fictícia. Configure segredos com `wrangler secret put NOME --config wrangler.crm.jsonc`. Aplique a mesma origem HTTPS no Google e em `PINCIO_CRM_ORIGIN`, pois o formulário e o CRM só aceitam chamadas da própria origem. Publique com as flags desativadas e habilite cada integração nesse Worker após validar seu componente. Antes de usar dados reais, confirme os termos da conta, as cotas, o acesso à planilha e a estratégia de rollback. O site atual continua servido pelo projeto Vercel existente.
+
+- [Termos da Vercel](https://vercel.com/legal/terms)
+- [Limites do Cloudflare Workers](https://developers.cloudflare.com/workers/platform/limits/)
+- [Cotas do Google Apps Script](https://developers.google.com/apps-script/guides/services/quotas)

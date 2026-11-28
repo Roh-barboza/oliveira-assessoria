@@ -51,6 +51,7 @@ export function createLeadHandler({store,allowedOrigins}) {
     try {
       const result=await store.save(payload);
       if(result.limited) return error(429,"Limite temporário de envios. Tente mais tarde.",{"Retry-After":"3600"});
+      if(typeof result.id!=="string"||!result.id.trim()) return error(503,"Não foi possível confirmar a gravação.");
       return reply({ok:true,protocol:result.id},result.duplicate?200:201);
     } catch { return error(503,"Não foi possível confirmar a gravação."); }
   };
